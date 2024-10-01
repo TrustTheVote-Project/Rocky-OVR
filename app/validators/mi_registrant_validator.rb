@@ -145,7 +145,7 @@ class MIRegistrantValidator < ActiveModel::Validator
   
   def validate_age(reg)
     return if reg.date_of_birth.blank?
-    earliest_date = Date.today - 17.years - 6.months
+    earliest_date = Date.today - 16.years
     if reg.date_of_birth > earliest_date
       reg.errors.add(:date_of_birth, :too_young)
     end

@@ -159,6 +159,8 @@ ilo:
         finish_update_status: Saan yo nga malipatan ti i-update ta Facebook ken Twitter!
         state_online_registration: Masapul nga ilep-pas mo iti pagrerehistro, ken
           usarem ti online sistema ti botante iti estado.
+        state_online_registration_id_not_required: "Maikari ka nga agkompleto iti 
+          panagparehistro ti botante online iti %{state}."
         state_online_registration_sub_header: Click mo ditoy baba, itat-tan, tapno
           completo iti rehistrasyon mo dita estado nga ayan mo.
         leave_state_online_registration: Mabalinyo nga palpasen dayta rehistro online

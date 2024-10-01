@@ -161,6 +161,8 @@ tl:
           at Twitter!
         state_online_registration: Ikaw ay eligible na tapusin ang iyong pagrerehistro
           na gumagamit ng online na sistema ng pagrerehistro ng botante ng estado.
+        state_online_registration_id_not_required: "Ikaw ay karapat-dapat na kumpletuhin 
+          ang iyong pagpaparehistro bilang botante online kasama ang %{state}."
         state_online_registration_sub_header: I-click mo sa ibaba para makumpleto
           ang pagrerehistro ngayon sa iyong estado.
         leave_state_online_registration: Maaari mong tapusin ang iyong pagrerehistro

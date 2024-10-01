@@ -8,7 +8,8 @@
     </li>
   </ul>
 <% end %>
-<% if @state_parties && @state_parties.any? %>
+
+<% if @registrant.home_state_abbrev != "NC" && @state_parties && @state_parties.any? %>
   <ul class="flat party-dropdown">
     <li class='registrant-form__party__line'>
       <h3><%= form.label :party %><%- if @registrant.requires_party? %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><%- end %></h3>

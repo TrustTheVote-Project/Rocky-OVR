@@ -78,20 +78,30 @@ en:
         directly with your state</a> for the most recent and accurate results</p>
     abr:
       splash:
-        header_1: How to Request an Absentee Ballot in %{state_name}
+        header_1: "%{state_name} restricts third-party organizations like Rock the Vote from helping you with your absentee ballot application."
         header_2: Questions & Next Steps
         header_3: Don't Forget to Vote!
+        instructions_1: "If you are registered to vote in %{state_name}, continue to your state's website to request an absentee ballot:"
       everyone_gets_ballot:
         header_1: "%{state_name} Automatically Mails All Registered Voters a Ballot"
         instructions_1: |-
-          <p>If you are registered to vote in %{state_name} you do not need to request an absentee ballot.</p>
-          <p><a href="%{url}">Make sure you are registered to vote!</a></p>
+          <p>If you are registered to vote in %{state_name} you do not need to request a 
+          vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered voters 
+          before the upcoming election. You can return the vote-by-mail ballot you receive 
+          by mail, or vote in person at your polling location.</p>
         header_2: Questions & Next Steps
         header_3: Don't Forget To Vote!
-      deadline_passed_header: Requesting an Absentee Ballot in %{state}
+      deadline_passed_header: Rock the Vote has temporarily turned off the Absentee Request Tool in %{state}
       deadline_passed_instructions: |-
-        <p>Thanks for being an active voter! We don't have an upcoming election in our database to request an absentee ballot for. <a href="https://register.rockthevote.com/pledge" title="pledge to vote">Sign up for our election reminders</a> to receive an email with information about requesting an absentee ballot when there's an election in your area.</p>
-        <p>Right now, make sure that you're a <a href="%{registration_url}">registered voter</a> so that you're able to vote by mail in future elections.</p>
+        <p>The most common reasons we deactivate our tool include:
+        <ul>
+        <li>The deadline to request an absentee ballot in %{state} has passed</li>
+        <li>It’s too soon to request an absentee ballot for the next election</li>
+        <li>Our team is updating the tool in your state</li>
+        </ul>
+        </p>
+        
+        <p><a href="https://register.rockthevote.com/pledge" title="pledge to vote">Sign up for election reminders</a>, and we’ll remind you to request an absentee ballot when there’s an election in your area.</p>
       deadline_passed_state_instructions:
         url: you can look up your status by using your state's <a href="%{url}">online
           tool</a>.

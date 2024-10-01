@@ -161,6 +161,8 @@ vi:
         state_online_registration: Bạn có thể đủ điều kiện để hoàn thành đăng ký cử
           tri của bạn bằng cách sử dụng hệ thống đăng ký cử tri trực tuyến của bang
           %{state}.
+        state_online_registration_id_not_required: "Bạn đủ điều kiện để hoàn thành đăng 
+          ký trực tuyến với %{state}."
         state_online_registration_sub_header: Nhấp vào bên dưới để hoàn tất quá trình
           đăng ký ngay bây giờ với nhà nước của bạn.
         leave_state_online_registration: Bạn có thể hoàn thành đăng ký cử tri trực

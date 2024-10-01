@@ -117,6 +117,7 @@ zh:
         finish_email_sent: 电子邮件已发送！
         finish_update_status: 不要忘记更新您在FACEBOOK和Twitter的状态！
         state_online_registration: 您或许符合资格使用%{state}网上选民登记系统进行选民登记。
+        state_online_registration_id_not_required: "您有资格在%{state}注册在线投票。"
         state_online_registration_sub_header: 现在就点击以下按钮与您所在州完成登记过程。
         leave_state_online_registration: 您可以使用以下表格，与%{state} 完成您的网上选民登记。如果您的驾驶证或州身份证不再有效或者州政府无法查询或确认您的DMV机动车管理部记录，不用担心&mdash，
           您还可以%{link}。您只需要打印，签名并邮寄。

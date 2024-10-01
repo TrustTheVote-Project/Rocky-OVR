@@ -31,7 +31,7 @@ class Notifier < ActionMailer::Base
     @privacy_url = "https://www.rockthevote.org/about-rock-the-vote/privacy-policy/"
     @partner_signup_url = "https://docs.google.com/forms/d/e/1FAIpQLSck6XJO2SQeSIenDpuHgNBUop9ENtvsGhMWLFYQDsy-VgO8pg/viewform"
     @partner_tool_faqs = "https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/partner-ovr-tool-faqs/partner-ovr-tool-faqs/"
-    mail(subject: "Rock the Vote Terms of Use",
+    mail(subject: "Welcome to Rock the Vote",
          from: RockyConf.from_address,
          to: partner.email,
          date: Time.now.to_s(:db))
