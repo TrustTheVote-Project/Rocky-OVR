@@ -1,50 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<%= @lookup&.locale || "en" %>">
+<!DOCTYPE html>
+<html lang="<%= @lookup&.locale || "en" %>">
 
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Check Your Voter Registration Status</title>
-  <meta name="description" content="Check your voter status now." />
+  <meta name="description" content="Verify your voter registration status in all states with our easy-to-use online lookup form. Ensure your voting rights are intact and up-to-date. Check now!" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Rock the Vote" />
-  <meta property="og:description" content="Check your voter status now." />
+  <meta property="og:title" content="Rock the Vote - Building the Political Power of Young People" />
+  <meta property="og:description" content="Check your voter registration status now." />
   <meta property="og:site_name" content="Rock the Vote" />
   <meta property="og:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta property="og:image:secure_url" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta property="og:image:width" content="1024" />
   <meta property="og:image:height" content="576" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:description" content="Check your voter status now." />
-  <meta name="twitter:title" content="Online Voter Status Check" />
+  <meta name="twitter:description" content="Check your voter registration status now." />
+  <meta name="twitter:title" content="Online Voter Registration Status Check" />
   <meta name="twitter:site" content="@rockthevote" />
   <meta name="twitter:image" content="https://rocky-ovr.s3.amazonaws.com/RocktheVote_Meta.png" />
   <meta name="twitter:creator" content="@rockthevote" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
   <%- unless controller.action_name == "new" %>
     <meta name="robots" content="noindex" />
   <%- end %>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-  <%= javascript_include_tag "iframeResizer.contentWindow.min.js" %>
-
-  <script>
-    WebFont.load({
-      google: {
-        families: ['Caveat:400', 'Fira Sans:400,700,700i']
-      }
-    });
-  </script>
-
+ 
   <%= stylesheet_link_tag 'jquery.qtip.min' %>
   <%= stylesheet_link_tag 'qtip-custom' %>
   <%= stylesheet_link_tag *partner_css %>
-  <!--[if !IE 7]>
-    <style type="text/css">
-      #container { display:table; height:100% }
-    </style>
-  <![endif]-->
+  <%- unless @partner&.partner2_css_present? && @partner&.whitelabeled %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet">
+    <%= stylesheet_link_tag 'registration3' %>
+  <%- end %>
+
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <script type="text/javascript" charset="utf-8">
@@ -54,9 +47,13 @@
     });
   </script>
   <%= yield :head %>
+<%= render :partial => 'layouts/weglot', locals: { show_additional_js: false } %>
 </head>
 
-<body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+<body class="lookup-page <%= 'not-landing ' if (@bsc && @bsc.state_abbrev) || (@lookup && @lookup.state_abbrev) %><%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %>">
+<script type="text/javascript">
+  window._registrantUID = "<%= j @lookup.uid %>";
+</script>
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
   <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>
@@ -67,19 +64,20 @@
       <span role="img" aria-label="<%="#{@partner.organization} logo" %>"> </span>
     <% else -%>
       <div id="header">
-        <span role="img" aria-label="Rock The Vote logo"> </span>
+        <span role="img" aria-label="Rock the Vote logo"> </span>
         <% end -%>
         <div class='header-text'>
-          <%- if @bsc && @bsc.state_abbrev %>
-            <%= t 'txt.check_ballot_in', state_abbrev: @bsc.state_abbrev %>
-          <%- elsif @bsc %>
-            <%= t 'txt.check_ballot' %>
-          <%- elsif @lookup && @lookup.state_abbrev %>
-            <%= t 'txt.check_voter_status_in', state_abbrev: @lookup.state_abbrev %>
-          <%- else%>
-            <%= t 'txt.check_voter_status' %>
-          <%- end %>
+          <% if @bsc && @bsc.state_abbrev %>
+            <%= t('txt.check_ballot_in', state_abbrev: @bsc.state_abbrev).html_safe %>
+          <% elsif @bsc %>
+           <%= t('txt.check_ballot').html_safe %>
+          <% elsif @lookup && @lookup.state_abbrev %>
+            <%= t('txt.check_voter_status_in', state_abbrev: @lookup.state_abbrev).html_safe %>
+          <% else %>
+            <%= t('txt.check_voter_status').html_safe %>
+          <% end %>
         </div>
+
       </div>
 
       <div id="main" class="lookup">
@@ -94,7 +92,6 @@
     <div id="sticky_footer">
       <%= render :partial => 'layouts/footer' %>
     </div>
-
 
     <%= render :partial => 'layouts/urchin' %>
     <%= javascript_include_tag "iframeResizer.contentWindow.min" %>
@@ -118,6 +115,16 @@
       }
     </script>
 
+ <% if @partner&.partner2_css_present? && @partner&.whitelabeled %>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Caveat:400', 'Fira Sans:400,700,700i']
+      }
+    });
+  </script>
+  <% end %>
 </body>
 
 </html>

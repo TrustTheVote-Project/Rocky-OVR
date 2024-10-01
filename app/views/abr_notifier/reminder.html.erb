@@ -1,23 +1,26 @@
 <style type="text/css">
 <!--
-.boxtext {
-  font-family: "Arial Black", Gadget, sans-serif;
-  font-size: 22px;
-  font-style: normal;
-  line-height: 1.5em;
-  font-weight: bolder;
-  text-transform: uppercase;
+.reminder-box {
+  float: right;
+  width: 275px;
+  margin: 0 0 15px 15px !important;
+  
+}
+@media screen and (max-width: 468px) {
+  .reminder-box {
+    margin: 0 0 20px 0 !important;
+    float: none;
+    width: 100%;
+  }
 }
 -->
 </style>
 
+<div style="max-width: 700px; margin: 0 auto;">
+<div style="border: 8px solid #cc0000; margin: 0 0 15px 0px; display: block; box-sizing: border-box; height: fit-content !important;" class="reminder-box">
+  <p style="color: black; padding: 15px; font-family: 'Arial Black', Gadget, sans-serif; font-size: 22px; font-style: normal; line-height: 1.5em; font-weight: bolder; text-transform: uppercase; margin: 0; text-align: center;"><%= I18n.t('email.abr.reminder.body.reminder', :locale => @locale).html_safe %></p>
+</div>
 <%= I18n.t('email.abr.reminder.body.greeting', :abr_first_name=>@abr_first_name, :abr_last_name=>@abr_last_name, :locale => @locale).html_safe %><br><br>
-
-<table style="float: right; margin: 0 0 15px 15px; width: 275px; border: 8px solid #cc0000;color:black" width="275" cellspacing="0" cellpadding="10">
-  <tr>
-    <td align="center" valign="middle" class="boxtext"><%= I18n.t('email.abr.reminder.body.reminder', :locale => @locale).html_safe %></td>
-  </tr>
-</table>
 
 <%= I18n.t('email.abr.reminder.body.main', 
   :pdf_url=>@pdf_url, 
@@ -29,15 +32,14 @@
   :rtv_link=>@rtv_link, :locale => @locale
 ).html_safe %>
 
-<hr size="3" align="left" width="100%" color="black"><br><br>
+<hr style="border: none; height: 3px; background-color: white; margin: 23px 0 20px 0; width: 100%; border-top: 3px solid black;">
 
 <%= I18n.t('email.abr.reminder.body.send_to_friends',
   :rtv_link=>@rtv_link,
   :abr_first_name=>@abr_first_name, :abr_last_name=>@abr_last_name, :locale => @locale).html_safe %>
 
 
-<hr size="3" align="left" width="100%" color="black"><br><br>
+<hr style="border: none; height: 3px; background-color: white; margin: 23px 0 20px 0; width: 100%; border-top: 3px solid black;">
 
 <%= I18n.t('email.abr.reminder.body.footer', :locale => @locale).html_safe %>
-
-
+</div>

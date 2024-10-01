@@ -4,10 +4,8 @@ class RegistrantValidator < ActiveModel::Validator
     
     #regexp = /\A(none|\d{4}|([-*A-Z0-9]{7,42}(\s+\d{4})?))\z/i
     
-    
-  
+    reg.validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
 
-    reg.validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
     reg.validates_format_of :email_address, :with => Registrant::EMAIL_REGEX, :allow_blank => true
     validate_email(reg)
     reg.validates_presence_of :phone_type if reg.has_phone?
@@ -192,12 +190,13 @@ class RegistrantValidator < ActiveModel::Validator
   
   def validates_zip_code(reg, attr_name)
     reg.validates_presence_of(attr_name)
-    reg.validates_format_of(attr_name, {:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true});
+    reg.validates_format_of(attr_name, with: /\A[0-9]{5}(?:-[0-9]{4})?\z/, allow_blank: true)
 
     if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
       reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
     end
   end
+
   
   def validate_phone_present_if_opt_in_sms(reg)
     return true if reg.building_via_api_call?

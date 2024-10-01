@@ -2,20 +2,21 @@ module AbrStateMethods::RI
   
   PDF_FIELDS = {
 
-    "abr_email": {method: "email"},	
-    "abr_phone": {method: "phone"},	
-    "abr_first_name": {method: "first_name"},	
-    'abr_middle_initial': {:method=>"middle_initial"},
-    "abr_last_name": {method: "last_name"},	
-    "abr_name_suffix": {method: "name_suffix"},	
-    "abr_street_number": {method: "street_number"},	
+    "abr_email": {method: "email"},
+    "abr_phone": {method: "phone"},
+    "abr_first_name": {method: "first_name"},
+    "abr_middle_initial": {:method=>"middle_initial"},
+    "abr_last_name": {method: "last_name"},
+    #"abr_full_name": {method: "full_name"},
+    #"abr_name_suffix": {method: "name_suffix"},
+    "abr_street_number": {method: "street_number"},
     "abr_street_name": {method: "street_name"},
-    "abr_unit": {method: "unit"},	
-    "abr_city": {method: "city"},	
-    "abr_home_state_abbrev": {method: "home_state_abbrev"},	
+    "abr_unit": {method: "unit"},
+    "abr_city": {method: "city"},
+    "abr_home_state_abbrev": {method: "home_state_abbrev"},
     'abr_zip': {method: "zip"},
     'abr_check_mailing_address':{},
-    'abr_date_of_birth_mm_dd_yyyy':{ method: "date_of_birth_mm_dd_yyyy" },     
+    'abr_date_of_birth_mm_dd_yyyy':{ method: "date_of_birth_mm_dd_yyyy" },
     #'abr_delivery_address_selections': {options: ['abr_delivery_address_type1','abr_delivery_address_type2','abr_delivery_address_type3']},
     'abr_mailing_address_line_1': {},
     'abr_mailing_unit': {},
@@ -26,12 +27,18 @@ module AbrStateMethods::RI
     'abr_reason2': {options:['Off','On'], method: 'not_reason1'},
 
     #'abr_reason_selections': {options: ['abr_reason1','abr_reason2','abr_reason3','abr_reason4']},
-    'abr_mailing_address_line_2': {method: "abr_mailing_address_line_2"}
+    'abr_mailing_address_line_2': {method: "abr_mailing_address_line_2"},
 
     # 'abr_application_type_check1': {options: ['Off','On']},
-    # 'abr_party_selections': {options: ['abr_party1','abr_party2',]},
+    #'abr_party_selections':{
+    #  options: [
+    #    'abr_party1',
+    #    'abr_party2',
+    #  ],
+    #  'abr_party1': {method: "abr_party_selection1"},
+    #  'abr_party2': {method: "abr_party_selection2"}
+    #}
     # 'abr_request_check': {options: ['Off','On']},
-
   }
   EXTRA_FIELDS = []
   # e.g.
@@ -45,14 +52,13 @@ module AbrStateMethods::RI
   def form_field_items
     [
 
-
       #{'abr_delivery_address_selections': {type: :radio, options: ['abr_delivery_address_type1','abr_delivery_address_type2','abr_delivery_address_type3'], required: true}},
       {"abr_check_mailing_address": {type: :checkbox}},
-      {"abr_mailing_address_line_1": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_unit": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_city": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
-      {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},	
+      {"abr_mailing_address_line_1": {classes: 'three-quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_unit": {classes: 'quarter', required: false, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_city": {classes: 'half', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_state_abbrev": {type: :select, options: GeoState.collection_for_select, classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
+      {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
 
       #{'abr_reason_selections':{type: :radio, options: ['abr_reason1','abr_reason2','abr_reason3','abr_reason4'], required: true}},
     
@@ -62,7 +68,7 @@ module AbrStateMethods::RI
       
       # {'abr_application_type_check1':{type: :checkbox, options: ['Off','On']}},
 
-      # {"abr_party_selections": {type: :radio, options:["abr_party1","abr_party2"], visible: "abr_application_type_check1", required: :if_visible}},
+      #{"abr_party_selections":{type: :radio, options:['abr_party1','abr_party2'], required: :if_visible}}
       # {'abr_request_check':{type: :checkbox, options: ['Off','On']}},
     ]
   end

@@ -4,8 +4,13 @@
   }
 </style>
 
-
 <div id="finish_page_iframe">
   <iframe title="Spread the word"
     border='0' height="575px" ALLOWTRANSPARENCY="true" frameborder="no" style='border:none !important; margin:0; padding:0; width:100%;' src='<%=@registrant_finish_iframe_url %>'></iframe>
 </div>
+
+<% if @show_back_button %>
+  <div class="back" style="padding-bottom: 20px;">
+    <%= link_to I18n.t('txt.button.back_to_register').html_safe, root_path(locale: params[:locale], partner: params[:partner]) %>
+  </div>
+<% end %>

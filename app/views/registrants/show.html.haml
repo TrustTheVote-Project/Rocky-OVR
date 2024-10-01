@@ -1,16 +1,19 @@
+= render :partial => 'layouts/weglot'
+
 - if !@registrant || @registrant.short_form?
   .intro-message
     %p=t('txt.registration.intro_message')
   
 %h1= t('txt.registration.step_1_header')
 
-#other_language_link
+#other_language_link{ style: 'display: none;' }
   - if @registrant.new_record?
     :javascript
       function followOtherLanguageLink() {
+        var url = $("#other_language_link select").val();
         window.location = $("#other_language_link select").val()
       }
-    %select{:onchange=>"followOtherLanguageLink();"}
+    %select{:name=>"language_select", :onchange=>"followOtherLanguageLink();"}
       %option Select Language
       - RockyConf.enabled_locales.each do |loc|
         - unless loc.to_s == I18n.locale.to_s
@@ -19,13 +22,13 @@
 
 = form_for(@registrant) do |form|
   - if @registrant.use_short_form? && !@registrant.new_record?
-    #other_language_link
+    #other_language_link{ style: 'display: none;' }
       = form.select :new_locale, RockyConf.enabled_locales.collect {|loc| [t('txt.registration.in_language_name', :locale=>loc), loc]}, {selected: @registrant.locale}, onchange: "$(this.form).find('input[name=skip_advance]').val(true); $(this.form).submit()"
-      = form.hidden_field :locale, :value=>@registrant.locale      
+      = form.hidden_field :locale, :value=>@registrant.locale
       = hidden_field_tag 'skip_advance', false
 
   = render :partial => 'form', :object => form
-  %p= I18n.t('txt.privacy_policy_acceptance').html_safe
+  %p.privacy_policy_acceptance= I18n.t('txt.privacy_policy_acceptance').html_safe
 
   - if !@registrant.use_short_form?
     %p
@@ -41,6 +44,4 @@
     %br
     %br
     = I18n.t('txt.registration.instructions.overseas').html_safe
-  %p.already-registered= I18n.t('txt.registration.already_registered', url: ( "/share?partner=#{@registrant.partner_id}&registrant_finish_iframe_url=#{CGI.escape(@registrant.finish_iframe_url)}")).html_safe
-  
-
+  %p.already-registered= I18n.t('txt.registration.already_registered', url: ("/share?partner=#{@registrant.partner_id}&locale=#{I18n.locale}")).html_safe

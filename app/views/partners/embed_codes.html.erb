@@ -164,15 +164,25 @@ zip: "string" // 5-digit zip code
     </div>
   </form>  
 
-  <h3 arial-level="3" role="heading">Share a link to your Voter Registration tool.</h3>
+  <h3 arial-level="3" role="heading">Share links directly to your tools:</h3>
   <p>
-  Use this URL to promote your Voter Registration tool: <%= link_to "https://#{RockyConf.ui_url_host}#{new_registrant_path(:partner => @partner.id)}", "https://#{request.host}#{new_registrant_path(:partner => @partner.id)}" %>
+  Use this URL to promote your Voter Registration tool: <%= link_to "https://#{RockyConf.ui_url_host}#{new_registrant_path(:partner => @partner.id)}", "https://#{request.host}#{new_registrant_path(:partner => @partner.id)}", target: "_blank" %>
   </p>
+  <p>
+  Use this URL to promote your Absentee Ballot Request tool: <%= link_to "https://#{RockyConf.ui_url_host}/absentee/?partner=#{@partner.id}", "https://#{request.host}/absentee/?partner=#{@partner.id}", target: "_blank" %>
+  </p>
+  <p>
+  Use this URL to promote your Voter Status Lookup tool: <%= link_to "https://#{RockyConf.ui_url_host}/lookup/?partner=#{@partner.id}", "https://#{request.host}/lookup/?partner=#{@partner.id}", target: "_blank" %>
+  </p>
+  <p>
+  Use this URL to promote your Pledge to Vote tool: <%= link_to "https://#{RockyConf.ui_url_host}/pledge/?partner=#{@partner.id}", "https://#{request.host}/pledge/?partner=#{@partner.id}", target: "_blank" %>
+  </p>
+
 
 
   <h2 role="heading" aria-level="2">Social Sharing:</h2>
   <p>
-  Generate links for Facebook or Twitter.
+  Generate links for Facebook or X.
   </p>
 
    <h3 role="heading" aria-level="3">Facebook</h3>
@@ -181,7 +191,7 @@ zip: "string" // 5-digit zip code
       <p><textarea name="share_link_facebook" readonly="readonly" rows="6" ><%= h @share_link_facebook %></textarea></p>
     </div>
   </form>
-  <h3 role="heading" aria-level="3">Twitter</h3>
+  <h3 role="heading" aria-level="3">X</h3>
   <form class="copy_html" action="#" method="get" accept-charset="utf-8">       
     <div>
       <p><textarea name="share_link_twitter" readonly="readonly" rows="6" ><%= h @share_link_twitter %></textarea></p>

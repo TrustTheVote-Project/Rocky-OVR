@@ -64,7 +64,14 @@ class Abr < ActiveRecord::Base
   validate :validate_form_fields, if: :advancing_to_step_4?
   validate :validate_date_of_birth, if: :advancing_to_step_3?
 
-  validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
+  before_validation :clean_phone_number
+
+  validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
+
+  def clean_phone_number
+    self.phone = phone.gsub(/[^\d]/, '') if phone.present?
+  end
+
   validates_presence_of :email
   validates_format_of   :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
   validates_presence_of :phone_type, if: :has_phone?
@@ -132,14 +139,22 @@ class Abr < ActiveRecord::Base
     registration_county
   end
   
-  MAX_DATE_OF_BIRTH = Date.parse("2004-11-08")
+  #MAX_DATE_OF_BIRTH = Date.parse("2007-11-05")
   
+  #def will_be_18
+  #  if date_of_birth && date_of_birth > MAX_DATE_OF_BIRTH 
+  #    errors.add(:date_of_birth, :too_young)
+  #  end
+  #end
+  
+  validate :will_be_18
+
   def will_be_18
-    if date_of_birth && date_of_birth > MAX_DATE_OF_BIRTH 
+    if date_of_birth.present? && date_of_birth > 17.years.ago.to_date
       errors.add(:date_of_birth, :too_young)
     end
   end
-  
+
   def validates_zip
     validates_zip_code(self, :zip)
   end

@@ -102,7 +102,7 @@ bn:
         other: অন্যান্য
       instructions:
         overseas: ! '<b>মন্তব্য </b>: আপনি যদি আমেরিকার নাগরিক হন কিন্ত বিদেশে বসবাস
-          করেন অথবা সামরিক বাহিনীর সদস্য হন তবে ভোটার হওয়ার জন্য :<a href=''https://www.overseasvotefoundation.org/vote/home.htm?source=rockthevote''
+          করেন অথবা সামরিক বাহিনীর সদস্য হন তবে ভোটার হওয়ার জন্য :<a href=''https://www.usvotefoundation.org/vote/request-overseas-absentee-ballot?source=rockthevote''
           target=''_blank''>এখানে ক্লিক করুন</a>'
         opt_in_email: আমরা যথাসময়ে আপনার ভোট কেন্দ্রের অবস্থানসহ আপনাকে ভোটার রেজিষ্ট্রেশন
           এবং নির্বাচনের বিভিন্ন তথ্য প্রেরণ করবো।

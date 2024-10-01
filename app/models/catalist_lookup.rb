@@ -25,7 +25,16 @@ class CatalistLookup < ActiveRecord::Base
   validates_presence_of :email
   validates_format_of   :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
   validates_presence_of :phone_type, if: -> { !phone.blank? }
-  validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
+  
+  before_validation :clean_phone_number
+
+  validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
+
+  def clean_phone_number
+    self.phone = phone.gsub(/[^\d]/, '') if phone.present?
+  end
+
+  
   validate :validate_date_of_birth
   validate :validates_zip
   validate :validate_phone_present_if_opt_in_sms
@@ -35,7 +44,6 @@ class CatalistLookup < ActiveRecord::Base
       self.errors.add(:phone, :required_if_opt_in)
     end
   end
-  
 
   def validates_zip
     validates_zip_code(self, :zip)
@@ -53,9 +61,10 @@ class CatalistLookup < ActiveRecord::Base
   def validate_date_of_birth_age
     if birthdate < Date.parse("1900-01-01")
       errors.add(:date_of_birth, :too_old)
-    end    
-    if birthdate > Date.today
-      errors.add(:date_of_birth, :future)      
+    elsif birthdate > Date.today
+      errors.add(:date_of_birth, :future)
+    elsif birthdate > 17.years.ago.to_date
+      errors.add(:date_of_birth, :way_too_young)
     end
   end
   

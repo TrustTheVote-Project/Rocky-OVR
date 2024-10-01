@@ -51,7 +51,7 @@ protected
   def authenticate
     authenticate_or_request_with_http_basic("Settings UI") do |user, password|
       pass = Settings.admin_password
-      pass.present? && user == 'rtvdemo' && password == 'moose'
+      pass.present? && user == 'rtvdemo' && password == 'roxy'
     end
   end
   

@@ -6,6 +6,7 @@
 //= link qtip-custom.css
 //= link registration.css
 //= link registration2.css
+//= link registration3.css
 //= link reset.css
 //= link rocky.css
 //= link nvra.css
@@ -29,4 +30,4 @@
 //= link_directory ../stylesheets/states .css
 //= link_directory ../stylesheets/nvra/locales .css
 
-//= link_directory ../javascripts/abr_states .js    
+//= link_directory ../javascripts/abr_states .js

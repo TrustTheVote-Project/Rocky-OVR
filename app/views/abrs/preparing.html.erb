@@ -28,10 +28,11 @@
     <div class="download" style="position:relative">
       <div>
         <h2 class="spaced_out"><%= I18n.t('txt.abr.download_instructions', registrar_address: @abr.state_registrar_address) %></h2>
-        <h2 class="preparing"><%= I18n.t('txt.abr.preparing_header') %></h2>
+        <h2 class="preparing text-center"><%= I18n.t('txt.abr.preparing_header') %></h2>
       </div>
-      <p class="preparing"><%= image_tag "reg/spinner.gif" %></p>
-      <p><%= I18n.t('txt.abr.preparing_instructions') %></p>
+      <!--<p class="preparing"><%= image_tag "reg/spinner.gif" %></p>-->
+      <div class="spinner"></div>
+      <p class="text-center"><%= I18n.t('txt.abr.preparing_instructions') %></p>
     </div>
   </div>
 <%- end %>

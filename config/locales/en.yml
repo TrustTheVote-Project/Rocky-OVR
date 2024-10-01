@@ -16,7 +16,9 @@ en:
       too_long: too long (maximum is %{count} characters).
       too_short: too short (minimum is %{count} characters).
       wrong_length: wrong length (should be %{count} characters).
-      too_young: You must be 18 on or before November 8, 2022 to vote in this election.
+      too_young: You must be 18 on or before Election day.
+      way_too_young: You are too young for this.
+      contains_emojis: Contains invalid emoji characters. Please remove them.
   or: OR
   affirm: Affirm
   decline: Decline
@@ -80,7 +82,7 @@ en:
         requested_duplicate_dln_today: Have you applied for a duplicate driver’s license
           or state ID today?
         confirm_us_citizen: I am a United States citizen.
-        confirm_will_be_18: I am at least 17.5 years old and will vote only after
+        confirm_will_be_18: I am at least 16 years old and will vote only after
           I am 18.
         is_30_day_resident: I am a Michigan resident and will vote only after I have
           lived in my city or township for at least 30 days.
@@ -708,6 +710,7 @@ en:
             of California, you must accept the disclosures above.
           blank: Required
           invalid: "%{attribute} is invalid."
+          contains_emojis: Contains invalid characters.
           invalid_zip: Invalid ZIP
           attributes:
             home_zip_code:
@@ -768,8 +771,8 @@ en:
       email_invalid: Email is not valid.
       password_blank: Password can not be blank.
       password_invalid: Login/password combination is not valid.
-      not_active: Your account is not active. Please contact <a href="mailto:civictech@rockthevote.org">civictech@rockthevote.org</a>
-        to re-activate your account.
+      not_active: This account is not active. Accounts are deactivated after 90 days of inactivity or if your licensing agreement has lapsed. Please contact <a href="mailto:civictech@rockthevote.org">civictech@rockthevote.org</a>
+        to reactivate your account.
       not_confirmed: Your account is not confirmed.
       not_approved: Your account is not approved.
       no_authentication_details: You did not provide any details for authentication.
@@ -781,7 +784,7 @@ en:
         general: This section allows partners with some knowledge of CSS and HTML
           to fully customized their registration tool. You have the option to overwrite
           the default CSS and modify the autoresponder emails. Simply upload new resources
-          through the portal, review changes, and submit for approval. <a href="http://wiki.rockthevote.com/index.php/Examples"
+          through the portal, review changes, and submit for approval. <a href="https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/#faq-examples"
           target="_BLANK">Here are some great examples</a>.
         assets:
         - Upload your graphics (background images, special icons, etc that will be
@@ -794,8 +797,8 @@ en:
         - 'Create a file called partner.css that overwrites the default styles with
           your own. Reference the fonts and images already uploaded. (ie: body {background-image:
           url(‘mybackground.jpg’); color: #cc0000;} This file will load after the
-          default styles so anything you define should change. Go to <a href="https://wiki.rockthevote.com"
-          target="_blank">wiki.rockthevote.com</a> for some examples.'
+          default styles so anything you define should change. Go to <a href="https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/"
+          target="_blank">FAQs</a> for some examples.'
         email_templates:
         - The registration platform will automatically send emails to new registrants
           to ensure they complete the process.

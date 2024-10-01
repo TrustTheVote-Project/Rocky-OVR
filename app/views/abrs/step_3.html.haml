@@ -23,10 +23,10 @@
   = form_for(@abr) do |form|
     = render partial: 'step', locals: { form: form }
 
-    
+      
     .step_3_form_fields
       = render partial: "state_fields", locals: {form: form}
-  
+
       - if @abr.collect_signature?
         - @registrant = @abr
         = render partial: 'shared/signature_capture/scripts', locals: { allow_desktop_signature: @abr.allow_desktop_signature? }
@@ -39,11 +39,10 @@
               $("#prepare_form").hide();
               $("#deliver_by_email").show();
             }
-
           }
+
         = render partial: 'shared/signature_capture/form', locals: {form: form, home_state_key: "#{@abr.home_state_abbrev.downcase}.abr", allow_desktop_signature: @abr.allow_desktop_signature?, allow_print_and_sign: true}
-      
-      
+
       %ul.flat
         = render :partial=> "registrants/phone", :locals=>{:form=>form, skip_tooltip: true}
 

@@ -1,5 +1,6 @@
 module AbrStateMethods::ID
 
+    
     PDF_FIELDS = {
       "abr_email": {
         method: "email"
@@ -17,8 +18,14 @@ module AbrStateMethods::ID
       "abr_name_suffix": {
         method: "name_suffix"
       },
-      "abr_street_name": {
-        method: "address",
+      "abr_date_of_birth_mm_dd_yyyy": {
+        method: "date_of_birth_mm_dd_yyyy"
+      },
+      'abr_street_name': { 
+        method: "address_line_1"
+      },
+      "abr_unit": {
+        method: "unit"
       },
       "abr_city": {
         method: "city"

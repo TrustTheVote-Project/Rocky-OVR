@@ -5,8 +5,8 @@ class BallotStatusChecksController < ApplicationController
   def new
     @bsc = BallotStatusCheck.new(
       partner_id: @partner_id, 
-      tracking_source: @source,
-      tracking_id: @tracking,
+      tracking_source: ERB::Util.html_escape(@source),
+      tracking_id: ERB::Util.html_escape(@tracking),
       email: @email,
       first_name: @first_name,
       last_name: @last_name,
@@ -72,8 +72,12 @@ class BallotStatusChecksController < ApplicationController
   end
 
   def set_up_locale
-    params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
-    @locale = params[:locale] || (@bsc ? @bsc.locale : nil) || 'en'
+    #params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
+    #@locale = params[:locale] || (@bsc ? @bsc.locale : nil) || 'en'
+    #I18n.locale = @locale.to_sym
+
+    # Set the locale to 'en' regardless of any locale parameter
+    @locale = 'en'
     I18n.locale = @locale.to_sym
   end
 end

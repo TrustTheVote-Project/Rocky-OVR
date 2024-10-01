@@ -5,7 +5,7 @@
 NUM_THREADS = 50  # Number of concurrent users
 NUM_REQUESTS = 30 # How many PDFs each user generates
 
-HOST = "https://rtvdemo:moose@loadtest.rocky.rockthevote.com"
+HOST = "https://rtvdemo:roxy@loadtest.rocky.rockthevote.com"
 
 PATH = "/api/v3/registrations.json"
 

@@ -41,6 +41,9 @@ class Registrant < ActiveRecord::Base
   include TimeStampHelper
 
   include TrackableMethods
+
+  ENABLED_LOCALES = YAML.load_file("#{Rails.root}/config/settings/#{Rails.env}.yml")["enabled_locales"]
+
   
   scope :abandoned, -> {where(abandoned: true)}
   
@@ -52,8 +55,13 @@ class Registrant < ActiveRecord::Base
     tracking_events.where(tracking_event_name: "registrant::render_view")
   end
 
-  
-  
+  # used to determine if mobile ui should be used in cases where iframed
+  def iframe_param_present?
+    other_parameters&.include?('iframe=true')
+  end
+
+
+
   serialize :state_ovr_data, Hash
 
   STEPS = [:initial, :step_1, :step_2, :step_3, :step_4, :step_5, :complete]
@@ -111,9 +119,13 @@ class Registrant < ActiveRecord::Base
        "prev_zip_code"
     ]
   
-  OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
+  #original -OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
+  #OVR_REGEX = /\A(?:\p{Latin}|[^\p{Letter}\p{So}<>\[\]{}|[:cntrl:]!@#$%^&*()])*\z/
+  OVR_REGEX = /\A(?:\p{Latin}|[^\p{Letter}\p{So}<>\[\]{}|[:cntrl:]!@$%^&*()])*\z/
   #OVR_REGEX = /\A[\p{Latin}\p{N}\p{P}\p{M}\p{Sc}\p{Sk}\p{Sm}\p{Z}]*\z/
   DB_REGEX = /\A[^\u{1F600}-\u{1F6FF}]*\z/
+  SURVEY_REGEX = /\A[^\p{C}\p{So}<>\@\#\$\%\^\&\*\(\)\+\=\p{Emoji}]*\z/
+  #DB_NO_EMOJI_REGEX = /\A[^\p{Emoji}]*\z/
   EMAIL_REGEX = /
     \A
     [A-Z0-9_.&%+\-']+   # mailbox
@@ -152,7 +164,7 @@ class Registrant < ActiveRecord::Base
       #Also allow city fields to have the same as address fields (, / .) - just remove them
       val = self.send(field).to_s
       val = val.gsub(/[,\.]/i,"").gsub(/\//i, " ")
-      self.send("#{field}=", val)      
+      self.send("#{field}=", val)
     end
   end
   
@@ -169,12 +181,10 @@ class Registrant < ActiveRecord::Base
   # end
   
   SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
-  validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
-  
-  
-  
+  validate_fields(SURVEY_FIELDS, SURVEY_REGEX, :contains_emojis)
 
-  FINISH_IFRAME_URL = "https://s3.rockthevote.com/rocky/rtv-ovr-share.php"
+
+  FINISH_IFRAME_URL = "https://s3.rockthevote.com/rocky/rtv-ovr-share-vanilla.php"
 
   CSV_HEADER = [
     "Status",
@@ -738,24 +748,30 @@ class Registrant < ActiveRecord::Base
   # Reset name/prev prefix, suffix, race, party, phone_type
   def check_locale_change
     if !self.new_locale.blank? && self.new_locale != self.locale
-      selected_name_title_key = name_title_key
-      selected_name_suf_key = name_suffix_key
-      selected_prev_name_title_key = prev_name_title_key
-      selected_prev_name_suf_key = prev_name_suffix_key
-      selected_race_key = race_key
-      party_idx = state_parties.index(self.party)
-      selected_phone_key = phone_type_key
+      if ENABLED_LOCALES.include?(self.new_locale)
+        selected_name_title_key = name_title_key
+        selected_name_suf_key = name_suffix_key
+        selected_prev_name_title_key = prev_name_title_key
+        selected_prev_name_suf_key = prev_name_suffix_key
+        selected_race_key = race_key
+        party_idx = state_parties.index(self.party)
+        selected_phone_key = phone_type_key
       
-      self.locale = self.new_locale
+        self.locale = self.new_locale
       
-      self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale) if selected_name_title_key
-      self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
-      self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale) if selected_prev_name_title_key
-      self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale) if selected_prev_name_suf_key
-      self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
-      self.party = state_parties[party_idx] if !party_idx.nil?
-      self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale) if selected_phone_key
-      self.save(validate: false)
+        self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale) if selected_name_title_key
+        self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
+        self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale) if selected_prev_name_title_key
+        self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale) if selected_prev_name_suf_key
+        self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
+        self.party = state_parties[party_idx] if !party_idx.nil?
+        self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale) if selected_phone_key
+        self.save(validate: false)
+      else
+        # Default to 'en' if the locale is invalid
+        self.locale = 'en'
+        self.save(validate: false)
+      end
     end
   end
 
@@ -2068,8 +2084,6 @@ class Registrant < ActiveRecord::Base
 
   private ###
 
-
-
   def generate_uid
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email_address} -- #{home_zip_code}" )
     ensure_shift if !self.shift_id.blank?
@@ -2106,12 +2120,15 @@ class Registrant < ActiveRecord::Base
   end
 
   def partner_survey_question_1
-    locale.blank? ? "" : partner.send("survey_question_1_#{locale}")
+    locale_to_use = locale.present? && ENABLED_LOCALES.include?(locale) ? locale : 'en'
+    partner.send("survey_question_1_#{locale_to_use}")
   end
 
   def partner_survey_question_2
-    locale.blank? ? "" : partner.send("survey_question_2_#{locale}")
+    locale_to_use = locale.present? && ENABLED_LOCALES.include?(locale) ? locale : 'en'
+    partner.send("survey_question_2_#{locale_to_use}")
   end
+
 
   def set_questions
     if self.survey_answer_1_changed? && !self.original_survey_question_1_changed?

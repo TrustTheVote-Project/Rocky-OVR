@@ -1,20 +1,22 @@
-<div id="footer">
-  <%- if !@registrant || @registrant.use_short_form? %>
-    <div id="powered_by_logo" class="powered-by-logo">
-      <span class='powered-by-text'>Powered By</span>
-      <a href="<%= RockyConf.sponsor.url %>" target="_blank">
-        <%= image_tag 'rock-the-vote-horz-logo-rev.png', alt: 'Rock the Vote', class: 'rtv-logo' %>
-      </a>
-    </div>
-    <div id="powered_by_aws_logo" class="powered-by-logo">
-      <%= image_tag 'powered-by-aws-logo-v3.png', alt: 'Powered by Amazon Web Services' %>
-    </div>
-  <%- end %>
-  <p>
-    <span><a href="https://www.rockthevote.org/voting-information/voting-faqs/" target="_blank" title="FAQ">FAQ</a></span>
-    <span><a href="https://www.rockthevote.org/privacy-policy/" target="_blank" title="Privacy &amp; Security">Privacy &amp; Security</a></span>
-    <span><a href="https://www.rockthevote.org/contact-us/" target="_blank" title="Contact Us">Contact Us</a></span>
-    <span><a href="https://www.rockthevote.org/about-us/" target="_blank" title="About">About</a></span>
-    <span class="copyright"><%= (RockyConf.sponsor.footer_copyright % Date.today.year).html_safe %></span>
-  </p>
-</div>
+<%- cache 'footer_partial' do %>
+  <div id="footer">
+    <%- if !@registrant || @registrant.use_short_form? %>
+      <div id="powered_by_logo" class="powered-by-logo">
+        <span class='powered-by-text'>Powered By</span>
+        <a href="<%= RockyConf.sponsor.url %>" target="_blank">
+          <%= image_tag 'rock-the-vote-horz-logo-rev.png', alt: 'Rock the Vote', class: 'rtv-logo' %>
+        </a>
+      </div>
+      <div id="powered_by_aws_logo" class="powered-by-logo">
+        <%= image_tag 'powered-by-aws-logo-v3.png', alt: 'Powered by Amazon Web Services' %>
+      </div>
+    <%- end %>
+    <p>
+      <span><a href="https://www.rockthevote.org/voting-information/voting-faqs/" target="_blank" title="FAQ">FAQ</a></span>
+      <span><a href="https://www.rockthevote.org/privacy-policy/" target="_blank" title="Privacy &amp; Security">Privacy &amp; Security</a></span>
+      <span><a href="https://www.rockthevote.org/contact-us/" target="_blank" title="Contact Us">Contact Us</a></span>
+      <span><a href="https://www.rockthevote.org/about-us/" target="_blank" title="About">About</a></span>
+      <span class="copyright"><%= (RockyConf.sponsor.footer_copyright % Date.today.year).html_safe %></span>
+    </p>
+  </div>
+<%- end %>

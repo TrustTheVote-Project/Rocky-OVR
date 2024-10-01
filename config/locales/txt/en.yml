@@ -78,28 +78,37 @@ en:
         directly with your state</a> for the most recent and accurate results</p>
     abr:
       splash:
-        header_1: How to Request an Absentee Ballot in %{state_name}
+        header_1: "%{state_name} restricts third-party organizations like Rock the Vote from helping you with your absentee ballot application."
         header_2: Questions & Next Steps
         header_3: Don't Forget to Vote!
+        instructions_1: "If you are registered to vote in %{state_name}, continue to your state's website to request an absentee ballot:"
       everyone_gets_ballot:
         header_1: "%{state_name} Automatically Mails All Registered Voters a Ballot"
         instructions_1: |-
-          <p>If you are registered to vote in %{state_name} you do not need to request an absentee ballot.</p>
-          <p><a href="%{url}">Make sure you are registered to vote!</a></p>
+          <p>If you are registered to vote in %{state_name} you do not need to request a 
+          vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered voters 
+          before the upcoming election. You can return the vote-by-mail ballot you receive 
+          by mail, or vote in person at your polling location.</p>
         header_2: Questions & Next Steps
         header_3: Don't Forget To Vote!
-      deadline_passed_header: Requesting an Absentee Ballot in %{state}
+      deadline_passed_header: Rock the Vote has temporarily turned off the Absentee Request Tool in %{state}
       deadline_passed_instructions: |-
-        <p>Thanks for being an active voter! We don't have an upcoming election in our database to request an absentee ballot for. <a href="https://register.rockthevote.com/pledge" title="pledge to vote">Sign up for our election reminders</a> to receive an email with information about requesting an absentee ballot when there's an election in your area.</p>
-        <p>Right now, make sure that you're a <a href="%{registration_url}">registered voter</a> so that you're able to vote by mail in future elections.</p>
+        <p>The most common reasons we deactivate our tool include:
+        <ul>
+        <li>The deadline to request an absentee ballot in %{state} has passed</li>
+        <li>It’s too soon to request an absentee ballot for the next election</li>
+        <li>Our team is updating the tool in your state</li>
+        </ul>
+        </p>
+        
+        <p><a href="https://register.rockthevote.com/pledge" title="pledge to vote">Sign up for election reminders</a>, and we’ll remind you to request an absentee ballot when there’s an election in your area.</p>
       deadline_passed_state_instructions:
         url: you can look up your status by using your state's <a href="%{url}">online
           tool</a>.
         leo_contact_info: you can check with your local election official at</p><p>%{leo_contact_info}</p>
         leo_lookup_url: you can find your local election office at <a href="%{leo_lookup_url}">%{leo_lookup_url}</a>
       step_1_header: ''
-      step_1_instructions: "<p>Request your absentee ballot now to vote from the ease
-        and safety of your home.</p>"
+      step_1_instructions: "<p>Request your absentee ballot now to vote from home.</p>"
       step_2_eligibility_header: Eligibility to Request an Absentee Ballot
       step_2_eligibility_instructions: |-
         <p>
@@ -218,8 +227,8 @@ en:
         registration record in %{state_name}.</p>"
       not_registered_link: <p>Would you like to <a href="%{url}">registration to vote</a>?</p>
     alert_request:
-      pledge_to_vote: Pledge to Vote
-      pledge_to_vote_in: Pledge to Vote
+      pledge_to_vote: Pledge To Vote
+      pledge_to_vote_in: Pledge To Vote
       step_1_header: Pledge to Vote
       step_1_instructions: Pledge to vote and get personalized reminders about upcoming
         election dates and deadlines - never miss an election!
@@ -239,7 +248,7 @@ en:
       Rock the Vote. You can opt out from emails at any time.
 
     register_to_vote: Register To Vote
-    register_to_vote_in: Register in %{state_abbrev}
+    register_to_vote_in: Register In %{state_abbrev}
     request_absentee_ballot_in: Request an Absentee Ballot In %{state_abbrev}
     request_absentee_ballot: Request An Absentee Ballot
     check_voter_status_in: Check Voter Status In %{state_abbrev}
@@ -260,6 +269,7 @@ en:
       trackballot: Check Ballot Status
       edit: Edit
       back: "&lt; Previous Step"
+      back_to_register: "&lt; Register to Vote"
       download: Print your registration form now
       download_assistance: Please mail me my form, I can't print it right now
       download_abr: Print your Absentee Request now
@@ -286,8 +296,7 @@ en:
       in_language_name: In English
       powered_by: 'powered by:'
       progress_indicator: 'Step:'
-      intro_message: Voter registration time takes an average of two minutes or less
-        to complete.
+      intro_message: Voter registration takes an average of two minutes or less.
       step_1_header: New Registrant
       step_2_header: Personal Information
       step_3_header: Additional Registration Information
@@ -389,7 +398,7 @@ en:
       instructions:
         online: "<b>Note</b>: Some states offer online voter registration. <a href='https://www.rockthevote.org/online/'
           target='_blank'>Learn more.</a>"
-        overseas: U.S. citizen living abroad or uniformed services member? <a href='https://www.overseasvotefoundation.org/vote/home.htm?source=rockthevote'
+        overseas: U.S. citizen living abroad or uniformed services member? <a href='https://www.usvotefoundation.org/vote/request-overseas-absentee-ballot?source=rockthevote'
           target='_blank'>Request your ballot with Overseas Vote</a>.
         opt_in_email: We will send you timely election reminders, your polling place
           location, and information about music and issues.
@@ -521,7 +530,10 @@ en:
         registrant_name: Put your full name and in these boxes. Please do not use
           nicknames or initials. If this application is for a change of name you will
           be asked for your previous name in a later section.  And don't forget to
-          include your title (Mr., Mrs., Miss, Ms.).
+          include your title (Mr., Mrs., Miss, Ms.). The pre-determined options for 
+          the Title field are dictated by the National Mail Voter Registration Form, 
+          and this field is required by some states. They are not reflective of 
+          Rock the Vote's views or values on gender inclusivity.
         home_address: Put your home address in these boxes. Do not put your mailing
           address here if it is different from your home address. Do not use a post
           office box or rural route without a box number. If you live in a rural area

@@ -46,10 +46,10 @@ ilo:
         home_zip_code: ZIP Code
         us_citizen: Nagbalinak nga U.S. Citizen.
         name_title: Titulo
-        first_name: Umuna nga nagan
-        middle_name: Nagting-nga a nagan
+        first_name: Nagan
+        middle_name: Tunggal Nagan
         last_name: Apilyedo
-        name_suffix: Nainayon nga nagan
+        name_suffix: Sufiks
         home_address: Address
         home_unit: ! 'Unit/Lote #'
         home_city: Ciudad
@@ -71,10 +71,10 @@ ilo:
         phone_type: Tipo
         change_of_name: Nagbaliwac iti nagan.
         prev_name_title: Titulo
-        prev_first_name: Umuna nga nagan
-        prev_middle_name: Nagting-nga a nagan
+        prev_first_name: Nagan
+        prev_middle_name: Tunggal Nagan
         prev_last_name: Apilyedo
-        prev_name_suffix: Nainayon nga nagan
+        prev_name_suffix: Sufiks
         change_of_address: Nagsukatak iti address.
         prev_address: Address
         prev_unit: ! 'Unit/Lote #'
@@ -116,6 +116,12 @@ ilo:
               accepted: Masapul mo nga ibaga no iti impormasyon ditoy ngato ket husto.
             has_state_license:
               inclusion: Ibagam no adda valido nga lisensya iti estado kenka
+            us_citizen:
+              accepted: Masapul nga US citizen ka!
+            sms_number_for_continue_on_device:
+              format: Pakialaun nga iburay ti balido nga numero
+            email_address_for_continue_on_device:
+              format: Pakialaun nga iburay ti balido nga email
       messages:
         inclusion: ! '''%{attribute}'' ket saan nga kabilang iti listaan.'
         exclusion: ! '''%{attribute}'' ket nakareserba.'

@@ -11,7 +11,53 @@
     - state_instructions = t('txt.abr.deadline_passed_state_instructions.leo_contact_info', leo_contact_info: [@abr.home_state&.registrar_phone, @abr.home_state&.registrar_url, @abr.state_registrar_address].join("<br/>")).html_safe
   = t("txt.abr.deadline_passed_instructions", state: @abr.home_state_abbrev, state_instructions: state_instructions, registration_url: registration_abr_path(@abr)).html_safe
 
+-# #finish_page_iframe
+-#   %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }
+
 #finish_page_iframe
-  %iframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:0; padding:0; width:100%;', src: @abr_finish_iframe_url }
+  - src_url = @abr_finish_iframe_url
+  - existing_locale = src_url.match(/(\?|&)locale=([^&]*)/)&.captures&.last || I18n.locale
+  - src_url = src_url.gsub(/(\?|&)locale=[^&]*/, '') # Remove any existing locale parameter
+  - src_url += src_url.include?('?') ? "&locale=#{existing_locale}" : "?locale=#{existing_locale}" # Append the new locale
+  %iframe#dynamicLocaleIframe{border: '0', height: "575px", "ALLOWTRANSPARENCY": true, frameborder: "no", style: 'border:none !important; margin:40px 0 0 0; padding:0; width:100%;', src: src_url }
+
+:javascript
+  document.addEventListener('DOMContentLoaded', function () {
+    function updateIframeLocale() {
+      // Get the current URL parameters
+      let urlParams = new URLSearchParams(window.location.search);
+      
+      // Get the locale from the URL, or fall back to the default locale
+      let currentLocale = urlParams.get('locale') || "#{I18n.locale}";
+
+      // Get the iframe element
+      let iframe = document.getElementById('dynamicLocaleIframe');
+
+      // Modify the iframe's src URL to include the correct locale
+      let iframeSrc = iframe.src.replace(/(\?|&)locale=[^&]*/, '');
+      iframeSrc += iframeSrc.includes('?') ? `&locale=${currentLocale}` : `?locale=${currentLocale}`;
+
+      // Update the iframe's src attribute
+      iframe.src = iframeSrc;
+    }
+
+    // Call updateIframeLocale when the page loads
+    updateIframeLocale();
+    
+    // Listen for changes in the URL and update the iframe
+    window.addEventListener('popstate', updateIframeLocale);
+    window.addEventListener('pushstate', updateIframeLocale);
+    window.addEventListener('replaceState', updateIframeLocale);
+
+    // Optionally, detect when the URL changes and manually trigger an update
+    var oldHref = document.location.href;
+
+    setInterval(function() {
+      if (oldHref !== document.location.href) {
+        oldHref = document.location.href;
+        updateIframeLocale();
+      }
+    }, 1000); // Check every second
+  });
 
 = render :partial => 'abrs/finish_adwords'

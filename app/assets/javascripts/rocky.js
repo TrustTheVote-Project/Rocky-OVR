@@ -82,7 +82,7 @@ function addTooltips(selector, target_corner, tooltip_corner) {
 function makeExternalLinksOpenInNewTab() {
   var hostname = window.location.hostname;
   $("a[href^='http']").each(function(index, element) {
-    console.log(hostname, element, element.hostname)
+    //console.log(hostname, element, element.hostname)
     if (hostname !== element.hostname) {
       return $(this).attr('rel', 'noopener noreferrer').attr('target', '_blank');
     }

@@ -61,10 +61,31 @@ class RegistrantsController < RegistrationStep
     options.merge!(:protocol => "https") if RockyConf.use_https
     redirect_to new_registrant_url(options)
   end
-  
+
   def share
-    @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
+    locale = params[:locale] || I18n.locale || I18n.default_locale
+    if params[:partner].present?
+      partner_id = params[:partner].to_i
+      if partner_id.positive?
+        partner = Partner.find_by(id: partner_id)
+        if partner.present? && partner.finish_iframe_url.present?
+          # Include locale parameter in the iframe URL
+          @registrant_finish_iframe_url = CGI.escapeHTML("#{partner.finish_iframe_url}?locale=#{locale}")
+        else
+          @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{locale}")
+        end
+      else
+        @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{locale}")
+      end
+    else
+      @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{locale}")
+    end
+    # Set @show_back_button to true
+    @show_back_button = true
   end
+
+
+
 
   # GET /registrants/new
   def new
@@ -79,32 +100,31 @@ class RegistrantsController < RegistrationStep
       
       # In case it's just a home state being passed, allow to create the registrant anyway
       @short_form = true
-      
       params[:registrant] = {
-        email_address: @email_address,
-        first_name: @first_name,
-        last_name: @last_name,
+        email_address: ERB::Util.html_escape(@email_address),
+        first_name: ERB::Util.html_escape(@first_name),
+        last_name: ERB::Util.html_escape(@last_name),
         home_state: @home_state,
-        home_zip_code: @home_zip_code,
-        shift_id: @shift_id,
+        home_zip_code: ERB::Util.html_escape(@home_zip_code),
+        shift_id: ERB::Util.html_escape(@shift_id),
         is_fake: params.keys.include?('preview_custom_assets')
       }
       create
-    else        
+    else
       @registrant = Registrant.new(
-          partner_id: @partner_id, 
-          locale: @locale, 
-          tracking_source: @source, 
-          tracking_id: @tracking, 
-          short_form: @short_form, 
-          collect_email_address: @collect_email_address,
-          email_address: @email_address,
-          first_name: @first_name,
-          last_name: @last_name,
-          home_state: @home_state,
-          home_zip_code: @home_zip_code,
-          shift_id: @shift_id,
-          is_fake: params.keys.include?('preview_custom_assets')
+        partner_id: @partner_id,
+        locale: @locale,
+        tracking_source: ERB::Util.html_escape(@source),
+        tracking_id: ERB::Util.html_escape(@tracking),
+        short_form: ERB::Util.html_escape(@short_form),
+        collect_email_address: ERB::Util.html_escape(@collect_email_address),
+        email_address: ERB::Util.html_escape(@email_address),
+        first_name: ERB::Util.html_escape(@first_name),
+        last_name: ERB::Util.html_escape(@last_name),
+        home_state: @home_state,
+        home_zip_code: ERB::Util.html_escape(@home_zip_code),
+        shift_id: ERB::Util.html_escape(@shift_id),
+        is_fake: params.keys.include?('preview_custom_assets')
       )
       render "show"
     end
@@ -113,19 +133,30 @@ class RegistrantsController < RegistrationStep
   # POST /registrants
   def create
     set_up_locale
+
+    # Escape all query parameters
+    query_params = params[:query_parameters].present? ? params[:query_parameters].transform_values { |value| ERB::Util.html_escape(value) } : {}
+
+    # Check if the 'id' parameter is present in the request and if so force them back
+    if params[:registrant].present? && params[:registrant][:id].present?
+      # Redirect to root URL without the 'id' parameter
+      redirect_to root_url(registrant_params.except(:id)) and return
+    end
+
     @registrant = Registrant.new((registrant_params || {}).reverse_merge(
-                                    :locale => @locale,
-                                    :partner_id => @partner_id,
-                                    :tracking_source => @source,
-                                    :tracking_id => @tracking,
-                                    :short_form => @short_form,
-                                    :collect_email_address => @collect_email_address,
-                                    :query_parameters => @query_parameters))
+      :locale => @locale,
+      :partner_id => @partner_id,
+      :tracking_source => ERB::Util.html_escape(@source),
+      :tracking_id => ERB::Util.html_escape(@tracking),
+      :short_form => ERB::Util.html_escape(@short_form),
+      :collect_email_address => ERB::Util.html_escape(@collect_email_address),
+      :query_parameters => query_params
+    ))
+
     @use_mobile_ui = determine_mobile_ui(@registrant)
-    @registrant.shift_id = @shift_id if @shift_id
-    @registrant.shift_id = @canvassing_shift.shift_external_id if @canvassing_shift
-    
-    
+    @registrant.shift_id = ERB::Util.html_escape(@shift_id) if @shift_id
+    @registrant.shift_id = ERB::Util.html_escape(@canvassing_shift.shift_external_id) if @canvassing_shift
+
     if @registrant.partner.primary?
       @registrant.opt_in_email = true
       # @registrant.opt_in_sms = true
@@ -152,7 +183,7 @@ class RegistrantsController < RegistrationStep
   def advance_to_next_step
     @registrant.advance_to_step_1
   end
-  
+
 
   def next_url
     registrant_step_2_url(@registrant)
@@ -161,5 +192,6 @@ class RegistrantsController < RegistrationStep
   def host_url
     "#{request.protocol}#{request.host_with_port}"
   end
+
 
 end

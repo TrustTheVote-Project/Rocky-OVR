@@ -7,7 +7,7 @@ gem "rake"
 gem "figaro"
 gem "config"
 
-gem "rails", "= 5.2.4.6"
+gem "rails", "= 5.2.8.1"
 
 
 gem "aasm" #, "= 4.12.3"
@@ -27,7 +27,7 @@ gem 'mysql2' #, '~> 0.3.18'
 
 gem 'distribute_reads'
 
-gem 'google-authenticator-rails'
+gem 'google-authenticator-rails', '~> 3.4', '>= 3.4.2'
 
 
 gem "rubyzip" #, '~> 1.3.0'

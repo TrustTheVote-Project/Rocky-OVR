@@ -20,33 +20,38 @@ module DateOfBirthMethods
   def date_of_birth_day
     date_of_birth&.day || @date_of_birth_day
   end
+
   def date_of_birth_day=(string_value)
-    @date_of_birth_day= string_value
+    @date_of_birth_day = string_value
     set_date_of_birth_from_parts
   end
+
   def date_of_birth_month
     date_of_birth&.month || @date_of_birth_month
   end
+
   def date_of_birth_month=(string_value)
-    @date_of_birth_month= string_value
+    @date_of_birth_month = string_value
     set_date_of_birth_from_parts
   end
+
   def date_of_birth_year
     date_of_birth&.year || @date_of_birth_year
-  end    
+  end
+
   def date_of_birth_year=(string_value)
-    @date_of_birth_year= string_value
+    @date_of_birth_year = string_value
     set_date_of_birth_from_parts
   end
-  
+
   def date_of_birth_from_parts
     "%02d-%02d-%d" % [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year].collect(&:to_i)
   end
-  
+
   def date_of_birth_parts
     [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year]
   end
-  
+
   def set_date_of_birth_from_parts
     if date_of_birth_parts.collect{|p| p.blank? ? nil : p }.compact.length == 3
       dmy_string = date_of_birth_from_parts 
@@ -61,7 +66,7 @@ module DateOfBirthMethods
       self.date_of_birth = nil
     end
   end
-  
+
   def form_date_of_birth
     if @raw_date_of_birth
       @raw_date_of_birth
@@ -71,14 +76,21 @@ module DateOfBirthMethods
       nil
     end
   end
-  
+
   # TODO: remove duplicate from RegistrantAbrMethods
   def validate_date_of_birth_age
-    if date_of_birth < Date.parse("1900-01-01")
-      errors.add(:date_of_birth, :too_old)
-    end
-    if date_of_birth > Date.today
-      errors.add(:date_of_birth, :future)      
+    if date_of_birth.present?
+      age_in_years = (Date.today - date_of_birth).to_i / 365
+      if age_in_years < 13
+        errors.add(:date_of_birth, :way_too_young)
+        return
+      end
+
+      if date_of_birth < Date.parse("1900-01-01")
+        errors.add(:date_of_birth, :too_old)
+      elsif date_of_birth > Date.today
+        errors.add(:date_of_birth, :future)
+      end
     end
   end
 

@@ -11,18 +11,18 @@
   <ul class="stacked">
     
     <li class="width_b registrant-form__first-name__line">
-      <h3><%= form.label first_name_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, first_name_field,  required: true %>
+      <h3><%= form.label first_name_field %><span class='required'> * </span><span class='required--text' style='display:none;'><%= I18n.t('required') %></span></h3>
+      <%= field_div form, first_name_field, required: true, type: "text" %>
       <span class="error"><%= form.object.errors[first_name_field].join("\n") %></span>
     </li>
     <li class="width_c registrant-form__middle-name__line">
-      <h3><%= form.label middle_name_field %><% if middle_name_required %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span><% end %></h3>
-      <%= field_div form, middle_name_field,  required: middle_name_required %>
+      <h3><%= form.label middle_name_field %><% if middle_name_required %><span class='required'> * </span><span class='required--text' style='display:none;'><%= I18n.t('required') %></span><% end %></h3>
+      <%= field_div form, middle_name_field, required: middle_name_required, type: "text" %>
       <span class="error"><%= form.object.errors[middle_name_field].join("\n") %></span>
     </li>
     <li class="width_b registrant-form__last-name__line">
-      <h3><%= form.label last_name_field %><span class='required'>*<span class='required--text' style='display:none;'><%= I18n.t('required') %></span></span></h3>
-      <%= field_div form, last_name_field, required: true %>
+      <h3><%= form.label last_name_field %><span class='required'> * </span><span class='required--text' style='display:none;'><%= I18n.t('required') %></span></h3>
+      <%= field_div form, last_name_field, required: true, type: "text" %>
       <span class="error"><%= form.object.errors[last_name_field].join("\n") %></span>
     </li>
     <li class="width_d registrant-form__name-suffix__line">
