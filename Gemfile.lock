@@ -1566,7 +1566,7 @@ GEM
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
-    webrick (1.7.0)
+    webrick (1.8.2)
     webrobots (0.1.2)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
