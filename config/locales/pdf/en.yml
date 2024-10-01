@@ -62,7 +62,9 @@ en:
         deadline_block:
           title: ! 'MAIL-IN REGISTRATION DEADLINE:'
         other_block: |-
-          YOU MUST READ https://www.eac.gov/voters/national-mail-voter-registration-form 
+          YOU MUST READ<br>
+          <a href="https://www.eac.gov/voters/national-mail-voter-registration-form">
+          https://www.eac.gov/voters/national-mail-voter-registration-form</a><br>
           FOR COMPLETE GENERAL AND STATE-SPECIFIC INSTRUCTIONS, INCLUDING ELIGIBILITY 
           REQUIREMENTS.
         ep_hotline: ! '<strong>QUESTIONS?</strong><br/>
@@ -81,7 +83,7 @@ en:
           paragraph3: |-
             - A current and valid photo identification; OR <br>
             - A current utility bill, bank statement, government check, <br>
-            paycheck or government document that shows your name and address.
+              paycheck or government document that shows your name and address.
           paragraph4: |-
             Federal law does not require you to show proof of identification at the 
             polling location or when voting a mail ballot if (1) you provided a copy of 
