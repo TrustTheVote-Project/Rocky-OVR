@@ -57,6 +57,7 @@ module Rocky
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :state_id_number, :password_confirmation, :id_number]
 
+    config.active_record.yaml_column_permitted_classes = [ActionController::Parameters, Symbol]
 
     config.middleware.use ::Rack::Robustness do |g|
       g.no_catch_all
