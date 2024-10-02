@@ -10,7 +10,7 @@
   :cancel_reminders_url =>@cancel_reminders_url,
   :registrar_phone=> @registrar_phone,
   :registrar_url=>@registrar_url,
-  :rtv_link => strip_tags(@rtv_link),
+  :rtv_link => Nokogiri::HTML(@rtv_link).css('a').first['href'],
   :locale => @locale
 ).html_safe %>
 </div>
