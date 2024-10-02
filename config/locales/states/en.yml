@@ -4282,6 +4282,8 @@ en:
         If not, you must submit "proof of citizenship" along with your voter registration
         application. The most common "proof" is a photocopy of your birth certificate
         or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>
+      north_carolina: |-
+        Custom NC instructions here.
     pdf_other_instructions:
       blank: ''
       north_carolina: |-
