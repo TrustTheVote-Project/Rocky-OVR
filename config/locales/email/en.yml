@@ -251,12 +251,17 @@ en:
       subject: You can still register to vote
       body:
         main: |-
-          Hey%{registrant_first_name_with_space},<br><br>
-          I noticed that you didn’t finish filling out your online voter registration form. Registering with %{registrant_rtv_and_partner_name}'s online tool takes less time than it takes to...<br>
-          Snap your friends<br> Learn the latest TikTok dance<br> Listen to a Beyoncé song<br><br>
-          We want you to be part of our vast community of empowered voters. Amplify your voice today by finishing the registration process and making sure you are ready for the next election!<br><br>
-          %{registrant_rtv_and_partner_name}<br><br>
-          %{rtv_link}
+          We noticed that you didn't finish your voter registration application, and we 
+          want to make sure your voice is heard in upcoming elections.<br><br>
+          Registering to vote takes less time than it takes to...<br><br>
+          Post on Instagram<br>
+          Watch a TikTok video<br>
+          Stream your favorite song<br><br>
+          <a href="%{rtv_link}">Complete your voter registration application now →</a><br><br>
+          We want you to be part of our vast community of empowered voters. 
+          <a href="%{rtv_link}">Finish the registration process today</a> and make sure 
+          you’re ready for the next election!<br><br>
+          %{registrant_rtv_and_partner_name}<br>
     thank_you_external:
       subject: Thanks for beginning the voter registration process
       body:
