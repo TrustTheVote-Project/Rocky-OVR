@@ -1,5 +1,3 @@
-https://staging.rocky.rockthevote.com/registrants/7628342635f4e437e0215c445fa08f7198f1ffba/state_online_registration
-
 csvstr = ""
 distribute_reads do
   grommet_reg_uids = Registrant.where(home_state: GeoState["PA"]).where("created_at > ? AND state_ovr_data IS NOT NULL and state_ovr_data != '--- {}\\n'", Date.parse("2020-05-19")).where("state_ovr_data LIKE '%errors%'").pluck(:uid)
