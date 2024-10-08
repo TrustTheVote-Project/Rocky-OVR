@@ -412,7 +412,6 @@ en:
               voters before the upcoming election. You can return the vote-by-mail ballot 
               you receive by mail, via ballot dropbox, or vote in person at your polling 
               location.</p>
-            instructions_2: ''
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
               <ul>
@@ -717,26 +716,21 @@ en:
       hi:
         abr:
           everyone_gets_ballot:
-            instructions_2: |-
-              <p>Every registered voter will automatically receive an absentee ballot in the mail.</p>
-
-              <h3>College students or other voters away from Hawaii</h3>
-              <p>Hawaii residents attending college away from their home address (in or out of state) can submit an Absentee Application to request for your ballot to be mailed to your current mailing address. You will need to submit an Absentee Application each election year that you are away from your Hawaii residence.</p>
-              <p>Other voters who are away from their Hawaii residence during the election may submit an Absentee Application to have their ballot mailed to an alternate mailing address for the primary election, general election, or both.</p>
-              <p><a href="https://elections.hawaii.gov/voting/college-students/" title="College Students">Request an application with the state.</a></p>
+            instructions_1: |-
+              <p>If you are registered to vote in Hawaii, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, via ballot dropbox, or vote in person at your polling 
+              location./p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
-              <p>
-              You may return your voted ballot by mail or in person at a designated place of deposit within your county. Voted ballots must be received by your County Elections Division by 7:00 p.m. on Election Day.</p>
-
-              <h3>Voting at a Voter Service Center</h3>
-              <p>You can also vote at a Voting Service Center. VSC's are 10 days prior and on Election Day. Services include accessible in person voting and same day registration.
-              </p>
-              <p>
-              <strong>Check the status of your ballot</strong>
-              </p>
-              <p>You may check on the status of your ballot, whether it has been mailed and/or received, by contacting your <a href="https://elections.hawaii.gov/resources/county-election-divisions/">County Elections Division</a>.
-              </p>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be received by 
+              your local election office no later than 7:00 p.m. on Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at any polling place or ballot box in the state before 
+              7:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Hawaii automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -2220,31 +2214,22 @@ en:
       nv:
         abr:
           everyone_gets_ballot:
-            instructions_2: "<p>If you are registered to vote in
-              Nevada, you do not need to request an \nabsentee ballot. One will be
-              automatically mailed to you.\n</p>\n<h3>First time voters</h3>\n<p>First
-              time voters may be required to present ID for voting. Make sure to respond
-              to the \nrequest from the County Clerk requesting identification. See
-              more \nat <a href=\"https://www.nvsos.gov/sos/elections/voters/mail-ballot-voting\"
-              title=\"Mail Ballot Voting\">the \nNevada Secretary of State</a> site.
-              \n</p>\n<h3>\nCollege students and people away from Nevada\n</h3>\n<p>
-              If you are a student living out of state or outside your voting precinct,
-              it may not be possible \nfor you to get to the polls on Election Day.
-              Your best option is to request to vote by mail or absentee ballot. </p>\n<p>Any
-              registered voter may request to vote by mail. To request an absentee
-              ballot, \nyou must complete and submit an \n<a href=\"https://www.nvsos.gov/sos/home/showpublisheddocument/8262/637792261599270000\">Absentee
-              Ballot Request Form</a>.</p>\n<p>The Absentee Ballot Request Form must
-              be received by your local county election official by the appropriate
-              deadline.</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in Nevada, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, via ballot dropbox, or vote in person at your polling 
+              location.</p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
-              <p>
-              Your ballot must be delivered by the close of polls on the date of election, or if you mail it, postmarked by Election Day.
-              </p>
-              <h3>Check the status of your ballot</h3>
-              </p>
-              <p>You may check on the status of your ballot by clicking "Voter History" at Nevada's <a href="https://www.nvsos.gov/votersearch/">Registered Voter Services</a>.
-              </p>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked on 
+              or before Election Day and received by your local election office no later 
+              than 4 days after Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at any polling place or ballot box in the state before 
+              7:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Nevada automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -2503,36 +2488,22 @@ en:
       or:
         abr:
           everyone_gets_ballot:
-            instructions_2: "<p>All registered voters will receive an official ballot
-              to complete and return.</p>\n<p>You can update your voter registration
-              information until 8 pm on Election day and still cast a ballot. Learn
-              how at the <a href=\"https://sos.oregon.gov/voting/Pages/updatevoterregistration.aspx\">Update
-              Voter Registration</a> page.</p>\n<h3>\nCollege students and other voters
-              away from home</h3>\n<p>If you are a college student in Oregon, or an
-              Oregon resident at college away from Oregon, \nyou can vote at your
-              residential address. You can choose where that is - home or at school
-              - but you \ncan only vote in one county in one state.</p>\n<p>\nFor
-              students, your residential address can be your parents' or other family
-              home, or your \nhome where you are a student. You get to choose, but
-              you can only choose one. Oregon \nresidency requirements for voting
-              are not the same as residency for in-state \ntuition purposes. Your
-              residential address is the address that you consider home and the \nplace
-              you intend to return to. That address determines which candidates and
-              measures \nwill be on your ballot. If you live on campus and provide
-              a campus address as your \nresidential address, be sure to list your
-              dormitory and room number; a \nPO Box is not a residential address.\n</p>\n<p>\nFor
-              more information, please see \nthe <a href=\"https://sos.oregon.gov/voting/Pages/student-voters.aspx\">Student
-              Voters</a> page.\n</p>\n<p>\nStudents and other voters away from home
-              during an election should fill out an \n<a href=\"https://sos.oregon.gov/elections/Documents/SEL111.pdf\">absentee
-              ballot form</a> and \nmail it to their <a href=\"https://sos.oregon.gov/elections/Pages/countyofficials.aspx\">county
-              elections office</a>, \nor update their address online.</p>"
-            instructions_3: "<h2>Deadlines for Submitting Your Ballot</h2>\n<p>\nYour
-              ballot can be mailed or dropped off at any <a \nhref=\"https://sos.oregon.gov/voting/Pages/drop-box-locator.aspx\">official
-              drop box</a> across the state.\n</p>\n<p>\nBallots must be received
-              at a dropbox or mailed with a valid post mark by 8 p.m. on Election
-              Day.\n</p>\n\n<h3>Check the status of your ballot</h3>\n<p>You can check
-              the status of your ballot at <a href=\"https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS\">My
-              Vote</a>.</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in Oregon, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, via ballot dropbox, or vote in person at your polling 
+              location.</p>
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked on 
+              or before Election Day and received by your local election office no later 
+              than 7 days after Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at any polling place or ballot box in the state before 
+              8:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Oregon automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Vote By Mail status by using
@@ -3136,17 +3107,24 @@ en:
       ut:
         abr:
           everyone_gets_ballot:
-            instructions_1: "<p>If you are an active registered voter in Utah, you will automatically receive a ballot in the mail.</p>"
-            instructions_2: "<p>Make sure you're <a href=\"https://register.rockthevote.com/\">registered to vote</a> at your current address!</p>
-              <p>If you need your ballot sent somewhere other than your usual address, 
-              you can submit an <a target=\"_blank\" href=\"https://voteinfo.utah.gov/wp-content/uploads/sites/42/2020/05/Alternate-Address-Form5-20.pdf\">Absentee Application</a> 
-              to have your ballot mailed to an alternate address.</p>
-              <p>You can <a target=\"_blank\" href=\"https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot\">track your mail ballot</a> with your state's online tool.</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in Utah, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, via ballot dropbox, or vote in person at your polling 
+              location.</p>
             instructions_3: |-
-              <p>If you return your completed ballot in person, it must be received by 
-              Election Day. If you mail your ballot, it must be postmarked 1 day before 
-              Election Day and received by 12:00 pm on the day of the county canvass for 
-              it to count.</p>
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked at 
+              least 1 day before Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at any polling place or ballot box in the state before 
+              8:00 p.m. on Election Day.</li>
+              <li>If you need to change the address where your ballot will be mailed, 
+              submit an address change to your local election office at least 11 days 
+              before Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Utah automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -3284,14 +3262,21 @@ en:
             with the state.</p>"
         abr:
           everyone_gets_ballot:
-            instructions_2:  ''
+            instructions_1: |-
+              <p>If you are registered to vote in Vermont, you do not need to request a 
+              vote-by-mail ballot for the November 5, 2024 Election. For this election, 
+              vote-by-mail ballots will be sent to all registered voters. You can return 
+              the vote-by-mail ballot you receive by mail, via ballot dropbox, or vote in 
+              person at your polling location.</p>
             instructions_3: |-
-              <p>When voting, make sure to sign the certificate on the outside of the envelope for
-              the ballot to be valid. A voter who is physically unable to sign their name may mark an “X”
-              swearing to the statement on the certificate.</p>
-              <p>In order to be counted, all ballots must be returned to the town clerk’s office before
-              the close of business on November 7th, or to the polling place before 7 pm on Election Day,
-              November 8th. Ballots may be returned by mail or in person.</p>
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be received by 
+              your local election office no later than the day before Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at any polling place or ballot box in the state before 
+              7:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Received by election officials by 5 p.m. or by the close of the town clerk’s office on the day before the election.</p>
           status_check_instructions: |-
@@ -3365,25 +3350,21 @@ en:
             myself.
         abr:
           everyone_gets_ballot:
-            instructions_2: "<p>Your ballot will be mailed to you at least 18 days
-              before each election.</p>\n<h3>College students</h3>\n<p>You should
-              vote based on your residential address, not your mailing address: \nYour
-              residential address determines what's on your ballot, but you can have
-              your vote mailed to you \nanywhere in the world!</p>\n<p>If your registration
-              doesn't match your current address, <a href=\"%{registration_url}\">update
-              it now</a>.</p>\n<p>Learn more about <a href=\"https://www.sos.wa.gov/elections/voters/voters-away-at-college.aspx\"
-              title=\"Voters Away at College\">voting as a student</a>.</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in Washington, you do not need to request a 
+              vote-by-mail ballot for the November 5, 2024 Election. For this election, 
+              vote-by-mail ballots will be sent to all registered voters. You can return 
+              the vote-by-mail ballot you receive by mail, via ballot dropbox, or vote in 
+              person at your polling location.</p>
             instructions_3: |-
-              <p>
               <h2>Deadlines for Submitting Your Ballot</h2>
-              <p>
-              Your ballot must either be postmarked no later than Election Day or returned to a ballot drop box by 8 p.m. on Election Day.
-              </p>
-              <p>If mailed, the <a href="https://www.sos.wa.gov/elections/usps-and-election-mail-resources.aspx" title="USPS and Election Mail Resources">USPS</a> recommends that you mail a week before Election Day.</a>
-              </p>
-              <h3>Check the status of your ballot</h3>
-              <p>You may check on the status of your ballot at <a href="https://voter.votewa.gov/WhereToVote.aspx">VoteWA.gov</a>.
-              </p>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be received by 
+              your local election office no later than 8:00 p.m. on Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at any polling place or ballot box in the state before 
+              8:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Washington automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Vote By Mail status by using
