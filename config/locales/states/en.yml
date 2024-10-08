@@ -593,17 +593,15 @@ en:
               href=\"https://dos.myflorida.com/elections/for-voters/voting/vote-by-mail/\">How
               to Request a Vote-by-Mail Ballot</a>.\n</p>"
             instructions_2: ''
-            instructions_3: "<h2>Deadlines for Submitting Your Ballot</h2>\n<p>Your
-              ballot must be received by the Supervisor of Elections' office no later
-              than 7:00pm on Election Day.</p>\n<p>If mailed, the United States Postal
-              Service recommends mailing your ballot at least one (1) week \nbefore
-              the Election Day deadline.\n</p>\n<p>You can return your ballot by mail
-              or deliver it in person. \nYou can also drop it into a secure drop box
-              until 7:00 pm on Election Day. \nCheck your local <a href=\"https://dos.elections.myflorida.com/supervisors/\">Supervisor
-              of elections</a> for locations, \ndays and hours of drop boxes in your
-              county.</p>\n<h3>Check the status of your ballot</h3>\n<p>You may check
-              on the status of your ballot at the \n<a href=\"https://dos.myflorida.com/elections/for-voters/check-your-voter-status-and-polling-place/vote-by-mail-ballot-information-and-status-lookup/\">Ballot
-              Status and Lookup</a> page for your county.\n</p>"
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your absentee ballot by mail, it must be received by your 
+              local election office no later than 7:00 p.m. on Election Day.</li>
+              <li>If you are not sure that your absentee ballot will arrive in time if 
+              mailed, drop it off at any secure ballot intake station in the state between 
+              7:00 a.m. and 7:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Received by election officials no later than 5 p.m. on the 10th day before the election.</p>
           status_check_instructions: You can look up your Vote-By-Mail status by using
@@ -872,13 +870,17 @@ en:
               Request a vote by mail ballot from your local jurisdiction by going
               to the \n<a href='https://www.elections.il.gov/ElectionOperations/VotingByMail.aspx?MID=oYoa3FYF460%3d&T=637982369687629559'
               target='_blank'>State Board of Elections website</a>.</p>"
-            instructions_2: "<p>Depending on where you live, you may request a vote
-              by mail ballot online or with a paper application. The application must
-              be sent to the election authority for the jurisdiction in which you
-              are registered to vote. \n</p>"
-            instructions_3: "<p>If you're returning your completed ballot by mail,
-              it must be postmarked by Election Day. If you're returning your completed ballot by hand, it must
-              be received by close of\npolls on Election Day.</p>"
+            instructions_2: ''
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your absentee ballot by mail, it must be postmarked on or 
+              before Election Day and received by your local election office no later than 
+              14 days after Election Day.</li>
+              <li>If you are not sure that your absentee ballot will arrive in time if 
+              mailed, drop it off at any Vote Center or ballot box in the state between 
+              6:00 a.m. and 7:00 p.m. on Election Day.</li>
+              </ul>
         abr_form_fields:
           abr_county: Registration address county
           abr_precinct: Enter your precinct
@@ -1784,18 +1786,18 @@ en:
               from your county’s Circuit Clerk.</p>
               <p>You must have a qualifying reason to vote absentee. You can review the 
               requirements on the Mississippi <a href="https://www.sos.ms.gov/content/documents/elections/yallvotedocs/Step-by-Step%20Voter%20Guide%20to%20Absentee%20Voting.pdf" target="_blank">Step-by-Step Absentee Guide</a>.</p>
-            instructions_2: |-
-              <p>All absentee ballot applications must be notarized, unless the voter is 
-              temporarily or permanently physically disabled. Temporary or permanently 
-              physically disabled voters may have the application witnessed by a person 
-              who is at least 18 years of age.</p>
-              <p>You must request your absentee ballot with enough time to be mailed to 
-              you and returned to your election official by Election Day.</p>
+            instructions_2: ''
             instructions_3: |-
-              <p>If you request a mail-in absentee ballot, you must return it by mail; 
-              you can’t drop it off. Your voted mail-in ballot must be postmarked by 
-              Election Day and received within 5 business days of Election Day for it to 
-              count.</p>
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your absentee ballot by mail, it must be postmarked on or 
+              before Election Day and received by your local election office no later than 
+              5 days after Election Day.</li>
+              <li>If you are not sure that your absentee ballot will arrive in time if 
+              mailed, you can submit your absentee ballot in-person at your County Circuit 
+              Clerk’s Office between 8:00 a.m. to 5:00 p.m. no later than 3 days before 
+              Election Day.</li>
+              </ul>
       mt:
         abr:
           request_deadline: |-
@@ -2878,13 +2880,16 @@ en:
               <p>You can request an application for a by-mail ballot no earlier than ninety (90) days before the
               election and no later than seven (7) days before the election. Your request must be received no later
               than seven (7) days before the election.</p>
-            instructions_2: |-
-              <p>You must return your ballot by mail. Hand delivery or handing it to a poll worker
-              during early voting or on Election Day is not permitted.</p>
-              <p>Track your absentee ballot request:
-              <a href="https://tnmap.tn.gov/voterlookup/" target="_blank">https://tnmap.tn.gov/voterlookup/</a></p>
-            instructions_3: "<p>Your ballot must be received by Election Day to be
-              counted.</p>"
+            instructions_2: ''
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your absentee ballot by mail, it must be received by your 
+              local election office no later than 7:00 p.m. on Election Day.</li>
+              <li>You must return your ballot by mail (USPS, FedEx, UPS, etc.). Hand 
+              delivery or returning your ballot to a poll location on Election Day is not 
+              permitted.</li>
+              </ul>
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
           Mailing Address (if different): Mailing address
@@ -3506,11 +3511,17 @@ en:
               ballot</h3>\n<p>You can request an absentee ballot between August 16th
               and November 2nd for the General election. Make sure your application
               is received by November 2nd.</p>"
-            instructions_2: <p>Track the status of your absentee ballot at <a href="https://apps.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking">Absentee
-              Ballot Tracking</a>.</p>
+            instructions_2: ''
             instructions_3: |-
-              <p>Your voted ballot must be returned by November 7th if returned by hand and postmarked by November
-              8th if mailed. If mailed, it must be received by November 14th.</p>
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your absentee ballot by mail, it must be postmarked on or 
+              before Election Day and received by your local election office by the start 
+              of Canvass, which begins in most counties 5 days after Election Day.</li>
+              <li>If you are not sure that your absentee ballot will arrive in time if 
+              mailed, drop it off at your County Clerk’s Office no later than the day 
+              before Election Day.</li>
+              </ul>
         registration:
           has_state_license: I have a WV state identification card or WV driver's
             license, and Social Security Number.
