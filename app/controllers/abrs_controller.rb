@@ -76,7 +76,7 @@ class AbrsController < ApplicationController
     @abr.update_attributes(:finish_with_state=>true)
     render :html => "<html><body><script>parent.location.href='#{@abr.home_state_oabr_url}';</script></body></html>".html_safe    
   end
-  
+ 
   def update
     @abr = Abr.find_by_uid(params[:id])
     set_up_locale
