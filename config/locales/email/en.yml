@@ -257,9 +257,9 @@ en:
           Post on Instagram<br>
           Watch a TikTok video<br>
           Stream your favorite song<br><br>
-          <a href="%{rtv_url}">Complete your voter registration application now →</a><br><br>
+          <a href="%{rtv_link_url}">Complete your voter registration application now →</a><br><br>
           We want you to be part of our vast community of empowered voters. 
-          <a href="%{rtv_url}">Finish the registration process today</a> and make sure 
+          <a href="%{rtv_link_url}">Finish the registration process today</a> and make sure 
           you’re ready for the next election!<br><br>
           %{registrant_rtv_and_partner_name}<br>
     thank_you_external:
