@@ -407,30 +407,25 @@ en:
         abr:
           everyone_gets_ballot:
             instructions_1: |-
-              <p>If you are registered to vote in California you do not need to request a 
-              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered voters 
-              before the upcoming election. You can return the vote-by-mail ballot you receive 
-              by mail, or vote in person at your polling location.</p>
-            instructions_2: |-
-              <p>Any registered voter may vote using a vote-by-mail ballot instead of going to the polls on Election Day.</p>
-              <p>To update your name or address, submit a new <a href="%{registration_url}">voter registration</a>.</p>
-              <p>
-              <h3>
-              College students and people away from California
-              </h3>
-              </p>
-              <p>If you are a Californian living away from home while attending school, you may choose to register to vote using your home away from home address or your traditional home address. You may not register to vote in two places during the same election cycle.</p>
+              <p>If you are registered to vote in California, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, via ballot dropbox, or vote in person at your polling 
+              location.</p>
+            instructions_2: ''
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
               <ul>
-              <li>If you mail your vote-by-mail ballot, it must mailed postmarked on or before Election Day and received by your <a href="https://www.sos.ca.gov/elections/voting-resources/county-elections-offices/" target="_blank">county elections office</a> no later than 7 days after Election Day. </li>
-              <li>If you are not sure your vote-by-mail ballot will arrive in time if mailed, bring it to any polling place or ballot box in the state between 7:00 a.m. and 8:00 p.m. on Election Day.</li>
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked on 
+              or before Election Day and received by your local election office no later 
+              than 7 days after Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at any polling place or ballot box in the state before 
+              8:00 p.m. on Election Day.</li>
+              <li>If you need to change the address where your ballot will be mailed, 
+              submit an address change to your local election office at least 15 days 
+              before Election Day.</li>
               </ul>
-              <h3>Voting for the first time</h3>
-              <p>If you are voting for the first time and did not provide your driver license number, California identification number, or the last four digits of your Social Security number when you registered, send a photocopy of some personal identification to your county elections official before the election. Read about what <a href="https://www.sos.ca.gov/elections/voter-registration/vote-mail#vote-by-mail" title="Voting for the first time" target="_blank">qualifies as identification</a>.</p>
-              <h3>Check the status of your ballot</h3>
-              <p>Sign up for <a href="https://california.ballottrax.net/voter/" target="_blank">Where's My Ballot?</a> to track and receive notifications on the status of your vote-by-mail ballot.
-              </p>
           request_deadline: |-
             <p>California automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Vote-By-Mail status by using
@@ -449,34 +444,21 @@ en:
       co:
         abr:
           everyone_gets_ballot:
-            instructions_2: "<p>Every Colorado voter will receive a mail ballot. The
-              ballot will be sent to the mailing\n address you provided in your voter
-              registration file.</p>\n<p><a href=\"https://register.rockthevote.com/lookup\">Check
-              if your voter registration\nis up to date.</a></p>\n<h3>\nCollege students
-              \n</h3>\n<p>Students residing in Colorado for college or university
-              can register to vote in Colorado.\n Registration is based on your residence
-              address, and you can decide whether that is in Colorado\n or another
-              state.</p>\n<p> \"Residence\" means the principal or primary home or
-              place in which a person lives and when absent,\nhas the intention of
-              returning to. You can specify a mailing address where you'd like your
-              ballot\nto be mailed to. If you need to update your address, \n<a href=\"https://register.rockthevote.com/\">submit
-              a new voter registration</a>.</p>\n<p>If you attend college or university
-              out-of-state and want to register to vote there, check that\nstate's
-              voter registration rules. If you change your voter registration to a
-              different state, you\nare no longer eligible to vote in Colorado.</p>"
-            instructions_3: "<h2>Deadlines for Submitting Your Ballot</h2>\n<ul>\n<li>Your
-              county clerk must receive your ballot no later than 7:00 PM on Election
-              Day.</li>\n<li>If you are not sure \nif your ballot will arrive in time,
-              drop it off in person. Contact your \n<a target=\"_blank\" href=\"https://www.coloradosos.gov/pubs/elections/Resources/CountyElectionOffices.html\">county
-              clerk and\n recorder's office</a> for drop-off and drop-box locations.</li>\n</ul>\n<h3>Voting
-              for the first time</h3>\n<p>If you recently registered for the first
-              time, you may need to provide a copy of your ID along with your mail
-              ballot. Your county clerk will provide instructions about the ID requirement
-              along with your ballot.</p>\n<h3>Check the status of your ballot</h3>\n<p>To
-              check the status of your mail ballot, contact your \n<a target=\"_blank\"
-              href=\"https://www.coloradosos.gov/pubs/elections/Resources/CountyElectionOffices.html\">local
-              county\n clerk and recorder's office</a> or sign up for <a target=\"_blank\"
-              href=\"https://colorado.ballottrax.net/\">BallotTrax.</a>\n</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in Colorado, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, via ballot dropbox, or vote in person at your polling 
+              location.</p>
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be received by 
+              your local election office no later than 7:00 p.m. on Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at any polling place or ballot box in the state before 
+              7:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Colorado automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Mail-in Ballots status by
@@ -505,27 +487,25 @@ en:
       dc:
         abr:
           everyone_gets_ballot:
-            instructions_2: "<p>All active registered voters will be mailed a ballot.
-              </p>\n<p>To update your name or address, submit
-              a new <a href=\"https://register.rockthevote.com/\">voter registration</a>.</p>\n<h3>\nCollege
-              students and people away from DC\n</h3>\n</p>\n<p>If you are registered
-              to vote in DC and you will be away during an election, \nyou may <a
-              target=\"_blank\" href=\"https://vr.dcboe.org/213115759199060\" title=\"absentee
-              ballot request\">request\nan absentee ballot.</a> \nYour request for
-              an absentee ballot must be received by no later than 15 days before
-              the \nelection in which you wish to vote.</p>"
-            instructions_3: "<h2>Deadlines for Submitting Your Ballot</h2>\n<ul>\n<li>Your
-              voted and mailed ballot must be postmarked or otherwise demonstrated
-              to have been sent on or\n before Election Day, and must arrive no later
-              than the 10th day after Election Day. </li>\n<li>If you are concerned
-              that you may not be able to receive or cast your ballot in time for
-              it to be counted, \nplease contact the D.C. Board of Elections at 202.727.2525.</li>\n</ul>\n<h3>Voting
-              for the first time</h3>\n<p>If you are a first-time voter who registered
-              to vote by mail or online, you are\n required to provide ID documents
-              with your ballot. Read about what <a target=\"_blank\" href=\"https://dcboe.org/Voters/How-to-Vote/Mail-Ballot-Instructions\"
-              title=\"Mail Ballot Instructions\">qualifies as identification</a>.</p>\n<h3>Check
-              the status of your ballot</h3>\n<p>You can <a target=\"_blank\" href=\"https://votedc.ballottrax.net/voter\">track
-              the status of your ballot</a> online with the Board of Elections.\n</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in the District of Columbia, you do not need 
+              to request a vote-by-mail ballot. Vote-by-mail ballots will be sent to all 
+              registered voters before the upcoming election. You can return the 
+              vote-by-mail ballot you receive by mail, via ballot dropbox, or vote in 
+              person at your polling location.</p>
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked on 
+              or before Election Day and received by your local election office no later 
+              than 10 days after Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at any polling place or ballot box in the state before 
+              8:00 p.m. on Election Day.</li>
+              <li>If you need to change the address where your ballot will be mailed, 
+              submit an address change to your local election office at least 21 days 
+              before Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>District of Columbia automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee (Mail-in Ballot)
