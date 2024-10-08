@@ -11,7 +11,7 @@
   :registrar_phone=> @registrar_phone,
   :registrar_url=>@registrar_url,
   :rtv_link=>@rtv_link,
-  :rtv_url=>Nokogiri::HTML(@rtv_link).css('a').first['href'],
+  :rtv_link_url=>@rtv_link_url,
   :locale => @locale
 ).html_safe %>
 </div>
