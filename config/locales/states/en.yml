@@ -12,11 +12,12 @@ en:
             <p>Received by election officials 10 days before the election.</p>
           status_check_instructions: <a href="https://myvoterinformation.alaska.gov">https://myvoterinformation.alaska.gov</a>
           finish_instructions_1_hint: |-
-            <p>Make sure to sign your application - do not type your signature.
-            </p>
-            <p>If you are using this form to register to vote, make sure to include a copy of your identification.
-            </p>
-            <p>If you are using this form to request an absentee ballot and you did not provide your Social Security Number or AK Drivers' License/ID, make sure to include a copy of your identification.</p>
+            <p>Make sure to sign your application - do not type your signature.</p>
+            <p>If you are using this form to register to vote, make sure to include a 
+            copy of your identification.</p>
+            <p>If you are using this form to request an absentee ballot and you did not 
+            provide your Social Security Number or AK Drivers' License/ID, make sure to 
+            include a copy of your identification.</p>
         state_online_abr:
           confirm: ''
           requirements: "<p>\nIf you have a valid Alaska driver's license or state
@@ -331,7 +332,7 @@ en:
           request_deadline: |-
             <p>Received by election officials by 5 p.m. on the 11th day before the election.</p>
           status_check_instructions: |-
-            <p><a href="https://my.arizona.vote/PortalList.aspx" target="_blank">
+            <p><a href="https://my.arizona.vote/PortalList.aspx" rel="noopener noreferrer" target="_blank">
             https://my.arizona.vote/PortalList.aspx</a>
             </p>
           confirm_email_delivery: I have reviewed the above information and wish to
@@ -410,8 +411,8 @@ en:
               <p>If you are registered to vote in California, you do not need to request a 
               vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
               voters before the upcoming election. You can return the vote-by-mail ballot 
-              you receive by mail, via ballot dropbox, or vote in person at your polling 
-              location.</p>
+              you receive by mail, at a ballot drop-off location, or vote in person at a 
+              vote center.</p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
               <ul>
@@ -419,7 +420,7 @@ en:
               or before Election Day and received by your local election office no later 
               than 7 days after Election Day.</li>
               <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
-              mailed, drop it off at any polling place or ballot box in the state before 
+              mailed, bring it to a ballot drop-off location or your county elections office before 
               8:00 p.m. on Election Day.</li>
               <li>If you need to change the address where your ballot will be mailed, 
               submit an address change to your local election office at least 15 days 
@@ -447,15 +448,15 @@ en:
               <p>If you are registered to vote in Colorado, you do not need to request a 
               vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
               voters before the upcoming election. You can return the vote-by-mail ballot 
-              you receive by mail, via ballot dropbox, or vote in person at your polling 
-              location.</p>
+              you receive by mail, at a designated drop-off or drop-box location, or vote in person at 
+              a voter service and polling center.</p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
               <ul>
               <li>If you submit your vote-by-mail ballot by mail, it must be received by 
               your local election office no later than 7:00 p.m. on Election Day.</li>
               <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
-              mailed, drop it off at any polling place or ballot box in the state before 
+              mailed, drop it off at a designated drop-off or drop-box location before 
               7:00 p.m. on Election Day.</li>
               </ul>
           request_deadline: |-
@@ -491,7 +492,7 @@ en:
               to request a vote-by-mail ballot. Vote-by-mail ballots will be sent to all 
               registered voters before the upcoming election. You can return the 
               vote-by-mail ballot you receive by mail, via ballot dropbox, or vote in 
-              person at your polling location.</p>
+              person at a vote center.</p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
               <ul>
@@ -499,7 +500,7 @@ en:
               or before Election Day and received by your local election office no later 
               than 10 days after Election Day.</li>
               <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
-              mailed, drop it off at any polling place or ballot box in the state before 
+              mailed, drop it off at a ballot dropbox or vote center before 
               8:00 p.m. on Election Day.</li>
               <li>If you need to change the address where your ballot will be mailed, 
               submit an address change to your local election office at least 21 days 
@@ -599,8 +600,7 @@ en:
               <li>If you submit your absentee ballot by mail, it must be received by your 
               local election office no later than 7:00 p.m. on Election Day.</li>
               <li>If you are not sure that your absentee ballot will arrive in time if 
-              mailed, drop it off at any secure ballot intake station in the state between 
-              7:00 a.m. and 7:00 p.m. on Election Day.</li>
+              mailed, drop it off at a secure drop box no later than 7:00 p.m. on Election Day.</li>
               </ul>
           request_deadline: |-
             <p>Received by election officials no later than 5 p.m. on the 10th day before the election.</p>
@@ -630,10 +630,10 @@ en:
         abr:
           request_deadline: |-
             <p>Received by election officials 11 days before the election.</p>
-          status_check_instructions: <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do">https://www.mvp.sos.ga.gov/MVP/mvp.do</a>
+          status_check_instructions: <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do" rel="noopener noreferrer">https://www.mvp.sos.ga.gov/MVP/mvp.do</a>
           finish_instructions_1_hint: |-
             <p>You can submit your absentee ballot request to your it to your
-            <a href="https://elections.sos.ga.gov/Elections/countyregistrars.do">County Board of Registrars Office</a> (https://elections.sos.ga.gov/Elections/countyregistrars.do) by:</p>
+            <a href="https://elections.sos.ga.gov/Elections/countyregistrars.do" rel="noopener noreferrer">County Board of Registrars Office</a> (https://elections.sos.ga.gov/Elections/countyregistrars.do) by:</p>
             <ul>
             <li>Emailing it as an attachment.</li>
             <li>Mailing it.</li>
@@ -718,15 +718,15 @@ en:
               <p>If you are registered to vote in Hawaii, you do not need to request a 
               vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
               voters before the upcoming election. You can return the vote-by-mail ballot 
-              you receive by mail, via ballot dropbox, or vote in person at your polling 
-              location./p>
+              you receive by mail, at a designated place of deposit within your county, or vote in person at  
+              a voter service center.</p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
               <ul>
               <li>If you submit your vote-by-mail ballot by mail, it must be received by 
               your local election office no later than 7:00 p.m. on Election Day.</li>
               <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
-              mailed, drop it off at any polling place or ballot box in the state before 
+              mailed, drop it off at at a designated place of deposit within your county before 
               7:00 p.m. on Election Day.</li>
               </ul>
           request_deadline: |-
@@ -748,7 +748,7 @@ en:
             <p>If you have moved within the county, the address you provide will be used to update your voter registration.</p>
           request_deadline: |-
             <p>Received by election officials by 5 p.m. 15 days before the election.</p>
-          status_check_instructions: <a href="https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search">https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search</a>
+          status_check_instructions: <a href="https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search" rel="noopener noreferrer">https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search</a>
         abr_form_fields:
           abr_county: Registration Address County
           abr_check_mailing_address: I get my mail at a different address from the
@@ -869,7 +869,7 @@ en:
             instructions_1: "<p>All registered voters in Illinois can vote by mail.
               Request a vote by mail ballot from your local jurisdiction by going
               to the \n<a href='https://www.elections.il.gov/ElectionOperations/VotingByMail.aspx?MID=oYoa3FYF460%3d&T=637982369687629559'
-              target='_blank'>State Board of Elections website</a>.</p>"
+              target='_blank' rel='noopener noreferrer'>State Board of Elections website</a>.</p>"
             instructions_2: ''
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
@@ -878,15 +878,16 @@ en:
               before Election Day and received by your local election office no later than 
               14 days after Election Day.</li>
               <li>If you are not sure that your absentee ballot will arrive in time if 
-              mailed, drop it off at any Vote Center or ballot box in the state between 
-              6:00 a.m. and 7:00 p.m. on Election Day.</li>
+              mailed, deliver it in person to the office of your local election authority 
+              or drop it in a secure drop box (if offered in your jurisdiction) by 7:00 pm 
+              on Election Day.</li>
               </ul>
         abr_form_fields:
           abr_county: Registration address county
           abr_precinct: Enter your precinct
           abr_precinct__hint: |-
             Entering your precinct is not required, but will help your Election Authority know which ballot to send you.<br>
-            Find your precinct on your voter card or by going to the <a href="https://ova.elections.il.gov/RegistrationLookup.aspx">Am I registered to vote</a> tool.
+            Find your precinct on your voter card or by going to the <a href="https://ova.elections.il.gov/RegistrationLookup.aspx" rel="noopener noreferrer">Am I registered to vote</a> tool.
           has_mailing_address: I get my mail at a different address from my registration
             address.
           abr_mailing_street_number: Street Number
@@ -919,7 +920,7 @@ en:
             <p>You must have a <a rel="noopener noreferrer" href="https://www.in.gov/sos/elections/voter-information/ways-to-vote/absentee-voting/#ABSENTEE_VOTING_BY_MAIL" target="_blank">reason to vote absentee-by-mail</a> in Indiana and be able to mark your own ballot and sign your name.</p>
           request_deadline: |-
             <p>Received by election officials by 11:59 p.m. 12 days before the election.</p>
-          status_check_instructions: <a target='_blank' rel="noopener noreferrer"
+          status_check_instructions: <a target='_blank' rel='noopener noreferrer'
             href='https://indianavoters.in.gov/MVPHome/PrintDocuments'>https://indianavoters.in.gov/MVPHome/PrintDocuments</a>
           finish_instructions_3_hint_state: |-
             <h3>Don't forget to vote!</h3>
@@ -992,7 +993,7 @@ en:
           request_deadline: |-
             <p>Received by election officials by the Tuesday of the week before the election.</p>
           status_check_instructions: <p><a href="https://myvoteinfo.voteks.org/voterview"
-            target="_blank">https://myvoteinfo.voteks.org/voterview</a></p>
+            target="_blank" rel="noopener noreferrer">https://myvoteinfo.voteks.org/voterview</a></p>
           finish_instructions_1_hint: |-
             <p>If you have not provided your state driver's license or ID number, remember to provide a copy of another accepted photo ID. Accepted forms of photo ID are listed on the application.</p>
             <p>Additionally, make sure to sign your printed application.</p>
@@ -1071,7 +1072,7 @@ en:
             <p>You must complete your application online unless you have a disability that 
             prevents you from doing so. If you cannot complete your request online, 
             contact your 
-            <a href="https://elect.ky.gov/About-Us/Pages/County-Clerks.aspx" target="_blank">county clerk</a>.</p>
+            <a href="https://elect.ky.gov/About-Us/Pages/County-Clerks.aspx" target="_blank" rel="noopener noreferrer">county clerk</a>.</p>
         registration:
           has_state_license: I have a Social Security Number.
           has_no_state_license: I do not have a Social Security Number.
@@ -1088,7 +1089,7 @@ en:
             Election Day.</p>
           request_deadline: |-
             <p>Received by election officials by 4:30 p.m. on the 4th day before the election.</p>
-          status_check_instructions: <a href="https://voterportal.sos.la.gov/">https://voterportal.sos.la.gov/</a>
+          status_check_instructions: <a href="https://voterportal.sos.la.gov/" rel="noopener noreferrer">https://voterportal.sos.la.gov/</a>
           finish_instructions_1_hint: ''
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
             must be received by 4:30 pm on the day before the election.</p>"
@@ -1792,11 +1793,9 @@ en:
               <ul>
               <li>If you submit your absentee ballot by mail, it must be postmarked on or 
               before Election Day and received by your local election office no later than 
-              5 days after Election Day.</li>
+              5 business days after Election Day.</li>
               <li>If you are not sure that your absentee ballot will arrive in time if 
-              mailed, you can submit your absentee ballot in-person at your County Circuit 
-              Clerk’s Office between 8:00 a.m. to 5:00 p.m. no later than 3 days before 
-              Election Day.</li>
+              mailed, you can vote absentee in-person at your County Circuit Clerk’s Office no later than 3 days before Election Day.</li>
               </ul>
       mt:
         abr:
@@ -2229,7 +2228,7 @@ en:
               or before Election Day and received by your local election office no later 
               than 4 days after Election Day.</li>
               <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
-              mailed, drop it off at any polling place or ballot box in the state before 
+              mailed, drop it off at a ballot dropbox before 
               7:00 p.m. on Election Day.</li>
               </ul>
           request_deadline: |-
@@ -2494,8 +2493,7 @@ en:
               <p>If you are registered to vote in Oregon, you do not need to request a 
               vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
               voters before the upcoming election. You can return the vote-by-mail ballot 
-              you receive by mail, via ballot dropbox, or vote in person at your polling 
-              location.</p>
+              you receive by mail or via ballot dropbox.</p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
               <ul>
@@ -2503,7 +2501,7 @@ en:
               or before Election Day and received by your local election office no later 
               than 7 days after Election Day.</li>
               <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
-              mailed, drop it off at any polling place or ballot box in the state before 
+              mailed, drop it off at a ballot dropbox before 
               8:00 p.m. on Election Day.</li>
               </ul>
           request_deadline: |-
@@ -3116,7 +3114,7 @@ en:
               <p>If you are registered to vote in Utah, you do not need to request a 
               vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
               voters before the upcoming election. You can return the vote-by-mail ballot 
-              you receive by mail, via ballot dropbox, or vote in person at your polling 
+              you receive by mail, via ballot dropbox, or vote in person at a voting 
               location.</p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
@@ -3124,7 +3122,7 @@ en:
               <li>If you submit your vote-by-mail ballot by mail, it must be postmarked at 
               least 1 day before Election Day.</li>
               <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
-              mailed, drop it off at any polling place or ballot box in the state before 
+              mailed, drop it off at a ballot dropbox or voting location before 
               8:00 p.m. on Election Day.</li>
               <li>If you need to change the address where your ballot will be mailed, 
               submit an address change to your local election office at least 11 days 
@@ -3276,11 +3274,10 @@ en:
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
               <ul>
-              <li>If you submit your vote-by-mail ballot by mail, it must be received by 
-              your local election office no later than the day before Election Day.</li>
+              <li>If you submit your vote-by-mail ballot by mail, it must be received no later than 7 p.m. on Election Day.</li>
               <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
-              mailed, drop it off at any polling place or ballot box in the state before 
-              7:00 p.m. on Election Day.</li>
+              mailed, return your ballot to your town clerk’s office at least 1 day before the election 
+              or bring it to your polling place before 7 p.m. on Election Day.</li>
               </ul>
           request_deadline: |-
             <p>Received by election officials by 5 p.m. or by the close of the town clerk’s office on the day before the election.</p>
@@ -3357,17 +3354,16 @@ en:
           everyone_gets_ballot:
             instructions_1: |-
               <p>If you are registered to vote in Washington, you do not need to request a 
-              vote-by-mail ballot for the November 5, 2024 Election. For this election, 
-              vote-by-mail ballots will be sent to all registered voters. You can return 
-              the vote-by-mail ballot you receive by mail, via ballot dropbox, or vote in 
-              person at your polling location.</p>
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, via ballot dropbox, or vote in person at a voting center.</p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
               <ul>
-              <li>If you submit your vote-by-mail ballot by mail, it must be received by 
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked or received by 
               your local election office no later than 8:00 p.m. on Election Day.</li>
               <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
-              mailed, drop it off at any polling place or ballot box in the state before 
+              mailed, drop it off at a ballot dropbox before 
               8:00 p.m. on Election Day.</li>
               </ul>
           request_deadline: |-
@@ -3456,7 +3452,9 @@ en:
             required to provide a copy of your Wisconsin state ID with your application
             online.
           instructions: |-
-            <p>You can continue online with your state to complete your application. If you have not previously provided a copy of your photo ID, you will be asked to provide one as a part of your application.</p>
+            <p>You can continue online with your state to complete your application. If 
+            you have not previously provided a copy of your photo ID, you will be asked to 
+            provide one as a part of your application.</p>
         abr:
           step_2_instructions: |-
             <p>All registered voters in Wisconsin can request an absentee ballot.</p>
@@ -3519,7 +3517,7 @@ en:
               before Election Day and received by your local election office by the start 
               of Canvass, which begins in most counties 5 days after Election Day.</li>
               <li>If you are not sure that your absentee ballot will arrive in time if 
-              mailed, drop it off at your County Clerk’s Office no later than the day 
+              mailed, drop it off at your County Clerk’s Office no later than 1 day 
               before Election Day.</li>
               </ul>
         registration:
