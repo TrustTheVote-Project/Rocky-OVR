@@ -61,27 +61,35 @@ en:
           title: ! 'SUBMIT YOUR COMPLETED, SIGNED FORM TO:'
         deadline_block:
           title: ! 'MAIL-IN REGISTRATION DEADLINE:'
-        other_block: You must read %{instructions_url} for complete general and state-specific
-          instructions, including eligibility requirements.
+        other_block: |-
+          YOU MUST READ<br>
+          <a href="https://www.eac.gov/voters/national-mail-voter-registration-form">
+          https://www.eac.gov/voters/national-mail-voter-registration-form</a><br>
+          FOR COMPLETE GENERAL AND STATE-SPECIFIC INSTRUCTIONS, INCLUDING ELIGIBILITY 
+          REQUIREMENTS.
         ep_hotline: ! '<strong>QUESTIONS?</strong><br/>
           ELECTION PROTECTION HOTLINE:<br/>
           (866) OUR-VOTE — (866) 687-8683'
         bottom_block:
           title: FIRST TIME VOTERS WHO REGISTER BY MAIL
-          paragraph1: ! 'If you are registering to vote for the first time in your
-            jurisdiction and are mailing this registration application, Federal law
-            requires you to show proof of identification the first time you vote.
-            Proof of identification includes: A current and valid photo identification
-            or a current utility bill, bank statement, government check, paycheck,
-            or government document that shows your name and address.'
-          paragraph2: Voters may be exempt from this requirement if they submit a
-            copy of this identification with their mail in voter registration form.
-          paragraph3: ! 'If you wish to submit a copy, please keep the following in
-            mind: Your state may have additional identification requirements which
-            may mandate you show identification at the polling place even if you meet
-            the Federal proof of identification.'
-          paragraph4: Do not submit original documents with this application, only
-            copies.
+          paragraph1: |- 
+            <b>Please note that your state may have additional voter ID requirements, in 
+            addition to what's described below.</b>
+          paragraph2: |-
+            If you are voting for the first time in your state and registered by mail, 
+            federal law may require you to show proof of identification the first time you 
+            vote in a federal election.  This proof of identification includes showing the 
+            following (or if voting a mail ballot, including a COPY of the following):
+          paragraph3: |-
+            - A current and valid photo identification; OR <br>
+            - A current utility bill, bank statement, government check, <br>
+              paycheck or government document that shows your name and address.
+          paragraph4: |-
+            Federal law does not require you to show proof of identification at the 
+            polling location or when voting a mail ballot if (1) you provided a copy of 
+            one of the above with your National Mail Voter Registration Form; or (2) your 
+            voter registration form has been validated by an election official; or (3) you 
+            are entitled by federal law to vote by absentee ballot.
       page2:
         title: Voter Registration Application
         subtitle: Before completing this form, review the General, Application, and
