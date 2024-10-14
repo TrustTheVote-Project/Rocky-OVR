@@ -115,7 +115,7 @@ absentee_states:
     abr_status_check_url: "https://ivote.de.gov/VoterView"
     abr_track_ballot_url: "https://ivote.de.gov/VoterView"
   FL:
-    online_req_url: https://dos.elections.myflorida.com/supervisors/
+    online_req_url: https://dos.fl.gov/elections/for-voters/voting/vote-by-mail/
     abr_status_check_url: "https://registration.elections.myflorida.com/CheckVoterStatus"
     abr_track_ballot_url: "https://registration.elections.myflorida.com/CheckVoterStatus"
   GA:
@@ -139,6 +139,7 @@ absentee_states:
     abr_status_check_url: "https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx"
     abr_track_ballot_url: "https://elections.sos.idaho.gov/ElectionLink/ElectionLink/VoterSearch.aspx"
   IL:
+    online_req_url: https://elections.il.gov/electionoperations/votingbymail.aspx
     pdf_template: il.pdf
     leo_lookup_url: https://www.elections.il.gov/ElectionOperations/DistrictLocator/AddressFinder.aspx?T=637389017562160156
   IN:
@@ -196,6 +197,7 @@ absentee_states:
     pdf_template: mo.pdf
     leo_lookup_url: "https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority"
   MS:
+    online_req_url: https://www.sos.ms.gov/absentee-voting-information
     leo_lookup_url: "https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx"
   MT:
     pdf_template: mt.pdf
@@ -271,6 +273,7 @@ absentee_states:
     abr_status_check_url: "https://vip.sdsos.gov/VIPLogin.aspx"
     abr_track_ballot_url: "https://vip.sdsos.gov/VIPLogin.aspx"
   TN:
+    online_req_url: https://sos.tn.gov/elections/guides/guide-to-absentee-voting
     pdf_template: tn.pdf
     abr_status_check_url: "https://tnmap.tn.gov/voterlookup/"
     abr_track_ballot_url: "https://tnmap.tn.gov/voterlookup/"
@@ -307,7 +310,7 @@ absentee_states:
     abr_track_ballot_use_leo: false
     leo_lookup_url: https://myvote.wi.gov/en-US/MyMunicipalClerk
   WV:
-    online_req_url: https://sites.omniballot.us/54/absentee/app/home
+    online_req_url: https://sos.wv.gov/elections/Pages/AbsenteeVotingInformation.aspx
     #pdf_url: https://sos.wv.gov/FormSearch/Elections/Voter/Absentee%20Ballot%20Application.pdf
     #pdf_template: wv.pdf
     abr_status_check_url: "https://apps.sos.wv.gov/Elections/voter/absenteeballottracking"
