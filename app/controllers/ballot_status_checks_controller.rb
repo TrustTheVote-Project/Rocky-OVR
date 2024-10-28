@@ -17,7 +17,14 @@ class BallotStatusChecksController < ApplicationController
   
   def zip
     @bsc = BallotStatusCheck.new(zip: params[:zip], partner_id: params[:partner])
+    @bsc.partner = Partner.find_by_id(params[:partner]) if params[:partner]
     set_up_locale
+
+    # Derive the user's state abbreviation based on zip code
+    if @bsc.zip.present?
+      @home_state = GeoState.for_zip_code(@bsc.zip.strip)
+      @abbrev = @home_state&.abbreviation&.downcase
+    end
   end
 
   def create
