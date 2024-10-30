@@ -88,6 +88,16 @@ en:
             license, and social security number.
           has_no_state_license: I do not have a current AK state identification card
             or driver's license, and social security number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your <a href="%{url}"
+            target="_blank" rel="noreferrer noopener">state's website</a>.</p><p>If your 
+            absentee ballot was rejected, you should immediately reach out to your election 
+            official for more information on your voting options. You can find their contact 
+            information below.</p>
+          voted_provisionally_text: "To find out of your provisional ballot has been accepted 
+            or rejected, you should reach out to your election official. You can find their 
+            contact information below."
       al:
         abr:
           step_2_instructions: |-
@@ -316,6 +326,14 @@ en:
             abr_primary_type1: Democratic
             abr_primary_type2: Republican
             abr_primary_type3: Nonpartisan
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.voterview.ar-nova.org/VoterView" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       az:
         state_online_abr:
           instructions_header: 'I have an AZ Driver''s License or Non-Operating ID
@@ -404,6 +422,14 @@ en:
           has_state_license: I have an AZ state identification card or driver's license.
           has_no_state_license: I do not have an AZ state identification card or driver's
             license.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://my.arizona.vote/provisionalsearch.aspx" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
+            provisional ballot, you should immediately reach out to your election official 
+            to resolve any questions and ensure your vote is counted. You can find their 
+            contact information below.</p>
       ca:
         abr:
           everyone_gets_ballot:
@@ -441,6 +467,14 @@ en:
             You are eligible to finish your registration using the
             state's online voter registration system.
         ca_disclosures: I have reviewed and accepted the notices above.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="http://www.sos.ca.gov/elections/ballot-status" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
+            provisional ballot, you should immediately reach out to your election official 
+            to resolve any questions and ensure your vote is counted. You can find their 
+            contact information below.</p>
       co:
         abr:
           everyone_gets_ballot:
@@ -484,6 +518,17 @@ en:
             license, and a signature on file with the DMV.
           has_no_state_license: I do not have a current CT state identification card
             or driver's license, and a signature on file with the DMV.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for more information on your voting options. You can 
+            find their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       dc:
         abr:
           everyone_gets_ballot:
@@ -511,6 +556,14 @@ en:
           status_check_instructions: You can look up your Absentee (Mail-in Ballot)
             status by using your state&#39;s <a target='_blank' href='https://votedc.ballottrax.net/voter'>online
             tool</a>
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.dcboe.org/voters/casting-your-vote/voting-by-special-ballot" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
+            provisional ballot, you should immediately reach out to your election official 
+            to resolve any questions and ensure your vote is counted. You can find their 
+            contact information below.</p>
       de:
         state_online_abr:
           confirm: ''
@@ -583,6 +636,20 @@ en:
             abr_delivery_address_type3: Email me my ballot.
           abr_fax_number: Enter your fax number.
           abr_email2: Enter your email.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for more information on your voting options. You can 
+            find their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://ivote.de.gov/VoterView" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
+            provisional ballot, you should immediately reach out to your election official 
+            to resolve any questions and ensure your vote is counted. You can find their 
+            contact information below.</p>
       fl:
         abr:
           splash:
@@ -619,6 +686,20 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have a FL state identification card or FL
             driver's license, and Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://www.dos.myflorida.com/elections/for-voters/check-your-voter-status-and-polling-place/vote-by-mail-ballot-information-and-status-lookup/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your ballot was rejected, you should immediately reach out to your 
+            election official to resolve any issues. You can find their contact information 
+            below.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://dos.myflorida.com/elections/for-voters/check-your-voter-status-and-polling-place/vote-by-mail-ballot-information-and-status-lookup/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       ga:
         state_online_abr:
           confirm: ''
@@ -739,6 +820,17 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have have a HI state identification card
             or HI driver's license, and Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://hawaii.ballottrax.net/voter/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your ballot was rejected, you should immediately reach out to your 
+            election official to resolve any issues. You can find their contact information 
+            below.</p>
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       ia:
         abr:
           step_2_header: All registered voters in Iowa can request an absentee ballot.
@@ -853,6 +945,16 @@ en:
             or driver's license.
           has_no_state_license: I do not have a current and valid ID state identification
             card or driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for more information on your voting options. You can 
+            find their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>Idaho does not offer provisional voting because the state enacted election 
+            day registration and is exempt from the National Voter Registration Act.</p>
       il:
         abr:
           request_deadline: |-
@@ -908,6 +1010,14 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have an IL state identification card or an
             IL driver's license, and Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.elections.il.gov/votingandregistrationsystems/provisionalballotsearch.aspx" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       in:
         state_online_abr:
           instructions: |-
@@ -988,6 +1098,20 @@ en:
             license.
           has_no_state_license: I do not have a valid IN state identification card
             or driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://indianavoters.in.gov/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your ballot was rejected, you should immediately reach out to your 
+            election official to resolve any issues. You can find their contact information 
+            below.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://indianavoters.in.gov/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       ks:
         abr:
           request_deadline: |-
@@ -1076,6 +1200,14 @@ en:
         registration:
           has_state_license: I have a Social Security Number.
           has_no_state_license: I do not have a Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://vrsws.sos.ky.gov/provweb/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       la:
         state_online_abr:
           header_choice: How do you want to request your ballot?
@@ -1211,6 +1343,14 @@ en:
             license.
           has_no_state_license: I do not have a LA state identification card or LA
             driver's license.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://voterportal.sos.la.gov/provisionalvoters" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If your provisional ballot 
+            was rejected, you should immediately reach out to your election official for 
+            information on your voting options. You can find their contact 
+            information below.</p>
       md:
         abr_form_fields:
           abr_address_type_selections: Select where you'd like your ballot delivered
@@ -1296,6 +1436,14 @@ en:
             license, and a signature on file with the DMV.
           has_no_state_license: I do not have a current MD state identification card
             or driver's license, and a signature on file with the DMV.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://voterservices.elections.maryland.gov/VoterSearch" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       me:
         abr:
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -1316,6 +1464,11 @@ en:
         registration:
           has_state_license: I have a ME driver's license, ME State ID, and/or Social Security Number.
           has_no_state_license: I don't have a ME driver's license, ME State ID, or Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       ma:
         abr:
           step_2_header: Eligibility to Request a Vote by Mail Ballot
@@ -1702,6 +1855,11 @@ en:
           desktop_provide_e_signature: You must provide a signature to complete your
             registration form. You may upload a signature image, switch to a touch-enabled
             device or use your current device.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>Minnesota does not offer provisional voting because the state enacted 
+            election day registration and is exempt from the National Voter 
+            Registration Act.</p>
       mo:
         abr:
           step_2_header: You must have a reason to request an absentee ballot.
@@ -1774,6 +1932,11 @@ en:
             abr_primary_type3: Libertarian
             abr_primary_type4: Constitution
             abr_primary_type5: Issues only
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       ms:
         abr:
           request_deadline: |-
@@ -1925,6 +2088,14 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have a NC state identification card or NC
             driver's license, and Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://vt.ncsbe.gov/RegProvPIN/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       nd:
         abr:
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -1976,6 +2147,10 @@ en:
             tribal_id: Tribal ID
           Military_Overseas_Voter: Select one of the following
           ID_Number_dln__format_message: Invalid ND driver's license format
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>Since North Dakota does not have voter registration, provisional ballots 
+            are not necessary.</p>
       ne:
         abr:
           request_deadline: |-
@@ -2025,6 +2200,14 @@ en:
             license.
           has_no_state_license: I do not have a NE state identification card or NE
             driver's license.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.votercheck.necvr.ne.gov/voterview" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       nh:
         abr:
           request_deadline: ''
@@ -2110,6 +2293,13 @@ en:
           abr_assistant_check1: Check this box if someone assisted you in filling
             out this form.
           abr_assistant_name: Enter the name of the assistant
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for information on your voting options. You can find 
+            their contact information below.</p>
       nj:
         abr:
           request_deadline: |-
@@ -2212,6 +2402,14 @@ en:
             license, or Social Security Number.
           has_no_state_license: I do not have a NM state identification card or NM
             driver's license, or Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://voterportal.servis.sos.state.nm.us/ProvisionalSearch.aspx" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       nv:
         abr:
           everyone_gets_ballot:
@@ -2291,6 +2489,15 @@ en:
             or driver's license, and Social Security Number.
           has_no_state_license: I do not have a current and valid NV state identification
             card or driver's license, and Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.nvsos.gov/sos/elections/voters/provisional-voting" target="_blank" 
+            rel="noreferrer noopener">state's website</a>. Select the Ballot Status Report 
+            (PDF) for the current election and find your unique Ballot ID Number on the 
+            list.</p><p>If your provisional ballot was rejected, you should immediately 
+            reach out to your election official to resolve any issues and ensure your vote 
+            is counted. You can find their contact information below.</p>
       ny:
         abr:
           step_2_header: Eligibility
@@ -2407,6 +2614,13 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have a NY state identification card or NY
             driver's license, and Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://voterlookup.elections.ny.gov/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your ballot was rejected, you should immediately reach out to your 
+            election official to resolve any issues. You can find their contact 
+            information below.</p>
       oh:
         abr:
           everyone_gets_ballot:
@@ -2475,6 +2689,13 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have an OH state identification card or OH
             driver's license, and Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your absentee ballot status on your 
+            <a href="https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for information on your voting options. You can find 
+            their contact information below.</p>
       ok:
         abr:
           status_check_instructions: <a href="https://okvoterportal.okelections.us/">https://okvoterportal.okelections.us/</a>
@@ -2486,6 +2707,14 @@ en:
         state_online_abr:
           instructions: |-
             <p>Continue online with your state to request your absentee ballot. You will need to provide your Oklahoma Driver License, state ID number, or the last 4 digits of your Social Security Number.</p>
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://okvoterportal.okelections.gov/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       or:
         abr:
           everyone_gets_ballot:
@@ -2509,6 +2738,14 @@ en:
           status_check_instructions: You can look up your Vote By Mail status by using
             your state&#39;s <a target='_blank' href='https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&amp;source=SOS'>online
             tool</a>
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       pa:
         abr_form_fields:
           bad_date__format_message: Invalid date
@@ -2685,44 +2922,14 @@ en:
             provide_signature: Create Digital Signature
             select_file: Select an image to upload
             copy_link: Copy Link
-      sc:
-        abr:
-          step_2_instructions: |-
-            <p>In South Carolina, you must have an <a rel="noopener noreferrer" href="https://scvotes.gov/voters/absentee-voting" target="_blank">eligible reason</a> to vote absentee.</p>
-          request_deadline: |-
-            <p>Received by election officials by 5:00 p.m. on the 11th day before the election.</p>
-          status_check_instructions: "<a target='_blank' rel='noreferrer noopener'
-            href='https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo'>https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a>"
-          requirements: |-
-            <p>In your state, you are only allowed to vote absentee if you meet one of the following criteria:</p>
-            <ul>
-              <li>Members of the Armed Forces </li>
-              <li>Members of the Merchant Marine </li>
-              <li>Spouses and dependents residing with members of the Armed Forces or Merchant Marine </li>
-              <li>Persons serving with the American Red Cross or with the United Service Organizations (USO) who are attached to and serving with the Armed Forces outside their county of residence and their spouses and dependents residing with them</li>
-              <li>Citizens residing overseas </li>
-              <li>Persons who are physically disabled (includes illnesses and injuries)</li>
-              <li>Students attending school outside their county of residence and their spouses and dependents residing with them</li>
-              <li>Persons who for reasons of employment will not be able to vote on Election Day</li>
-              <li>Government employees serving outside their county of residence on Election Day and their spouses and dependents residing with them</li>
-              <li>Persons who plan to be on vacation outside their county of residence on Election Day</li>
-              <li>Persons serving as a juror in state or federal court on Election Day</li>
-              <li>Persons admitted to the hospital as emergency patients on Election Day or within a four-day period before the election</li>
-              <li>Persons with a death or funeral in the family within three days before the election</li>
-              <li>Persons confined to a jail or pre-trial facility pending disposition of arrest or trial</li>
-              <li>Persons attending sick or physically disabled persons</li>
-              <li>Certified poll watchers, poll managers, and county election officials working on Election Day</li>
-              <li>Persons sixty-five years of age or older</li>
-              <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
-            </ul>
-        state_online_abr:
-          instructions: |-
-            <p>You can complete your absentee request online with your state. You will need to provide the last 4 digits of your SSN.</p>
-        registration:
-          has_state_license: I have a valid SC state identification card or driver's
-            license, and Social Security Number.
-          has_no_state_license: I do not have a valid SC state identification card
-            or driver's license, and Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.pavoterservices.pa.gov/Pages/ProvisionalBallotSearch.aspx" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If your provisional ballot 
+            was rejected, you should immediately reach out to your election official for 
+            information on your voting options. You can find their contact 
+            information below.</p>
       ri:
         abr:
           step_2_instructions: |-
@@ -2776,6 +2983,66 @@ en:
             license.
           has_no_state_license: I do not have a RI state identification card or RI
             driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your absentee ballot status on your 
+            <a href="https://ballottrax.sos.ri.gov/voter/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your ballot was rejected, you should immediately reach out to your 
+            election official to resolve any issues. You can find their contact 
+            information below.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.ri.gov/election/provisional_ballots/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
+      sc:
+        abr:
+          step_2_instructions: |-
+            <p>In South Carolina, you must have an <a rel="noopener noreferrer" href="https://scvotes.gov/voters/absentee-voting" target="_blank">eligible reason</a> to vote absentee.</p>
+          request_deadline: |-
+            <p>Received by election officials by 5:00 p.m. on the 11th day before the election.</p>
+          status_check_instructions: "<a target='_blank' rel='noreferrer noopener'
+            href='https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo'>https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a>"
+          requirements: |-
+            <p>In your state, you are only allowed to vote absentee if you meet one of the following criteria:</p>
+            <ul>
+              <li>Members of the Armed Forces </li>
+              <li>Members of the Merchant Marine </li>
+              <li>Spouses and dependents residing with members of the Armed Forces or Merchant Marine </li>
+              <li>Persons serving with the American Red Cross or with the United Service Organizations (USO) who are attached to and serving with the Armed Forces outside their county of residence and their spouses and dependents residing with them</li>
+              <li>Citizens residing overseas </li>
+              <li>Persons who are physically disabled (includes illnesses and injuries)</li>
+              <li>Students attending school outside their county of residence and their spouses and dependents residing with them</li>
+              <li>Persons who for reasons of employment will not be able to vote on Election Day</li>
+              <li>Government employees serving outside their county of residence on Election Day and their spouses and dependents residing with them</li>
+              <li>Persons who plan to be on vacation outside their county of residence on Election Day</li>
+              <li>Persons serving as a juror in state or federal court on Election Day</li>
+              <li>Persons admitted to the hospital as emergency patients on Election Day or within a four-day period before the election</li>
+              <li>Persons with a death or funeral in the family within three days before the election</li>
+              <li>Persons confined to a jail or pre-trial facility pending disposition of arrest or trial</li>
+              <li>Persons attending sick or physically disabled persons</li>
+              <li>Certified poll watchers, poll managers, and county election officials working on Election Day</li>
+              <li>Persons sixty-five years of age or older</li>
+              <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
+            </ul>
+        state_online_abr:
+          instructions: |-
+            <p>You can complete your absentee request online with your state. You will need to provide the last 4 digits of your SSN.</p>
+        registration:
+          has_state_license: I have a valid SC state identification card or driver's
+            license, and Social Security Number.
+          has_no_state_license: I do not have a valid SC state identification card
+            or driver's license, and Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your
+            <a href="https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=ProvisionalBallotInfo" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If you used a provisional ballot, you should immediately reach out to 
+            your election official to resolve any questions and ensure your vote is 
+            counted. You can find their contact information below.</p>
       sd:
         abr:
           finish_instructions_1_hint: |-
@@ -2862,6 +3129,17 @@ en:
           abr_assistant_address_city: City
           abr_assistant_address_state: State
           abr_assistant_zip: Zip
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for information on your voting options. You can find 
+            their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       tn:
         abr:
           request_deadline: |-
@@ -3107,6 +3385,14 @@ en:
           City of witness: City
           State of witness: State
           Zip code of witness: ZIP
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official to resolve any issues and ensure your vote is 
+            counted.</p>
       ut:
         abr:
           everyone_gets_ballot:
@@ -3138,6 +3424,21 @@ en:
             license.
           has_no_state_license: I do not have a valid UT state identification card
             or driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official to resolve any issues and ensure your vote is 
+            counted.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your
+            <a href="https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your provisional ballot was rejected, you should immediately reach out 
+            to your election official to resolve any issues and ensure your vote is 
+            counted.</p>
       va:
         abr:
           finish_instructions_1_hint_state: |-
@@ -3258,6 +3559,14 @@ en:
           Confirmation Statement. A voter who does not bring an acceptable ID to the
           polls or does not sign an ID Confirmation Statement will be offered a provisional
           ballot. </p>'
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://vote.elections.virginia.gov/VoterInformation" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official to resolve any issues and ensure your vote is 
+            counted.</p>
       vt:
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
@@ -3342,6 +3651,11 @@ en:
             license, or Social Security Number.
           has_no_state_license: I do not have a VT state identification card or VT
             driver's license, or Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       wa:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In WA
         signature_capture:
@@ -3483,6 +3797,14 @@ en:
             or driver's license.
           has_no_state_license: I do not have a current and valid WI state identification
             card or driver's license.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your
+            <a href="https://myvote.wi.gov/en-us/Track-My-Ballot" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If you used a provisional ballot, you should immediately reach out to 
+            your election official to resolve any questions and ensure your vote is 
+            counted. You can find their contact information below.</p>
       wv:
         abr:
           request_deadline: |-
@@ -3525,6 +3847,20 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have a WV state identification card or WV
             driver's license, and Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for more information on your voting options. You can 
+            find their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your
+            <a href="https://apps.sos.wv.gov/Elections/voter/ProvisionalBallotSearch" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your provisional ballot was rejected, you should immediately reach 
+            out to your election official for more information on your voting options. You 
+            can find their contact information below.</p>
       wy:
         abr:
           request_deadline: |-
