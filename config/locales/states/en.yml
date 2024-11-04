@@ -2204,9 +2204,9 @@ en:
           voted_provisionally_text: |-
             <p>First, check your provisional ballot status on your 
             <a href="https://www.votercheck.necvr.ne.gov/voterview" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
-            ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
+            rel="noreferrer noopener">state's website</a>.</p><p>If your provisional ballot 
+            was rejected, you should immediately reach out to your election official for 
+            more information on your voting options. You can find their contact 
             information below.</p>
       nh:
         abr:
