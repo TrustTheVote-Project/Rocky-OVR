@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_22_154853) do
+ActiveRecord::Schema.define(version: 2022_12_19_173126) do
 
   create_table "ab_tests", force: :cascade do |t|
     t.integer "registrant_id"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 2022_08_22_154853) do
     t.string "last_login_ip", limit: 255
     t.boolean "active", default: true, null: false
     t.string "google_secret"
+    t.datetime "password_updated_at"
     t.index ["perishable_token"], name: "index_admins_on_perishable_token", unique: true
     t.index ["persistence_token"], name: "index_admins_on_persistence_token", unique: true
   end
@@ -289,6 +290,7 @@ ActiveRecord::Schema.define(version: 2022_08_22_154853) do
     t.index ["email"], name: "index_catalist_lookups_on_email"
     t.index ["partner_id"], name: "index_catalist_lookups_on_partner_id"
     t.index ["state_id"], name: "index_catalist_lookups_on_state_id"
+    t.index ["uid"], name: "index_catalist_lookups_on_uid"
   end
 
   create_table "catalist_lookups_registrants", force: :cascade do |t|
