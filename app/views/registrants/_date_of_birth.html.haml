@@ -1,17 +1,16 @@
 - skip_tooltip ||= false
 
-<% if @registrant.home_state_abbrev != "NC" %>
+- if @registrant.home_state_abbrev != "NC"
   %li.registrant-form__date-of-birth__line
     %h3
       = form.label :date_of_birth
-      %span.required 
+      %span.required
         *
         %span.required--text{style: 'display:none;'}= I18n.t('required')
-    %div{class: form.object.errors[:date_of_birth].any? ? 'has_error' : '', data: {"client-validation-required".to_sym => required_message_for(form.object, :date_of_birth)}}
+    %div{class: (form.object.errors[:date_of_birth].any? ? 'has_error' : ''), data: {"client-validation-required".to_sym => required_message_for(form.object, :date_of_birth)}}
       = form.text_field :date_of_birth_month, value: form.object.date_of_birth_month, placeholder: 'MM', type: 'tel', size: 2
       = form.text_field :date_of_birth_day, value: form.object.date_of_birth_day, placeholder: 'DD', type: 'tel', size: 2
       = form.text_field :date_of_birth_year, value: form.object.date_of_birth_year, placeholder: 'YYYY', type: 'tel', size: 4
     - unless skip_tooltip
       %div.tooltip= tooltip_tag(:date_of_birth)
     %span.error= form.object.errors[:date_of_birth].join("\n")
-<% end %>
