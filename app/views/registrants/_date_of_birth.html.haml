@@ -1,6 +1,11 @@
 - skip_tooltip ||= false
 
-- if @registrant.home_state_abbrev != "NC"
+- if @registrant.home_state_abbrev == "NC"
+  %li.registrant-form__date-of-birth__line{style: "display:none;"}
+    = form.text_field :date_of_birth_month, value: '01', type: 'hidden'
+    = form.text_field :date_of_birth_day, value: '01', type: 'hidden'
+    = form.text_field :date_of_birth_year, value: '1901', type: 'hidden'
+- else
   %li.registrant-form__date-of-birth__line
     %h3
       = form.label :date_of_birth
