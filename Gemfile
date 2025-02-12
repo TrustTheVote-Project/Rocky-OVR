@@ -124,3 +124,6 @@ gem "delayed_job_active_record" #, "~> 4.1"
 gem 'delayed_cron_job'
 
 gem 'exception_notification'
+
+gem "net-imap", "0.3.8"
+gem "rexml", "3.3.9"
