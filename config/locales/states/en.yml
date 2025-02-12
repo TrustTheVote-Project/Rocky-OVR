@@ -12,11 +12,12 @@ en:
             <p>Received by election officials 10 days before the election.</p>
           status_check_instructions: <a href="https://myvoterinformation.alaska.gov">https://myvoterinformation.alaska.gov</a>
           finish_instructions_1_hint: |-
-            <p>Make sure to sign your application - do not type your signature.
-            </p>
-            <p>If you are using this form to register to vote, make sure to include a copy of your identification.
-            </p>
-            <p>If you are using this form to request an absentee ballot and you did not provide your Social Security Number or AK Drivers' License/ID, make sure to include a copy of your identification.</p>
+            <p>Make sure to sign your application - do not type your signature.</p>
+            <p>If you are using this form to register to vote, make sure to include a 
+            copy of your identification.</p>
+            <p>If you are using this form to request an absentee ballot and you did not 
+            provide your Social Security Number or AK Drivers' License/ID, make sure to 
+            include a copy of your identification.</p>
         state_online_abr:
           confirm: ''
           requirements: "<p>\nIf you have a valid Alaska driver's license or state
@@ -87,6 +88,16 @@ en:
             license, and social security number.
           has_no_state_license: I do not have a current AK state identification card
             or driver's license, and social security number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your <a href="%{url}"
+            target="_blank" rel="noreferrer noopener">state's website</a>.</p><p>If your 
+            absentee ballot was rejected, you should immediately reach out to your election 
+            official for more information on your voting options. You can find their contact 
+            information below.</p>
+          voted_provisionally_text: "To find out of your provisional ballot has been accepted 
+            or rejected, you should reach out to your election official. You can find their 
+            contact information below."
       al:
         abr:
           step_2_instructions: |-
@@ -315,6 +326,14 @@ en:
             abr_primary_type1: Democratic
             abr_primary_type2: Republican
             abr_primary_type3: Nonpartisan
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.voterview.ar-nova.org/VoterView" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       az:
         state_online_abr:
           instructions_header: 'I have an AZ Driver''s License or Non-Operating ID
@@ -331,7 +350,7 @@ en:
           request_deadline: |-
             <p>Received by election officials by 5 p.m. on the 11th day before the election.</p>
           status_check_instructions: |-
-            <p><a href="https://my.arizona.vote/PortalList.aspx" target="_blank">
+            <p><a href="https://my.arizona.vote/PortalList.aspx" rel="noopener noreferrer" target="_blank">
             https://my.arizona.vote/PortalList.aspx</a>
             </p>
           confirm_email_delivery: I have reviewed the above information and wish to
@@ -403,34 +422,36 @@ en:
           has_state_license: I have an AZ state identification card or driver's license.
           has_no_state_license: I do not have an AZ state identification card or driver's
             license.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://my.arizona.vote/provisionalsearch.aspx" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
+            provisional ballot, you should immediately reach out to your election official 
+            to resolve any questions and ensure your vote is counted. You can find their 
+            contact information below.</p>
       ca:
         abr:
           everyone_gets_ballot:
             instructions_1: |-
-              <p>If you are registered to vote in Cali you do not need to request a 
-              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered voters 
-              before the upcoming election. You can return the vote-by-mail ballot you receive 
-              by mail, or vote in person at your polling location.</p>
-            instructions_2: |-
-              <p>Any registered voter may vote using a vote-by-mail ballot instead of going to the polls on Election Day.</p>
-              <p>To update your name or address, submit a new <a href="%{registration_url}">voter registration</a>.</p>
-              <p>
-              <h3>
-              College students and people away from California
-              </h3>
-              </p>
-              <p>If you are a Californian living away from home while attending school, you may choose to register to vote using your home away from home address or your traditional home address. You may not register to vote in two places during the same election cycle.</p>
+              <p>If you are registered to vote in California, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, at a ballot drop-off location, or vote in person at a 
+              vote center.</p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
               <ul>
-              <li>If you mail your vote-by-mail ballot, it must mailed postmarked on or before Election Day and received by your <a href="https://www.sos.ca.gov/elections/voting-resources/county-elections-offices/" target="_blank">county elections office</a> no later than 7 days after Election Day. </li>
-              <li>If you are not sure your vote-by-mail ballot will arrive in time if mailed, bring it to any polling place or ballot box in the state between 7:00 a.m. and 8:00 p.m. on Election Day.</li>
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked on 
+              or before Election Day and received by your local election office no later 
+              than 7 days after Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, bring it to a ballot drop-off location or your county elections office before 
+              8:00 p.m. on Election Day.</li>
+              <li>If you need to change the address where your ballot will be mailed, 
+              submit an address change to your local election office at least 15 days 
+              before Election Day.</li>
               </ul>
-              <h3>Voting for the first time</h3>
-              <p>If you are voting for the first time and did not provide your driver license number, California identification number, or the last four digits of your Social Security number when you registered, send a photocopy of some personal identification to your county elections official before the election. Read about what <a href="https://www.sos.ca.gov/elections/voter-registration/vote-mail#vote-by-mail" title="Voting for the first time" target="_blank">qualifies as identification</a>.</p>
-              <h3>Check the status of your ballot</h3>
-              <p>Sign up for <a href="https://california.ballottrax.net/voter/" target="_blank">Where's My Ballot?</a> to track and receive notifications on the status of your vote-by-mail ballot.
-              </p>
           request_deadline: |-
             <p>California automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Vote-By-Mail status by using
@@ -446,37 +467,32 @@ en:
             You are eligible to finish your registration using the
             state's online voter registration system.
         ca_disclosures: I have reviewed and accepted the notices above.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="http://www.sos.ca.gov/elections/ballot-status" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
+            provisional ballot, you should immediately reach out to your election official 
+            to resolve any questions and ensure your vote is counted. You can find their 
+            contact information below.</p>
       co:
         abr:
           everyone_gets_ballot:
-            instructions_2: "<p>Every Colorado voter will receive a mail ballot. The
-              ballot will be sent to the mailing\n address you provided in your voter
-              registration file.</p>\n<p><a href=\"https://register.rockthevote.com/lookup\">Check
-              if your voter registration\nis up to date.</a></p>\n<h3>\nCollege students
-              \n</h3>\n<p>Students residing in Colorado for college or university
-              can register to vote in Colorado.\n Registration is based on your residence
-              address, and you can decide whether that is in Colorado\n or another
-              state.</p>\n<p> \"Residence\" means the principal or primary home or
-              place in which a person lives and when absent,\nhas the intention of
-              returning to. You can specify a mailing address where you'd like your
-              ballot\nto be mailed to. If you need to update your address, \n<a href=\"https://register.rockthevote.com/\">submit
-              a new voter registration</a>.</p>\n<p>If you attend college or university
-              out-of-state and want to register to vote there, check that\nstate's
-              voter registration rules. If you change your voter registration to a
-              different state, you\nare no longer eligible to vote in Colorado.</p>"
-            instructions_3: "<h2>Deadlines for Submitting Your Ballot</h2>\n<ul>\n<li>Your
-              county clerk must receive your ballot no later than 7:00 PM on Election
-              Day.</li>\n<li>If you are not sure \nif your ballot will arrive in time,
-              drop it off in person. Contact your \n<a target=\"_blank\" href=\"https://www.coloradosos.gov/pubs/elections/Resources/CountyElectionOffices.html\">county
-              clerk and\n recorder's office</a> for drop-off and drop-box locations.</li>\n</ul>\n<h3>Voting
-              for the first time</h3>\n<p>If you recently registered for the first
-              time, you may need to provide a copy of your ID along with your mail
-              ballot. Your county clerk will provide instructions about the ID requirement
-              along with your ballot.</p>\n<h3>Check the status of your ballot</h3>\n<p>To
-              check the status of your mail ballot, contact your \n<a target=\"_blank\"
-              href=\"https://www.coloradosos.gov/pubs/elections/Resources/CountyElectionOffices.html\">local
-              county\n clerk and recorder's office</a> or sign up for <a target=\"_blank\"
-              href=\"https://colorado.ballottrax.net/\">BallotTrax.</a>\n</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in Colorado, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, at a designated drop-off or drop-box location, or vote in person at 
+              a voter service and polling center.</p>
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be received by 
+              your local election office no later than 7:00 p.m. on Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at a designated drop-off or drop-box location before 
+              7:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Colorado automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Mail-in Ballots status by
@@ -502,35 +518,52 @@ en:
             license, and a signature on file with the DMV.
           has_no_state_license: I do not have a current CT state identification card
             or driver's license, and a signature on file with the DMV.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for more information on your voting options. You can 
+            find their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       dc:
         abr:
           everyone_gets_ballot:
-            instructions_2: "<p>All active registered voters will be mailed a ballot.
-              </p>\n<p>To update your name or address, submit
-              a new <a href=\"https://register.rockthevote.com/\">voter registration</a>.</p>\n<h3>\nCollege
-              students and people away from DC\n</h3>\n</p>\n<p>If you are registered
-              to vote in DC and you will be away during an election, \nyou may <a
-              target=\"_blank\" href=\"https://vr.dcboe.org/213115759199060\" title=\"absentee
-              ballot request\">request\nan absentee ballot.</a> \nYour request for
-              an absentee ballot must be received by no later than 15 days before
-              the \nelection in which you wish to vote.</p>"
-            instructions_3: "<h2>Deadlines for Submitting Your Ballot</h2>\n<ul>\n<li>Your
-              voted and mailed ballot must be postmarked or otherwise demonstrated
-              to have been sent on or\n before Election Day, and must arrive no later
-              than the 10th day after Election Day. </li>\n<li>If you are concerned
-              that you may not be able to receive or cast your ballot in time for
-              it to be counted, \nplease contact the D.C. Board of Elections at 202.727.2525.</li>\n</ul>\n<h3>Voting
-              for the first time</h3>\n<p>If you are a first-time voter who registered
-              to vote by mail or online, you are\n required to provide ID documents
-              with your ballot. Read about what <a target=\"_blank\" href=\"https://dcboe.org/Voters/How-to-Vote/Mail-Ballot-Instructions\"
-              title=\"Mail Ballot Instructions\">qualifies as identification</a>.</p>\n<h3>Check
-              the status of your ballot</h3>\n<p>You can <a target=\"_blank\" href=\"https://votedc.ballottrax.net/voter\">track
-              the status of your ballot</a> online with the Board of Elections.\n</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in the District of Columbia, you do not need 
+              to request a vote-by-mail ballot. Vote-by-mail ballots will be sent to all 
+              registered voters before the upcoming election. You can return the 
+              vote-by-mail ballot you receive by mail, via ballot dropbox, or vote in 
+              person at a vote center.</p>
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked on 
+              or before Election Day and received by your local election office no later 
+              than 10 days after Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at a ballot dropbox or vote center before 
+              8:00 p.m. on Election Day.</li>
+              <li>If you need to change the address where your ballot will be mailed, 
+              submit an address change to your local election office at least 21 days 
+              before Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>District of Columbia automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee (Mail-in Ballot)
             status by using your state&#39;s <a target='_blank' href='https://votedc.ballottrax.net/voter'>online
             tool</a>
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.dcboe.org/voters/casting-your-vote/voting-by-special-ballot" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
+            provisional ballot, you should immediately reach out to your election official 
+            to resolve any questions and ensure your vote is counted. You can find their 
+            contact information below.</p>
       de:
         state_online_abr:
           confirm: ''
@@ -603,6 +636,20 @@ en:
             abr_delivery_address_type3: Email me my ballot.
           abr_fax_number: Enter your fax number.
           abr_email2: Enter your email.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for more information on your voting options. You can 
+            find their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://ivote.de.gov/VoterView" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
+            provisional ballot, you should immediately reach out to your election official 
+            to resolve any questions and ensure your vote is counted. You can find their 
+            contact information below.</p>
       fl:
         abr:
           splash:
@@ -614,17 +661,14 @@ en:
               href=\"https://dos.myflorida.com/elections/for-voters/voting/vote-by-mail/\">How
               to Request a Vote-by-Mail Ballot</a>.\n</p>"
             instructions_2: ''
-            instructions_3: "<h2>Deadlines for Submitting Your Ballot</h2>\n<p>Your
-              ballot must be received by the Supervisor of Elections' office no later
-              than 7:00pm on Election Day.</p>\n<p>If mailed, the United States Postal
-              Service recommends mailing your ballot at least one (1) week \nbefore
-              the Election Day deadline.\n</p>\n<p>You can return your ballot by mail
-              or deliver it in person. \nYou can also drop it into a secure drop box
-              until 7:00 pm on Election Day. \nCheck your local <a href=\"https://dos.elections.myflorida.com/supervisors/\">Supervisor
-              of elections</a> for locations, \ndays and hours of drop boxes in your
-              county.</p>\n<h3>Check the status of your ballot</h3>\n<p>You may check
-              on the status of your ballot at the \n<a href=\"https://dos.myflorida.com/elections/for-voters/check-your-voter-status-and-polling-place/vote-by-mail-ballot-information-and-status-lookup/\">Ballot
-              Status and Lookup</a> page for your county.\n</p>"
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your absentee ballot by mail, it must be received by your 
+              local election office no later than 7:00 p.m. on Election Day.</li>
+              <li>If you are not sure that your absentee ballot will arrive in time if 
+              mailed, drop it off at a secure drop box no later than 7:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Received by election officials no later than 5 p.m. on the 10th day before the election.</p>
           status_check_instructions: You can look up your Vote-By-Mail status by using
@@ -642,6 +686,20 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have a FL state identification card or FL
             driver's license, and Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://www.dos.myflorida.com/elections/for-voters/check-your-voter-status-and-polling-place/vote-by-mail-ballot-information-and-status-lookup/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your ballot was rejected, you should immediately reach out to your 
+            election official to resolve any issues. You can find their contact information 
+            below.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://dos.myflorida.com/elections/for-voters/check-your-voter-status-and-polling-place/vote-by-mail-ballot-information-and-status-lookup/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       ga:
         state_online_abr:
           confirm: ''
@@ -653,10 +711,10 @@ en:
         abr:
           request_deadline: |-
             <p>Received by election officials 11 days before the election.</p>
-          status_check_instructions: <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do">https://www.mvp.sos.ga.gov/MVP/mvp.do</a>
+          status_check_instructions: <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do" rel="noopener noreferrer">https://www.mvp.sos.ga.gov/MVP/mvp.do</a>
           finish_instructions_1_hint: |-
             <p>You can submit your absentee ballot request to your it to your
-            <a href="https://elections.sos.ga.gov/Elections/countyregistrars.do">County Board of Registrars Office</a> (https://elections.sos.ga.gov/Elections/countyregistrars.do) by:</p>
+            <a href="https://elections.sos.ga.gov/Elections/countyregistrars.do" rel="noopener noreferrer">County Board of Registrars Office</a> (https://elections.sos.ga.gov/Elections/countyregistrars.do) by:</p>
             <ul>
             <li>Emailing it as an attachment.</li>
             <li>Mailing it.</li>
@@ -737,26 +795,21 @@ en:
       hi:
         abr:
           everyone_gets_ballot:
-            instructions_2: |-
-              <p>Every registered voter will automatically receive an absentee ballot in the mail.</p>
-
-              <h3>College students or other voters away from Hawaii</h3>
-              <p>Hawaii residents attending college away from their home address (in or out of state) can submit an Absentee Application to request for your ballot to be mailed to your current mailing address. You will need to submit an Absentee Application each election year that you are away from your Hawaii residence.</p>
-              <p>Other voters who are away from their Hawaii residence during the election may submit an Absentee Application to have their ballot mailed to an alternate mailing address for the primary election, general election, or both.</p>
-              <p><a href="https://elections.hawaii.gov/voting/college-students/" title="College Students">Request an application with the state.</a></p>
+            instructions_1: |-
+              <p>If you are registered to vote in Hawaii, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, at a designated place of deposit within your county, or vote in person at  
+              a voter service center.</p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
-              <p>
-              You may return your voted ballot by mail or in person at a designated place of deposit within your county. Voted ballots must be received by your County Elections Division by 7:00 p.m. on Election Day.</p>
-
-              <h3>Voting at a Voter Service Center</h3>
-              <p>You can also vote at a Voting Service Center. VSC's are 10 days prior and on Election Day. Services include accessible in person voting and same day registration.
-              </p>
-              <p>
-              <strong>Check the status of your ballot</strong>
-              </p>
-              <p>You may check on the status of your ballot, whether it has been mailed and/or received, by contacting your <a href="https://elections.hawaii.gov/resources/county-election-divisions/">County Elections Division</a>.
-              </p>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be received by 
+              your local election office no later than 7:00 p.m. on Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at at a designated place of deposit within your county before 
+              7:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Hawaii automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -767,6 +820,17 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have have a HI state identification card
             or HI driver's license, and Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://hawaii.ballottrax.net/voter/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your ballot was rejected, you should immediately reach out to your 
+            election official to resolve any issues. You can find their contact information 
+            below.</p>
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       ia:
         abr:
           step_2_header: All registered voters in Iowa can request an absentee ballot.
@@ -776,7 +840,7 @@ en:
             <p>If you have moved within the county, the address you provide will be used to update your voter registration.</p>
           request_deadline: |-
             <p>Received by election officials by 5 p.m. 15 days before the election.</p>
-          status_check_instructions: <a href="https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search">https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search</a>
+          status_check_instructions: <a href="https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search" rel="noopener noreferrer">https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search</a>
         abr_form_fields:
           abr_county: Registration Address County
           abr_check_mailing_address: I get my mail at a different address from the
@@ -881,6 +945,16 @@ en:
             or driver's license.
           has_no_state_license: I do not have a current and valid ID state identification
             card or driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for more information on your voting options. You can 
+            find their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>Idaho does not offer provisional voting because the state enacted election 
+            day registration and is exempt from the National Voter Registration Act.</p>
       il:
         abr:
           request_deadline: |-
@@ -897,20 +971,25 @@ en:
             instructions_1: "<p>All registered voters in Illinois can vote by mail.
               Request a vote by mail ballot from your local jurisdiction by going
               to the \n<a href='https://www.elections.il.gov/ElectionOperations/VotingByMail.aspx?MID=oYoa3FYF460%3d&T=637982369687629559'
-              target='_blank'>State Board of Elections website</a>.</p>"
-            instructions_2: "<p>Depending on where you live, you may request a vote
-              by mail ballot online or with a paper application. The application must
-              be sent to the election authority for the jurisdiction in which you
-              are registered to vote. \n</p>"
-            instructions_3: "<p>If you're returning your completed ballot by mail,
-              it must be postmarked by Election Day. If you're returning your completed ballot by hand, it must
-              be received by close of\npolls on Election Day.</p>"
+              target='_blank' rel='noopener noreferrer'>State Board of Elections website</a>.</p>"
+            instructions_2: ''
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your absentee ballot by mail, it must be postmarked on or 
+              before Election Day and received by your local election office no later than 
+              14 days after Election Day.</li>
+              <li>If you are not sure that your absentee ballot will arrive in time if 
+              mailed, deliver it in person to the office of your local election authority 
+              or drop it in a secure drop box (if offered in your jurisdiction) by 7:00 pm 
+              on Election Day.</li>
+              </ul>
         abr_form_fields:
           abr_county: Registration address county
           abr_precinct: Enter your precinct
           abr_precinct__hint: |-
             Entering your precinct is not required, but will help your Election Authority know which ballot to send you.<br>
-            Find your precinct on your voter card or by going to the <a href="https://ova.elections.il.gov/RegistrationLookup.aspx">Am I registered to vote</a> tool.
+            Find your precinct on your voter card or by going to the <a href="https://ova.elections.il.gov/RegistrationLookup.aspx" rel="noopener noreferrer">Am I registered to vote</a> tool.
           has_mailing_address: I get my mail at a different address from my registration
             address.
           abr_mailing_street_number: Street Number
@@ -931,6 +1010,14 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have an IL state identification card or an
             IL driver's license, and Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.elections.il.gov/votingandregistrationsystems/provisionalballotsearch.aspx" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       in:
         state_online_abr:
           instructions: |-
@@ -943,7 +1030,7 @@ en:
             <p>You must have a <a rel="noopener noreferrer" href="https://www.in.gov/sos/elections/voter-information/ways-to-vote/absentee-voting/#ABSENTEE_VOTING_BY_MAIL" target="_blank">reason to vote absentee-by-mail</a> in Indiana and be able to mark your own ballot and sign your name.</p>
           request_deadline: |-
             <p>Received by election officials by 11:59 p.m. 12 days before the election.</p>
-          status_check_instructions: <a target='_blank' rel="noopener noreferrer"
+          status_check_instructions: <a target='_blank' rel='noopener noreferrer'
             href='https://indianavoters.in.gov/MVPHome/PrintDocuments'>https://indianavoters.in.gov/MVPHome/PrintDocuments</a>
           finish_instructions_3_hint_state: |-
             <h3>Don't forget to vote!</h3>
@@ -1011,12 +1098,26 @@ en:
             license.
           has_no_state_license: I do not have a valid IN state identification card
             or driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://indianavoters.in.gov/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your ballot was rejected, you should immediately reach out to your 
+            election official to resolve any issues. You can find their contact information 
+            below.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://indianavoters.in.gov/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       ks:
         abr:
           request_deadline: |-
             <p>Received by election officials by the Tuesday of the week before the election.</p>
           status_check_instructions: <p><a href="https://myvoteinfo.voteks.org/voterview"
-            target="_blank">https://myvoteinfo.voteks.org/voterview</a></p>
+            target="_blank" rel="noopener noreferrer">https://myvoteinfo.voteks.org/voterview</a></p>
           finish_instructions_1_hint: |-
             <p>If you have not provided your state driver's license or ID number, remember to provide a copy of another accepted photo ID. Accepted forms of photo ID are listed on the application.</p>
             <p>Additionally, make sure to sign your printed application.</p>
@@ -1095,10 +1196,18 @@ en:
             <p>You must complete your application online unless you have a disability that 
             prevents you from doing so. If you cannot complete your request online, 
             contact your 
-            <a href="https://elect.ky.gov/About-Us/Pages/County-Clerks.aspx" target="_blank">county clerk</a>.</p>
+            <a href="https://elect.ky.gov/About-Us/Pages/County-Clerks.aspx" target="_blank" rel="noopener noreferrer">county clerk</a>.</p>
         registration:
           has_state_license: I have a Social Security Number.
           has_no_state_license: I do not have a Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://vrsws.sos.ky.gov/provweb/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       la:
         state_online_abr:
           header_choice: How do you want to request your ballot?
@@ -1112,7 +1221,7 @@ en:
             Election Day.</p>
           request_deadline: |-
             <p>Received by election officials by 4:30 p.m. on the 4th day before the election.</p>
-          status_check_instructions: <a href="https://voterportal.sos.la.gov/">https://voterportal.sos.la.gov/</a>
+          status_check_instructions: <a href="https://voterportal.sos.la.gov/" rel="noopener noreferrer">https://voterportal.sos.la.gov/</a>
           finish_instructions_1_hint: ''
           finish_instructions_3_hint_state: "<h3>Don't forget to vote!</h3> <p>Your ballot 
             must be received by 4:30 pm on the day before the election.</p>"
@@ -1234,6 +1343,14 @@ en:
             license.
           has_no_state_license: I do not have a LA state identification card or LA
             driver's license.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://voterportal.sos.la.gov/provisionalvoters" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If your provisional ballot 
+            was rejected, you should immediately reach out to your election official for 
+            information on your voting options. You can find their contact 
+            information below.</p>
       md:
         abr_form_fields:
           abr_address_type_selections: Select where you'd like your ballot delivered
@@ -1319,6 +1436,14 @@ en:
             license, and a signature on file with the DMV.
           has_no_state_license: I do not have a current MD state identification card
             or driver's license, and a signature on file with the DMV.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://voterservices.elections.maryland.gov/VoterSearch" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       me:
         abr:
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -1339,6 +1464,11 @@ en:
         registration:
           has_state_license: I have a ME driver's license, ME State ID, and/or Social Security Number.
           has_no_state_license: I don't have a ME driver's license, ME State ID, or Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       ma:
         abr:
           step_2_header: Eligibility to Request a Vote by Mail Ballot
@@ -1725,6 +1855,11 @@ en:
           desktop_provide_e_signature: You must provide a signature to complete your
             registration form. You may upload a signature image, switch to a touch-enabled
             device or use your current device.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>Minnesota does not offer provisional voting because the state enacted 
+            election day registration and is exempt from the National Voter 
+            Registration Act.</p>
       mo:
         abr:
           step_2_header: You must have a reason to request an absentee ballot.
@@ -1797,6 +1932,11 @@ en:
             abr_primary_type3: Libertarian
             abr_primary_type4: Constitution
             abr_primary_type5: Issues only
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       ms:
         abr:
           request_deadline: |-
@@ -1810,18 +1950,16 @@ en:
               from your county’s Circuit Clerk.</p>
               <p>You must have a qualifying reason to vote absentee. You can review the 
               requirements on the Mississippi <a href="https://www.sos.ms.gov/content/documents/elections/yallvotedocs/Step-by-Step%20Voter%20Guide%20to%20Absentee%20Voting.pdf" target="_blank">Step-by-Step Absentee Guide</a>.</p>
-            instructions_2: |-
-              <p>All absentee ballot applications must be notarized, unless the voter is 
-              temporarily or permanently physically disabled. Temporary or permanently 
-              physically disabled voters may have the application witnessed by a person 
-              who is at least 18 years of age.</p>
-              <p>You must request your absentee ballot with enough time to be mailed to 
-              you and returned to your election official by Election Day.</p>
+            instructions_2: ''
             instructions_3: |-
-              <p>If you request a mail-in absentee ballot, you must return it by mail; 
-              you can’t drop it off. Your voted mail-in ballot must be postmarked by 
-              Election Day and received within 5 business days of Election Day for it to 
-              count.</p>
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your absentee ballot by mail, it must be postmarked on or 
+              before Election Day and received by your local election office no later than 
+              5 business days after Election Day.</li>
+              <li>If you are not sure that your absentee ballot will arrive in time if 
+              mailed, you can vote absentee in-person at your County Circuit Clerk’s Office no later than 3 days before Election Day.</li>
+              </ul>
       mt:
         abr:
           request_deadline: |-
@@ -1950,6 +2088,14 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have a NC state identification card or NC
             driver's license, and Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://vt.ncsbe.gov/RegProvPIN/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       nd:
         abr:
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -2001,6 +2147,10 @@ en:
             tribal_id: Tribal ID
           Military_Overseas_Voter: Select one of the following
           ID_Number_dln__format_message: Invalid ND driver's license format
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>Since North Dakota does not have voter registration, provisional ballots 
+            are not necessary.</p>
       ne:
         abr:
           request_deadline: |-
@@ -2050,6 +2200,14 @@ en:
             license.
           has_no_state_license: I do not have a NE state identification card or NE
             driver's license.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.votercheck.necvr.ne.gov/voterview" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If your provisional ballot 
+            was rejected, you should immediately reach out to your election official for 
+            more information on your voting options. You can find their contact 
+            information below.</p>
       nh:
         abr:
           request_deadline: ''
@@ -2135,6 +2293,13 @@ en:
           abr_assistant_check1: Check this box if someone assisted you in filling
             out this form.
           abr_assistant_name: Enter the name of the assistant
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for information on your voting options. You can find 
+            their contact information below.</p>
       nj:
         abr:
           request_deadline: |-
@@ -2237,34 +2402,33 @@ en:
             license, or Social Security Number.
           has_no_state_license: I do not have a NM state identification card or NM
             driver's license, or Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://voterportal.servis.sos.state.nm.us/ProvisionalSearch.aspx" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       nv:
         abr:
           everyone_gets_ballot:
-            instructions_2: "<p>If you are registered to vote in
-              Nevada, you do not need to request an \nabsentee ballot. One will be
-              automatically mailed to you.\n</p>\n<h3>First time voters</h3>\n<p>First
-              time voters may be required to present ID for voting. Make sure to respond
-              to the \nrequest from the County Clerk requesting identification. See
-              more \nat <a href=\"https://www.nvsos.gov/sos/elections/voters/mail-ballot-voting\"
-              title=\"Mail Ballot Voting\">the \nNevada Secretary of State</a> site.
-              \n</p>\n<h3>\nCollege students and people away from Nevada\n</h3>\n<p>
-              If you are a student living out of state or outside your voting precinct,
-              it may not be possible \nfor you to get to the polls on Election Day.
-              Your best option is to request to vote by mail or absentee ballot. </p>\n<p>Any
-              registered voter may request to vote by mail. To request an absentee
-              ballot, \nyou must complete and submit an \n<a href=\"https://www.nvsos.gov/sos/home/showpublisheddocument/8262/637792261599270000\">Absentee
-              Ballot Request Form</a>.</p>\n<p>The Absentee Ballot Request Form must
-              be received by your local county election official by the appropriate
-              deadline.</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in Nevada, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, via ballot dropbox, or vote in person at your polling 
+              location.</p>
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
-              <p>
-              Your ballot must be delivered by the close of polls on the date of election, or if you mail it, postmarked by Election Day.
-              </p>
-              <h3>Check the status of your ballot</h3>
-              </p>
-              <p>You may check on the status of your ballot by clicking "Voter History" at Nevada's <a href="https://www.nvsos.gov/votersearch/">Registered Voter Services</a>.
-              </p>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked on 
+              or before Election Day and received by your local election office no later 
+              than 4 days after Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at a ballot dropbox before 
+              7:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Nevada automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -2325,6 +2489,15 @@ en:
             or driver's license, and Social Security Number.
           has_no_state_license: I do not have a current and valid NV state identification
             card or driver's license, and Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.nvsos.gov/sos/elections/voters/provisional-voting" target="_blank" 
+            rel="noreferrer noopener">state's website</a>. Select the Ballot Status Report 
+            (PDF) for the current election and find your unique Ballot ID Number on the 
+            list.</p><p>If your provisional ballot was rejected, you should immediately 
+            reach out to your election official to resolve any issues and ensure your vote 
+            is counted. You can find their contact information below.</p>
       ny:
         abr:
           step_2_header: Eligibility
@@ -2441,6 +2614,13 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have a NY state identification card or NY
             driver's license, and Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://voterlookup.elections.ny.gov/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your ballot was rejected, you should immediately reach out to your 
+            election official to resolve any issues. You can find their contact 
+            information below.</p>
       oh:
         abr:
           everyone_gets_ballot:
@@ -2509,6 +2689,13 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have an OH state identification card or OH
             driver's license, and Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your absentee ballot status on your 
+            <a href="https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for information on your voting options. You can find 
+            their contact information below.</p>
       ok:
         abr:
           status_check_instructions: <a href="https://okvoterportal.okelections.us/">https://okvoterportal.okelections.us/</a>
@@ -2520,44 +2707,45 @@ en:
         state_online_abr:
           instructions: |-
             <p>Continue online with your state to request your absentee ballot. You will need to provide your Oklahoma Driver License, state ID number, or the last 4 digits of your Social Security Number.</p>
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://okvoterportal.okelections.gov/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       or:
         abr:
           everyone_gets_ballot:
-            instructions_2: "<p>All registered voters will receive an official ballot
-              to complete and return.</p>\n<p>You can update your voter registration
-              information until 8 pm on Election day and still cast a ballot. Learn
-              how at the <a href=\"https://sos.oregon.gov/voting/Pages/updatevoterregistration.aspx\">Update
-              Voter Registration</a> page.</p>\n<h3>\nCollege students and other voters
-              away from home</h3>\n<p>If you are a college student in Oregon, or an
-              Oregon resident at college away from Oregon, \nyou can vote at your
-              residential address. You can choose where that is - home or at school
-              - but you \ncan only vote in one county in one state.</p>\n<p>\nFor
-              students, your residential address can be your parents' or other family
-              home, or your \nhome where you are a student. You get to choose, but
-              you can only choose one. Oregon \nresidency requirements for voting
-              are not the same as residency for in-state \ntuition purposes. Your
-              residential address is the address that you consider home and the \nplace
-              you intend to return to. That address determines which candidates and
-              measures \nwill be on your ballot. If you live on campus and provide
-              a campus address as your \nresidential address, be sure to list your
-              dormitory and room number; a \nPO Box is not a residential address.\n</p>\n<p>\nFor
-              more information, please see \nthe <a href=\"https://sos.oregon.gov/voting/Pages/student-voters.aspx\">Student
-              Voters</a> page.\n</p>\n<p>\nStudents and other voters away from home
-              during an election should fill out an \n<a href=\"https://sos.oregon.gov/elections/Documents/SEL111.pdf\">absentee
-              ballot form</a> and \nmail it to their <a href=\"https://sos.oregon.gov/elections/Pages/countyofficials.aspx\">county
-              elections office</a>, \nor update their address online.</p>"
-            instructions_3: "<h2>Deadlines for Submitting Your Ballot</h2>\n<p>\nYour
-              ballot can be mailed or dropped off at any <a \nhref=\"https://sos.oregon.gov/voting/Pages/drop-box-locator.aspx\">official
-              drop box</a> across the state.\n</p>\n<p>\nBallots must be received
-              at a dropbox or mailed with a valid post mark by 8 p.m. on Election
-              Day.\n</p>\n\n<h3>Check the status of your ballot</h3>\n<p>You can check
-              the status of your ballot at <a href=\"https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS\">My
-              Vote</a>.</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in Oregon, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail or via ballot dropbox.</p>
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked on 
+              or before Election Day and received by your local election office no later 
+              than 7 days after Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at a ballot dropbox before 
+              8:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Oregon automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Vote By Mail status by using
             your state&#39;s <a target='_blank' href='https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&amp;source=SOS'>online
             tool</a>
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
       pa:
         abr_form_fields:
           bad_date__format_message: Invalid date
@@ -2618,8 +2806,8 @@ en:
           requirements: |-
             <p>If you don’t have a state ID or an SSN, you will need to create a paper 
             request form.</p>
-        registration_deadline_text: 10/21/2024 is the last day to register before
-          the 11/05/2024 election. If you are not a U.S. citizen and a resident of
+        registration_deadline_text: 05/05/2025 is the last day to register before
+          the 05/20/2025 election. If you are not a U.S. citizen and a resident of
           Pennsylvania at least 30 days before the next election, you CANNOT register
           to vote. If you have any questions, please call 1.877.VOTESPA (1.877.868.3772).
         state_flow_error: There was a problem submitting your registration to Pennsylvania.
@@ -2703,8 +2891,8 @@ en:
           until processed and accepted.</li> <li>If accepted, you will receive a Voter
           Registration Card by mail.</li> <li>If you do not receive your Voter Registration
           Card within 14 days, contact your county voter registration office.</li>
-          </ul> <p> Deadline Alert: 10/21/2024 is the last day to register before
-          the 11/05/2024 election.</p>"
+          </ul> <p> Deadline Alert: 05/05/2025 is the last day to register before
+          the 05/20/2025 election.</p>"
         signature_capture:
           rotation_instructions: You must rotate your screen to correctly capture
             your signature. Make sure your screen rotation is enabled.
@@ -2734,44 +2922,14 @@ en:
             provide_signature: Create Digital Signature
             select_file: Select an image to upload
             copy_link: Copy Link
-      sc:
-        abr:
-          step_2_instructions: |-
-            <p>In South Carolina, you must have an <a rel="noopener noreferrer" href="https://scvotes.gov/voters/absentee-voting" target="_blank">eligible reason</a> to vote absentee.</p>
-          request_deadline: |-
-            <p>Received by election officials by 5:00 p.m. on the 11th day before the election.</p>
-          status_check_instructions: "<a target='_blank' rel='noreferrer noopener'
-            href='https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo'>https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a>"
-          requirements: |-
-            <p>In your state, you are only allowed to vote absentee if you meet one of the following criteria:</p>
-            <ul>
-              <li>Members of the Armed Forces </li>
-              <li>Members of the Merchant Marine </li>
-              <li>Spouses and dependents residing with members of the Armed Forces or Merchant Marine </li>
-              <li>Persons serving with the American Red Cross or with the United Service Organizations (USO) who are attached to and serving with the Armed Forces outside their county of residence and their spouses and dependents residing with them</li>
-              <li>Citizens residing overseas </li>
-              <li>Persons who are physically disabled (includes illnesses and injuries)</li>
-              <li>Students attending school outside their county of residence and their spouses and dependents residing with them</li>
-              <li>Persons who for reasons of employment will not be able to vote on Election Day</li>
-              <li>Government employees serving outside their county of residence on Election Day and their spouses and dependents residing with them</li>
-              <li>Persons who plan to be on vacation outside their county of residence on Election Day</li>
-              <li>Persons serving as a juror in state or federal court on Election Day</li>
-              <li>Persons admitted to the hospital as emergency patients on Election Day or within a four-day period before the election</li>
-              <li>Persons with a death or funeral in the family within three days before the election</li>
-              <li>Persons confined to a jail or pre-trial facility pending disposition of arrest or trial</li>
-              <li>Persons attending sick or physically disabled persons</li>
-              <li>Certified poll watchers, poll managers, and county election officials working on Election Day</li>
-              <li>Persons sixty-five years of age or older</li>
-              <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
-            </ul>
-        state_online_abr:
-          instructions: |-
-            <p>You can complete your absentee request online with your state. You will need to provide the last 4 digits of your SSN.</p>
-        registration:
-          has_state_license: I have a valid SC state identification card or driver's
-            license, and Social Security Number.
-          has_no_state_license: I do not have a valid SC state identification card
-            or driver's license, and Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.pavoterservices.pa.gov/Pages/ProvisionalBallotSearch.aspx" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If your provisional ballot 
+            was rejected, you should immediately reach out to your election official for 
+            information on your voting options. You can find their contact 
+            information below.</p>
       ri:
         abr:
           step_2_instructions: |-
@@ -2825,6 +2983,66 @@ en:
             license.
           has_no_state_license: I do not have a RI state identification card or RI
             driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your absentee ballot status on your 
+            <a href="https://ballottrax.sos.ri.gov/voter/" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your ballot was rejected, you should immediately reach out to your 
+            election official to resolve any issues. You can find their contact 
+            information below.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your 
+            <a href="https://www.ri.gov/election/provisional_ballots/" target="_blank" 
+            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
+            ballot, you should immediately reach out to your election official to resolve 
+            any questions and ensure your vote is counted. You can find their contact 
+            information below.</p>
+      sc:
+        abr:
+          step_2_instructions: |-
+            <p>In South Carolina, you must have an <a rel="noopener noreferrer" href="https://scvotes.gov/voters/absentee-voting" target="_blank">eligible reason</a> to vote absentee.</p>
+          request_deadline: |-
+            <p>Received by election officials by 5:00 p.m. on the 11th day before the election.</p>
+          status_check_instructions: "<a target='_blank' rel='noreferrer noopener'
+            href='https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo'>https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo</a>"
+          requirements: |-
+            <p>In your state, you are only allowed to vote absentee if you meet one of the following criteria:</p>
+            <ul>
+              <li>Members of the Armed Forces </li>
+              <li>Members of the Merchant Marine </li>
+              <li>Spouses and dependents residing with members of the Armed Forces or Merchant Marine </li>
+              <li>Persons serving with the American Red Cross or with the United Service Organizations (USO) who are attached to and serving with the Armed Forces outside their county of residence and their spouses and dependents residing with them</li>
+              <li>Citizens residing overseas </li>
+              <li>Persons who are physically disabled (includes illnesses and injuries)</li>
+              <li>Students attending school outside their county of residence and their spouses and dependents residing with them</li>
+              <li>Persons who for reasons of employment will not be able to vote on Election Day</li>
+              <li>Government employees serving outside their county of residence on Election Day and their spouses and dependents residing with them</li>
+              <li>Persons who plan to be on vacation outside their county of residence on Election Day</li>
+              <li>Persons serving as a juror in state or federal court on Election Day</li>
+              <li>Persons admitted to the hospital as emergency patients on Election Day or within a four-day period before the election</li>
+              <li>Persons with a death or funeral in the family within three days before the election</li>
+              <li>Persons confined to a jail or pre-trial facility pending disposition of arrest or trial</li>
+              <li>Persons attending sick or physically disabled persons</li>
+              <li>Certified poll watchers, poll managers, and county election officials working on Election Day</li>
+              <li>Persons sixty-five years of age or older</li>
+              <li>Persons who for religious reasons do not want to vote on a Saturday (Presidential Primaries Only) </li>
+            </ul>
+        state_online_abr:
+          instructions: |-
+            <p>You can complete your absentee request online with your state. You will need to provide the last 4 digits of your SSN.</p>
+        registration:
+          has_state_license: I have a valid SC state identification card or driver's
+            license, and Social Security Number.
+          has_no_state_license: I do not have a valid SC state identification card
+            or driver's license, and Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your
+            <a href="https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=ProvisionalBallotInfo" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If you used a provisional ballot, you should immediately reach out to 
+            your election official to resolve any questions and ensure your vote is 
+            counted. You can find their contact information below.</p>
       sd:
         abr:
           finish_instructions_1_hint: |-
@@ -2911,6 +3129,17 @@ en:
           abr_assistant_address_city: City
           abr_assistant_address_state: State
           abr_assistant_zip: Zip
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for information on your voting options. You can find 
+            their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       tn:
         abr:
           request_deadline: |-
@@ -2927,13 +3156,16 @@ en:
               <p>You can request an application for a by-mail ballot no earlier than ninety (90) days before the
               election and no later than seven (7) days before the election. Your request must be received no later
               than seven (7) days before the election.</p>
-            instructions_2: |-
-              <p>You must return your ballot by mail. Hand delivery or handing it to a poll worker
-              during early voting or on Election Day is not permitted.</p>
-              <p>Track your absentee ballot request:
-              <a href="https://tnmap.tn.gov/voterlookup/" target="_blank">https://tnmap.tn.gov/voterlookup/</a></p>
-            instructions_3: "<p>Your ballot must be received by Election Day to be
-              counted.</p>"
+            instructions_2: ''
+            instructions_3: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your absentee ballot by mail, it must be received by your 
+              local election office no later than 7:00 p.m. on Election Day.</li>
+              <li>You must return your ballot by mail (USPS, FedEx, UPS, etc.). Hand 
+              delivery or returning your ballot to a poll location on Election Day is not 
+              permitted.</li>
+              </ul>
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
           Mailing Address (if different): Mailing address
@@ -3153,20 +3385,35 @@ en:
           City of witness: City
           State of witness: State
           Zip code of witness: ZIP
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official to resolve any issues and ensure your vote is 
+            counted.</p>
       ut:
         abr:
           everyone_gets_ballot:
-            instructions_1: "<p>If you are an active registered voter in Utah, you will automatically receive a ballot in the mail.</p>"
-            instructions_2: "<p>Make sure you're <a href=\"https://register.rockthevote.com/\">registered to vote</a> at your current address!</p>
-              <p>If you need your ballot sent somewhere other than your usual address, 
-              you can submit an <a target=\"_blank\" href=\"https://voteinfo.utah.gov/wp-content/uploads/sites/42/2020/05/Alternate-Address-Form5-20.pdf\">Absentee Application</a> 
-              to have your ballot mailed to an alternate address.</p>
-              <p>You can <a target=\"_blank\" href=\"https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot\">track your mail ballot</a> with your state's online tool.</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in Utah, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, via ballot dropbox, or vote in person at a voting 
+              location.</p>
             instructions_3: |-
-              <p>If you return your completed ballot in person, it must be received by 
-              Election Day. If you mail your ballot, it must be postmarked 1 day before 
-              Election Day and received by 12:00 pm on the day of the county canvass for 
-              it to count.</p>
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked at 
+              least 1 day before Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at a ballot dropbox or voting location before 
+              8:00 p.m. on Election Day.</li>
+              <li>If you need to change the address where your ballot will be mailed, 
+              submit an address change to your local election office at least 11 days 
+              before Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Utah automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -3177,6 +3424,21 @@ en:
             license.
           has_no_state_license: I do not have a valid UT state identification card
             or driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official to resolve any issues and ensure your vote is 
+            counted.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your
+            <a href="https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your provisional ballot was rejected, you should immediately reach out 
+            to your election official to resolve any issues and ensure your vote is 
+            counted.</p>
       va:
         abr:
           finish_instructions_1_hint_state: |-
@@ -3297,6 +3559,14 @@ en:
           Confirmation Statement. A voter who does not bring an acceptable ID to the
           polls or does not sign an ID Confirmation Statement will be offered a provisional
           ballot. </p>'
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="https://vote.elections.virginia.gov/VoterInformation" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official to resolve any issues and ensure your vote is 
+            counted.</p>
       vt:
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
@@ -3304,14 +3574,20 @@ en:
             with the state.</p>"
         abr:
           everyone_gets_ballot:
-            instructions_2:  ''
+            instructions_1: |-
+              <p>If you are registered to vote in Vermont, you do not need to request a 
+              vote-by-mail ballot for the November 5, 2024 Election. For this election, 
+              vote-by-mail ballots will be sent to all registered voters. You can return 
+              the vote-by-mail ballot you receive by mail, via ballot dropbox, or vote in 
+              person at your polling location.</p>
             instructions_3: |-
-              <p>When voting, make sure to sign the certificate on the outside of the envelope for
-              the ballot to be valid. A voter who is physically unable to sign their name may mark an “X”
-              swearing to the statement on the certificate.</p>
-              <p>In order to be counted, all ballots must be returned to the town clerk’s office before
-              the close of business on November 7th, or to the polling place before 7 pm on Election Day,
-              November 8th. Ballots may be returned by mail or in person.</p>
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be received no later than 7 p.m. on Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, return your ballot to your town clerk’s office at least 1 day before the election 
+              or bring it to your polling place before 7 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Received by election officials by 5 p.m. or by the close of the town clerk’s office on the day before the election.</p>
           status_check_instructions: |-
@@ -3375,6 +3651,11 @@ en:
             license, or Social Security Number.
           has_no_state_license: I do not have a VT state identification card or VT
             driver's license, or Social Security Number.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>To find out of your provisional ballot has been accepted or rejected, you 
+            should reach out to your election official. You can find their contact 
+            information below.</p>
       wa:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In WA
         signature_capture:
@@ -3385,25 +3666,20 @@ en:
             myself.
         abr:
           everyone_gets_ballot:
-            instructions_2: "<p>Your ballot will be mailed to you at least 18 days
-              before each election.</p>\n<h3>College students</h3>\n<p>You should
-              vote based on your residential address, not your mailing address: \nYour
-              residential address determines what's on your ballot, but you can have
-              your vote mailed to you \nanywhere in the world!</p>\n<p>If your registration
-              doesn't match your current address, <a href=\"%{registration_url}\">update
-              it now</a>.</p>\n<p>Learn more about <a href=\"https://www.sos.wa.gov/elections/voters/voters-away-at-college.aspx\"
-              title=\"Voters Away at College\">voting as a student</a>.</p>"
+            instructions_1: |-
+              <p>If you are registered to vote in Washington, you do not need to request a 
+              vote-by-mail ballot. Vote-by-mail ballots will be sent to all registered 
+              voters before the upcoming election. You can return the vote-by-mail ballot 
+              you receive by mail, via ballot dropbox, or vote in person at a voting center.</p>
             instructions_3: |-
-              <p>
               <h2>Deadlines for Submitting Your Ballot</h2>
-              <p>
-              Your ballot must either be postmarked no later than Election Day or returned to a ballot drop box by 8 p.m. on Election Day.
-              </p>
-              <p>If mailed, the <a href="https://www.sos.wa.gov/elections/usps-and-election-mail-resources.aspx" title="USPS and Election Mail Resources">USPS</a> recommends that you mail a week before Election Day.</a>
-              </p>
-              <h3>Check the status of your ballot</h3>
-              <p>You may check on the status of your ballot at <a href="https://voter.votewa.gov/WhereToVote.aspx">VoteWA.gov</a>.
-              </p>
+              <ul>
+              <li>If you submit your vote-by-mail ballot by mail, it must be postmarked or received by 
+              your local election office no later than 8:00 p.m. on Election Day.</li>
+              <li>If you are not sure that your vote-by-mail ballot will arrive in time if 
+              mailed, drop it off at a ballot dropbox before 
+              8:00 p.m. on Election Day.</li>
+              </ul>
           request_deadline: |-
             <p>Washington automatically mails ballots to all registered voters. For more information, <a href="https://www.rockthevote.org/how-to-vote/find-your-election-official/?source=rocky">contact your local election officials</a>.</p>
           status_check_instructions: You can look up your Vote By Mail status by using
@@ -3490,7 +3766,9 @@ en:
             required to provide a copy of your Wisconsin state ID with your application
             online.
           instructions: |-
-            <p>You can continue online with your state to complete your application. If you have not previously provided a copy of your photo ID, you will be asked to provide one as a part of your application.</p>
+            <p>You can continue online with your state to complete your application. If 
+            you have not previously provided a copy of your photo ID, you will be asked to 
+            provide one as a part of your application.</p>
         abr:
           step_2_instructions: |-
             <p>All registered voters in Wisconsin can request an absentee ballot.</p>
@@ -3519,6 +3797,14 @@ en:
             or driver's license.
           has_no_state_license: I do not have a current and valid WI state identification
             card or driver's license.
+        ballot_status_check:
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your
+            <a href="https://myvote.wi.gov/en-us/Track-My-Ballot" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If you used a provisional ballot, you should immediately reach out to 
+            your election official to resolve any questions and ensure your vote is 
+            counted. You can find their contact information below.</p>
       wv:
         abr:
           request_deadline: |-
@@ -3545,16 +3831,36 @@ en:
               ballot</h3>\n<p>You can request an absentee ballot between August 16th
               and November 2nd for the General election. Make sure your application
               is received by November 2nd.</p>"
-            instructions_2: <p>Track the status of your absentee ballot at <a href="https://apps.sos.wv.gov/Elections/Voter/AbsenteeBallotTracking">Absentee
-              Ballot Tracking</a>.</p>
+            instructions_2: ''
             instructions_3: |-
-              <p>Your voted ballot must be returned by November 7th if returned by hand and postmarked by November
-              8th if mailed. If mailed, it must be received by November 14th.</p>
+              <h2>Deadlines for Submitting Your Ballot</h2>
+              <ul>
+              <li>If you submit your absentee ballot by mail, it must be postmarked on or 
+              before Election Day and received by your local election office by the start 
+              of Canvass, which begins in most counties 5 days after Election Day.</li>
+              <li>If you are not sure that your absentee ballot will arrive in time if 
+              mailed, drop it off at your County Clerk’s Office no later than 1 day 
+              before Election Day.</li>
+              </ul>
         registration:
           has_state_license: I have a WV state identification card or WV driver's
             license, and Social Security Number.
           has_no_state_license: I do not have a WV state identification card or WV
             driver's license, and Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>First, check your ballot status on your 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your absentee ballot was rejected, you should immediately reach out 
+            to your election official for more information on your voting options. You can 
+            find their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>First, check your provisional ballot status on your
+            <a href="https://apps.sos.wv.gov/Elections/voter/ProvisionalBallotSearch" 
+            target="_blank" rel="noreferrer noopener">state's website</a>.
+            </p><p>If your provisional ballot was rejected, you should immediately reach 
+            out to your election official for more information on your voting options. You 
+            can find their contact information below.</p>
       wy:
         abr:
           request_deadline: |-
@@ -4282,8 +4588,6 @@ en:
         If not, you must submit "proof of citizenship" along with your voter registration
         application. The most common "proof" is a photocopy of your birth certificate
         or passport. A full list of acceptable documentation can be found <a href="http://www.azsos.gov/election/VoterRegistration.htm#Proof">online</a>.</i>
-      north_carolina: |-
-        Custom NC instructions here.
     pdf_other_instructions:
       blank: ''
       north_carolina: |-

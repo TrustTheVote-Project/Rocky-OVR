@@ -1,4 +1,4 @@
-ds = []
+ids = []
 r.deliveries.each do |d|
   d.registrant.pdf_writer.generate_pdf(true, true, d.registrant.pdf_is_esigned?, d.created_at)
 end

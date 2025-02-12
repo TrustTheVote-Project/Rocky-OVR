@@ -1,8 +1,3 @@
-
-
- 4/25/22 00:44:30 through → 4/26/22 18:45:58
- 
- 
      ENV['GENERATING_REPORTS'] = "true"
      start_time = DateTime.parse("2022-04-25 00:44:29")
      end_time = DateTime.parse("2022-04-26 18:45:58")
