@@ -97,7 +97,7 @@ class StateRegistrants::Base < ActiveRecord::Base
   
 
   def check_locale_change
-    if !self.new_locale.blank? && self.new_locale != self.locale
+    if !self.new_locale.blank? && self.new_locale != self.locale && ENABLED_LOCALES.include?(self.new_locale)
       selected_name_title_key = name_title_key
       selected_name_suf_key = name_suffix_key
       selected_race_key = race_key

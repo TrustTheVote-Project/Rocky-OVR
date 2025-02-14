@@ -1408,7 +1408,7 @@ GEM
       thread_safe
     public_suffix (4.0.7)
     racc (1.8.1)
-    rack (2.2.9)
+    rack (2.2.11)
     rack-mini-profiler (2.3.1)
       rack (>= 1.2.0)
     rack-robustness (1.1.0)
@@ -1619,6 +1619,7 @@ DEPENDENCIES
   nokogiri
   paperclip
   passenger (= 5.3.7)
+  rack (= 2.2.11)
   rack-mini-profiler
   rack-robustness
   rails (= 5.2.8.1)
