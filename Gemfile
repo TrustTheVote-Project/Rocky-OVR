@@ -17,6 +17,7 @@ gem 'twilio-ruby' #, '~> 4.11.1'
 gem 'will_paginate'
 
 #gem 'utf8-cleaner'
+gem 'rack', "2.2.11"
 gem 'rack-robustness'
 
 gem "authlogic" #, "= 4.3.0"
