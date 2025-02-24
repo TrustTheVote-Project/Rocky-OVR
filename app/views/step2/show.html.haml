@@ -48,8 +48,8 @@
         %li.spacer
         %li.registrant-form__will-be-18-by-election__line
           %h3
-            = form.check_box :will_be_18_by_election
-            = form.label :will_be_18_by_election
+            = form.check_box :will_be_18_by_election, {data: {"client-validation-require-accept".to_sym => require_accept_message_for(form.object, :will_be_18_by_election)}}
+            = form.label :will_be_18_by_election, "#{form.object.class.human_attribute_name(:will_be_18_by_election).html_safe}<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>".html_safe
             %span.error= form.object.errors[:will_be_18_by_election].join("\n")
 
   = render :partial=> "registrants/home_address", :locals=>{:form=>form}

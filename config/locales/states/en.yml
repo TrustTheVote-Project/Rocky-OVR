@@ -4591,6 +4591,8 @@ en:
     pdf_other_instructions:
       blank: ''
       north_carolina: |-
+        <b>IMPORTANT: Make sure to fill in your Date of Birth in Box 4 when signing 
+        your form.</b><br><br>
         <b>If you want to register with a party, fill in Section 7 (Choice of Party) on 
         your form.</b> You must register with a party to vote in that party’s primary 
         unless that party allows unaffiliated voters to vote in its primary. If you 
@@ -4625,6 +4627,8 @@ en:
         <p>A full list of acceptable documentation can be found on the 
         <a href="https://azsos.gov/elections/voters/registering-vote/registration-requirements/proof-citizenship-requirements">Secretary of State's website</a>.</p>
       north_carolina: |-
+        <p><b>IMPORTANT: Make sure to fill in your Date of Birth in Box 4 when signing 
+        your form.</b></p>
         <p><b>If you want to register with a party, fill in Section 7 (Choice of Party) on 
         your form.</b> You must register with a party to vote in that party’s primary 
         unless that party allows unaffiliated voters to vote in its primary. If you 
