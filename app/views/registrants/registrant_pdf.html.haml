@@ -181,13 +181,13 @@
             %tr
               %td.label= form_prompt('pdf.nvra.page2.block4.box1_label' ).to_s.html_safe
               %td.item2
-                .value= @registrant.pdf_date_of_birth_month + ' /'
+                .value= @registrant.pdf_date_of_birth == "00/00/0000" ? "" : @registrant.pdf_date_of_birth_month + ' /'
                 .label=form_prompt('pdf.nvra.page2.block4.item2' ).to_s.html_safe
               %td.item3
-                .value= @registrant.pdf_date_of_birth_day + ' /'
+                .value= @registrant.pdf_date_of_birth == "00/00/0000" ? "" : @registrant.pdf_date_of_birth_day + ' /'
                 .label=form_prompt('pdf.nvra.page2.block4.item3' ).to_s.html_safe
               %td.item4
-                .value= @registrant.pdf_date_of_birth_year
+                .value= @registrant.pdf_date_of_birth == "00/00/0000" ? "" : @registrant.pdf_date_of_birth_year
                 .label=form_prompt('pdf.nvra.page2.block4.item4' ).to_s.html_safe
         %td.block5.block_number 5
         %td.block5.box1#phone_number
