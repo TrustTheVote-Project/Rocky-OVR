@@ -1,5 +1,11 @@
 module DateOfBirthMethods
   def date_of_birth=(string_value)
+    # If the date is "00/00/0000", set it directly
+    if string_value == "00/00/0000"
+      write_attribute(:date_of_birth, nil)
+      return
+    end
+
     dob = nil
     if string_value.is_a?(String)
       if matches = string_value.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{4})\z/)
@@ -77,9 +83,8 @@ module DateOfBirthMethods
     end
   end
 
-  # TODO: remove duplicate from RegistrantAbrMethods
   def validate_date_of_birth_age
-    if date_of_birth.present?
+    if date_of_birth.present? && date_of_birth != "00/00/0000"
       age_in_years = (Date.today - date_of_birth).to_i / 365
       if age_in_years < 13
         errors.add(:date_of_birth, :way_too_young)
@@ -94,8 +99,13 @@ module DateOfBirthMethods
     end
   end
 
-  # TODO: remove duplicate from RegistrantAbrMethods
   def validate_date_of_birth
+    # Skip validation if the date_of_birth is "00/00/0000"
+    if date_of_birth == "00/00/0000" || date_of_birth.nil?
+      self[:date_of_birth] = nil  # Explicitly set it to nil if it's "00/00/0000"
+      return
+    end
+
     if date_of_birth_before_type_cast.is_a?(Date) || date_of_birth_before_type_cast.is_a?(Time)
       validate_date_of_birth_age
       return
