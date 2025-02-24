@@ -1,5 +1,11 @@
 module DateOfBirthMethods
   def date_of_birth=(string_value)
+    # Skip processing if DOB is not required (e.g. for NC)
+    unless require_date_of_birth?
+      write_attribute(:date_of_birth, nil)
+      return
+    end
+
     dob = nil
     if string_value.is_a?(String)
       if matches = string_value.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{4})\z/)
@@ -47,18 +53,23 @@ module DateOfBirthMethods
   def date_of_birth_from_parts
     "%02d-%02d-%d" % [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year].collect(&:to_i)
   end
-
   def date_of_birth_parts
     [@date_of_birth_month, @date_of_birth_day, @date_of_birth_year]
   end
 
   def set_date_of_birth_from_parts
-    if date_of_birth_parts.collect{|p| p.blank? ? nil : p }.compact.length == 3
+    # Bypass processing if DOB is not required.
+    unless require_date_of_birth?
+      self.date_of_birth = nil
+      return
+    end
+
+    if date_of_birth_parts.collect { |p| p.blank? ? nil : p }.compact.length == 3
       dmy_string = date_of_birth_from_parts 
       if matches = dmy_string.to_s.match(/\A(\d{1,2})\D+(\d{1,2})\D+(\d{1,4})\z/)
         m,d,y = matches.captures
         begin
-          self.date_of_birth = Date.civil(y.to_i, m.to_i, d.to_i) 
+          self.date_of_birth = Date.civil(y.to_i, m.to_i, d.to_i)
         rescue
         end
       end
@@ -96,6 +107,9 @@ module DateOfBirthMethods
 
   # TODO: remove duplicate from RegistrantAbrMethods
   def validate_date_of_birth
+    # If DOB is not required, skip all validations.
+    return unless require_date_of_birth?
+    
     if date_of_birth_before_type_cast.is_a?(Date) || date_of_birth_before_type_cast.is_a?(Time)
       validate_date_of_birth_age
       return

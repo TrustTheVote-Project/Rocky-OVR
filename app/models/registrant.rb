@@ -775,19 +775,36 @@ class Registrant < ActiveRecord::Base
     end
   end
 
+  # --- BEGIN DOB PDF METHODS MODIFICATIONS ---
+  # NC does NOT want us to capture a DOB
+  def require_date_of_birth?
+    home_state_abbrev != "NC"
+  end
+
+  def pdf_date_of_birth
+    if require_date_of_birth?
+      (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_s(:month_day_year) : date_of_birth.to_s
+    else
+      "00/00/0000" # Requires placeholder for pdf generation for NC
+    end
+  end
+
+  def home_state_abbrev
+    home_state&.abbreviation.to_s.strip.upcase.presence || ""
+  end
+
   def pdf_date_of_birth_month
     pdf_date_of_birth.split('/')[0]
   end
+
   def pdf_date_of_birth_day
     pdf_date_of_birth.split('/')[1]
   end
+
   def pdf_date_of_birth_year
     pdf_date_of_birth.split('/')[2]
   end
-  
-  def pdf_date_of_birth
-    (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_s(:month_day_year) : date_of_birth.to_s
-  end
+  # --- END DOB PDF METHODS MODIFICATIONS ---
 
   def pdf_english_race
     if race != I18n.t('txt.registration.races', :locale=>locale).values.last

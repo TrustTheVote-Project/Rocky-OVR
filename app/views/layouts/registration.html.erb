@@ -85,8 +85,8 @@
   <% end -%>
       <div class='header-text'>
         <%- if !@registrant || @registrant.short_form? %>
-          <%- if @registrant && @registrant.home_state_abbrev %>
-            <%= t 'txt.register_to_vote_in', state_abbrev: @registrant.home_state_name %>
+          <%- if @registrant && @registrant.home_state_abbrev.present? %>
+            <%= t 'txt.register_to_vote_in', state_abbrev: @registrant.home_state_name.presence || "Your State" %>
           <%- else%>
             <%= t 'txt.register_to_vote' %>
           <%- end %>
