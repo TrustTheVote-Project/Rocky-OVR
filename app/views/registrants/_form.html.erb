@@ -79,10 +79,13 @@
     <li class="spacer">&nbsp;</li>
     <li>
       <h3>
-        <%= form.check_box :will_be_18_by_election %> <%= form.label :will_be_18_by_election %>
+        <%= form.check_box :will_be_18_by_election %>
+        <%= form.label :will_be_18_by_election, "I will be 18 or older by the next election".html_safe + 
+          (@registrant.home_state_abbrev == "NC" ? ' <span class="required">*<span class="required--text" style="display:none;">Required</span></span>'.html_safe : ''), 
+          class: "required-label" %>
         <span class="error"><%= form.object.errors[:will_be_18_by_election].join("\n") %></span>
-    
       </h3>
+<p>Home State Abbreviation: <%= @registrant.home_state_abbrev.inspect %></p>
     </li>
   </ul>
   

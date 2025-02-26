@@ -22,13 +22,12 @@
       = form.hidden_field :locale, :value=>@registrant.locale
       = hidden_field_tag 'skip_advance', false
 
-          
+
   - if @registrant.skip_state_flow?
     %h1= t("states.custom.#{@registrant.home_state_abbrev.downcase}.by_paper_header").html_safe
     %p= I18n.t('txt.registration.instructions.overseas').html_safe
-    
 
-    
+
 
   = render partial: 'name', locals: {form: form}
 
@@ -42,14 +41,14 @@
           = form.check_box :us_citizen,  {data: {"client-validation-require-accept".to_sym => require_accept_message_for(form.object, :us_citizen)}}
           = form.label :us_citizen, "#{form.object.class.human_attribute_name(:us_citizen).html_safe}<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>".html_safe
           %span.error= form.object.errors[:us_citizen].join("\n")
-          
+
     - if @registrant.require_age_confirmation?
       %ul.checkbox.checkbox-step-1
-        %li.spacer
+        %li.spacer= "&nbsp;"
         %li.registrant-form__will-be-18-by-election__line
           %h3
-            = form.check_box :will_be_18_by_election
-            = form.label :will_be_18_by_election
+            = form.check_box :will_be_18_by_election, {data: {"client-validation-require-accept".to_sym => require_accept_message_for(form.object, :will_be_18_by_election)}}
+            = form.label :will_be_18_by_election, "#{form.object.class.human_attribute_name(:will_be_18_by_election).html_safe}<span class='required'>*<span class='required--text' style='display:none;'>#{I18n.t('required')}</span></span>".html_safe
             %span.error= form.object.errors[:will_be_18_by_election].join("\n")
 
   = render :partial=> "registrants/home_address", :locals=>{:form=>form}
