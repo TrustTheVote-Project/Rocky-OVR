@@ -2104,7 +2104,7 @@ class Registrant < ActiveRecord::Base
   #  super # Call the original delegated method for other states
   #end
 
-  validate :require_age_confirmation_if_nc
+  #validate :require_age_confirmation_if_nc
 
   private ###
 
@@ -2193,15 +2193,13 @@ class Registrant < ActiveRecord::Base
     end
   end
 
-  private
+  #def require_age_confirmation_if_nc
+  #  return if new_record? || home_state_abbrev.blank? # Skip validation if state isn't set yet
+  #  return unless home_state_abbrev == "NC"
 
-  def require_age_confirmation_if_nc
-    return if new_record? || home_state_abbrev.blank? # Skip validation if state isn't set yet
-    return unless home_state_abbrev == "NC"
-
-    unless will_be_18_by_election?
-      errors.add(:will_be_18_by_election, "You must be 18 years old on or by election day!")
-    end
-  end
+  #  unless will_be_18_by_election?
+  #    errors.add(:will_be_18_by_election, "You must be 18 years old on or by election day!")
+  #  end
+  #end
 
 end
