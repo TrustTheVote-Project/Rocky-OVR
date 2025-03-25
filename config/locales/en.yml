@@ -735,6 +735,8 @@ en:
               inclusion: Please indicate whether you have a valid state license.
             us_citizen:
               accepted: You must be a US citizen!
+            will_be_18_by_election:
+              accepted: You must be 18 years old on or by election day!
             sms_number_for_continue_on_device:
               format: Please provide a valid number
             email_address_for_continue_on_device:
