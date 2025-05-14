@@ -1681,7 +1681,11 @@ en:
             mailing_address_1: Enter the number only
             mailing_address_1_length: PO Box is too long (maximum is %{count} characters).
         state_flow_error: ''
-        by_paper_header: Complete Registration By Paper
+        by_paper_header: Complete Preregistration or Registration By Paper
+        by_paper_disclaimer: |-
+          If you are under 17.5 years old and are pre-registering to vote, please download and submit the 
+          <a href="https://www.michigan.gov/sos/-/media/Project/Websites/sos/Elections/Election-Forms/ED-121a-Michigan-Voter-Preregistration-Application-and-Change-of-Address-Form.pdf?rev=2a0413ce83e24577ab6bbe36f2c08df7&hash=E53D1A3FBE546E4AACEE451E4EAD332A" target="_blank">Preregistration Form</a> 
+          to your local election official instead of continuing below.
         skip_online_registration: <a href="%{url}">Click here</a> to create a paper
           registration form to download, print, sign, and mail.
         skip_online_registration_no_dln: If you do not have a Michigan driver's license
