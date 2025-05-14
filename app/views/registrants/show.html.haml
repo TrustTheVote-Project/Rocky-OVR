@@ -1,8 +1,9 @@
 = render :partial => 'layouts/weglot'
 
 - if !@registrant || @registrant.short_form?
+  - intro_key = params[:utm_feature] == 'prereg_included' ? 'txt.registration.intro_message_pre_register' : 'txt.registration.intro_message'
   .intro-message
-    %p=t('txt.registration.intro_message')
+    %p= t(intro_key).html_safe
   
 %h1= t('txt.registration.step_1_header')
 
