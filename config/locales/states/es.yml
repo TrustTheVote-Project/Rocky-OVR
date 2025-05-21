@@ -1334,13 +1334,10 @@ es:
           
           
           status_check_instructions: ''
-          
-          
         state_online_abr:
-          
           requirements: ''
         registration_deadline_text: 'Atención: La fecha límite para inscribirse y poder votar 
-        en las próximas elecciones del 20 de mayo de 2025, es el 5 de mayo de 2025.
+        en las próximas elecciones del 4 noviembre 2025, es 20 octubre 2025.
         Si usted NO es un ciudadano de los Estados Unidos y un residente de Pennsylvania por 
         lo menos 30 días antes de la próxima elección, usted NO puede registrarse para votar. 
         Si tiene preguntas, llame al 1.877.VOTESPA (1.877.868.3772).'
@@ -1430,7 +1427,7 @@ es:
           Votante por correo.</li><li>Si en 14 días no ha recibido su Tarjeta de Inscripción
           de Votante, llame a su oficina de inscripción de votantes.</li><p>Atención:
           La fecha límite para inscribirse y poder votar en las próximas elecciones
-          05/20/2025, es 05/05/2025.</p>"
+          11/04/2025, es 10/20/2025.</p>"
         signature_capture:
           rotation_instructions: Debe girar la pantalla para capturar correctamente
             su firma. Asegúrese de que la rotación de su pantalla esté habilitada.
