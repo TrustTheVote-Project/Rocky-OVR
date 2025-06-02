@@ -22,11 +22,15 @@
       = form.hidden_field :locale, :value=>@registrant.locale
       = hidden_field_tag 'skip_advance', false
 
-          
+
   - if @registrant.skip_state_flow?
     %h1= t("states.custom.#{@registrant.home_state_abbrev.downcase}.by_paper_header").html_safe
+  
+    - if @registrant.home_state_abbrev.upcase == 'MI'
+      %br/
+      %p= t('states.custom.mi.by_paper_disclaimer').html_safe
+
     %p= I18n.t('txt.registration.instructions.overseas').html_safe
-    
 
     
 

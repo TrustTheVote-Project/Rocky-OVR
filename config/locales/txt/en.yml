@@ -25,8 +25,12 @@ en:
       find_election_official_contact: 'Contact Information:'
     lookup:
       step_1_header: Check Your Voter Registration Status
+      step_1_header_pre_register: Check Your Voter Preregistration or Registration Status
       step_1_instructions: "<p>Not sure if you're registered to vote? Take one minute
         and verify your voter registration status today.</p>"
+      step_1_instructions_pre_register: "<p>Not sure if you’re preregistered or registered 
+        to vote? Take one minute and verify your preregistration or registration status 
+        today.</p>"
       step_2_header_check: We found a likely match.
       step_2_header_found: "%{first_name}, we found your voter registration."
       step_2_header_not_found: "%{first_name}, we couldn't confirm that you're registered
@@ -266,6 +270,7 @@ en:
       next: Next
       submit: Next Step
       lookup: Look Up Your Registration
+      lookup_pre_register: Look Up Your Preregistration or Registration
       trackballot: Check Ballot Status
       edit: Edit
       back: "&lt; Previous Step"
@@ -297,6 +302,8 @@ en:
       powered_by: 'powered by:'
       progress_indicator: 'Step:'
       intro_message: Voter registration takes an average of two minutes or less.
+      intro_message_pre_register: Voter registration or preregistration takes an average 
+        of two minutes or lesss.
       step_1_header: New Registrant
       step_2_header: Personal Information
       step_3_header: Additional Registration Information
