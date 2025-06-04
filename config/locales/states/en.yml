@@ -3003,6 +3003,16 @@ en:
             information below.</p>
       sc:
         abr:
+          splash:
+            instructions_1: |-
+              <p>If you are registered to vote in South Carolina, you must request an application for an absentee ballot by calling, visiting, or mailing your request to your <a rel="noopener noreferrer" href="https://scvotes.gov/contact/county-voter-registration-election-offices/" target="_blank">county voter registration office</a>. You must provide your name, date of birth and last four digits of your Social Security Number, then you will be mailed an absentee ballot application. Continue to your state's website to learn more: <a rel="noopener noreferrer" href="https://scvotes.gov/voters/absentee-voting/" target="_blank">https://scvotes.gov/voters/absentee-voting/</a></p>
+            instructions_2: |-
+              <h2>Deadlines for Submitting Your Ballot</h2>
+            instructions_3: |-
+              <ul>
+                <li>Your completed absentee ballot must be received by your county voter registration office by 7:00 p.m. on election day.</li>
+                <li>If you are not sure that your completed absentee ballot will arrive in time if mailed, drop it off at your county voter registration office by 7:00 p.m. on Election Day.</li>
+              </ul>
           step_2_instructions: |-
             <p>In South Carolina, you must have an <a rel="noopener noreferrer" href="https://scvotes.gov/voters/absentee-voting" target="_blank">eligible reason</a> to vote absentee.</p>
           request_deadline: |-
