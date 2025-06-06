@@ -38,17 +38,24 @@ module AbrStateMethods::KS
       options: [
       'abr_party1',
       'abr_party2',
+      'abr_party3',
+      'abr_party4',
+      'abr_party5',
+      'abr_party6',
       ],
     },
     'step5_date': {method: "abr_election_date"},
     'step5_phone': {method: "phone"},	
 
     'abr_party1': {method: "abr_party_selection1"},
-    'abr_party2': {method: "abr_party_selection2"}
-
+    'abr_party2': {method: "abr_party_selection2"},
+    'abr_party3': {method: "abr_party_selection3"},
+    'abr_party4': {method: "abr_party_selection4"},
+    'abr_party5': {method: "abr_party_selection5"},
+    'abr_party6': {method: "abr_party_selection6"}
         }
 
-  EXTRA_FIELDS = ["abr_check_mailing_address", "abr_mailing_address_line","abr_mailing_unit"]
+  EXTRA_FIELDS = ["abr_check_mailing_address", "abr_mailing_address_line","abr_mailing_unit", "abr_election_type_selections"]
   # e.g.
   # EXTRA_FIELDS = ["has_mailing_address", "identification"]
   
@@ -176,35 +183,59 @@ module AbrStateMethods::KS
       {"abr_id_selections": {type: :radio, options: ["abr_id_type1", "abr_id_type2"]}},
       {"abr_drivers_license": {visible: "abr_id_selections_abr_id_type1", required: "show_star", min: 9, max: 9, ui_regexp:"^[kK][0-9]{8}$"}},
       {"abr_id_type2_instructions": {type: :instructions, visible:"abr_id_selections_abr_id_type2" }},
-      #{"abr_election_type_selections": {type: :radio, options: ["abr_election_type2"]}},
-      #{"abr_party_selections": {visible: "abr_election_type_selections_abr_election_type1", type: :radio, options: ["abr_party1", "abr_party2"]}},
+      {"abr_election_type_selections": {type: :radio, options: ["abr_election_type1", "abr_election_type2"]}},
+      {"abr_party_selections": {visible: "abr_election_type_selections_abr_election_type1", type: :radio, options: ["abr_party1", "abr_party2", "abr_party3", "abr_party4", "abr_party5", "abr_party6"]}},
       
 
     ]
   end
 
-  def abr_election_type_selections
-    return("abr_election_type2")
-  end
+  #def abr_election_type_selections
+  #  super.presence || "abr_election_type2"
+  #end
   
   def abr_election_date
     v = self.abr_election_type_selections
-    return "August 2, 2022" if v == "abr_election_type1"
-    return "November 8, 2022" if v == "abr_election_type2"
+    return "8/5/2025" if v == "abr_election_type1"
+    return "11/4/2025" if v == "abr_election_type2"
 
   end
 
-  # def abr_party_selection1 
-  #   v = self.abr_party_selections
-  #   return "Off" if v.blank?
-  #   return ( v == "abr_party1" ? "On" : "Off")
-  # end
+  def abr_party_selection1 
+    v = self.abr_party_selections
+    return "Off" if v.blank?
+    return ( v == "abr_party1" ? "On" : "Off")
+  end
 
-  # def abr_party_selection2 
-  #   v = self.abr_party_selections
-  #   return "Off" if v.blank?
-  #   return ( v == "abr_party2" ? "On" : "Off")
-  # end
+  def abr_party_selection2 
+    v = self.abr_party_selections
+    return "Off" if v.blank?
+    return ( v == "abr_party2" ? "On" : "Off")
+  end
+
+  def abr_party_selection3 
+    v = self.abr_party_selections
+    return "Off" if v.blank?
+    return ( v == "abr_party3" ? "On" : "Off")
+  end
+
+  def abr_party_selection4 
+    v = self.abr_party_selections
+    return "Off" if v.blank?
+    return ( v == "abr_party4" ? "On" : "Off")
+  end
+
+  def abr_party_selection5 
+    v = self.abr_party_selections
+    return "Off" if v.blank?
+    return ( v == "abr_party5" ? "On" : "Off")
+  end
+
+  def abr_party_selection6 
+    v = self.abr_party_selections
+    return "Off" if v.blank?
+    return ( v == "abr_party6" ? "On" : "Off")
+  end
 
   def mailing_address
     "#{abr_mailing_address_line}" + (abr_mailing_unit.blank? ? '' : ", #{abr_mailing_unit}")

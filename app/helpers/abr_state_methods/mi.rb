@@ -24,24 +24,33 @@ module AbrStateMethods::MI
     'abr_mailing_unit': {},
     'abr_mailing_city':{},
     'abr_mailing_state_abbrev':{},
-    'abr_mailing_zip':{},  
+    'abr_mailing_zip':{},
     
     "abr_county": {},
-    "abr_address_type_selections": {options:["abr_address_type1","abr_address_type2"]},
-    "abr_address_type3": {},
-    "abr_election_type_selections": {options:["abr_election_type1","abr_election_type2","abr_election_type3","abr_election_type4"]},
+    "abr_city_checkbox": {options: ["Yes"]},
+    "abr_township_checkbox": {options: ["Yes"]},
+    "abr_jurisdiction": {},
+    #"abr_election_type_selections": {options:["abr_election_type1","abr_election_type2","abr_election_type3","abr_election_type4"]},
+    "abr_election_type_selections_1": {options: ["Off", "Yes"]},
+    "abr_election_type_selections_2": {options: ["Off", "Yes"]},
+    "abr_election_type_selections_3": {options: ["Off", "Yes"]},
     
-    "abr_primary_type_selections": {options:["abr_primary_type1","abr_primary_type2","abr_primary_type3"]},
+    #"abr_primary_type_selections": {options:["abr_primary_type1","abr_primary_type2","abr_primary_type3"]},
     
-    "abr_election_type5": {options: ["Off", "On"]},
+    "abr_permanent_list_opt_in": {options: ["Off", "Yes"]},
     "abr_request_check":{options: ["Off", "On"]},
     "abr_request_name": {},
     "abr_assistant_info1": {method:"assist_birthdate_string"},
     "abr_assistant_address_line_1": {},
 
   }
-  EXTRA_FIELDS = ['assist_birthdate', 'assist_birthdate_mm','assist_birthdate_dd','assist_birthdate_yyyy','abr_absence_begin_date_input','abr_absence_begin_date_input_mm','abr_absence_begin_date_input_dd','abr_absence_begin_date_input_yyyy','abr_absence_end_date_input', 'abr_absence_end_date_input_mm','abr_absence_end_date_input_dd','abr_absence_end_date_input_yyyy']
-
+  EXTRA_FIELDS = [
+  'assist_birthdate',
+  'assist_birthdate_mm','assist_birthdate_dd','assist_birthdate_yyyy',
+  'abr_absence_begin_date_input','abr_absence_begin_date_input_mm','abr_absence_begin_date_input_dd','abr_absence_begin_date_input_yyyy',
+  'abr_absence_end_date_input','abr_absence_end_date_input_mm','abr_absence_end_date_input_dd','abr_absence_end_date_input_yyyy',
+  'abr_election_type_selections_1','abr_election_type_selections_2','abr_election_type_selections_3'
+  ]
 
   def test_date(datestring)
     begin
@@ -139,8 +148,14 @@ module AbrStateMethods::MI
           "Wayne",
           "Wexford",
       ]}},
-      {"abr_address_type_selections": {type: :radio, options:["abr_address_type1","abr_address_type2"], required: true}},
-      {"abr_address_type3": { required: true}},
+      {
+        "abr_address_type_selections": {
+          type: :radio,
+          options: ["abr_city_checkbox", "abr_township_checkbox"],
+          required: true
+        }
+      },
+      {"abr_jurisdiction": { required: true}},
 
       {"abr_check_mailing_address": {type: :checkbox, options: ["Off", "On"]}},	
       {"abr_absence_begin_date_input": {type: :date , required: :if_visible, visible: "abr_check_mailing_address"}},
@@ -153,10 +168,14 @@ module AbrStateMethods::MI
       {"abr_mailing_zip": {classes: 'quarter', required: :if_visible, visible: "abr_check_mailing_address"}},
 
 
-      {"abr_election_type_selections": {type: :radio, options:["abr_election_type1","abr_election_type2","abr_election_type3","abr_election_type4"] , required: true}},
-      {"abr_primary_type_selections": {type: :radio, options:["abr_primary_type1","abr_primary_type2","abr_primary_type3"], required: :if_visible, visible: "abr_election_type_selections_abr_election_type1"}},
+      #{"abr_election_type_selections": {type: :radio, options:["abr_election_type1","abr_election_type2","abr_election_type3","abr_election_type4"] , required: true}},
+     {"abr_election_type_selections": {type: :instructions}},
+     {"abr_election_type_selections_1": { type: :checkbox}},
+     {"abr_election_type_selections_2": { type: :checkbox}},
+     {"abr_election_type_selections_3": { type: :checkbox}},
+      #{"abr_primary_type_selections": {type: :radio, options:["abr_primary_type1","abr_primary_type2","abr_primary_type3"], required: :if_visible, visible: "abr_election_type_selections_1"}},
 
-      {"abr_election_type5": {type: :checkbox, options: ["Off", "On"]}},
+      {"abr_permanent_list_opt_in": { type: :checkbox}},
       {"abr_request_check": {type: :checkbox, options: ["Off", "On"]}},
       {"abr_request_name": { required: :if_visible, visible: "abr_request_check"}},
       {"assist_birthdate": {type: :date, required: :if_visible, visible: "abr_request_check"}},
@@ -220,6 +239,31 @@ module AbrStateMethods::MI
     date_field_string_mm_dd_yy(method: :assist_birthdate)
   end
 
+  def abr_address_type_selections
+    return "abr_city_checkbox" if self.abr_city_checkbox == "Yes"
+    return "abr_township_checkbox" if self.abr_township_checkbox == "Yes"
+    nil
+  end
 
+  def abr_address_type_selections=(value)
+    self.abr_city_checkbox = (value == "abr_city_checkbox") ? "Yes" : "Off"
+    self.abr_township_checkbox = (value == "abr_township_checkbox") ? "Yes" : "Off"
+  end
+
+  def abr_election_type_selections
+    nil
+  end
+
+  def abr_election_type_selections_1
+    self[:abr_election_type_selections_1] == "1" ? "Yes" : "Off"
+  end
+
+  def abr_election_type_selections_2
+   self[:abr_election_type_selections_2] == "1" ? "Yes" : "Off"
+  end
+
+  def abr_election_type_selections_3
+    self[:abr_election_type_selections_3] == "1" ? "Yes" : "Off"
+  end
 
 end

@@ -28,8 +28,8 @@ module AbrStateMethods::MN
       'abr_no_id': {options:["Off","On" ]},
       'abr_drivers_license': {},
       'abr_ssn_number': {},
-      'abr_election_type1': {options:["Off","On" ]},
-      'abr_election_type2': {options:["Off","On" ]},
+      #'abr_election_type1': {options:["Off","On" ]},
+      #'abr_election_type2': {options:["Off","On" ]},
       'abr_election_type3': {options:["Off","On" ]},
       'abr_election_type4': {options:["Off","On" ]},
       'abr_election_type5': {options:["Off","On" ]},
@@ -58,8 +58,8 @@ module AbrStateMethods::MN
     def form_field_items
       [
         {"abr_election_type_selections": {type: :instructions}},
-        {"abr_election_type1": {type: :checkbox, options:["Off","On" ],}},
-        {"abr_election_type2": {type: :checkbox, options:["Off","On" ],}},
+        #{"abr_election_type1": {type: :checkbox, options:["Off","On" ],}},
+        #{"abr_election_type2": {type: :checkbox, options:["Off","On" ],}},
         {"abr_election_type3": {type: :checkbox, options:["Off","On" ],}},
         {"abr_election_type4": {type: :checkbox, options:["Off","On" ],}},
         {"abr_election_type5": {type: :checkbox, options:["Off","On" ],}},

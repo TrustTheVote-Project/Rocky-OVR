@@ -51,8 +51,7 @@ module AbrStateMethods::IA
     "abr_primary_type_selections1": {
       options: [
         "abr_primary_type1",
-        "abr_primary_type2",
-        "abr_primary_type3"
+        "abr_primary_type2"
       ]
     },
     "abr_election_type4_name": {},

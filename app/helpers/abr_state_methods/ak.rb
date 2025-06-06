@@ -46,7 +46,7 @@ module AbrStateMethods::AK
                 #'abr_id_type_3': {},
                 
                 "abr_election_type1": {options: ["Off", "On"]},
-                #"abr_election_type2": {options: ["Off", "On"]},
+                "abr_election_type2": {options: ["Off", "On"]},
                 "abr_election_type3": {options: ["Off", "On"]},
                 "abr_election_type4": {options: ["Off", "On"]},
                 "abr_election_type5": {options: ["Off", "On"]},
@@ -99,7 +99,7 @@ module AbrStateMethods::AK
       {"abr_election_type_selections1": {type: :instructions}},
       {"abr_election_type_selections2": {type: :instructions}},
       {"abr_election_type1": {type: :checkbox}},
-      #{"abr_election_type2": {type: :checkbox}},
+      {"abr_election_type2": {type: :checkbox}},
       {"abr_election_type3": {type: :checkbox}},
       {"abr_election_type4": {type: :checkbox}},
       {"abr_election_type5": {type: :checkbox}},

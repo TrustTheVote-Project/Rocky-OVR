@@ -88,14 +88,17 @@ module AbrStateMethods::MO
       {"abr_reason_selections": { type: :radio, required: true }},
       {"abr_election_type_selections_instructions": {type: :instructions}},
       {"abr_election_type_selections": { type: :radio, required: true}},
-      {"abr_election_date_input": { type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type2" }},
+      #{"abr_election_date_input": { type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type2" }},
       #{"abr_primary_type_selections": { type: :radio, required: :if_visible, visible: "abr_election_type_selections_abr_election_type1" }},
     ]
   end
   
   def abr_election_date_input_string
-    if self.abr_election_type_selections == "abr_election_type1"
-      "11/05/2024"
+    case self.abr_election_type_selections
+    when "abr_election_type1"
+      "8/5/2025"
+    when "abr_election_type2"
+      "11/4/2025"
     else
       date_field_string_mm_dd_yyyy(method: :abr_election_date_input)
     end

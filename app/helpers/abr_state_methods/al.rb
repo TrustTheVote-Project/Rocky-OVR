@@ -133,8 +133,8 @@ module AbrStateMethods::AL
     },
     "abr_election_type_selections": {
       options: [
-       # "abr_election_type1",
-       # "abr_election_type2",
+        "abr_election_type1",
+        "abr_election_type2",
         "abr_election_type3",
         "abr_election_type4",
       ]
@@ -262,9 +262,9 @@ module AbrStateMethods::AL
       {"ZIP_1": {visible: "has_mailing_address", min: 5, max: 10}}, 
 
       {"abr_election_type_selections": { type: :radio, required: true }},
-      #{"abr_primary_type_selections1": { type: :radio, visible: "abr_election_type_selections_abr_election_type1", required: :if_visible, }},
+      {"abr_primary_type_selections1": { type: :radio, visible: "abr_election_type_selections_abr_election_type1", required: :if_visible, }},
       {"abr_primary_type4_name": { required: :if_visible, visible: "abr_primary_type_selections1_abr_primary_type3" }},
-      #{"abr_primary_type_selections2": { type: :radio, visible: "abr_election_type_selections_abr_election_type2", required: :if_visible,  }},
+      {"abr_primary_type_selections2": { type: :radio, visible: "abr_election_type_selections_abr_election_type2", required: :if_visible,  }},
       {"abr_primary_type8_name": { required: :if_visible, visible: "abr_primary_type_selections2_abr_primary_type7"}},
       {"abr_election_type4_name": { required: :if_visible, visible: "abr_election_type_selections_abr_election_type4" }},
       {"abr_application_type_check1": { type: :checkbox, visible: "abr_election_type_selections_abr_election_type4"}},
@@ -283,13 +283,16 @@ module AbrStateMethods::AL
  
   
   def custom_form_field_validations
-    if ![chkreason1, chkreason2, chkreason3, chkreason4, chkreason5, chkreason6].include?("1") 
+    if ![chkreason1, chkreason2, chkreason3, chkreason4, chkreason5, chkreason6, chkreason7, chkreason8, chkreason9].include?("1") 
       errors.add(self.class.make_method_name(:chkreason1), custom_required_message(:reason_instructions))
       errors.add(self.class.make_method_name(:chkreason2), custom_required_message(:reason_instructions))
       errors.add(self.class.make_method_name(:chkreason3), custom_required_message(:reason_instructions))
       errors.add(self.class.make_method_name(:chkreason4), custom_required_message(:reason_instructions))
       errors.add(self.class.make_method_name(:chkreason5), custom_required_message(:reason_instructions))
       errors.add(self.class.make_method_name(:chkreason6), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason7), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason8), custom_required_message(:reason_instructions))
+      errors.add(self.class.make_method_name(:chkreason9), custom_required_message(:reason_instructions))
     end
 
     #raise errors.full_messages.to_s

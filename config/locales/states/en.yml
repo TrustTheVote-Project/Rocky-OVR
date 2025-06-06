@@ -599,15 +599,16 @@ en:
           abr_mailing_zip: Zip
           abr_address_line_2: Where do you plan to be on Election Day?
           abr_address_line_2__hint: Enter the city and state or city and country.
-          abr_election_type_instructions: You can use this form for General and Special
-            elections. Contact your local election official for an application for
-            Municipal elections.
+          abr_election_type_instructions: |-
+            <p>You can use this tool for most elections, but School Board Elections and 
+            School District Referenda require a <a href="https://elections.delaware.gov/voter/absentee/pdfs/absentee_ballot_application_school_elections.pdf" rel="noreferrer noopener" target="_blank">diﬀerent form</a>.</p>
           abr_election_type_selections: Select the election(s) you'd like to request
             a ballot for.
           abr_election_type1: All Elections This Year
           abr_election_type2: Primary Election
           abr_election_type3: General Election
           abr_election_type4: Special Election
+          abr_election_type5: Presidential Primary
           abr_election_type4__required_message: At least one election choice is required
           abr_party: What political party are you affiliated with?
           abr_party__hint: You may have picked a political party when you registered.
@@ -752,11 +753,12 @@ en:
           abr_election_type_selections_options: Select the election you'd like to
             request a ballot for.<br/>You must fill out a separate form for each election.
           abr_election_type_selections_options__options:
-            abr_election_type1: 4/29/24 Special Election Runoff For Local Offices
-            abr_election_type3: 5/21/24 General Primary/Nonpartisan Election
-            abr_election_type2: 6/18/24 General Primary/Nonpartisan Runoff Election and General Runoff Election for Federal Offices
-            abr_election_type4: 11/5/24 General Election
-            abr_election_type5: 12/3/24 General Runoff Election
+            abr_election_type1: 6/17/25 Special Primary Public Service Commissioner (PSC) / Special Election
+            abr_election_type2: 7/15/25 Special Primary Runoff Public Service Commissioner (PSC) / Special Election Runoff
+            abr_election_type3: 9/16/25 Special Election
+            abr_election_type4: 10/14/25 Special Election Runoff
+            abr_election_type5: 11/4/25 Municipal General / Special Election – Public Service Commissioner (PSC)
+            abr_election_type6: 12/2/25 Municipal General /Special Election Runoff – Public Service Commissioner (PSC)
           abr_primary_type_selections1: Select the type of ballot you wish to receive.
           abr_primary_type_selections1__options:
             abr_primary_type1: Democratic
@@ -879,7 +881,6 @@ en:
           abr_primary_type_selections1__options:
             abr_primary_type1: Democratic
             abr_primary_type2: Republican
-            abr_primary_type3: Libertarian
           abr_election_type4_name: Enter the name of the special election
         registration:
           has_state_license: I have an IA state identification card or IA driver's
@@ -902,9 +903,9 @@ en:
           abr_election_type_selection: Select the election you'd like to request a
             ballot for. <br /> You may select more than one.<p>The offices and issues
             on the ballot may vary. Contact your County Clerk for more specific information.</p>
-          abr_election_type1: May 21, 2024 Primary Election
-          abr_election_type2: August 27, 2024 School District Bond/Levy Election
-          abr_election_type3: November 5, 2024 General Election
+          abr_election_type1: All Elections in 2025, including any special or emergency election.
+          abr_election_type2: May 20, 2025
+          abr_election_type3: November 4, 2025
           abr_primary_type_selections1: Select the type of ballot you wish to receive
             (required for the primary)
           abr_primary_type_selections1__hint: All party ballots also include the Non-Partisan
@@ -1174,6 +1175,10 @@ en:
           abr_party_selections__options:
             abr_party1: Democratic
             abr_party2: Republican
+            abr_party3: Libertarian
+            abr_party4: Unaffiliated
+            abr_party5: No Labels Kansas
+            abr_party6: United Kansas
         redirect_to_online_registration: We're directing you to the VoteKS online
           voter registration system.
         registration:
@@ -1293,7 +1298,8 @@ en:
           abr_absence_end_date_input: Absence ends
           abr_election_type_selections: Select the election(s) you would like to request
             an absentee ballot for. You must select at least one.
-          abr_election_type2_input: The 11/5/2024 Presidential, Congressional, and Open Primary Election
+          abr_election_type1_input: 10/11/25 - Open Primary/Orleans Municipal Parochial Primary
+          abr_election_type2_input: 11/15/2025 - Open General/Orleans Municipal Parochial General
           abr_assistant_check1: Check this box if someone else will be delivering
             your request either by hand or by fax.
           abr_assistant_name: Enter the name of the person who will be submitting
@@ -1473,7 +1479,7 @@ en:
         abr:
           step_2_header: Eligibility to Request a Vote by Mail Ballot
           step_2_instructions: |-
-            <p>All voters in Massachusetts are eligible to request an early Vote by Mail ballot. Massachusetts sends a pre-addressed, postage pre-paid Vote by Mail application to every registered voter before each statewide election. You can use this tool if you need another application or don't want to wait for your request form to arrive in the mail.</p>
+            <p>All voters in Massachusetts are eligible to request an early Vote by Mail ballot. For statewide elections, please note that Massachusetts will send a pre-addressed, postage pre-paid Vote by Mail application to every registered voter.</p>
           finish_instructions_1_hint: ''
           request_deadline: |-
             <p>Received by local election office by 5 p.m. on the 5th business day before the election.</p>
@@ -1590,23 +1596,21 @@ en:
           abr_county: Select your county
           abr_address_type_selections: Do you live in a City or in a Township?
           abr_address_type_selections__options:
-            abr_address_type1: City
-            abr_address_type2: Township
+            abr_city_checkbox: City
+            abr_township_checkbox: Township
           abr_address_type_selections__hint: For villages, select township.
-          abr_address_type3: Enter your City, Township, or Village.
+          abr_jurisdiction: Enter your City, Township, or Village.
           abr_election_type_selections: Which election(s) would you like to receive
             ballots for?
-          abr_election_type_selections__options:
-            abr_election_type1: Presidential Primary Election
-            abr_election_type2: May Election
-            abr_election_type3: August Election
-            abr_election_type4: November Election
+          abr_election_type_selections_1: May Election
+          abr_election_type_selections_2: August Election
+          abr_election_type_selections_3: November Election
           abr_primary_type_selections: Select your Presidential Primary Ballot Type.
           abr_primary_type_selections__options:
             abr_primary_type1: Democractic Party Presidential Primary Ballot
             abr_primary_type2: Republican Party Presidential Primary Ballot
             abr_primary_type3: Ballot without Presidential Primary
-          abr_election_type5: Would you like to join the permanent absent voter application
+          abr_permanent_list_opt_in: Would you like to join the permanent absent voter application
             list?
           abr_election_type4__hint: Check this box if you'd like to vote absentee
             in all elections. <br> An application for an absent voter ballot will
@@ -1778,11 +1782,11 @@ en:
           abr_ssn_number: Enter the last four digits of your social security number.
           abr_election_type_selections: Select the election you'd like to request
             a ballot for.
-          abr_election_type1: 4/9 Special Election
-          abr_election_type2: 5/14 Special Election
-          abr_election_type3: 8/13 Primary Election
-          abr_election_type4: 11/5 General Election
-          abr_election_type5: Both 8/13 Primary and 11/5 General Elections
+          abr_election_type1: ''
+          abr_election_type2: ''
+          abr_election_type3: 8/12 Primary Election
+          abr_election_type4: 11/4 General Election
+          abr_election_type5: Both 8/12 & 11/4 Elections
           abr_election_type6: Other
           abr_election_date_input: Enter the date of the election
           abr_check_mailing_address: I get my mail at a different address from the
@@ -1921,8 +1925,8 @@ en:
           abr_election_type_selections: Select the election to request an absentee
             ballot for.
           abr_election_type_selections__options:
-            abr_election_type1: "11/5/24 General Election"
-            abr_election_type2: "Other"
+            abr_election_type1: "8/5/2025"
+            abr_election_type2: "11/4/2025"
           abr_election_date_input: Enter the date of the election
           abr_election_date_input__hint: The election must be within 60 days.
           abr_primary_type_selections: Select the type of ballot you wish to receive.
@@ -2182,6 +2186,11 @@ en:
             abr_id_type1: Nebraska Driver's License or State ID Number
             abr_id_type2: Enclose a Photocopy of other acceptable photo ID
             abr_id_type3: Enclose a Reasonable Impediment Certification
+          abr_election_type_selections: "SELECT THE ELECTION YOU'D LIKE TO REQUEST A BALLOT FOR:"
+          abr_election_type_selections__options:
+            abr_election_type1: "Statewide General Election"
+            abr_election_type2: "Special Election"
+          abr_special_election_date: "Date of Special Election"
           abr_primary_type_instructions: |-
             <h2>Nonpartisans Only (optional)</h2>
           abr_primary_type_selections1: |-
@@ -2681,6 +2690,7 @@ en:
             abr_primary_type1: Democratic
             abr_primary_type2: Republican
             abr_primary_type3: Issues Only
+            abr_primary_type4: Libertarian
           abr_check_mailing_address: I get my mail at a different address from the
             one above
           abr_mailing_address_instructions: Mailing address
