@@ -17,7 +17,6 @@ gem 'twilio-ruby' #, '~> 4.11.1'
 gem 'will_paginate'
 
 #gem 'utf8-cleaner'
-gem 'rack', "2.2.11"
 gem 'rack-robustness'
 
 gem "authlogic" #, "= 4.3.0"
@@ -125,6 +124,3 @@ gem "delayed_job_active_record" #, "~> 4.1"
 gem 'delayed_cron_job'
 
 gem 'exception_notification'
-
-gem "net-imap", "0.3.8"
-gem "rexml", "3.3.9"

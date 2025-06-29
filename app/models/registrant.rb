@@ -785,9 +785,22 @@ class Registrant < ActiveRecord::Base
     pdf_date_of_birth.split('/')[2]
   end
   
+  #def pdf_date_of_birth
+  #  (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_s(:month_day_year) : date_of_birth.to_s
+  #end
+
   def pdf_date_of_birth
-    (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_s(:month_day_year) : date_of_birth.to_s
+    if home_state_abbrev == "NC"
+      "00/00/0000"
+    else
+      (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_s(:month_day_year) : date_of_birth.to_s
+    end
   end
+
+  validate :must_be_18_by_election_for_nc
+
+  validate :date_of_birth_required_for_states
+
 
   def pdf_english_race
     if race != I18n.t('txt.registration.races', :locale=>locale).values.last
@@ -2168,5 +2181,20 @@ class Registrant < ActiveRecord::Base
       end
     end
   end
-  
+
+  # This method checks if the registrant's home state is NC, 
+  # and enforces that the "will_be_18_by_election" field must be true
+  def must_be_18_by_election_for_nc
+    if home_state_abbrev == "NC" && at_least_step_2? && !will_be_18_by_election
+      errors.add(:will_be_18_by_election, I18n.t('activerecord.errors.models.registrant.attributes.will_be_18_by_election.accepted'))
+    end
+  end
+
+  def date_of_birth_required_for_states
+    # Only validate if the registrant is at Step 2 or beyond
+    if status.to_s.match?(/step_[2-5]|complete/) && home_state_abbrev != "NC" && date_of_birth.nil?
+      errors.add(:date_of_birth, I18n.t('activerecord.errors.models.registrant.blank'))
+    end
+  end
+
 end
