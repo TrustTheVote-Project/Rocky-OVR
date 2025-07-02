@@ -745,13 +745,13 @@ class Partner < ActiveRecord::Base
 
     paf = PartnerAssetsFolder.new(partner)
 
-    paf.update_css("application", app_css) if File.exists?(app_css)
-    paf.update_css("registration", reg_css) if File.exists?(reg_css)
-    paf.update_css("partner", part_css) if File.exists?(part_css)
+    paf.update_css("application", app_css) if File.exist?(app_css)
+    paf.update_css("registration", reg_css) if File.exist?(reg_css)
+    paf.update_css("partner", part_css) if File.exist?(part_css)
 
-    copy_success = partner.application_css_present? == File.exists?(app_css)
-    copy_success = copy_success && partner.registration_css_present? == File.exists?(reg_css)
-    copy_success = copy_success && partner.partner_css_present? == File.exists?(part_css)
+    copy_success = partner.application_css_present? == File.exist?(app_css)
+    copy_success = copy_success && partner.registration_css_present? == File.exist?(reg_css)
+    copy_success = copy_success && partner.partner_css_present? == File.exist?(part_css)
     
     raise "Error copying css to partner directory '#{partner.assets_path}'" unless copy_success
 

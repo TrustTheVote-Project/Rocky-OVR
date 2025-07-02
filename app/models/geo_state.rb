@@ -94,7 +94,7 @@ class GeoState < ActiveRecord::Base
 
   def counties
     if !@counties
-      if File.exists?(counties_file_path)
+      if File.exist?(counties_file_path)
         file = []
         File.open(counties_file_path) do |f|
           file = YAML.load(f)

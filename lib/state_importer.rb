@@ -156,7 +156,7 @@ class StateImporter
   
   def self.tmp_file_dir
     dir = Rails.root.join('tmp', 'translation_files')
-    # if !File.exists?(dir)
+    # if !File.exist?(dir)
     #   FileUtils.mkdir_p(dir)
     # end
     return dir
@@ -168,7 +168,7 @@ class StateImporter
   
   def self.file_path
     temp_file = tmp_file_path
-    if File.exists?(temp_file)
+    if File.exist?(temp_file)
       temp_file.to_s
     else 
       Rails.root.join('db/bootstrap/import/states.yml').to_s

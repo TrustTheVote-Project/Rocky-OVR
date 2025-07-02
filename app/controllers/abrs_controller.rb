@@ -274,7 +274,7 @@ class AbrsController < ApplicationController
   
   def step_2_view(abr)
     potential_view = "step_2_#{abr.home_state_abbrev.to_s.downcase}"
-    if File.exists?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml"))
+    if File.exist?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml"))
       # In all cases we consider this registrant done!
       @abr.dead_end!
       return potential_view
@@ -297,7 +297,7 @@ class AbrsController < ApplicationController
   
   def step_3_view(abr)
     potential_view = "step_3_#{abr.home_state_abbrev.to_s.downcase}"
-    File.exists?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml")) ? potential_view : "step_3"
+    File.exist?(File.join(Rails.root, 'app/views/abrs/', "#{potential_view}.html.haml")) ? potential_view : "step_3"
   end
 
   def set_up_locale

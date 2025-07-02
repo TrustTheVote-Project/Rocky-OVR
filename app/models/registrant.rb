@@ -1106,7 +1106,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def has_custom_zip_code_partial?
-    File.exists?(File.join(Rails.root, 'app/views/', "registrants/zip_codes/_zip#{home_zip_code}.html.erb"))
+    File.exist?(File.join(Rails.root, 'app/views/', "registrants/zip_codes/_zip#{home_zip_code}.html.erb"))
   end
   
   def custom_zip_code_partial
@@ -1118,7 +1118,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def has_home_state_online_registration_instructions?
-    File.exists?(File.join(Rails.root, 'app/views/state_online_registrations/', "_#{home_state_online_registration_instructions_partial}.html.erb"))
+    File.exist?(File.join(Rails.root, 'app/views/state_online_registrations/', "_#{home_state_online_registration_instructions_partial}.html.erb"))
   end
   
   def home_state_online_registration_instructions_partial
@@ -1126,7 +1126,7 @@ class Registrant < ActiveRecord::Base
   end
 
   def has_home_state_online_registration_view?
-    File.exists?(File.join(Rails.root, 'app/views/state_online_registrations/', "#{home_state_online_registration_view}.html.erb"))
+    File.exist?(File.join(Rails.root, 'app/views/state_online_registrations/', "#{home_state_online_registration_view}.html.erb"))
   end
   
   

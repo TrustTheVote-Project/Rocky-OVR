@@ -68,10 +68,10 @@ class PdfAbrWriter
       # If it got there, delete the tmp file
       if uploaded
         unless Rails.env.development?
-          File.delete(pdf_signature_image_path) if File.exists?(pdf_signature_image_path)
-          File.delete(pdf_xfdf_path) if File.exists?(pdf_xfdf_path)
-          File.delete(pdf_file_path) if File.exists?(pdf_file_path)
-          File.delete("#{pdf_file_path}-signed") if File.exists?("#{pdf_file_path}-signed")
+          File.delete(pdf_signature_image_path) if File.exist?(pdf_signature_image_path)
+          File.delete(pdf_xfdf_path) if File.exist?(pdf_xfdf_path)
+          File.delete(pdf_file_path) if File.exist?(pdf_file_path)
+          File.delete("#{pdf_file_path}-signed") if File.exist?("#{pdf_file_path}-signed")
         end
       else
         raise "File #{pdf_file_path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
@@ -83,7 +83,7 @@ class PdfAbrWriter
   end
 
   def pdf_exists?
-    File.exists?(pdf_file_path)
+    File.exist?(pdf_file_path)
   end
   
   def to_param
@@ -113,7 +113,7 @@ class PdfAbrWriter
       "#{pdfpre}/#{bucket_code}"
     else
       # we're past this old format
-      # if File.exists?(pdf_file_path("pdf"))
+      # if File.exist?(pdf_file_path("pdf"))
       #  "pdf/#{bucket_code}"
       # else
         "#{url_format ? '' : "public/"}pdfs/#{bucket_code}"

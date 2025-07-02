@@ -1,4 +1,4 @@
-ruby "2.7.2"
+ruby "3.3.8"
 
 source 'http://rubygems.org'
 
@@ -7,7 +7,7 @@ gem "rake"
 gem "figaro"
 gem "config"
 
-gem "rails", "= 5.2.8.1"
+gem "rails", "= 7.2.2.1"
 
 
 gem "aasm" #, "= 4.12.3"
@@ -33,7 +33,7 @@ gem 'google-authenticator-rails', '~> 3.4', '>= 3.4.2'
 gem "rubyzip" #, '~> 1.3.0'
 gem 'zip-zip'
 
-gem "dotenv-rails", '~> 0.7.0'
+gem "dotenv-rails", '>= 0.7.0'
 
 gem "haml"
 
@@ -81,7 +81,7 @@ group :development, :test do
   gem "database_cleaner"
   gem "shoulda"
   gem 'simplecov', :require => false
-  gem 'webdrivers'
+  # gem 'webdrivers'
   
   #gem "treetop", "= 1.4.10"
   # gem "selenium-client", "= 1.2.16"
@@ -124,3 +124,5 @@ gem "delayed_job_active_record" #, "~> 4.1"
 gem 'delayed_cron_job'
 
 gem 'exception_notification'
+
+gem "rjb", "~> 1.6"

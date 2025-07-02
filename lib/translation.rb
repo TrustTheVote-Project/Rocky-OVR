@@ -84,11 +84,11 @@ class Translation
   end
   
   def self.has_css?(locale)
-    File.exists?(css_path(locale))
+    File.exist?(css_path(locale))
   end
   
   def self.has_nvra_css?(locale)
-    File.exists?(nvra_css_path(locale))
+    File.exist?(nvra_css_path(locale))
   end
   
   def self.css_dir
@@ -154,7 +154,7 @@ class Translation
   
   def file_path(fn)
     temp_file = tmp_file_path(type, language(fn))
-    if File.exists?(temp_file)
+    if File.exist?(temp_file)
       temp_file
     else 
       File.join(directory, fn)
