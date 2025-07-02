@@ -158,11 +158,11 @@ class PdfWriter
   end
 
   def pdf_exists?
-    File.exists?(pdf_file_path)
+    File.exist?(pdf_file_path)
   end
   
   def html_exists?
-    File.exists?(html_file_path)
+    File.exist?(html_file_path)
   end
 
 
@@ -191,7 +191,7 @@ class PdfWriter
       "#{pdfpre}/#{bucket_code}"
     else
       # we're past this old format
-      # if File.exists?(pdf_file_path("pdf"))
+      # if File.exist?(pdf_file_path("pdf"))
       #  "pdf/#{bucket_code}"
       # else
         "#{url_format ? '' : "public/"}pdfs/#{bucket_code}"

@@ -242,9 +242,9 @@ private
     
     if p.whitelabeled
       paf = PartnerAssetsFolder.new(p)
-      paf.update_css('application', File.open(tmp_application_css_path(p))) if File.exists?(tmp_application_css_path(p))
-      paf.update_css('registration', File.open(tmp_registration_css_path(p))) if File.exists?(tmp_registration_css_path(p))
-      paf.update_css('partner', File.open(tmp_partner_css_path(p))) if File.exists?(tmp_partner_css_path(p))
+      paf.update_css('application', File.open(tmp_application_css_path(p))) if File.exist?(tmp_application_css_path(p))
+      paf.update_css('registration', File.open(tmp_registration_css_path(p))) if File.exist?(tmp_registration_css_path(p))
+      paf.update_css('partner', File.open(tmp_partner_css_path(p))) if File.exist?(tmp_partner_css_path(p))
       Dir.entries(tmp_asset_path(p)).each do |fname|
         # only copy asset if not specifically dealt with above and not an email template file
         if not_expected_file(fname)
@@ -254,7 +254,7 @@ private
     end
     # Look for the expected EmailTemplate files
     EmailTemplate::TEMPLATE_NAMES.each do |file_name,label|
-      if File.exists?(File.join(tmp_asset_path(p), file_name))
+      if File.exist?(File.join(tmp_asset_path(p), file_name))
         File.open(File.join(tmp_asset_path(p), file_name)) do |template_file|
           EmailTemplate.set(p, file_name, template_file.read)
         end
@@ -277,7 +277,7 @@ private
   end
   
   def remove_tmp_directory
-    if File.exists?(self.original_destination)
+    if File.exist?(self.original_destination)
       FileUtils.remove_entry_secure(self.original_destination, true)
     end  
   end

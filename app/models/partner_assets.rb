@@ -62,7 +62,7 @@ module PartnerAssets
 
   def application_css_present?
     folder.asset_file_exists?(APP_CSS)
-    #File.exists?(self.absolute_application_css_path)
+    #File.exist?(self.absolute_application_css_path)
   end
 
   def registration_css_present?
@@ -71,7 +71,7 @@ module PartnerAssets
 
   def partner_css_present?
     folder.asset_file_exists?(PART_CSS)
-    #File.exists?(self.absolute_partner_css_path)
+    #File.exist?(self.absolute_partner_css_path)
   end
   def partner2_css_present?(group=nil)
     folder.asset_file_exists?(PART2_CSS, group)

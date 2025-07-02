@@ -1,4 +1,4 @@
-ruby "2.7.2"
+ruby "3.3.8"
 
 source 'http://rubygems.org'
 
@@ -35,7 +35,7 @@ gem 'google-authenticator-rails', '~> 3.4', '>= 3.4.2'
 gem "rubyzip" #, '~> 1.3.0'
 gem 'zip-zip'
 
-gem "dotenv-rails", '~> 0.7.0'
+gem "dotenv-rails", '>= 0.7.0'
 
 gem "haml"
 
@@ -85,7 +85,7 @@ group :development, :test do
   gem "database_cleaner"
   gem "shoulda"
   gem 'simplecov', :require => false
-  gem 'webdrivers'
+  # gem 'webdrivers'
   
   #gem "treetop", "= 1.4.10"
   # gem "selenium-client", "= 1.2.16"

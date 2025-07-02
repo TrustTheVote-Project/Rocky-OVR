@@ -327,7 +327,7 @@ module AbrStateMethods
 
   def state_custom_javascript?
     if (!self.home_state_abbrev.blank?) 
-      return File.exists?(File.join(Rails.root, 'app/assets/javascripts/abr_states/', "#{self.home_state_abbrev.to_s.downcase}.js"))
+      return File.exist?(File.join(Rails.root, 'app/assets/javascripts/abr_states/', "#{self.home_state_abbrev.to_s.downcase}.js"))
     end
   end
   
