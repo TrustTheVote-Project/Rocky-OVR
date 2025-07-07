@@ -110,12 +110,12 @@ module AbrStateMethods::AK
   
   def custom_form_field_validations
     if self.abr_election_type1 != "1" &&
-      #  self.abr_election_type2 != "1" &&
+       self.abr_election_type2 != "1" &&
        self.abr_election_type3 != "1" &&
        self.abr_election_type4 != "1" &&
        self.abr_election_type5 != "1"
        errors.add(:abr_election_type1, custom_required_message(:abr_election_type1))
-      #  errors.add(:abr_election_type2, custom_required_message(:abr_election_type1))
+       errors.add(:abr_election_type2, custom_required_message(:abr_election_type1))
        errors.add(:abr_election_type3, custom_required_message(:abr_election_type1))
        errors.add(:abr_election_type4, custom_required_message(:abr_election_type1))
        errors.add(:abr_election_type5, custom_required_message(:abr_election_type1))

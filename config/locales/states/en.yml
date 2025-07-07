@@ -1623,7 +1623,7 @@ en:
             returning your application must sign and date at the bottom of the form.
           abr_request_name: 'Enter the name of the person you have who will be delivering
             your absentee ballot application:'
-          assist_birthdate: Enter the person's date of birth
+          assist_birthdate_date_input: Enter the person's date of birth
           abr_assistant_address_line_1: Enter the person's address
         abr:
           request_deadline: |-
@@ -1804,6 +1804,7 @@ en:
             driver's license or identification card, or a Social Security Number
           no_id_check__required_message: You must either provide an ID above or assert
             you have no identification
+          one_selection_only__required_message: Choose only one identification option
         abr:
           step_2_instructions: "<p>All eligible voters in Minnesota can request an
             absentee ballot.</p>"

@@ -260,6 +260,15 @@ module AbrStateMethods::MN
       if ((self.abr_id_type1.to_s!='1' && self.abr_id_type2.to_s!='1') && (self.abr_no_id.to_s!='1'))
         errors.add('abr_no_id', custom_required_message('no_id_check'))
       end
+
+      # Make sure ONLY one of the three boxes is on
+      selected = [abr_id_type1, abr_id_type2, abr_no_id].count { |v| v.to_s == '1' }
+
+      if selected > 1
+        %i[abr_id_type1 abr_id_type2 abr_no_id].each do |attr|
+          errors.add(attr, custom_required_message('one_selection_only'))
+        end
+      end
       
     end
 

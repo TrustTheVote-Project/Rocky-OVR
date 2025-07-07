@@ -124,8 +124,10 @@ module AbrStateMethods::MO
     <<~JS
       document.addEventListener('DOMContentLoaded', function () {
         const label = document.querySelector('label[for="abr_phone"], label[for="state_registrant_phone"]');
-        if (label && !label.textContent.includes('*')) {
-          label.textContent += ' *';
+        if (label && !label.innerHTML.includes('class="required"')) {
+          label.insertAdjacentHTML('beforeend',
+            ' <span class="required">*<span class="required--text" style="display:none;">Required</span></span>'
+          );
         }
       });
     JS
