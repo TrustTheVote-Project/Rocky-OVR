@@ -17,6 +17,6 @@
     </div>
   </li>
 <!-- Conditional JS for phone label -->
-<%= javascript_tag(@state_registrant.phone_required_script) if
-      @state_registrant.respond_to?(:phone_required_script) &&
-      @state_registrant.phone_required_script.present? %>
+<%= javascript_tag(form.object.phone_required_script) if
+      form.object.respond_to?(:phone_required_script) &&
+      form.object.phone_required_script.present? %>
