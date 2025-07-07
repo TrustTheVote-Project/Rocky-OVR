@@ -118,7 +118,18 @@ module AbrStateMethods::MO
       errors.add(:phone, :blank)
     end
   end
-  
+
+  # Inline JS to append the “*” after the page loads
+  def phone_required_script
+    <<~JS
+      document.addEventListener('DOMContentLoaded', function () {
+        const label = document.querySelector('label[for="abr_phone"], label[for="state_registrant_phone"]');
+        if (label && !label.textContent.includes('*')) {
+          label.textContent += ' *';
+        }
+      });
+    JS
+  end
 
   def mailing_address_line_1
     self.abr_check_mailing_address.to_s == "1" ? self.abr_mailing_address_line_1_input : self.address_line_1

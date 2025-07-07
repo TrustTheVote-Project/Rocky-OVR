@@ -237,6 +237,11 @@ class Abr < ActiveRecord::Base
     !has_pdf_template? && !has_state_pdf_url?
   end
   
+  # Used for odd edge cases like MO where phone is required
+  def phone_required_script
+    nil
+  end
+  
   def locale
     'en'
   end
