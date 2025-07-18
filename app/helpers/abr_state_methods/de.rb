@@ -29,10 +29,11 @@ module AbrStateMethods::DE
 
     'abr_election_type_instructions': {},
     'abr_election_type_selections': {},
-    #'abr_election_type1': {options: ['Off', 'On']},
-    #'abr_election_type2': {options: ['Off', 'On']},
+    'abr_election_type1': {options: ['Off', 'On']},
+    'abr_election_type2': {options: ['Off', 'On']},
     'abr_election_type3': {options: ['Off', 'On']},
     'abr_election_type4': {options: ['Off', 'On']},
+    'abr_election_type5': {options: ['Off', 'On']},
     #'abr_party': {},
     'abr_reason_selections': {options: ['abr_reason1','abr_reason2','abr_reason3','abr_reason4','abr_reason5']},
     'abr_delivery_address_selections': {options:['abr_delivery_address_type1','abr_delivery_address_type2','abr_delivery_address_type3']},
@@ -60,11 +61,11 @@ module AbrStateMethods::DE
 
       {'abr_election_type_instructions': {type: :instructions}},
       {'abr_election_type_selections': {type: :instructions}},
-      #{'abr_election_type1': {type: :checkbox, options: ['Off', 'On']}},
-      #{'abr_election_type2': {type: :checkbox, options: ['Off', 'On']}},
+      {'abr_election_type1': {type: :checkbox, options: ['Off', 'On']}},
+      {'abr_election_type2': {type: :checkbox, options: ['Off', 'On']}},
       {'abr_election_type3': {type: :checkbox, options: ['Off', 'On']}},
       {'abr_election_type4': {type: :checkbox, options: ['Off', 'On']}},
-
+      {'abr_election_type5': {type: :checkbox, options: ['Off', 'On']}},
       {'abr_reason_selections': {type: :radio, options: ['abr_reason1','abr_reason2','abr_reason3','abr_reason4','abr_reason5'], required:true}},
 
       {'abr_application_type_check1': {type: :checkbox, options: ['Off', 'On'], visible_any: 'abr_reason_selections_abr_reason1 abr_reason_selections_abr_reason2 abr_reason_selections_abr_reason5'}},
@@ -78,10 +79,18 @@ module AbrStateMethods::DE
     ]
   end
   
-  def custom_form_field_validations
+  #def custom_form_field_validations
     #unless self.abr_election_type1.to_s == "1" || self.abr_election_type2.to_s =="1" || self.abr_election_type3.to_s =="1" || self.abr_election_type4.to_s =="1"
-    unless  self.abr_election_type3.to_s =="1" || self.abr_election_type4.to_s =="1"
-        errors.add "abr_election_type4", custom_required_message(:abr_election_type4)
+    #unless  self.abr_election_type1.to_s =="1" || self.abr_election_type2.to_s =="1" || self.abr_election_type3.to_s =="1" || self.abr_election_type4.to_s =="1" || self.abr_election_type5.to_s =="1"
+        #errors.add "abr_election_type4", custom_required_message(:abr_election_type4)
+    #end
+  def custom_form_field_validations
+    if ![abr_election_type1, abr_election_type2, abr_election_type3, abr_election_type4, abr_election_type5].include?("1") 
+      errors.add(self.class.make_method_name(:abr_election_type1), custom_required_message(:abr_election_type4))
+      errors.add(self.class.make_method_name(:abr_election_type2), custom_required_message(:abr_election_type4))
+      errors.add(self.class.make_method_name(:abr_election_type3), custom_required_message(:abr_election_type4))
+      errors.add(self.class.make_method_name(:abr_election_type4), custom_required_message(:abr_election_type4))
+      errors.add(self.class.make_method_name(:abr_election_type5), custom_required_message(:abr_election_type4))
     end
 
     # if (self.abr_election_type1.to_s == "1" || self.abr_election_type2.to_s =="1" || self.abr_election_type4.to_s =="1")

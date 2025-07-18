@@ -88,14 +88,17 @@ module AbrStateMethods::MO
       {"abr_reason_selections": { type: :radio, required: true }},
       {"abr_election_type_selections_instructions": {type: :instructions}},
       {"abr_election_type_selections": { type: :radio, required: true}},
-      {"abr_election_date_input": { type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type2" }},
+      #{"abr_election_date_input": { type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type2" }},
       #{"abr_primary_type_selections": { type: :radio, required: :if_visible, visible: "abr_election_type_selections_abr_election_type1" }},
     ]
   end
   
   def abr_election_date_input_string
-    if self.abr_election_type_selections == "abr_election_type1"
-      "11/05/2024"
+    case self.abr_election_type_selections
+    when "abr_election_type1"
+      "8/5/2025"
+    when "abr_election_type2"
+      "11/4/2025"
     else
       date_field_string_mm_dd_yyyy(method: :abr_election_date_input)
     end
@@ -115,7 +118,20 @@ module AbrStateMethods::MO
       errors.add(:phone, :blank)
     end
   end
-  
+
+  # Inline JS to append the “*” after the page loads
+  def phone_required_script
+    <<~JS
+      document.addEventListener('DOMContentLoaded', function () {
+        const label = document.querySelector('label[for="abr_phone"], label[for="state_registrant_phone"]');
+        if (label && !label.innerHTML.includes('class="required"')) {
+          label.insertAdjacentHTML('beforeend',
+            ' <span class="required">*<span class="required--text" style="display:none;">Required</span></span>'
+          );
+        }
+      });
+    JS
+  end
 
   def mailing_address_line_1
     self.abr_check_mailing_address.to_s == "1" ? self.abr_mailing_address_line_1_input : self.address_line_1

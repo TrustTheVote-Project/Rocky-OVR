@@ -36,7 +36,7 @@ module AbrStateMethods::VT
 'abr_election_type4':{options:["Off","On" ]},
 'abr_election_type5':{options:["Off","On" ]},
 'abr_election_type6':{options:["Off","On" ]},
-'abr_election_type7':{options:["Off","On" ]},
+#'abr_election_type7':{options:["Off","On" ]},
 'abr_primary_type_selections':{options: ["abr_primary_type1", "abr_primary_type2"]},
 "abr_primary_type_selections_1": {method: "abr_primary_type_selections"},
 
@@ -82,9 +82,9 @@ module AbrStateMethods::VT
         {"abr_election_type4": {type: :checkbox, visible: "abr_election_type_selections_abr_election_type1", options:["Off","On" ]}},
         {"abr_election_type5": {type: :checkbox, visible: "abr_election_type_selections_abr_election_type1", options:["Off","On" ]}},
         {"abr_election_type6": {type: :checkbox, visible: "abr_election_type_selections_abr_election_type1", options:["Off","On" ]}},
-        {"abr_election_type7": {type: :checkbox, visible: "abr_election_type_selections_abr_election_type1", options:["Off","On" ]}},
+        #{"abr_election_type7": {type: :checkbox, visible: "abr_election_type_selections_abr_election_type1", options:["Off","On" ]}},
 
-        {"abr_primary_type_selections": {type: :radio, visible:"abr_election_type7", required: :if_visible,  options: ["abr_primary_type1", "abr_primary_type2"]}},
+        #{"abr_primary_type_selections": {type: :radio, visible:"abr_election_type7", required: :if_visible,  options: ["abr_primary_type1", "abr_primary_type2"]}},
 
         
 
@@ -109,8 +109,10 @@ module AbrStateMethods::VT
     def custom_form_field_validations
         if self.abr_election_type_selections == "abr_election_type1"
             
-                unless self.abr_election_type3=="1" || self.abr_election_type4 =="1" || self.abr_election_type5 =="1" || self.abr_election_type6 =="1" || self.abr_election_type7 =="1"
-                    errors.add('abr_election_type7', custom_required_message('abr_no_election_checked'))
+                #unless self.abr_election_type3=="1" || self.abr_election_type4 =="1" || self.abr_election_type5 =="1" || self.abr_election_type6 =="1" || self.abr_election_type7 =="1"
+                unless self.abr_election_type3=="1" || self.abr_election_type4 =="1" || self.abr_election_type5 =="1" || self.abr_election_type6 =="1"
+                    #errors.add('abr_election_type7', custom_required_message('abr_no_election_checked'))
+                    errors.add('abr_election_type3', custom_required_message('abr_no_election_checked'))
                 end
         end
     end

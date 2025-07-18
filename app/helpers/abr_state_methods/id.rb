@@ -59,15 +59,15 @@ module AbrStateMethods::ID
       "abr_election_type3": {
         options: ["Off", "Yes"]
       },
-      "abr_primary_type_selections1": {
-        options: [
-          "abr_primary_type1",
-          "abr_primary_type2",
-          "abr_primary_type3",
-          "abr_primary_type4",
-          "NonPartisan",    
-        ]
-      },
+      #"abr_primary_type_selections1": {
+      #  options: [
+      #    "abr_primary_type1",
+      #    "abr_primary_type2",
+      #    "abr_primary_type3",
+      #    "abr_primary_type4",
+      #    "NonPartisan",    
+      #  ]
+      #},
       "abr_phone": {
         method: "phone"
       }
@@ -332,7 +332,7 @@ module AbrStateMethods::ID
         {"abr_election_type1": { type: :checkbox}},
         {"abr_election_type2": { type: :checkbox}},
         {"abr_election_type3": { type: :checkbox}},
-        {"abr_primary_type_selections1": { type: :radio, required: :if_visible, visible: "abr_election_type1"}}
+        #{"abr_primary_type_selections1": { type: :radio, required: :if_visible, visible: "abr_election_type1"}}
       ]
     end
     #e.g.
