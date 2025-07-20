@@ -12,7 +12,10 @@ class CatalistLookup < ActiveRecord::Base
 
   belongs_to :partner, optional: true
 
-  serialize :match, Hash
+  serialize :match
+  after_initialize do
+    self.match ||= {}
+  end
   
   belongs_to :state,    :class_name => "GeoState", optional: true
 

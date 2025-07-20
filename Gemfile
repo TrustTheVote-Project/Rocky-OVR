@@ -22,7 +22,8 @@ gem 'rack-robustness'
 gem "authlogic" #, "= 4.3.0"
 gem 'scrypt'
 gem 'daemons', '~> 1.1.9'
-gem "paperclip" #, "~> 5.3.0"
+# gem "paperclip" #, "~> 5.3.0"
+gem "kt-paperclip"
 gem 'mysql2' #, '~> 0.3.18'
 
 gem 'distribute_reads'
@@ -126,3 +127,6 @@ gem 'delayed_cron_job'
 gem 'exception_notification'
 
 gem "rjb", "~> 1.6"
+
+gem "csv"
+gem "net-ftp"

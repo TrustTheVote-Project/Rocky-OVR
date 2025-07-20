@@ -170,8 +170,14 @@ class Partner < ActiveRecord::Base
   
 
   serialize :government_partner_zip_codes
-  serialize :states_enabled_for_pdf_assistance, Array
-  serialize :replace_system_css, Hash
+  serialize :states_enabled_for_pdf_assistance
+  after_initialize do
+    self.states_enabled_for_pdf_assistance ||= []
+  end
+  serialize :replace_system_css
+  after_initialize do
+    self.replace_system_css ||= {}
+  end
 
   before_validation :reformat_phone
   before_validation :set_default_widget_image
@@ -210,10 +216,22 @@ class Partner < ActiveRecord::Base
 
   after_validation :make_paperclip_errors_readable
 
-  serialize :survey_question_1, Hash
-  serialize :survey_question_2, Hash
-  serialize :pixel_tracking_codes, Hash
-  serialize :branding_update_request, OpenStruct
+  serialize :survey_question_1
+  after_initialize do
+    self.survey_question_1 ||= {}
+  end
+  serialize :survey_question_2
+  after_initialize do
+    self.survey_question_2 ||= {}
+  end
+  serialize :pixel_tracking_codes
+  after_initialize do
+    self.pixel_tracking_codes ||= {}
+  end
+  serialize :branding_update_request
+  after_initialize do
+    self.branding_update_request ||= OpenStruct.new()
+  end
   
   # Need to declare attributes for each enabled lang
   RockyConf.enabled_locales.each do |locale|

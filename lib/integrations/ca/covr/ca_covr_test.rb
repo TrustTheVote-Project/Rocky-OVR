@@ -1,6 +1,6 @@
 # require './lib/integrations/ca/covr/ca_covr_test'
 
-class CaCovrTest
+class Integrations::Ca::Covr::CaCovrTest
   
   TESTS = %w(success-max success-min fail-max-lastname fail-min-agencycode fail-min-disclosures fail-min-residentid)
   

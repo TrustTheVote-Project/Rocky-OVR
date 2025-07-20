@@ -4,7 +4,10 @@ class RegistrantStatus < ActiveRecord::Base
   belongs_to :admin, optional: true
   belongs_to :geo_state, optional: true
   
-  serialize :state_data, Hash
+  serialize :state_data
+  after_initialize do
+    self.state_data ||= {}
+  end
   
   #attr_protected :id, :created_at, :updated_at
   

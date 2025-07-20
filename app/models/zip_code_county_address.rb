@@ -5,9 +5,18 @@ class ZipCodeCountyAddress < ActiveRecord::Base
   validates :zip, uniqueness: true, presence: true
   validates :geo_state_id, presence: true
   
-  serialize :county, Array
-  serialize :cities, Array
-  serialize :unacceptable_cities, Array
+  serialize :county
+  after_initialize do
+    self.county ||= []
+  end
+  serialize :cities
+  after_initialize do
+    self.cities ||= []
+  end
+  serialize :unacceptable_cities
+  after_initialize do
+    self.unacceptable_cities ||= []
+  end
   
   DAYS_TO_CACHE = 3
   

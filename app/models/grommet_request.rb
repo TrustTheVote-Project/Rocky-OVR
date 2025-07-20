@@ -4,7 +4,10 @@ class GrommetRequest < ActiveRecord::Base
 
   after_create :generate_request_hash
   
-  serialize :request_params, Hash
+  serialize :request_params
+  after_initialize do
+    self.request_params ||= {}
+  end
   
   def generate_request_hash
     if STATES.include?(self.state)
