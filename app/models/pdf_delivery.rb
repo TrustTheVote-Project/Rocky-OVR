@@ -2,7 +2,10 @@ require 'net/ftp'
 class PdfDelivery < ActiveRecord::Base
   belongs_to :registrant, optional: true
   
-  serialize :api_vendor_response, Hash
+  serialize :api_vendor_response
+  after_initialize do
+    self.api_vendor_response ||= {}
+  end
   
   def generate_pdf!
     generate_pdf(true, true)

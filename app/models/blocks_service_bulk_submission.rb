@@ -1,7 +1,10 @@
 class BlocksServiceBulkSubmission < ActiveRecord::Base
   QUEUE_NAME = "blocks_bulk_shifts".freeze
   
-  serialize :partners_submitted, Hash
+  serialize :partners_submitted
+  after_initialize do
+    self.partners_submitted ||= {}
+  end
   validates_presence_of(:shift_start)
   validates_presence_of(:shift_end)
 

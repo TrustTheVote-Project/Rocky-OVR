@@ -28,7 +28,10 @@ class GeoState < ActiveRecord::Base
   
   delegate :online_reg_url, :redirect_to_online_reg_url, :has_ovr_pre_check?, :ovr_pre_check, :decorate_registrant, :enabled_for_language?, :require_age_confirmation?, :require_id?, :automatic_under_18_ok?, :use_state_flow?, :online_abr_enabled?, :oabr_url, :oabr_url_is_local_jurisdiction?, :to=>:state_customization
 
-  serialize :direct_mail_partner_ids, Array
+  serialize :direct_mail_partner_ids
+  after_initialize do
+    self.direct_mail_partner_ids ||= []
+  end
 
   def direct_mail_partners
     Partner.find(self.direct_mail_partner_ids)

@@ -1,8 +1,14 @@
 class TrackingEvent < ActiveRecord::Base
   # attr_accessible :title, :body
   
-  serialize :geo_location, Hash
-  serialize :tracking_data, Hash
+  serialize :geo_location
+  after_initialize do
+    self.geo_location ||= {}
+  end
+  serialize :tracking_data
+  after_initialize do
+    self.tracking_data ||= {}
+  end
   
   SETTABLE_ATTRIBUTES= %w(tracking_event_name source_tracking_id partner_tracking_id open_tracking_id geo_location)
   

@@ -10,7 +10,7 @@ end
 
 module Rocky
   class Application < Rails::Application
-    config.load_defaults 5.2
+    config.load_defaults 7.2
     
     require 'dotenv'
     Dotenv.load
@@ -18,6 +18,10 @@ module Rocky
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    Rails.autoloaders.main.ignore(Dir[Rails.root.join('**/*.example.rb')])
+
+    config.active_record.default_column_serializer = YAML
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)

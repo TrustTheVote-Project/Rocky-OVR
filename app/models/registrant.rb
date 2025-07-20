@@ -62,7 +62,10 @@ class Registrant < ActiveRecord::Base
 
 
 
-  serialize :state_ovr_data, Hash
+  serialize :state_ovr_data
+  after_initialize do
+    self.state_ovr_data ||= {}
+  end
 
   STEPS = [:initial, :step_1, :step_2, :step_3, :step_4, :step_5, :complete]
   def step_list

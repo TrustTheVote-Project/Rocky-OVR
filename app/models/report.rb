@@ -59,7 +59,10 @@ class Report < ActiveRecord::Base
 
   belongs_to :partner, optional: true
   has_many :report_data
-  serialize :filters, Hash
+  serialize :filters
+  after_initialize do
+    self.filters ||= {}
+  end
 
   before_save :ensure_dates
 
