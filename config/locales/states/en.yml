@@ -2093,6 +2093,13 @@ en:
             On the DMV website, click "Continue to myNCDMV Services." <br/>4. Click
             "Continue as a guest" and submit your voter registration online.'
         registration:
+          custom_age_blurb: |-
+            <p>You must be at least 18 years old on or before Election Day to register 
+            and vote. If you are 16 or 17 years old, you are eligible to preregister to 
+            vote.</p>
+            <p>To receive step-by-step guidance on the voting process as well as relevant 
+            dates and deadlines for all federal and state elections, 
+            <a href="%{pledge_url}">pledge to vote.</a></p>
           has_state_license: I have a NC state identification card or NC driver's
             license, and Social Security Number.
           has_no_state_license: I do not have a NC state identification card or NC

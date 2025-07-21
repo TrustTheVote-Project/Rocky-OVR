@@ -26,6 +26,18 @@ module ApplicationHelper
     end
   end
 
+  # used to show custom under 18 message on step 2 per NC
+  def custom_age_blurb_html(state_abbr, partner_id)
+    return unless Settings[state_abbr]&.dig(:custom_age_blurb)
+
+    partner_id = partner_id.presence || "default"
+    pledge_url = "#{request.base_url}/pledge/new?partner=#{partner_id}&source=#{state_abbr}-under_18"
+
+    content_tag(:div, class: "custom-age-blurb") do
+      I18n.t("states.custom.#{state_abbr.downcase}.registration.custom_age_blurb", pledge_url: pledge_url).html_safe
+    end
+  end
+
   def partner_locale_options(partner, locale, source)
     opts = {}
     opts[:partner] = partner unless partner == Partner::DEFAULT_ID
