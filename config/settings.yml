@@ -533,7 +533,7 @@ ovr_states:
     languages:
       - en
   NC:
-    require_age_confirmation: true
+    custom_age_blurb: true
     require_id: true
     languages:
       - en

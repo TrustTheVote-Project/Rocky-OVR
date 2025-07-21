@@ -26,6 +26,9 @@ class Step2Controller < RegistrationStep
   CURRENT_STEP = 2
 
   def render_show
+    # show custom age related blurb on top of form for states like NC
+    @state_abbr = @registrant&.home_state&.abbreviation
+
     if @use_mobile_ui
       render "show_mobile_ui" and return
     else
