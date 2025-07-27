@@ -18,7 +18,7 @@ class BlocksFormDisposition < ActiveRecord::Base
     status  = request_status
     #service.add_metadata_to_form(blocks_form_id, status)
     if status_complete?(status)
-      self.update_attributes(final_state_submitted: true)
+      self.update(final_state_submitted: true)
     end
   end
   

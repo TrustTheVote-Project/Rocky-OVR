@@ -7,7 +7,7 @@ gem "rake"
 gem "figaro"
 gem "config"
 
-gem "rails", "= 5.2.8.1"
+gem "rails", "= 8.0.2"
 
 
 gem "aasm" #, "= 4.12.3"

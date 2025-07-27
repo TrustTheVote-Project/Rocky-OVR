@@ -41,7 +41,7 @@ class FinishesController < RegistrationStep
       @registrant.save(validate: false)
     end
     if params[:reminders]
-      @registrant.update_attributes(:reminders_left => 0, final_reminder_delivered: true)
+      @registrant.update(:reminders_left => 0, final_reminder_delivered: true)
       @stop_reminders = true
     end
     if params[:share_only] 

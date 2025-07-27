@@ -89,7 +89,7 @@ class Admin::BaseController < ApplicationController
     partner.folder.publish_sub_assets(:preview)
     EmailTemplate.publish_templates(partner)
     partner.replace_system_css_live = partner.replace_system_css_preview
-    partner.update_attributes(whitelabeled: true) unless partner.whitelabeled?
+    partner.update(whitelabeled: true) unless partner.whitelabeled?
   end
   
 

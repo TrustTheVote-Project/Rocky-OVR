@@ -135,7 +135,7 @@ class RegistrantStatus < ActiveRecord::Base
       # Find row in table?
       existing = RegistrantStatus.where(state_transaction_id: state_id, geo_state_id: reg_data[:geo_state_id]).first
       if (existing)
-        existing.update_attributes(reg_data)
+        existing.update(reg_data)
         reg_statuses_results[state_id] = "Updated status record"
       else
         # Find registrant

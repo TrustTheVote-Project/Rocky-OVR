@@ -97,17 +97,17 @@
         .value.checkboxes
           .checkbox-col
             .checkbox{:class=>checked?(:mr, :name_title) ? 'checkbox-checked' : ''}
-              = checkbox(:mr, :name_title)
+              = pdf_checkbox(:mr, :name_title)
               %span= I18n.t("txt.registration.titles.mr", :locale=>:en)
             .checkbox{:class=>checked?(:mrs, :name_title) ? 'checkbox-checked' : ''}
-              = checkbox(:mrs, :name_title)
+              = pdf_checkbox(:mrs, :name_title)
               %span= I18n.t("txt.registration.titles.mrs", :locale=>:en)
           .checkbox-col
             .checkbox{:class=>checked?(:miss, :name_title) ? 'checkbox-checked' : ''}
-              = checkbox(:miss, :name_title)
+              = pdf_checkbox(:miss, :name_title)
               %span= I18n.t("txt.registration.titles.miss", :locale=>:en)
             .checkbox{:class=>checked?(:ms, :name_title) ? 'checkbox-checked' : ''}
-              = checkbox(:ms, :name_title)
+              = pdf_checkbox(:ms, :name_title)
               %span= I18n.t("txt.registration.titles.ms", :locale=>:en)
       
       %td.box2#name_last
@@ -124,20 +124,20 @@
         .value.checkboxes.suffix-checkboxes
           .checkbox-col
             .checkbox{:class=>checked?(:jr, :name_suffix) ? 'checkbox-checked' : ''}
-              = checkbox(:jr, :name_suffix)
+              = pdf_checkbox(:jr, :name_suffix)
               %span= I18n.t("txt.registration.suffixes.jr", :locale=>:en)
             .checkbox{:class=>checked?(:sr, :name_suffix) ? 'checkbox-checked' : ''}
-              = checkbox(:sr, :name_suffix)
+              = pdf_checkbox(:sr, :name_suffix)
               %span= I18n.t("txt.registration.suffixes.sr", :locale=>:en)
           .checkbox-col
             .checkbox{:class=>checked?(:ii, :name_suffix) ? 'checkbox-checked' : ''}
-              = checkbox(:ii, :name_suffix)
+              = pdf_checkbox(:ii, :name_suffix)
               %span= I18n.t("txt.registration.suffixes.ii", :locale=>:en)
             .checkbox{:class=>checked?(:iii, :name_suffix) ? 'checkbox-checked' : ''}
-              = checkbox(:iii, :name_suffix)
+              = pdf_checkbox(:iii, :name_suffix)
               %span= I18n.t("txt.registration.suffixes.iii", :locale=>:en)
             .checkbox{:class=>checked?(:iv, :name_suffix) ? 'checkbox-checked' : ''}
-              = checkbox(:iv, :name_suffix)
+              = pdf_checkbox(:iv, :name_suffix)
               %span= I18n.t("txt.registration.suffixes.iv", :locale=>:en)
   
   %table.form
@@ -258,17 +258,17 @@
           .value.checkboxes
             .checkbox-col
               .checkbox{:class=>checked?(:mr, :prev_name_title) ? 'checkbox-checked' : ''}
-                = checkbox(:mr, :prev_name_title)
+                = pdf_checkbox(:mr, :prev_name_title)
                 %span= I18n.t("txt.registration.titles.mr", :locale=>:en)
               .checkbox{:class=>checked?(:mrs, :prev_name_title) ? 'checkbox-checked' : ''}
-                = checkbox(:mrs, :prev_name_title)
+                = pdf_checkbox(:mrs, :prev_name_title)
                 %span= I18n.t("txt.registration.titles.mrs", :locale=>:en)
             .checkbox-col
               .checkbox{:class=>checked?(:miss, :prev_name_title) ? 'checkbox-checked' : ''}
-                = checkbox(:miss, :prev_name_title)
+                = pdf_checkbox(:miss, :prev_name_title)
                 %span= I18n.t("txt.registration.titles.miss", :locale=>:en)
               .checkbox{:class=>checked?(:ms, :prev_name_title) ? 'checkbox-checked' : ''}
-                = checkbox(:ms, :prev_name_title)
+                = pdf_checkbox(:ms, :prev_name_title)
                 %span= I18n.t("txt.registration.titles.ms", :locale=>:en)
         %td.box2#prev_name_last
           .label= form_prompt('pdf.nvra.page2.blockA.box2_label' ).to_s.html_safe
@@ -284,20 +284,20 @@
           .value.checkboxes.suffix-checkboxes
             .checkbox-col
               .checkbox{:class=>checked?(:jr, :prev_name_suffix) ? 'checkbox-checked' : ''}
-                = checkbox(:jr, :prev_name_suffix)
+                = pdf_checkbox(:jr, :prev_name_suffix)
                 %span= I18n.t("txt.registration.suffixes.jr", :locale=>:en)
               .checkbox{:class=>checked?(:sr, :prev_name_suffix) ? 'checkbox-checked' : ''}
-                = checkbox(:sr, :prev_name_suffix)
+                = pdf_checkbox(:sr, :prev_name_suffix)
                 %span= I18n.t("txt.registration.suffixes.sr", :locale=>:en)
             .checkbox-col
               .checkbox{:class=>checked?(:ii, :prev_name_suffix) ? 'checkbox-checked' : ''}
-                = checkbox(:ii, :prev_name_suffix)
+                = pdf_checkbox(:ii, :prev_name_suffix)
                 %span= I18n.t("txt.registration.suffixes.ii", :locale=>:en)
               .checkbox{:class=>checked?(:iii, :prev_name_suffix) ? 'checkbox-checked' : ''}
-                = checkbox(:iii, :prev_name_suffix)
+                = pdf_checkbox(:iii, :prev_name_suffix)
                 %span= I18n.t("txt.registration.suffixes.iii", :locale=>:en)
               .checkbox{:class=>checked?(:iv, :prev_name_suffix) ? 'checkbox-checked' : ''}
-                = checkbox(:iv, :prev_name_suffix)
+                = pdf_checkbox(:iv, :prev_name_suffix)
                 %span= I18n.t("txt.registration.suffixes.iv", :locale=>:en)          
     %p.block_title.blockB= form_prompt('pdf.nvra.page2.blockB.title' ).to_s.html_safe
     %table.form
