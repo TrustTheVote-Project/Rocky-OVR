@@ -30,7 +30,7 @@ class AbrDeliveryNotifier < ActionMailer::Base
         :from=>abr.email_address_to_send_form_delivery_from,
         :to=>abr.elections_office_email,
         cc: abr.email,
-        :date=> Time.now.to_s(:db)
+        :date=> Time.now.to_fs(:db)
     ) do |format|
       format.html { 
         body.to_s + pixel_tracking_code.to_s.html_safe

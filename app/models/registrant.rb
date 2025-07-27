@@ -789,14 +789,14 @@ class Registrant < ActiveRecord::Base
   end
   
   #def pdf_date_of_birth
-  #  (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_s(:month_day_year) : date_of_birth.to_s
+  #  (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_fs(:month_day_year) : date_of_birth.to_s
   #end
 
   def pdf_date_of_birth
     if home_state_abbrev == "NC"
       "00/00/0000"
     else
-      (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_s(:month_day_year) : date_of_birth.to_s
+      (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_fs(:month_day_year) : date_of_birth.to_s
     end
   end
 
@@ -1228,8 +1228,8 @@ class Registrant < ActiveRecord::Base
       partner_tracking_id: tracking_id,
       short_form: use_short_form?,
       state_ovr_data: state_ovr_data,
-      created_at: created_at.to_s(:db),
-      updated_at: updated_at.to_s(:db),
+      created_at: created_at.to_fs(:db),
+      updated_at: updated_at.to_fs(:db),
 
       date_of_birth: date_of_birth.blank? ? date_of_birth : date_of_birth.to_s("%m-%d-%Y"),
 

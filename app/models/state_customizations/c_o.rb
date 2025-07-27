@@ -22,25 +22,34 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddAgeToRegistrant < ActiveRecord::Migration[4.2]
-  class Registrant < ActiveRecord::Base
-    def calculate_age!
-      now = created_at.to_date
-      years = now.year - date_of_birth.year
-      if (date_of_birth.month > now.month) || (date_of_birth.month == now.month && date_of_birth.day > now.day)
-        years -= 1
+
+class CO < StateCustomization
+
+  def online_reg_url(registrant)
+    root_url = state.online_registration_url
+    return root_url if registrant.nil?
+    if registrant && registrant.state_ovr_data && registrant.state_ovr_data[:is_mobile]
+      "https://www.sos.state.co.us/voter-mobile/"
+    else     
+      partner = registrant.partner ? registrant.partner.organization : nil
+      if partner
+        return "#{root_url}?campaign=#{CGI.escape(partner)}"
+      else
+        return root_url
       end
-      self.update_attribute(:age, years)
     end
   end
-
-  def self.up
-    add_column "registrants", "age", :integer
-
-    Registrant.where("created_at > '#{60.minutes.ago.to_fs(:db)}'").each { |r| r.calculate_age! }
+  
+  def has_ovr_pre_check?(registrant)
+    true
   end
-
-  def self.down
-    remove_column "registrants", "age"
+  
+  def ovr_pre_check(registrant=nil, controller=nil)
+    if registrant
+      registrant.state_ovr_data ||= {}
+      registrant.state_ovr_data[:is_mobile] = MobileConfig.is_mobile_request?(controller.request)
+      registrant.save
+    end
   end
+  
 end

@@ -194,8 +194,8 @@ describe Registrant do
   describe "backfill data" do
     it "backfills the age even when redacted" do
       assert_equal 0, Registrant.where("age IS NOT NULL").size
-      5.times { FactoryGirl.create(:step_5_registrant, :date_of_birth => 241.months.ago.to_date.to_s(:db)) }
-      4.times { FactoryGirl.create(:step_5_registrant, :date_of_birth => 239.months.ago.to_date.to_s(:db)) }
+      5.times { FactoryGirl.create(:step_5_registrant, :date_of_birth => 241.months.ago.to_date.to_fs(:db)) }
+      4.times { FactoryGirl.create(:step_5_registrant, :date_of_birth => 239.months.ago.to_date.to_fs(:db)) }
       Registrant.update_all("age = NULL")
       Registrant.update_all("state_id_number = NULL")
       Registrant.backfill_data
@@ -557,11 +557,11 @@ describe Registrant do
     end
     
     it "should be ineligible when too young" do
-      reg = FactoryGirl.build(:step_2_registrant, :date_of_birth => 10.years.ago.to_date.to_s(:db))
+      reg = FactoryGirl.build(:step_2_registrant, :date_of_birth => 10.years.ago.to_date.to_fs(:db))
       assert reg.valid?
       assert reg.ineligible?
       assert reg.ineligible_age?
-      reg = FactoryGirl.build(:step_2_registrant, :date_of_birth => 20.years.ago.to_date.to_s(:db))
+      reg = FactoryGirl.build(:step_2_registrant, :date_of_birth => 20.years.ago.to_date.to_fs(:db))
       assert reg.valid?
       assert reg.eligible?
       assert !reg.ineligible_age?
@@ -1696,7 +1696,7 @@ describe Registrant do
                       nil,
                       nil,
                      "English",
-                     reg.date_of_birth.to_s(:month_day_year),
+                     reg.date_of_birth.to_fs(:month_day_year),
                      reg.email_address,
                      "Yes",
                      nil,
@@ -1758,7 +1758,7 @@ describe Registrant do
                      "open id",
                      nil,
                      "English",
-                     reg.date_of_birth.to_s(:month_day_year),
+                     reg.date_of_birth.to_fs(:month_day_year),
                      "citizen@example.com",
                      "Yes",
                      "Mrs.",
@@ -1823,7 +1823,7 @@ describe Registrant do
                      "open id",
                      nil,
                      "Spanish",
-                     reg.date_of_birth.to_s(:month_day_year),
+                     reg.date_of_birth.to_fs(:month_day_year),
                      "citizen@example.com",
                      "Yes",
                      "Mrs.",
@@ -1901,7 +1901,7 @@ describe Registrant do
                      "open id",
                      "Success: PA ID",
                      "English",
-                     reg.date_of_birth.to_s(:month_day_year),
+                     reg.date_of_birth.to_fs(:month_day_year),
                      "citizen@example.com",
                      "Yes",
                      "Mrs.",

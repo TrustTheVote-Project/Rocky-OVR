@@ -95,7 +95,7 @@ class AbrNotifier < Notifier
         :subject=>subject,
         :from=>abr.email_address_to_send_from,
         :to=> to_address ||abr.email,
-        :date=> Time.now.to_s(:db)
+        :date=> Time.now.to_fs(:db)
       ) do |format|
         format.html { 
           body.to_s + pixel_tracking_code.to_s.html_safe

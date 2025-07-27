@@ -91,7 +91,7 @@ describe DownloadsController do
         end
         context 'when the user has an email address' do
           it "times out preparing page after 30 seconds" do
-            Registrant.where("id = #{@registrant.id}").update_all("updated_at = '#{35.seconds.ago.to_s(:db)}'")
+            Registrant.where("id = #{@registrant.id}").update_all("updated_at = '#{35.seconds.ago.to_fs(:db)}'")
             get :show, params: {:registrant_id => @registrant.to_param}
             assert !assigns[:registrant].nil?
             assert_redirected_to registrant_finish_url(@registrant)
@@ -104,7 +104,7 @@ describe DownloadsController do
             @registrant.save!
           end
           it "does not times out preparing page after 30 seconds" do
-            Registrant.where("id = #{@registrant.id}").update_all("updated_at = '#{125.seconds.ago.to_s(:db)}'")
+            Registrant.where("id = #{@registrant.id}").update_all("updated_at = '#{125.seconds.ago.to_fs(:db)}'")
             get :show, params: {:registrant_id => @registrant.to_param}
             assert !assigns[:registrant].nil?
             assert_response :success
