@@ -22,25 +22,16 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddAgeToRegistrant < ActiveRecord::Migration[4.2]
-  class Registrant < ActiveRecord::Base
-    def calculate_age!
-      now = created_at.to_date
-      years = now.year - date_of_birth.year
-      if (date_of_birth.month > now.month) || (date_of_birth.month == now.month && date_of_birth.day > now.day)
-        years -= 1
-      end
-      self.update_attribute(:age, years)
+
+class FL < StateCustomization
+  def online_reg_url(registrant)
+    root_url ="https://registertovoteflorida.gov/eligibilityreactive"
+    return root_url if registrant.nil?
+    lang = registrant.locale.to_s.downcase
+    if lang == 'es'
+      return "https://registertovoteflorida.gov/home"
+    else
+      return root_url
     end
-  end
-
-  def self.up
-    add_column "registrants", "age", :integer
-
-    Registrant.where("created_at > '#{60.minutes.ago.to_fs(:db)}'").each { |r| r.calculate_age! }
-  end
-
-  def self.down
-    remove_column "registrants", "age"
   end
 end

@@ -34,7 +34,7 @@ class Notifier < ActionMailer::Base
     mail(subject: "Welcome to Rock the Vote",
          from: RockyConf.from_address,
          to: partner.email,
-         date: Time.now.to_s(:db))
+         date: Time.now.to_fs(:db))
   end
   
   def password_reset_instructions(user)
@@ -44,7 +44,7 @@ class Notifier < ActionMailer::Base
     mail(:subject=> "Password Reset Instructions",
          :from => RockyConf.from_address,
          :to => user.email,
-         :date => Time.now.to_s(:db))
+         :date => Time.now.to_fs(:db))
   end
   
   def admin_password_reset_instructions(admin)
@@ -54,7 +54,7 @@ class Notifier < ActionMailer::Base
     mail(:subject=> "Password Reset Instructions",
          :from => RockyConf.from_address,
          :to => admin.email,
-         :date => Time.now.to_s(:db))
+         :date => Time.now.to_fs(:db))
   end
   
   def admin_password_reset_required(admin)
@@ -64,7 +64,7 @@ class Notifier < ActionMailer::Base
     mail(:subject=> "Password Reset Required",
          :from => RockyConf.from_address,
          :to => admin.email,
-         :date => Time.now.to_s(:db))
+         :date => Time.now.to_fs(:db))
   end
   
   def continue_on_device(registrant, signature_capture_url)
@@ -105,7 +105,7 @@ class Notifier < ActionMailer::Base
     mail(:subject => tell_params[:tell_subject],
       :from => "#{tell_params[:tell_from]} <#{tell_params[:tell_email]}>",
       :to => tell_params[:tell_recipients],
-      :date => Time.now.to_s(:db))
+      :date => Time.now.to_fs(:db))
     
   end
 
@@ -153,7 +153,7 @@ class Notifier < ActionMailer::Base
         :subject=>subject,
         :from=>registrant.email_address_to_send_from,
         :to=>to_address || registrant.email_address,
-        :date=> Time.now.to_s(:db)
+        :date=> Time.now.to_fs(:db)
       ) do |format|
         format.html { 
           body.to_s + pixel_tracking_code.to_s.html_safe
