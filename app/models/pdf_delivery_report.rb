@@ -88,15 +88,15 @@ class PdfDeliveryReport < ActiveRecord::Base
   end
 
   def run!
-    self.update_attributes(status: :started)
-    self.update_attributes(status: "Processing #{deliveries.count} deliveries")
+    self.update(status: :started)
+    self.update(status: "Processing #{deliveries.count} deliveries")
     assistance_rows = [CSV_HEADER]
     direct_mail_rows = [CSV_HEADER]
     FileUtils.mkdir_p(assistance_folder)
     FileUtils.mkdir_p(direct_folder)
     d_id = nil
     deliveries.find_in_batches(batch_size: 500).with_index do |batch, batch_num|
-      self.update_attributes(status: "Processing Batch Num #{batch_num + 1}")
+      self.update(status: "Processing Batch Num #{batch_num + 1}")
       batch.each do |d|
         d_id = d.id
         row = csv_row(d)
@@ -119,11 +119,11 @@ class PdfDeliveryReport < ActiveRecord::Base
       end
     end
     # save counts
-    self.update_attributes({
+    self.update({
       assistance_registrants: assistance_rows.length - 1,
       direct_mail_registrants: direct_mail_rows.length - 1
     })
-    self.update_attributes(status: :compiling)
+    self.update(status: :compiling)
     # Zip up files
     `cd #{folder} && zip -r #{assistance_zip_file_name} #{relative_assistance_folder}`
     `rm -rf #{assistance_folder}`
@@ -139,7 +139,7 @@ class PdfDeliveryReport < ActiveRecord::Base
         csv << row
       end
     end
-    self.update_attributes(status: :uploading)
+    self.update(status: :uploading)
     
     # Upload 2 zips and 2 CSVs to s3.
     upload_file(assistance_zip_file_name)
@@ -148,9 +148,9 @@ class PdfDeliveryReport < ActiveRecord::Base
     upload_file(direct_csv_file_name)
     # cleanup
     `rm -rf #{folder}`
-    self.update_attributes(status: :complete)
+    self.update(status: :complete)
   rescue Exception => e
-    self.update_attributes(last_error: "Error for delivery '#{d_id}'\n#{e.message}\n#{e.backtrace}")
+    self.update(last_error: "Error for delivery '#{d_id}'\n#{e.message}\n#{e.backtrace}")
   end
 
   def csv_row(delivery) 

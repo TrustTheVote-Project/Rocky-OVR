@@ -64,7 +64,7 @@ class PartnersController < PartnerBase
   end
 
   def update
-    if @partner.update_attributes(partner_params)
+    if @partner.update(partner_params)
       flash[:success] = "You have updated your profile."
       redirect_to partner_path(@partner)
     else

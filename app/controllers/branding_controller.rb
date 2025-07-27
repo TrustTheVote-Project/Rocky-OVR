@@ -38,7 +38,7 @@ class BrandingController < PartnerBase
 
 
   def update
-    @partner.update_attributes(partner_params)
+    @partner.update(partner_params)
     # remove assets before uploading new ones
     params[:remove].try(:each) do |filename, _|
       assets_folder.delete_asset(filename, :preview)

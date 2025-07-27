@@ -210,7 +210,12 @@ module ApplicationHelper
       options[:data] ||= {}
       options[:data]["client-validation-require-accept".to_sym] = require_accept_message_for(form.object, field)
     end
-    field = form.send( selector, field, {:size => nil}.merge(options) )
+    puts(selector, field, {:size => nil}.merge(options))
+    if field == "check_box"
+      field= form.check_box(field, {:size => nil}.merge(options))
+    else
+      field = form.send( selector, field, {:size => nil}.merge(options) )
+    end
     content_tag(:div, "#{field}#{label}".html_safe, :class => class_name).html_safe
   end
 

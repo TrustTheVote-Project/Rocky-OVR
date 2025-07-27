@@ -67,7 +67,7 @@ describe Registrant do
     it "should be false if there is no email address" do
       r= FactoryGirl.create(:maximal_registrant)
       r.opt_in_email.should be_truthy
-      r.update_attributes(:email_address=>'', :collect_email_address=>'no')
+      r.update(:email_address=>'', :collect_email_address=>'no')
       r.save!
       r.opt_in_email.should be_falsey
     end
@@ -319,10 +319,8 @@ describe Registrant do
           non_latin_locales.each do |loc|
             txt = I18n.t('txt.registration.in_language_name', :locale=>loc, :default => "")
             unless txt.blank?
-              # puts "\tTesting #{loc}: #{txt}"
               r.send("#{field}=",txt)
               r.should_not be_valid
-              # puts r.send(field), r.errors.keys, r.errors[field]
               r.errors[field].should_not be_empty          
             end
           end
@@ -1048,7 +1046,7 @@ describe Registrant do
           r.send("survey_question_#{qnum}").should == p.send("survey_question_#{qnum}_en")
           r2.send("survey_question_#{qnum}").should == p.send("survey_question_#{qnum}_es")
         
-          p.update_attributes("survey_question_#{qnum}_en"=>"new en #{qnum}", "survey_question_#{qnum}_es"=>"new es #{qnum}")
+          p.update("survey_question_#{qnum}_en"=>"new en #{qnum}", "survey_question_#{qnum}_es"=>"new es #{qnum}")
           r.reload
           r2.reload
           r.send("original_survey_question_#{qnum}=", '')
@@ -1067,7 +1065,7 @@ describe Registrant do
           r.send("survey_question_#{qnum}").should == orig_en
           r2.send("survey_question_#{qnum}").should == orig_es
       
-          p.update_attributes("survey_question_#{qnum}_en"=>"new en #{qnum}", "survey_question_#{qnum}_es"=>"new es #{qnum}")
+          p.update("survey_question_#{qnum}_en"=>"new en #{qnum}", "survey_question_#{qnum}_es"=>"new es #{qnum}")
           r.reload
           r2.reload
           r.send("survey_question_#{qnum}").should == orig_en
@@ -1082,8 +1080,8 @@ describe Registrant do
         r2 = FactoryGirl.create(:step_3_registrant, :partner=>p, :locale=>"es")
         r.send("survey_answer_#{qnum}").should be_blank
         r2.send("survey_answer_#{qnum}").should be_blank
-        r.update_attributes("survey_answer_#{qnum}"=>"My Answer")
-        r2.update_attributes("survey_answer_#{qnum}"=>"My Answer")
+        r.update("survey_answer_#{qnum}"=>"My Answer")
+        r2.update("survey_answer_#{qnum}"=>"My Answer")
         r.reload
         r2.reload
         r.send("original_survey_question_#{qnum}").should == p.send("survey_question_#{qnum}_en")
@@ -1299,11 +1297,11 @@ describe Registrant do
     it "gets parties by locale when required" do
       reg = FactoryGirl.build(:step_2_registrant, :locale => 'en', :home_zip_code => '94101')
       state = reg.home_state
-      reg.localization.update_attributes(:parties => %w(red green blue), :no_party => "black")
+      reg.localization.update(:parties => %w(red green blue), :no_party => "black")
       assert_equal %w(red green blue black), reg.state_parties
       reg.locale = 'es'
       reg.instance_variable_set(:@localization, nil)  # registrant memoizes localization so we have to clear it
-      reg.localization.update_attributes(:parties => %w(red green blue), :no_party => "black")
+      reg.localization.update(:parties => %w(red green blue), :no_party => "black")
       assert_equal %w(red green blue black), reg.state_parties
     end
 

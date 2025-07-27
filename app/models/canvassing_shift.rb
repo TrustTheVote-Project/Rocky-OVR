@@ -247,7 +247,7 @@ class CanvassingShift < ActiveRecord::Base
       service = BlocksService.new(partner: self.partner)
       created_shift = service.upload_canvassing_shift(self, shift_type: blocks_shift_type)
       shift = created_shift[:shift]
-      self.update_attributes(submitted_to_blocks: true, blocks_shift_id: shift["shift"]["id"])
+      self.update(submitted_to_blocks: true, blocks_shift_id: shift["shift"]["id"])
       # if submit_forms?
       #   forms = created_shift[:forms]
       #   registrants_or_requests.each_with_index do |reg_req, i|

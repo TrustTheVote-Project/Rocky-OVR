@@ -53,7 +53,7 @@ class Admin::GeoStatesController < Admin::BaseController
 
   def update
     @geo_state = GeoState[params[:id]]
-    if @geo_state.update_attributes(geo_state_params)
+    if @geo_state.update(geo_state_params)
       flash[:message] = "Updated #{@geo_state.name} settings"
     else
       flash[:warning] =  "Error updating #{@geo_state.name} settings"

@@ -34,7 +34,7 @@ end
 
 
 Given /^that partner's api key is "([^\"]*)"$/ do |key|
-  @partner.update_attributes!(:api_key=>key)
+  @partner.udpate!((:api_key=>key)
 end
 
 

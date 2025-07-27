@@ -10,12 +10,12 @@ class RequestLog < ActiveRecord::Base
   end
     
   def log_uri(uri)
-    update_attributes(request_uri: uri)
+    update(request_uri: uri)
   end
 
   def log_request(http, request)
     request_data = RequestLog.build_request_data(http, request)
-    update_attributes(RequestLogSession.censor.protect(request_data, RequestLogSession.registrant))
+    update(RequestLogSession.censor.protect(request_data, RequestLogSession.registrant))
   end
 
   def log_response(response, duration, error)
@@ -24,11 +24,11 @@ class RequestLog < ActiveRecord::Base
       .merge(build_error_messages(error))
       .merge(RequestLog.build_duration_data(duration, :network_duration_ms))
 
-    update_attributes(RequestLogSession.censor.protect(response_data, RequestLogSession.registrant))
+    update(RequestLogSession.censor.protect(response_data, RequestLogSession.registrant))
   end
 
   def log_error(error)
-    update_attributes(RequestLogSession.censor.protect(build_error_messages(error)))
+    update(RequestLogSession.censor.protect(build_error_messages(error)))
   end
 
   def log_total_duration(duration, error=nil)
@@ -36,7 +36,7 @@ class RequestLog < ActiveRecord::Base
       .build_duration_data(duration, :total_duration_ms)
       .merge(build_error_messages(error))
     censored_data = RequestLogSession.censor.protect(data, RequestLogSession.registrant)
-    update_attributes(censored_data)
+    update(censored_data)
   end
 
   def self.build_request_data(http, request)

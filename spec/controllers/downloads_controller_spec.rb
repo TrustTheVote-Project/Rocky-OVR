@@ -124,7 +124,7 @@ describe DownloadsController do
 
     describe "when PDF is not ready" do
       before(:each) do
-        registrant.update_attributes(pdf_ready: false)
+        registrant.update(pdf_ready: false)
       end    
       it 'redirects to finish page w/not ready' do
         get :pdf, params: {registrant_id: registrant.to_param}
@@ -143,7 +143,7 @@ describe DownloadsController do
     
     describe 'when PDF is ready' do
       before(:each) do
-        registrant.update_attributes(pdf_ready: true)
+        registrant.update(pdf_ready: true)
       end 
       it 'sets pdf_downloaded' do        
         get :pdf, params: {registrant_id: registrant.to_param}

@@ -419,7 +419,7 @@ module V3
         :finish_iframe_url=> reg.finish_iframe_url,
         :locale => reg.locale,
         :partner_id=> reg.partner_id,
-        :reminders_stopped=>reg.update_attributes(:reminders_left=>0)
+        :reminders_stopped=>reg.update(:reminders_left=>0)
       }
     end
 

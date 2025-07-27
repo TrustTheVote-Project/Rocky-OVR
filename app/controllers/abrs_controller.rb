@@ -73,7 +73,7 @@ class AbrsController < ApplicationController
   
   def state_online_redirect
     find_abr(:state_online_redirect)
-    @abr.update_attributes(:finish_with_state=>true)
+    @abr.update(:finish_with_state=>true)
     render :html => "<html><body><script>parent.location.href='#{@abr.home_state_oabr_url}';</script></body></html>".html_safe    
   end
  
@@ -150,7 +150,7 @@ class AbrsController < ApplicationController
     find_abr(:finish)
     @pdf_ready = false
     if params[:reminders]
-      @abr.update_attributes(:reminders_left => 0, final_reminder_delivered: true)
+      @abr.update(:reminders_left => 0, final_reminder_delivered: true)
       @stop_reminders = true
     end
     if params[:share_only] 
@@ -197,14 +197,14 @@ class AbrsController < ApplicationController
     set_up_locale
     # This may return false if validations don't work for being on this step.  Should we redirect backwards?
     raise ActiveRecord::RecordNotFound if @abr.complete? && special_case.nil? && Rails.env != "development" #Don't raise on dev - allow re-editing
-    @abr.update_attributes(current_step: @current_step) if @current_step
+    @abr.update(current_step: @current_step) if @current_step
     @abr_finish_iframe_url = @abr.finish_iframe_url
     
     @partner = @abr&.partner
     @partner_id = @partner&.id
     
     if @abr.finish_with_state? && special_case != :tell_friend && special_case != :finish && special_case != :track
-      @abr.update_attributes(:finish_with_state=>false)
+      @abr.update(:finish_with_state=>false)
     end
     
   end

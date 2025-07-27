@@ -187,15 +187,15 @@ module AbrStateMethods
   end
   
   def custom_too_short_message(field_name, count)
-    custom_validation_message(field_name, "too_short", I18n.t("errors.messages.too_short", { count: count}))
+    custom_validation_message(field_name, "too_short", I18n.t("errors.messages.too_short", count: count))
   end
 
   def custom_too_long_message(field_name, count)
-    custom_validation_message(field_name, "too_long", I18n.t("errors.messages.too_long", { count: count}))
+    custom_validation_message(field_name, "too_long", I18n.t("errors.messages.too_long",  count: count))
   end
 
   def custom_wrong_length_message(field_name, count)
-    custom_validation_message(field_name, "wrong_length", I18n.t("errors.messages.wrong_length", { count: count}))
+    custom_validation_message(field_name, "wrong_length", I18n.t("errors.messages.wrong_length",  count: count))
   end
 
   def custom_format_message(field_name)

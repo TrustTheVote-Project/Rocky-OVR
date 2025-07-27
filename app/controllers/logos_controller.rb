@@ -32,7 +32,7 @@ class LogosController < PartnerBase
     if params[:partner].blank? || params[:partner][:logo].blank?
       @partner.errors.add(:logo, "You must select an image file to upload")
       render "show"
-    elsif @partner.update_attributes(partner_params)
+    elsif @partner.update(partner_params)
       flash[:success] = "You have updated your logo."
       redirect_to partner_logo_path(@partner)
     else

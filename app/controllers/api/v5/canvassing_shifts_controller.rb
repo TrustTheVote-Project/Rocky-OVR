@@ -56,7 +56,7 @@ class Api::V5::CanvassingShiftsController < Api::V5::BaseController
     data = build_attrs_from_param_names([required_params, :notes].flatten)
     c = CanvassingShift.find_by(shift_external_id: (params[:id] || params[:shift_id]))
     if c
-      c.update_attributes(data)
+      c.update(data)
       jsonp({errors: []})
     else
       jsonp({
