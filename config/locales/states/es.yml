@@ -898,8 +898,6 @@ es:
           
           
           status_check_instructions: ''
-          
-          
         abr_form_fields:
           bad_date__format_message: ''
           has_mailing_address: ''
@@ -958,6 +956,12 @@ es:
           header: ''
           instructions: ''
         registration:
+          custom_age_blurb: |-
+            <p>Debe tener al menos 18 años cumplidos en o antes del Día de las Elecciones para 
+            poder registrarse y votar. Si tiene 16 o 17 años, puede preregistrarse para votar.</p>
+            <p>Para recibir orientación paso a paso sobre el proceso de votación, así como fechas 
+            y plazos importantes para todas las elecciones federales y estatales, 
+            <a href="%{pledge_url}">comprométase a votar.</a></p>
           has_state_license: 'Tengo una licencia de conducir o una identificación emitida 
             por el estado.'
           has_no_state_license: 'No tengo una licencia de conducir o una identificación 
