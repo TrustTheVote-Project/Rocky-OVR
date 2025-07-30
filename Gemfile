@@ -59,6 +59,8 @@ gem 'asset_sync'
 gem 'aws-sdk'
 gem 'fog-aws'
 
+gem 'stringio', '~> 3.1.7'
+
 group :development do
   gem 'rack-mini-profiler'
   gem 'listen'
@@ -112,7 +114,7 @@ end
  # gem 'therubyracer'
   gem 'sass-rails'
   gem 'coffee-rails'
-  gem 'uglifier'
+  gem 'terser'
 
 gem "nokogiri" #, ">= 1.10.8"
 
