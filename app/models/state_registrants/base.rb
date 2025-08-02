@@ -11,6 +11,9 @@ class StateRegistrants::Base < ActiveRecord::Base
 
   delegate :has_phone?, :is_fake?, :requires_race?, :requires_party?, :optional_party?, :require_age_confirmation?, :require_id?, :en_localization, :to => :registrant
   
+  delegate :ab_tests, to: :registrant
+  
+  
   delegate :ask_for_partner_volunteers?, to: :registrant
 
   def check_valid_for_state_flow!
@@ -252,7 +255,4 @@ class StateRegistrants::Base < ActiveRecord::Base
     true
   end
 
-  def eligible?
-    true
-  end
 end

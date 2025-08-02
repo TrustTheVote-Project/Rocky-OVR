@@ -43,13 +43,15 @@ class MiClient
 
   # Load client private key from environment variable
   def self.cert_key
-    OpenSSL::PKey::RSA.new(ENV['MI_CERT_KEY'])
+    ENV['MI_CERT_KEY'].blank? ? nil : OpenSSL::PKey::RSA.new(ENV['MI_CERT_KEY'])
   end
-
-  # Load client certificate from environment variable
   def self.cert
-    OpenSSL::X509::Certificate.new(ENV['MI_CERT'])
+    ENV['MI_CERT'].blank? ? nil : OpenSSL::X509::Certificate.new(ENV['MI_CERT'])
   end
+  def self.ca_cert
+    ENV['MI_CERT_CA'].blank? ? nil : OpenSSL::X509::Certificate.new(ENV['MI_CERT_CA'])
+  end
+  
 
   # Send an HTTP request to the MI API
   def self.send(method, path, body: {}, params: {}, headers: {})

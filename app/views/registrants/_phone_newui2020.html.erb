@@ -1,0 +1,17 @@
+  <li class="width_b registrant-form__phone__line">
+    <h3><%= form.label :phone %>
+     <div class="tooltip"><%= tooltip_tag :phone %></div>
+     </h3>
+     <div class="flat-stack">
+      <%= field_div form, :phone, placeholder: '###-###-####' %>
+      <span class="error"><%= form.object.errors[:phone].join("\n") %></span>
+    </div>
+   
+  </li>
+  <li class="secondary registrant-form__phone-type__line">
+    <h3 id="registrant_phone_type_label"><%= form.label :phone_type %></h3>
+    <div class="flat-stack" id="registrant_phone_type_wrapper">
+      <div><%= form.select :phone_type, form.object.phone_types %></div>
+      <span class="error"><%= form.object.errors[:phone_type].join("\n") %></span>
+    </div>
+  </li>

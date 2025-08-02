@@ -1,16 +1,20 @@
 <%- include_step_2 ||= false %>
-<%- if include_step_2 %>
-  <%= render partial: 'step2/name', locals: {form: form} %>
+<%- if @use_newui2020 %>
+  <%= render partial: 'skip_state_newui2020', locals: {form: form, include_step_2: include_step_2} %>
+<%- else %>
+  <%- if include_step_2 %>
+    <%= render partial: 'step2/name', locals: {form: form} %>
 
-  <%= render :partial=> "registrants/home_address", :locals=>{:form=>form} %>
+    <%= render :partial=> "registrants/home_address", :locals=>{:form=>form} %>
 
-  <%= render partial: 'step2/previous_name', locals: { form: form } %>
-  
-  <%= render partial: 'step2/previous_address', locals: { form: form } %>
-<%- end %>
+    <%= render partial: 'step2/previous_name', locals: { form: form } %>
     
-  <%= render :partial=> "registrants/state_id_number", :locals=>{:form=>form} %>
+    <%= render partial: 'step2/previous_address', locals: { form: form } %>
+  <%- end %>
+      
+    <%= render :partial=> "registrants/state_id_number", :locals=>{:form=>form} %>
 
-  <%= render :partial=> "registrants/race_and_party", :locals=>{:form=>form} %>
-  
-      <div class='clear-fix'></div>
+    <%= render :partial=> "registrants/race_and_party", :locals=>{:form=>form} %>
+    
+        <div class='clear-fix'></div>
+<% end %>

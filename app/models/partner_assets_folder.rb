@@ -146,9 +146,15 @@ class PartnerAssetsFolder
     (f = existing(File.join(@partner.assets_path, group.to_s, File.basename(name)))) && f.destroy
   end
 
+  def s3_assets_key
+    "partners/#{@partner.id}/assets"
+  end
+
   def files
     # iteration over original files causes additional S3 requests (Fog's behaviour)
-    @files ||= directory.files.to_a
+    @files ||= Rails.cache.fetch(s3_assets_key, expires_in: 1.hour) {
+      directory.files.to_a
+    }
   end
 
   def file_names
@@ -206,6 +212,7 @@ class PartnerAssetsFolder
       :content_type => mime_from_path(path),
       :public => is_public
     )
+    Rails.cache.delete(s3_assets_key)
   end
 
   def update_path(path, file)
@@ -239,7 +246,7 @@ class PartnerAssetsFolder
       :content_type => mime_from_path(archive_path),
       :public=>false
     )
-
+    Rails.cache.delete(s3_assets_key)
     #FileUtils.cp path, archive_path
   end
 

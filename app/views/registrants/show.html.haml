@@ -1,7 +1,8 @@
 = render :partial => 'layouts/weglot'
 
 - if !@registrant || @registrant.short_form?
-  - intro_key = params[:utm_feature] == 'prereg_included' ? 'txt.registration.intro_message_pre_register' : 'txt.registration.intro_message'
+  - if @use_newui2020
+    %h2.intro-header=t('txt.registration.intro_header')
   .intro-message
     %p= t(intro_key).html_safe
   

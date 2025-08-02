@@ -374,6 +374,7 @@ mail_with_esig:
     - 2 
 
 states_with_online_registration:
+  - AK
   - AZ
   - CA
   - DC
@@ -381,7 +382,6 @@ states_with_online_registration:
   - MO
   - NV
   - WA
-  - AK
   - AL
   - CO
   - CT

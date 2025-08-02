@@ -1,58 +1,61 @@
-- content_for :head do
-  :javascript
-    $(document).ready(function() {
-      $('#javascript_disabled').remove();
-      
-      checkboxTogglesSet($('#state_registrants_mi_registrant_has_mailing_address'), $('#mailing_address_set'));
-      
-              
-      function toggleOtherStateReg() {
-        if ($("#state_registrants_mi_registrant_registered_in_other_state:checked").length > 0) {
-          $(".registrant-form__other-registration-state-abbrev__line").show();
-        } else {
-          $(".registrant-form__other-registration-state-abbrev__line").hide();            
+- if @use_newui2020
+  = render partial: 'state_registrants/mi/step_2_mobile_newui2020' 
+- else
+  - content_for :head do
+    :javascript
+      $(document).ready(function() {
+        $('#javascript_disabled').remove();
+        
+        checkboxTogglesSet($('#state_registrants_mi_registrant_has_mailing_address'), $('#mailing_address_set'));
+        
+                
+        function toggleOtherStateReg() {
+          if ($("#state_registrants_mi_registrant_registered_in_other_state:checked").length > 0) {
+            $(".registrant-form__other-registration-state-abbrev__line").show();
+          } else {
+            $(".registrant-form__other-registration-state-abbrev__line").hide();            
+          }
         }
-      }
-      $("#state_registrants_mi_registrant_registered_in_other_state").click(toggleOtherStateReg);
-      toggleOtherStateReg()
-          
-    });
-    
-= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
-  = render partial: 'state_registrants/locale_selector', locals: {form: form }
-  = render partial: 'state_registrants/header_mobile', locals: {percentage: 10}
-
-  .dynamic-step#step-2
-  
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
-
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__confirm_will_be_18__line", required: true, require_accepted: true}
-
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_30_day_resident, class_name: "registrant-form__is_30_day_resident__line", required: true, require_accepted: true}
-
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :registration_cancellation_authorized, class_name: "registrant-form__registration_cancellation_authorized__line", required: true, require_accepted: true, require_accepted_message: I18n.t('states.custom.mi.custom_errors.registration_cancellation_authorized', url: @registrant.skip_state_flow_registrant_path)}
-
-    = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :digital_signature_authorized, class_name: "registrant-form__digital_signature_authorized__line", required: true, require_accepted: true, require_accepted_message: I18n.t('states.custom.mi.custom_errors.digital_signature_authorized', url: @registrant.skip_state_flow_registrant_path)}
-  
-  
-  
-    %fieldset.updated-dln-recently
-      %ul.stacked.radio
-        = field_li(form, :updated_dln_recently, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.updated_dln_recently'), radio_options: [[t('no'), false], [I18n.t('yes'), true]]})
-
-    %fieldset.requested-duplicate-dln-today
-      %ul.stacked.radio
-        = field_li(form, :requested_duplicate_dln_today, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.requested_duplicate_dln_today'), radio_options: [[t("no"), false], [t("yes"), true]]})
+        $("#state_registrants_mi_registrant_registered_in_other_state").click(toggleOtherStateReg);
+        toggleOtherStateReg()
+            
+      });
       
+  = form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+    = render partial: 'state_registrants/locale_selector', locals: {form: form }
+    = render partial: 'state_registrants/header_mobile', locals: {percentage: 10}
 
-
-  .dynamic-navigation
-    .back.back--link
-      .button.rollover_button
-        = link_to registrant_path(@registrant.registrant) do
-          %button{type: "button"}
-            %span <
-    .next.next--link.prepare
-      = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) 
-  
+    .dynamic-step#step-2
     
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
+
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :confirm_will_be_18, class_name: "registrant-form__confirm_will_be_18__line", required: true, require_accepted: true}
+
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :is_30_day_resident, class_name: "registrant-form__is_30_day_resident__line", required: true, require_accepted: true}
+
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :registration_cancellation_authorized, class_name: "registrant-form__registration_cancellation_authorized__line", required: true, require_accepted: true, require_accepted_message: I18n.t('states.custom.mi.custom_errors.registration_cancellation_authorized', url: @registrant.skip_state_flow_registrant_path)}
+
+      = render partial: 'registrants/generic/checkbox', locals: {form: form, field: :digital_signature_authorized, class_name: "registrant-form__digital_signature_authorized__line", required: true, require_accepted: true, require_accepted_message: I18n.t('states.custom.mi.custom_errors.digital_signature_authorized', url: @registrant.skip_state_flow_registrant_path)}
+    
+    
+    
+      %fieldset.updated-dln-recently
+        %ul.stacked.radio
+          = field_li(form, :updated_dln_recently, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.updated_dln_recently'), radio_options: [[t('no'), false], [I18n.t('yes'), true]]})
+
+      %fieldset.requested-duplicate-dln-today
+        %ul.stacked.radio
+          = field_li(form, :requested_duplicate_dln_today, {skip_tooltip: true, required: true, required_message: I18n.t('states.custom.mi.custom_errors.requested_duplicate_dln_today'), radio_options: [[t("no"), false], [t("yes"), true]]})
+        
+
+
+    .dynamic-navigation
+      .back.back--link
+        .button.rollover_button
+          = link_to registrant_path(@registrant.registrant) do
+            %button{type: "button"}
+              %span <
+      .next.next--link.prepare
+        = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe) 
+    
+      

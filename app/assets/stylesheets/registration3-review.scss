@@ -1,0 +1,35 @@
+#main .review__section {
+    width: 100%;
+    margin: 1em 0;
+    padding-top: 1em;
+    border-top: 1px solid #ccc;
+
+    .rollover_button  a.button_edit_en-newui2020  > span {
+        background-color: white;
+        color: #b32426;
+        display: unset;
+    }
+
+    span.button { 
+        top: 0px;
+        position: absolute;
+        top: -38px;
+        right: 0px;
+    }
+
+    .review__section__content {
+        padding-top:10px
+    }
+    
+    .review__section__label {
+        font-weight:bold;
+    }
+    
+
+
+}
+
+
+  
+
+  

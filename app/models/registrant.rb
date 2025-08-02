@@ -47,25 +47,9 @@ class Registrant < ActiveRecord::Base
   
   scope :abandoned, -> {where(abandoned: true)}
   
-  has_many :ab_tests
-
-  has_many :tracking_events, foreign_key: :source_tracking_id, primary_key: :uid
-
-  def render_view_events
-    tracking_events.where(tracking_event_name: "registrant::render_view")
-  end
-
-  # used to determine if mobile ui should be used in cases where iframed
-  def iframe_param_present?
-    other_parameters&.include?('iframe=true')
-  end
-
-
-
-  serialize :state_ovr_data
-  after_initialize do
-    self.state_ovr_data ||= {}
-  end
+  has_many :ab_tests, autosave: true
+  
+  serialize :state_ovr_data, Hash
 
   STEPS = [:initial, :step_1, :step_2, :step_3, :step_4, :step_5, :complete]
   def step_list
@@ -938,6 +922,10 @@ class Registrant < ActiveRecord::Base
     localization ? localization.allows_ovr_ignoring_license?(self) : false
   end
   
+  def finish_with_state_eligible?
+    home_state_allows_ovr_ignoring_license? && !mail_with_esig? && (has_state_license? || !require_id?)  && (will_be_18_by_election || !require_age_confirmation?)
+  end
+
   def skip_state_flow!
     self.state_ovr_data ||= {}
     self.state_ovr_data[:skip_state_flow] = true

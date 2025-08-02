@@ -1,6 +1,6 @@
 %div.whitelabeled
   %ul.stacked
-    - unless @partner.partner2_css_present?
+    - unless @partner.partner2_css_present? || @partner.partner3_css_present?
       - if @partner.application_css_present?
         %li.full-width
           %h3= link_to 'application.css', @partner.application_css_url
@@ -14,3 +14,7 @@
       %br
       %h3= "partner2.css#{' (missing)' unless @partner.partner2_css_present? }"
       %div= file_field_tag 'css_files[partner2]'
+    %li.full-width
+      %br
+      %h3= "partner3.css#{' (missing)' unless @partner.partner3_css_present? }"
+      %div= file_field_tag 'css_files[partner3]'

@@ -1,16 +1,14 @@
-- if @use_mobile_ui
-  = render partial: 'state_registrants/header_mobile', locals: {percentage: 100}
+- if @use_newui2020 
+  = render partial: 'state_registrants/pa/complete_newui2020' #, locals: { form: form }
+- else
 
-%h1
-  = I18n.t 'states.custom.pa.registration_complete'
+  - if @use_mobile_ui
+    = render partial: 'state_registrants/header_mobile', locals: {percentage: 100}
 
-.declaration-text
-  = I18n.t('states.custom.pa.registration_complete_dialog_text').html_safe
+  %h1
+    = I18n.t 'states.custom.pa.registration_complete'
 
-- if @registrant.partner && !@registrant.partner.external_conversion_snippet.blank?
-  = @registrant.partner.external_conversion_snippet.to_s.html_safe
+  .declaration-text
+    = I18n.t('states.custom.pa.registration_complete_dialog_text').html_safe
 
-
-= render "finishes/finish_iframe"
-
-
+  = render "finishes/finish_iframe"

@@ -1,0 +1,37 @@
+- content_for :head do
+  :javascript
+    $(".error").each(function(a,b) {console.log($(b).html())});
+    $(document).ready(function() {
+      $('#javascript_disabled').remove();
+          
+    });
+  
+
+    
+= form_for(@registrant, url: update_state_registrant_path(@registrant.to_param, controller.current_state)) do |form|
+  = render partial: 'state_registrants/locale_selector', locals: {form: form }
+  = render partial: 'state_registrants/mi/header'
+  
+  %fieldset
+    %legend
+      %span= I18n.t('txt.registration.name_display')
+      = tooltip_tag :registrant_name
+    = @registrant.full_name
+  
+  = render partial: 'registrants/generic/checkbox_block_selector', locals: {form: form, field: :confirm_us_citizen, class_name: "registrant-form__us-citizen__line", required: true, require_accepted: true}
+
+  = render partial: 'registrants/generic/checkbox_block_selector', locals: {form: form, field: :is_30_day_resident, class_name: "registrant-form__is_30_day_resident__line", required: true, require_accepted: true}
+
+  = render partial: 'registrants/generic/checkbox_block_selector', locals: {form: form, field: :registration_cancellation_authorized, class_name: "registrant-form__registration_cancellation_authorized__line", required: true, require_accepted: true, require_accepted_message: I18n.t('states.custom.mi.custom_errors.registration_cancellation_authorized', url: @registrant.skip_state_flow_registrant_path)}
+
+  = render partial: 'registrants/generic/checkbox_block_selector', locals: {form: form, field: :digital_signature_authorized, class_name: "registrant-form__digital_signature_authorized__line", required: true, require_accepted: true, require_accepted_message: I18n.t('states.custom.mi.custom_errors.digital_signature_authorized', url: @registrant.skip_state_flow_registrant_path)}
+  
+  
+  = render partial: 'registrants/generic/checkbox_block_selector', locals: {form: form, field: :updated_dln_recently,  required: true, require_accepted: true}
+  = render partial: 'registrants/generic/checkbox_block_selector', locals: {form: form, field: :requested_duplicate_dln_today, required: true, require_accepted: true}
+    
+
+  = rollover_button(:next_step, I18n.t('txt.button.submit').html_safe)  
+  .back
+    = link_to t('txt.button.back').html_safe, registrant_path(@registrant.registrant)
+    

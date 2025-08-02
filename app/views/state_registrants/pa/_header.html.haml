@@ -1,8 +1,11 @@
-#form_header
-  .state-integration
-    = render partial: 'state_registrants/pa/steps'
+- if @use_newui2020
+  = render partial: 'state_registrants/pa/header_newui2020' #, locals: { form: form }
+- else
+  #form_header
+    .state-integration
+      = render partial: 'state_registrants/pa/steps'
 
-    %h1
-      = t("states.custom.pa.#{params[:step]}_header").html_safe
-      .sub-header= t("states.custom.pa.#{params[:step]}_subheader", default: '').html_safe
+      %h1
+        = t("states.custom.pa.#{params[:step]}_header").html_safe
+        .sub-header= t("states.custom.pa.#{params[:step]}_subheader", default: '').html_safe
 

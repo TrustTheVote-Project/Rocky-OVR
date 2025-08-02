@@ -1,7 +1,6 @@
-- if defined?(@registrant) && @registrant&.home_state_abbrev == "NC"
-  = form.hidden_field :date_of_birth_month, value: "00"
-  = form.hidden_field :date_of_birth_day, value: "00"
-  = form.hidden_field :date_of_birth_year, value: "0000"
+
+- if @use_newui2020
+  = render partial: 'registrants/date_of_birth_newui2020', locals: { form: form }
 - else
   - skip_tooltip ||= false
   %li.registrant-form__date-of-birth__line

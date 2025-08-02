@@ -13,9 +13,10 @@
     
   %ul#signature_method.checkbox.signature-method
     %li
-      = form.radio_button :signature_method, VoterSignature::UPLOAD_METHOD
-      %label{for: "#{form_name_prefix}_signature_method_upload"}
-        = I18n.t("states.custom.#{home_state_key}.signature_capture.upload_signature_image", default: t('txt.signature_capture.upload_signature_image'))
+      %h3
+        = form.radio_button :signature_method, VoterSignature::UPLOAD_METHOD
+        %label{for: "#{form_name_prefix}_signature_method_upload"}
+          = I18n.t("states.custom.#{home_state_key}.signature_capture.upload_signature_image", default: t('txt.signature_capture.upload_signature_image'))
       #signature-cropper
         %br
         .select-image-btn.rollover_button
@@ -43,9 +44,10 @@
       = form.hidden_field :voter_signature_image
 
     %li
-      = form.radio_button :signature_method,  VoterSignature::DEVICE_METHOD
-      %label{for: "#{form_name_prefix}_signature_method_device"} 
-        = I18n.t("states.custom.#{home_state_key}.signature_capture.continue_on_device", default: t('txt.signature_capture.continue_on_device'))
+      %h3
+        = form.radio_button :signature_method,  VoterSignature::DEVICE_METHOD
+        %label{for: "#{form_name_prefix}_signature_method_device"} 
+          = I18n.t("states.custom.#{home_state_key}.signature_capture.continue_on_device", default: t('txt.signature_capture.continue_on_device'))
       #continue_on_device
         %p.instructions{class: ('has_error' if form.object.errors[:sms_number_for_continue_on_device].present?) }
           = form.label :sms_number_for_continue_on_device #, "Text me the link:"
@@ -77,19 +79,22 @@
             
     - if allow_desktop_signature
       %li
-        = form.radio_button :signature_method, VoterSignature::DESKTOP_METHOD
-        %label{for: "#{form_name_prefix}_signature_method_desktop"} 
-          = I18n.t("states.custom.#{home_state_key}.signature_capture.continue_on_desktop", default: t('txt.signature_capture.continue_on_desktop'))
+        %h3
+          = form.radio_button :signature_method, VoterSignature::DESKTOP_METHOD
+          %label{for: "#{form_name_prefix}_signature_method_desktop"} 
+            = I18n.t("states.custom.#{home_state_key}.signature_capture.continue_on_desktop", default: t('txt.signature_capture.continue_on_desktop'))
       - if allow_print_and_sign
         %li
+          %h3
+            = form.radio_button :signature_method, VoterSignature::PRINT_METHOD
+            %label{for: "#{form_name_prefix}_signature_method_print"} 
+              = I18n.t("states.custom.#{home_state_key}.signature_capture.continue_on_paper", default: t('txt.signature_capture.continue_on_paper'))
+    - else
+      %li
+        %h3
           = form.radio_button :signature_method, VoterSignature::PRINT_METHOD
           %label{for: "#{form_name_prefix}_signature_method_print"} 
             = I18n.t("states.custom.#{home_state_key}.signature_capture.continue_on_paper", default: t('txt.signature_capture.continue_on_paper'))
-    - else
-      %li
-        = form.radio_button :signature_method, VoterSignature::PRINT_METHOD
-        %label{for: "#{form_name_prefix}_signature_method_print"} 
-          = I18n.t("states.custom.#{home_state_key}.signature_capture.continue_on_paper", default: t('txt.signature_capture.continue_on_paper'))
     
 #signature_capture
   .rollover_button.capture-signature

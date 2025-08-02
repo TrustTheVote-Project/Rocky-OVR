@@ -50,20 +50,24 @@
     });
   </script>
   <%= yield :head %>
-</head>
-
-<body class="registration-page<%- if !@registrant || @registrant.short_form? %><%= ' not-landing' if @registrant && @registrant.short_form? && @registrant.home_state_abbrev %><%- end %><%= ' primary-partner' if @partner && @partner.primary? %><%= ' new-mobile-ui' if @use_mobile_ui %><%= ' old-school' if @registrant && !@registrant.short_form? %> <%= @registrant&.locale&.html_safe || 'en' %>">
-<% if @registrant && !@registrant.short_form? && request.original_url.include?('new') %>
-<!--short form was set to false so display not supported message-->
-<% excluded_params = [:short_form, :action, :controller] %>
-<% new_params = params.except(*excluded_params) %>
-<p style="margin-top: 28px; line-height: 2; font-size: 16px; font-weight: 600; text-align: center;">This form is no longer supported.<br/>Please visit <a href="<%= root_url(source: 'short-form-false') %>"><%= root_url %></a> to register to vote.</p>
-<% else %>
-  <%- if @registrant %>
+  <%- if @assigned_ab_test_name && @assigned_ab_test_assignment %>
     <script type="text/javascript">
-      window._registrantUID = "<%= j @registrant.uid %>";
+      var testName = '<%= @assigned_ab_test %>';
+      var assignment = '<%= @assigned_ab_test_assignment %>';
+      //console.log("will send google event", testName, assignment)
+      if (window.ga) {
+        ga(function() {
+          var trackers = ga.getAll();
+          var tracker = trackers[0];
+          if (tracker) {
+            tracker.send('event', testName, assignment);
+          }
+        });
+      }
     </script>
   <%- end %>
+</head>
+<body class="<%= 'primary-partner' if @partner && @partner.primary? %> <%= 'new-mobile-ui' if @use_mobile_ui %> <%= "state-#{@registrant.home_state_abbrev.downcase}" if @registrant && @registrant.home_state_abbrev %> <%= 'newui2020' if @use_newui2020 %> <%= 'oldui' if !@use_newui2020 %>">
   <%- if @partner && !@partner.external_tracking_snippet.blank? %>
     <%= @partner.external_tracking_snippet.to_s.html_safe %>
   <%- end %>

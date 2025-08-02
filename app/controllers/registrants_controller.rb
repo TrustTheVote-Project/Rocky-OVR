@@ -96,8 +96,25 @@ class RegistrantsController < RegistrationStep
     # if MobileConfig.is_mobile_request?(request) && (!@partner || !@partner.mobile_redirect_disabled)
     #   redirect_to MobileConfig.redirect_url(:partner=>@partner_id, :locale=>@locale, :source=>@source, :tracking=>@tracking, :collectemailaddress=>@collect_email_address)
     # else
-    if (@home_state && !@home_state.participating?) || (@short_form && (@email_address || @collect_email_address=='no') && @home_state)
-      
+
+    @registrant = Registrant.new(
+      partner_id: @partner_id, 
+      locale: @locale, 
+      tracking_source: @source, 
+      tracking_id: @tracking, 
+      short_form: @short_form, 
+      collect_email_address: @collect_email_address,
+      email_address: @email_address,
+      first_name: @first_name,
+      last_name: @last_name,
+      home_state: @home_state,
+      home_zip_code: @home_zip_code,
+      shift_id: @shift_id,
+      is_fake: params.keys.include?('preview_custom_assets')
+    )
+    set_ab_test
+
+    if !@use_newui2020 && ((@home_state && !@home_state.participating?) || (@short_form && (@email_address || @collect_email_address=='no') && @home_state))
       # In case it's just a home state being passed, allow to create the registrant anyway
       @short_form = true
       params[:registrant] = {
@@ -110,22 +127,7 @@ class RegistrantsController < RegistrationStep
         is_fake: params.keys.include?('preview_custom_assets')
       }
       create
-    else
-      @registrant = Registrant.new(
-        partner_id: @partner_id,
-        locale: @locale,
-        tracking_source: ERB::Util.html_escape(@source),
-        tracking_id: ERB::Util.html_escape(@tracking),
-        short_form: ERB::Util.html_escape(@short_form),
-        collect_email_address: ERB::Util.html_escape(@collect_email_address),
-        email_address: ERB::Util.html_escape(@email_address),
-        first_name: ERB::Util.html_escape(@first_name),
-        last_name: ERB::Util.html_escape(@last_name),
-        home_state: @home_state,
-        home_zip_code: ERB::Util.html_escape(@home_zip_code),
-        shift_id: ERB::Util.html_escape(@shift_id),
-        is_fake: params.keys.include?('preview_custom_assets')
-      )
+    else        
       render "show"
     end
   end
@@ -133,30 +135,27 @@ class RegistrantsController < RegistrationStep
   # POST /registrants
   def create
     set_up_locale
-
-    # Escape all query parameters
-    query_params = params[:query_parameters].present? ? params[:query_parameters].transform_values { |value| ERB::Util.html_escape(value) } : {}
-
-    # Check if the 'id' parameter is present in the request and if so force them back
-    if params[:registrant].present? && params[:registrant][:id].present?
-      # Redirect to root URL without the 'id' parameter
-      redirect_to root_url(registrant_params.except(:id)) and return
-    end
-
-    @registrant = Registrant.new((registrant_params || {}).reverse_merge(
-      :locale => @locale,
-      :partner_id => @partner_id,
-      :tracking_source => ERB::Util.html_escape(@source),
-      :tracking_id => ERB::Util.html_escape(@tracking),
-      :short_form => ERB::Util.html_escape(@short_form),
-      :collect_email_address => ERB::Util.html_escape(@collect_email_address),
-      :query_parameters => query_params
-    ))
+    @registrant = Registrant.new((params[:registrant] || {}).reverse_merge(
+                                    :locale => @locale,
+                                    :partner_id => @partner_id,
+                                    :tracking_source => @source,
+                                    :tracking_id => @tracking,
+                                    :short_form => @short_form,
+                                    :collect_email_address => @collect_email_address))
 
     @use_mobile_ui = determine_mobile_ui(@registrant)
-    @registrant.shift_id = ERB::Util.html_escape(@shift_id) if @shift_id
-    @registrant.shift_id = ERB::Util.html_escape(@canvassing_shift.shift_external_id) if @canvassing_shift
-
+    @registrant.shift_id = @shift_id if @shift_id
+    @registrant.shift_id = @canvassing_shift.shift_external_id if @canvassing_shift
+    
+    if params["newui2020"]
+      t = AbTest.new
+      t.name = "newui2020"
+      t.assignment = params["newui2020"]
+      @assigned_ab_test_name = t.name 
+      @assigned_ab_test_assignment = "#{t.name}-assigned-to-#{t.assignment}"          
+      @registrant.ab_tests << t
+    end
+    
     if @registrant.partner.primary?
       @registrant.opt_in_email = true
       # @registrant.opt_in_sms = true

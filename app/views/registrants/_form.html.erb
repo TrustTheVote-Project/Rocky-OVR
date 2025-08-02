@@ -1,17 +1,16 @@
-<%= hidden_field_tag "partner", h(@partner_id) %>
-<%= hidden_field_tag "locale", h(@locale) %>
-<%= hidden_field_tag "source", h(@source) %>
-<%= hidden_field_tag "tracking", h(@tracking) %>
-<%= hidden_field_tag "short_form", h(@short_form) %>
-<%= hidden_field_tag "collectemailaddress", h(@collect_email_address) %>
-<%= hidden_field_tag "shift_id", h(@shift_id) %>
-<%- (@query_parameters || {}).keys.each do |qpk| %>
-  <%= hidden_field_tag "query_parameters[#{qpk}]", @query_parameters[qpk] %>
-<%- end %>
-<%- (@additional_registrant_params || {}).keys.each do |rpk| %>
-  <%= hidden_field_tag "registrant[#{rpk}]", @additional_registrant_params[rpk] %>
-<%- end %>
+<%- if @use_newui2020 %>
+  <%= render partial: 'form_newui2020', locals: {form: form} %>
+<%- else %>
+
+<%= hidden_field_tag "partner", @partner_id %>
+<%= hidden_field_tag "locale", @locale %>
+<%= hidden_field_tag "source", @source %>
+<%= hidden_field_tag "tracking", @tracking %>
+<%= hidden_field_tag "short_form", @short_form %>
+<%= hidden_field_tag "collectemailaddress", @collect_email_address %>
+<%= hidden_field_tag "shift_id", @shift_id %>
 <%= form.hidden_field :under_18_ok, :value => 0 %>
+<%= hidden_field_tag :newui2020, "OLD" %>
 
 <% content_for :head do %>
 <script>
@@ -96,4 +95,8 @@
       </h3>
     </li>
   </ul>
+<%- end %>
+
+
+
 <%- end %>
