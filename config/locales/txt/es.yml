@@ -1,8 +1,18 @@
 ---
 es:
   txt:
+    privacy_policy_acceptance: |-
+      Al hacer clic en "Siguentes pasos", acepta la 
+      <a href="https://www.rockthevote.org/about-rock-the-vote/privacy-policy/" target="_blank" rel="noopener">
+      póliza de privacidad</a> de Rock the Vote 
+      y acepta recibir recordatorios de elección de correos electrónicos de Rock the Vote. 
+      Puede cancelar la suscripción en cualquier momento.
+      
     register_to_vote: Registrarse para votar
     register_to_vote_in: Registrarse en %{state_abbrev}
+    check_voter_status: Verifica el estado<br/>de tu registro de votante
+    check_voter_status_in: Verifica el estado de tu registro de votante en %{state_abbrev}
+    
     unknown_error: ! 'Error desconocido: los administradores de red han sido contactados.'
     error: Algo salió mal.
     try_again: Regresar y volver a intentarlo.
@@ -11,6 +21,7 @@ es:
       text_me: SMS el enlace
       email_me: Envíame un correo electrónico
       submit: Siguientes pasos
+      lookup: Verifica el estado de tu registro de votante
       edit: Editar
       back: ! '&lt; Paso Anterior'
       download: Imprimir su<br/>formulario de<br/>registro ahora
@@ -47,6 +58,8 @@ es:
       survey_title: Preguntas para ti
       preparing_header: Preparando el Formulario...
       download_header: Imprimir Formato
+      after_you_download: Después de descargar su formulario, dígale a sus amigos que 
+        ellos también pueden registrarse para voter.
       finish_header: Pasen la voz!
       finish_pdf_delay_header: Revise su correo electrónico
       finish_pdf_delay: Se trata de tomar un tiempo para crear su formulario de inscripción
@@ -73,6 +86,12 @@ es:
       previous_name: Nombre Anterior
       previous_address: Dirección Anterior
       opt_in_sms: Deseo recibir mensajes de texto de %{organization}.
+      opt_in_sms_compliance: Al registrarse, acepta recibir de manera periódica mensajes de 
+        texto de %{organization} (%{short_code}). Pueden aplicarse tarifas de mensajes y 
+        datos. Envíe un mensaje de texto HELP para información o STOP para no recibir 
+        mensajes. No es necesario comprar. Consulte <a href="%{terms_url}" target="_blank" 
+        rel="noopener">términos y condiciones</a> y <a href="%{privacy_url}" target="_blank" 
+        rel="noopener">póliza de privacidad</a>.
       opt_in_email: Recibir emails de %{organization}
       remind_when_18: Envíenme un recordatorio cuando cumpla 18 años.
       get_updates: Mantente actualizado con Rock the Vote.
@@ -115,8 +134,10 @@ es:
         work: Trabajo
         other: Otro
       instructions:
+        online: "<b>Nota</b>: Algunos estados tienen sistemas de registro de votante en línea. 
+          <a href='https://www.rockthevote.org/online/' target='_blank'>Aprenda más.</a>"
         overseas: Si Usted es un ciudadano americano viviendo afuera el país o Usted
-          es un miembro de servicio, haga <a href='https://www.overseasvotefoundation.org/vote/home.htm?source=rockthevote'
+          es un miembro de servicio, haga <a href='https://www.usvotefoundation.org/vote/request-overseas-absentee-ballot?source=rockthevote'
           target='_blank'> clic aquí</a>  para registrarse a votar.
         opt_in_email: Le enviaremos recordatorios de la elección, información del
           recinto electoral asignado, y información oportuna sobre música y temas
@@ -134,9 +155,17 @@ es:
           en tu forma.
         download_2: No serás registrado si no imprimes, firmas y mandas tu forma vía
           correo!
-        finish: ! 'No se olviden de avisar a amigos y parientes lo facil que es registrarse!  Aqui
-          se incluyen algunos instrumentos para pasar la voz sobre como registrar
-          el voto:'
+        download_3: "<p>No tiene acceso a impresora ahora mismo? Enviamos su formulario por 
+          correo electrónico para imprimir más tarde.</p>"
+        state_not_enabled_download: Porque %{state} no tiene una sistemas de registro de 
+          votante en línea en español, debe imprimir y enviar por correo su formulario de 
+          inscripción a su oficina electoral local.
+        no_id_download: Porque no tiene una identificación emitida por el estado, debe 
+          imprimir y enviar por correo su formulario de inscripción a su oficina electoral 
+          local.
+        finish: ! 'No se olviden de avisar a amigos y parientes lo facil que es 
+          registrarse! Aqui se incluyen algunos instrumentos para pasar la voz sobre como 
+          registrar el voto:'
         finish_2: Consiga esta harramienta para inscriber a votantes por su pagína
           web. Alista te gratís en
         finish_under_18: Te enviaremos un recordatorio para que te registres en tu
@@ -149,6 +178,9 @@ es:
         finish_update_status: No se olviden actualizar su estatus por Facebook y Twitter.
         state_online_registration: Usted puede ser elegible para terminar su registro
           de votante usando el sistema de registro de votante en línea de %{state}.
+        state_online_registration_id_not_required: Usted puede ser elegible para terminar 
+          su registro de votante usando el sistema de registro de votante en línea de 
+          %{state}.
         state_online_registration_sub_header: Haga clic a continuación para finalizar
           el proceso de inscripción en su estado.
         leave_state_online_registration: Tú puedes completar su registración de votantes
@@ -235,7 +267,10 @@ es:
         registrant_name: Poner tu nombre completo en estos espacios.  Porfavor no
           usar apodos o iniciales.  Si esta aplicación es para el cambio de nombre
           se te preguntará tu nombre anterior registrado.  Y no olvidar poner tu título
-          (Sr., Sra., Srta., Ms.).
+          (Sr., Sra., Srta., Ms.). Las opciones para el campo Título están predeterminadas 
+          por el formulario nacional de inscripción de votantes, y este campo es requerido 
+          por algunos estados. No reflejan los valores o las creencias de Rock the Vote 
+          sobre la inclusión de género.
         home_address: Poner tu dirección en estos espacios.  No poner tu dirección
           de correo aquí si es diferente a la dirección de tu casa.  No usar Post
           office Box o rural route sin un número de box.  Si vives en un area rural
@@ -250,6 +285,14 @@ es:
           nombre anterior.
         previous_address: Si te has cambiado de dirección desde tu ultimo registro,
           favor de proveer la dirección anterior.
+      mobile_ui:
+        step_2:
+          title: Elegibilidad
+          instructions: Los campos requeridos están marcados con un asterisco (*)
+        step_8:
+          title: Identificación
+        step_9:
+          title: Información personal
       
     status_text:
       message: Acabo de inscribirme para votar y tú también puedes!

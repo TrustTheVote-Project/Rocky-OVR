@@ -20,7 +20,7 @@ module ApplicationHelper
       messages << content_tag(:li, flash[key], :class => "flash-#{key}").html_safe if flash[key]
     end
     if messages.empty?
-       content_tag(:div, "", :class => "flash").html_safe
+      content_tag(:div, "", :class => "flash").html_safe
     else
       content_tag(:ul, messages.join("\n").html_safe, :class => "flash").html_safe
     end
@@ -64,7 +64,7 @@ module ApplicationHelper
     return stylesheets.compact
   end
 
-  def partner_css(partner = @partner, registrant=@registrant || @abr, include_mobile = @use_mobile_ui)
+  def partner_css(partner = @partner, registrant=@registrant || @abr || @alert_request, include_mobile = @use_mobile_ui)
     if params.has_key?(:preview_custom_assets) || registrant.try(:is_fake)
       return preview_partner_css(partner, registrant, include_mobile)
     end
@@ -188,6 +188,9 @@ module ApplicationHelper
       radio_label = options[:label_options] || form.object.class.human_attribute_name(field)
       label = content_tag(:h3, (radio_label.html_safe + required.html_safe).html_safe).html_safe
       field_html = radio_div(form, field, options[:radio_options], options[:field_options])
+    elsif options[:field_options] && options[:field_options][:kind].to_s == "checkbox"
+      field_html = checkbox_div(form, field, label_tag, options[:field_options])
+      label = nil
     else
       field_html = field_div(form, field, options[:field_options])
     end
@@ -198,10 +201,11 @@ module ApplicationHelper
     end
   end
 
-  def field_div(form, field, options={})
-    options ||= {}
+  def field_div(form, field, opts={})
+    options = (opts || {}).deep_dup
     kind = options.delete(:kind) || "text"
     selector = "#{kind}_field"
+    selector = "check_box" if selector == "checkbox_field"
     has_error = !form.object.errors[field].empty? ? "has_error" : nil
     class_name = [options.delete(:class), has_error].compact.join(' ')
     if req_type = options.delete(:required)
@@ -217,6 +221,32 @@ module ApplicationHelper
       options[:data]["client-validation-require-accept".to_sym] = require_accept_message_for(form.object, field)
     end
     content_tag(:div, form.send( selector, field, {:size => nil}.merge(options) ).html_safe, :class => class_name).html_safe
+  end
+
+  def checkbox_div(form, field, label, opts={})
+    options = (opts || {}).deep_dup
+    selector = "check_box"
+    has_error = !form.object.errors[field].empty? ? "has_error" : nil
+    class_name = [options.delete(:class), has_error].compact.join(' ')
+    if req_type = options.delete(:required)
+      options[:data] ||= {}
+      if req_type == :conditional
+        options[:data]["client-conditional-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
+      else
+        options[:data]["client-validation-required".to_sym] = options[:required_message] || required_message_for(form.object, field)
+      end
+    end    
+    if options.delete(:require_accept)
+      options[:data] ||= {}
+      options[:data]["client-validation-require-accept".to_sym] = require_accept_message_for(form.object, field)
+    end
+    puts(selector, field, {:size => nil}.merge(options))
+    if field == "check_box"
+      field= form.check_box(field, {:size => nil}.merge(options))
+    else
+      field = form.send( selector, field, {:size => nil}.merge(options) )
+    end
+    content_tag(:div, "#{field}#{label}".html_safe, :class => class_name).html_safe
   end
 
   def select_div(form, field, contents, options={})
@@ -310,10 +340,13 @@ module ApplicationHelper
 
   def rollover_button(name, text, button_options={})
     button_options[:id] ||= "registrant_submit"
+    button_options[:class] ||= ""
+    button_options[:class] += " registrant_submit"
+    
     html =<<-HTML
       <div class="button rollover_button">
         <a class="button_#{name}_#{I18n.locale} button_#{name}" href="#">
-          <button type="submit" id="#{button_options.delete(:id)}" #{button_options.collect{|k,v| "#{k}=\"#{v}\"" }.join(" ")}>
+          <button role="button" type="submit" id="#{button_options.delete(:id)}" #{button_options.collect{|k,v| "#{k}=\"#{v}\"" }.join(" ")}>
             <span>#{text}</span>
           </button>
         </a>

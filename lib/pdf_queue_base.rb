@@ -14,15 +14,22 @@ module PdfQueueBase
     return 0
   end
   
-  def queue_registrant(registrant_id)
-    puts self.class.to_s
-    puts queue_url
+  def queue_registrant(registrant_id, trynum = 0)
     resp = queue.send_message({
       queue_url: queue_url, # required
       message_body: "#{self.name}::#{registrant_id}", # required
       delay_seconds: 0,
     })
     return resp
+  rescue Exception => e
+    if trynum < 3
+      self.delay.queue_registrant(registrant_id, trynum + 1)
+    else
+      msg = "Registraint #{registrant_id} not queued for PDF generation!:\n#{e.message}\n#{e.backtrace.join("\n")}"
+      Rails.logger.error "Registraint #{:registrant_id} not queued for PDF generation!:\n#{e.message}\n#{e.backtrace.join("\n")}"
+      AdminMailer.general_error(msg).deliver
+      return false
+    end
   end
   
   def create!(options)
@@ -31,7 +38,9 @@ module PdfQueueBase
     end
     queue_registrant(options[:registrant_id])
   rescue Exception => e
+    msg = "Registraint #{options[:registrant_id]} not queued for PDF generation!:\n#{e.message}\n#{e.backtrace.join("\n")}"
     Rails.logger.error "Registraint #{options[:registrant_id]} not queued for PDF generation!:\n#{e.message}\n#{e.backtrace.join("\n")}"
+    AdminMailer.general_error(msg).deliver
     return false
   end
   
@@ -123,7 +132,7 @@ module PdfQueueBase
   def receive_and_generate
     puts "Receive and generate for #{self.name}"
     registrant_id, message, klass = receive
-    puts registrant_id, message, klass
+    # puts registrant_id, message, klass
     if registrant_id && message && klass
       klass.constantize.generate(registrant_id, message)
     else

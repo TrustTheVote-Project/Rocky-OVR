@@ -1,1 +1,79 @@
-<%= render :partial=>"common_state_online_page", :locals=>{:form=>form} %>
+<% content_for :head do %>
+<script>
+  $(document).ready(function() {
+    var show_fields = <%= [params[:show_fields], @show_fields].include?("1") ? 'true' : 'false' %> ;
+    $('.skip_state_registration_link').show();
+    if (!show_fields) {
+      $('.skip_state_registration').hide();
+    }
+    $('.skip_state_registration_link').click(function() {
+      $('.skip_state_registration').show();
+    });
+
+  });
+</script>
+<% end %>
+
+<h1>
+  <%- if @registrant.home_state.require_id? %>
+  <%= I18n.t('txt.registration.instructions.state_online_registration', :state=>@registrant.home_state_abbrev).html_safe %>
+  <%- else %>
+  <%= I18n.t('txt.registration.instructions.state_online_registration_id_not_required', :state=>@registrant.home_state_abbrev).html_safe %>
+  <%- end %>
+</h1>
+<br />
+
+
+
+
+
+<%= rollover_button(:state_online_registration, I18n.t('txt.button.state_online_registration', :state=>@registrant.home_state_name).html_safe, {:id=>'registrant_state_online_registration',:name=>'registrant_state_online_registration',:value=>'registrant_state_online_registration'}) %>
+<%- if @registrant.has_home_state_online_redirect? || @registrant.has_home_state_online_registration_view? %>
+<script>
+  $(document).ready(function() {
+    if (!window.isFacebookApp()) {
+      $("#registrant_state_online_registration").attr('formtarget', '_BLANK')
+    }
+  });
+
+  $("#registrant_state_online_registration").click(function() {
+    showSharing();
+    return true;
+  })
+
+  function showSharing() {
+    if (!window.isFacebookApp()) {
+      setTimeout(function() {
+        //console.log("redirect!")
+        window.location.href = "<%= registrant_finish_path(@registrant, :share_only=>true) %>";
+      }, 1000);
+    }
+  }
+</script>
+<%- end %>
+
+<div style="display: none !important;">
+	<div style="text-align:center;">
+	  <a href="#" class='skip_state_registration_link' style="display:none;">
+		<%= I18n.t('txt.button.skip_state_online_registration', :rtv_and_partner_name=>@registrant.rtv_and_partner_name).html_safe %>
+	  </a>
+	</div>
+	<br /><br />
+	<br /><br />
+	<div class="skip_state_registration">
+	  <h2><%= t('txt.registration.step_3_header') %></h2>
+	  <%= render partial: 'skip_state', locals: { form: form, include_step_2: true } %>
+	  <%- if @registrant.use_short_form? %>
+	  <%- if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig? %>
+	  <div class="checkbox" style="font-size: 150%; text-align: center;">
+		<%= hidden_field_tag :pdf_assistance, '0', id: :pdf_assitance_hidden %>
+		<%= check_box_tag :pdf_assistance, "1", @pdf_assistance == "1" %>
+		<%= label_tag :pdf_assistance, I18n.t('txt.button.download_assistance') %>
+	  </div>
+	  <%- end %>
+	  <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.prepare').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>
+	  <%- else %>
+	  <%= rollover_button(:skip_state_online_registration, I18n.t('txt.button.review').html_safe , {:id=>'registrant_skip_state_online_registration',:name=>'registrant_skip_state_online_registration',:value=>'registrant_skip_state_online_registration'}) %>
+	  <%- end %>
+	</div>
+</div>

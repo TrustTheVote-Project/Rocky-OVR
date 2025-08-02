@@ -1,7 +1,7 @@
-pdf_host_name: localhost:3001
+pdf_host_name: local.rocky.rockthevote.com
 api_host_name: http://localhost:3001
 use_https: false
-from_address:  "Rock The Vote <register@rockthevote.com>"
+from_address:  "Rock the Vote <register@rockthevote.org>"
 default_url_host: "localhost:3000"
 ui_url_host: "localhost:3000"
 
@@ -10,22 +10,23 @@ hours_before_first_reminder: 0.0333
 hours_between_first_and_second_reminder: 0.0333
 hours_between_second_and_final_reminder: 0.0333
 pdf_expiration_days: .25
+hours_before_chaser_redelivery: 0.01
 
 pdf_assistance:
   partners:
     - 1
 
 blocks_configuration:
-  default_turf_id: 416
-  default_location_id: 16000000827
-  default_staging_location_id: 16000000827
+  default_turf_id: 19000000053
+  default_location_id: 19000000704
+  default_staging_location_id: 19000000704
   shift_length: 2
-  url: https://svtesting.blocks.work
+  url: https://v2.api.blocks.app
+  url_client_path: svpa
   partners:
     1:
       states:
         - NV
-      url: https://svdemo.blocks.im
       staging_location_id: 758
       bulk_submit: false
       submit_forms: false
@@ -48,14 +49,14 @@ blocks_configuration:
       location_id: 266
       staging_location_id: 267
     7:
-      turf_id: 19000000023
-      canvasser_id: 19000000022
-      location_id: 2000002091
-      staging_location_id: 594
+      turf_id: 19000000053
+      canvasser_id: 19000000380
+      location_id: 19000000704
+      staging_location_id: 19000000704
     15:
       states:
       - NV
-      url: https://svnv.blocks.im
+      url: https://v2.api.blocks.app
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -86,7 +87,7 @@ blocks_configuration:
     26429:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -97,7 +98,7 @@ blocks_configuration:
     37885:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -108,7 +109,7 @@ blocks_configuration:
     38107:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -119,7 +120,7 @@ blocks_configuration:
     38350:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -130,7 +131,7 @@ blocks_configuration:
     38373:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -141,7 +142,7 @@ blocks_configuration:
     38400:
       states:
       - FL
-      url: https://svfl.blocks.im
+      #url: https://svfl.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -168,7 +169,7 @@ blocks_configuration:
     38403:
       states:
       - NC
-      url: https://svnc.blocks.im
+      #url: https://svnc.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -199,7 +200,7 @@ blocks_configuration:
     38406:
       states:
       - MI
-      url: https://svmi.blocks.im
+      #url: https://svmi.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -274,7 +275,7 @@ blocks_configuration:
     38408:
       states:
       - MN
-      url: https://svmn.blocks.im
+      #url: https://svmn.blocks.im
       bulk_submit: false
       submit_forms: false
       sub_orgs:
@@ -340,17 +341,21 @@ ovr_states:
       api_url: "https://fake-pa-endpoint.herokuapp.com"
   
   VA:
-    redirect_to_online_reg_url: false
     languages:
       - en
     api_settings:
         api_url: "https://fake-va-endpoint.herokuapp.com"
         api_key: <%= ENV['VA_API_KEY'] %>
   WA:
-    redirect_to_online_url: true
+    #redirect_to_online_url: true
+    redirect_to_online_url: false
+    api_settings:
+      #api_url: "https://gnaritas.com"
+      #api_url: "https://fake-wa-endpoint.herokuapp.com:443"
+      api_url: "https://qa-avr.votewa.gov/VoteWAExternalAPI/api/DOLRegister"
+      api_username: "RTVAVR"
     languages:
       - en
-      - es
   MA:
     languages:
       - en
@@ -359,6 +364,14 @@ ovr_states:
       api_url: https://mi-testing-endpoint.herokuapp.com #api_url: https://test-mvicapi.sos.state.mi.us      
     languages:
       - en
+
+mail_with_esig:
+  states: 
+    MN: 
+      allow_desktop_signature: true
+      state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
+  partners:
+    - 2 
 
 states_with_online_registration:
   - AK

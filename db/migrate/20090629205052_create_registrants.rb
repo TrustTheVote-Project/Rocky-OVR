@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class CreateRegistrants < ActiveRecord::Migration
+class CreateRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     create_table "registrants" do |t|
       t.string      "status"

@@ -140,7 +140,7 @@ YML
 
     it "updates existing state with new values" do
       alabama = GeoState['AL']
-      alabama.update_attributes!(:name => "ALABAMA")
+      alabama.udpate!((:name => "ALABAMA")
       silence_output do
         si = StateImporter.new(file_basic)
         si.import

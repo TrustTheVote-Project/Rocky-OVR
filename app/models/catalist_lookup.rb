@@ -1,6 +1,8 @@
 class CatalistLookup < ActiveRecord::Base
   include DateOfBirthMethods
   include CatalistLookupReportingMethods
+  include UidGenerator
+  include TrackableMethods
   
   has_one :abrs_catalist_lookup
   has_one :abr, through: :abrs_catalist_lookup
@@ -8,13 +10,14 @@ class CatalistLookup < ActiveRecord::Base
   has_one :catalist_lookups_registrant
   has_one :registrant, through: :catalist_lookups_registrant, primary_key: :uid, foreign_key: :registrant_uid
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
 
-  serialize :match, Hash
+  serialize :match
+  after_initialize do
+    self.match ||= {}
+  end
   
-  belongs_to :state,    :class_name => "GeoState"
-  
-  before_create :generate_uid
+  belongs_to :state,    :class_name => "GeoState", optional: true
 
   validates_presence_of :first
   validates_presence_of :last
@@ -23,11 +26,27 @@ class CatalistLookup < ActiveRecord::Base
   validates_presence_of :city
   validates_presence_of :zip
   validates_presence_of :email
-  validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+  validates_format_of   :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
   validates_presence_of :phone_type, if: -> { !phone.blank? }
-  validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
+  
+  before_validation :clean_phone_number
+
+  validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
+
+  def clean_phone_number
+    self.phone = phone.gsub(/[^\d]/, '') if phone.present?
+  end
+
+  
   validate :validate_date_of_birth
   validate :validates_zip
+  validate :validate_phone_present_if_opt_in_sms
+
+  def validate_phone_present_if_opt_in_sms
+    if (self.opt_in_sms? || self.partner_opt_in_sms?) && self.phone.blank?
+      self.errors.add(:phone, :required_if_opt_in)
+    end
+  end
 
   def validates_zip
     validates_zip_code(self, :zip)
@@ -45,7 +64,11 @@ class CatalistLookup < ActiveRecord::Base
   def validate_date_of_birth_age
     if birthdate < Date.parse("1900-01-01")
       errors.add(:date_of_birth, :too_old)
-    end    
+    elsif birthdate > Date.today
+      errors.add(:date_of_birth, :future)
+    elsif birthdate > 17.years.ago.to_date
+      errors.add(:date_of_birth, :way_too_young)
+    end
   end
   
   def validate_date_of_birth
@@ -120,10 +143,6 @@ class CatalistLookup < ActiveRecord::Base
     uid
   end
 
-  def generate_uid
-    self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email} -- #{zip}" )
-    return self.uid
-  end
 
   def any_email_opt_ins?
     collect_email_address? && (partner.rtv_email_opt_in || partner.primary? || partner.partner_email_opt_in)
@@ -324,7 +343,6 @@ class CatalistLookup < ActiveRecord::Base
 
     })
     abr.current_step = "2"
-    self.abr = abr
     abr
   end
   

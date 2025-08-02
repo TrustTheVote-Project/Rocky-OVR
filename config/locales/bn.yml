@@ -115,6 +115,12 @@ bn:
             has_state_license:
               inclusion: স্টেট কর্তৃপক্ষ অনুমোদিত কার্যকর লাইসেন্স আছে কিনা তা উল্লেখ
                 করুন
+            us_citizen:
+              accepted: আপনাকে অবশ্যই একজন মার্কিন নাগরিক হতে হবে!
+            sms_number_for_continue_on_device:
+              format: একটি বৈধ নম্বর প্রদান করুন
+            email_address_for_continue_on_device:
+              format: একটি বৈধ ইমেল প্রদান করুন
       messages:
         inclusion: ! '%{attribute} তালিকায় অন্তর্ভুক্ত নয়।'
         exclusion: ! '%{attribute} সংরক্ষিত।'

@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddOfficialPartyNameToRegistrants < ActiveRecord::Migration
+class AddOfficialPartyNameToRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     add_column "registrants", "official_party_name", :string
     add_index  "registrants", "official_party_name"

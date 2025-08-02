@@ -95,7 +95,7 @@ Feature: Step 2
       And I should see a field for "Phone"
       And I should see a field for "Type"
       And I should see a field for "Send me txt messages from Rock the Vote"
-      And I should see a field for "Receive emails from Rock the Vote"
+      And I should see a field for "Receive action alerts and other email updates from Rock the Vote"
       
       
     @passing

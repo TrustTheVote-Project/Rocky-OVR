@@ -1,12 +1,15 @@
 class RegistrantStatus < ActiveRecord::Base
   # attr_accessible :title, :body
-  belongs_to :registrant
-  belongs_to :admin
-  belongs_to :geo_state
+  belongs_to :registrant, optional: true
+  belongs_to :admin, optional: true
+  belongs_to :geo_state, optional: true
   
-  serialize :state_data, Hash
+  serialize :state_data
+  after_initialize do
+    self.state_data ||= {}
+  end
   
-  attr_protected :id, :created_at, :updated_at
+  #attr_protected :id, :created_at, :updated_at
   
   def self.get_columns(state)
     case state.abbreviation
@@ -132,7 +135,7 @@ class RegistrantStatus < ActiveRecord::Base
       # Find row in table?
       existing = RegistrantStatus.where(state_transaction_id: state_id, geo_state_id: reg_data[:geo_state_id]).first
       if (existing)
-        existing.update_attributes(reg_data)
+        existing.update(reg_data)
         reg_statuses_results[state_id] = "Updated status record"
       else
         # Find registrant

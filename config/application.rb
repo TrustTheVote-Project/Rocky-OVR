@@ -1,24 +1,17 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 require 'base64'
 
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups)
-  unless ENV['NO_PDF']
-    Bundler.require(:pdf)
-  end
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
+Bundler.require(*Rails.groups)
+unless ENV['NO_PDF']
+  Bundler.require(:pdf)
 end
-
-
-
 
 module Rocky
   class Application < Rails::Application
-
+    config.load_defaults 7.2
+    
     require 'dotenv'
     Dotenv.load
 
@@ -26,9 +19,19 @@ module Rocky
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    Rails.autoloaders.main.ignore(Dir[Rails.root.join('**/*.example.rb')])
+
+    config.active_record.default_column_serializer = YAML
+
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W( #{Rails.root}/app/services
+      #{Rails.root}/app/presenters
+      #{Rails.root}/lib
+      #{Rails.root}/app/models/state_customizations
+    )
+
+    config.eager_load_paths += %W( #{Rails.root}/app/services
       #{Rails.root}/app/presenters
       #{Rails.root}/lib
       #{Rails.root}/app/models/state_customizations
@@ -58,6 +61,7 @@ module Rocky
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :state_id_number, :password_confirmation, :id_number]
 
+    config.active_record.yaml_column_permitted_classes = [ActionController::Parameters, Symbol, OpenStruct, Time, Date, BigDecimal]
 
     config.middleware.use ::Rack::Robustness do |g|
       g.no_catch_all
@@ -67,7 +71,7 @@ module Rocky
       g.ensure(true) { |ex| env['rack.errors'].write(ex.message) }
     end
     
-    config.middleware.insert_before ActionDispatch::ParamsParser, "CatchJsonParseErrors"
+    #config.middleware.insert_before ActionDispatch::ParamsParser, "CatchJsonParseErrors"
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
@@ -81,7 +85,7 @@ module Rocky
     # This will create an empty whitelist of attributes available for mass-assignment for all models
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
-    config.active_record.whitelist_attributes = false
+    # config.active_record.whitelist_attributes = false
 
     # Enable the asset pipeline
     config.assets.enabled = true
@@ -101,7 +105,10 @@ module Rocky
 
     config.assets.initialize_on_precompile = false
     
-    config.action_controller.allow_forgery_protection = false
+    config.action_controller.allow_forgery_protection = true
+    # This is turned on in 5.2 for all controllers, but we're not prepared for it (APIs)
+    config.action_controller.default_protect_from_forgery = false
+
 
     config.i18n.available_locales = [:en, :"en-newui2020", :es, :zh, :"zh-tw", :hi, :ur, :bn, :ja, :ko, :tl, :ilo, :th, :vi, :km]
 
@@ -113,8 +120,8 @@ module Rocky
     config.middleware.use ExceptionNotification::Rack,
       email: {
         email_prefix: "[ROCKY Exception - #{Rails.env}] ",
-        sender_address: %{"Exception Notifier" <no-reply@rockthevote.com>},
-        exception_recipients: %w{alex.mekelburg@osetfoundation.org}
+        sender_address: %{"Exception Notifier" <no-reply@rockthevote.org>},
+        exception_recipients: %w{alex.mekelburg@osetfoundation.org david@rockthevote.org}
     }
     
     config.action_dispatch.default_headers = {

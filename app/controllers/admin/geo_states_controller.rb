@@ -29,6 +29,47 @@ class Admin::GeoStatesController < Admin::BaseController
     @geo_states = GeoState.all
   end
 
+  def edit
+    @geo_state = GeoState[params[:id]]
+  end
+
+  def show
+    @geo_state = GeoState[params[:id]]
+    render :edit
+  end
+
+  def zip_codes
+    @geo_state = GeoState[params[:id]]
+    @zip_codes = ZipCodeCountyAddress.where(geo_state_id: @geo_state.id)
+  end
+  def check_zip_code
+    @geo_state = GeoState[params[:id]]
+    zcca = ZipCodeCountyAddress.where(zip: params[:zip_code]).first
+    @region_result = zcca.check_address
+    
+    @zip_codes = ZipCodeCountyAddress.where(geo_state_id: @geo_state.id)
+    render action: :zip_codes
+  end
+
+  def update
+    @geo_state = GeoState[params[:id]]
+    if @geo_state.update(geo_state_params)
+      flash[:message] = "Updated #{@geo_state.name} settings"
+    else
+      flash[:warning] =  "Error updating #{@geo_state.name} settings"
+    end
+    redirect_to edit_admin_geo_state_path(@geo_state)
+  end
+
+  def remove_direct_mail_partner_id
+    @geo_state = GeoState[params[:id]]
+    @geo_state.direct_mail_partner_ids.delete(params[:partner_id])
+    @geo_state.save
+    partner = Partner.find_by_id(params[:partner_id])
+    flash[:message] = "Removed partner #{params[:partner_id]}#{partner && ": #{partner.organization}"}"
+    redirect_to edit_admin_geo_state_path(@geo_state)
+  end
+
   def bulk_update
     catalist_update_dates = {}
     if catalist_update_file = params[:catalist_update_file]
@@ -41,8 +82,28 @@ class Admin::GeoStatesController < Admin::BaseController
       end
     end
     GeoState.all.each do |s|
+      updated = false
       if params[:pdf_assistance_enabled] && params[:pdf_assistance_enabled][s.abbreviation]
         s.pdf_assistance_enabled = params[:pdf_assistance_enabled][s.abbreviation] == "1"
+        updated = true
+      end
+      if params[:abr_deadline_passed] && params[:abr_deadline_passed][s.abbreviation]
+        s.abr_deadline_passed = params[:abr_deadline_passed][s.abbreviation] == "1"
+        updated = true
+      end
+      if params[:abr_splash_page] && params[:abr_splash_page][s.abbreviation]
+        s.abr_splash_page = params[:abr_splash_page][s.abbreviation] == "1"
+        updated = true
+      end
+      if params[:abr_pdf_enabled] && params[:abr_pdf_enabled][s.abbreviation]
+        s.abr_pdf_enabled = params[:abr_pdf_enabled][s.abbreviation] == "1"
+        updated = true
+      end      
+      if params[:abr_all_ballot_by_mail] && params[:abr_all_ballot_by_mail][s.abbreviation]
+        s.abr_all_ballot_by_mail = params[:abr_all_ballot_by_mail][s.abbreviation] == "1"
+        updated = true
+      end
+      if updated
         catalist_updated_at = catalist_update_dates[s.abbreviation.downcase]
         s.catalist_updated_at = catalist_updated_at if catalist_updated_at
         s.save
@@ -59,4 +120,17 @@ class Admin::GeoStatesController < Admin::BaseController
     @nav_class = {geo_states: :current}
   end  
 
+  def geo_state_params
+    params.require(:geo_state).permit(
+      :enable_direct_mail,
+      :allow_desktop_signature,
+      :add_direct_mail_partner_id,
+      :state_voter_check_url,
+      :abr_online_req_url,
+      :leo_lookup_url,
+      :abr_status_check_url,
+      :abr_track_ballot_url,
+      :abr_pdf_enabled,
+    )
+  end
 end

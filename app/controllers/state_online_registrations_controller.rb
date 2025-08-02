@@ -52,7 +52,7 @@ protected
   
   def find_registrant(special_case = nil, p = params)
     super(special_case, p)
-    @registrant.update_attributes(:finish_with_state=>true)
+    @registrant.update(:finish_with_state=>true)
   end
   
   

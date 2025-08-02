@@ -1,4 +1,4 @@
-class AddAbrFieldsToAbrs < ActiveRecord::Migration
+class AddAbrFieldsToAbrs < ActiveRecord::Migration[4.2]
   def change
     add_column :abrs, :state_id_number, :string
     add_column :abrs, :party, :string

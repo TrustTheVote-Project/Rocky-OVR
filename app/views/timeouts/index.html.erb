@@ -1,10 +1,11 @@
+<%= render :partial => 'layouts/weglot', locals: { show_additional_js: false } %>
 <style>
   #progress-bar {
     display: none;
   }
 </style>
 <div class="text">
-  <p>
+  <p class="timeout-text">
     We're sorry, but your session has timed out due to inactivity.
     But don't worry, you can still
     <%= link_to "start a new voter registration", new_registrant_path(partner_locale_options(@partner_id, @locale, @source)) %>.

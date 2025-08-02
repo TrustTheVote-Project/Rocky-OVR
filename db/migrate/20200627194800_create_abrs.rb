@@ -1,4 +1,4 @@
-class CreateAbrs < ActiveRecord::Migration
+class CreateAbrs < ActiveRecord::Migration[4.2]
   def change
     create_table :abrs do |t|
       t.string :uid, index: true

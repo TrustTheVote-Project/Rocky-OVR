@@ -16,7 +16,7 @@ module CatalistLookupReportingMethods
     "email", 
     "created_at", 
     "updated_at", 
-    "match", 
+    "match_status", 
     "partner_id", 
     "tracking_source", 
     "tracking_id", 
@@ -26,8 +26,16 @@ module CatalistLookupReportingMethods
     "partner_opt_in_email", 
     "partner_opt_in_sms",
     "abr_uid",
-    "registrant_uid"
+    "registrant_uid",
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "other_parameters",
   ]
+
+  
 
   def to_csv_array
     CSV_HEADER.collect{|m| self.send(m) }
@@ -39,6 +47,10 @@ module CatalistLookupReportingMethods
 
   def registrant_uid
     self.catalist_lookups_registrant&.registrant_uid
+  end
+
+  def match_status
+    return match && match["status"]
   end
 
 end

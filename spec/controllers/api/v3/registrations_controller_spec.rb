@@ -68,7 +68,7 @@ describe Api::V3::RegistrationsController do
   
   describe 'clock_in' do
     let(:json_data)  {{some: "data"}}
-    subject {post :clock_in, json_data.merge(format: 'json')}
+    subject {post :clock_in, params: json_data, as: 'json'}
     it "returns status 200 json" do
       expect(subject.code).to eq("200")
     end
@@ -80,7 +80,7 @@ describe Api::V3::RegistrationsController do
   
   describe 'clock_out' do
     let(:json_data)  {{some: "data"}}
-    subject {post :clock_out, json_data.merge(format: 'json')}
+    subject {post :clock_out, params: json_data, as: 'json'}
     it "returns status 200 json" do
       expect(subject.code).to eq("200")
     end
@@ -252,7 +252,7 @@ describe Api::V3::RegistrationsController do
         }
       }
     }
-    subject { post :create_pa, query.merge(format: 'json') }
+    subject { post :create_pa, params: query, as: 'json' }
 
     context 'invalid request structure' do
       let(:query) { {} }
@@ -394,42 +394,42 @@ describe Api::V3::RegistrationsController do
   def pdf_ready(&block)
     query = { :UID=>"1234"}
     V3::RegistrationService.stub(:check_pdf_ready).with(query, &block)
-    get :pdf_ready, query.merge(:format=>'json')
+    get :pdf_ready, params: query, :format=>'json'
   end
   
   def stop_reminders(&block)
     query = { :UID=>"1234"}
     V3::RegistrationService.stub(:stop_reminders).with(query, &block)
-    post :stop_reminders, query.merge(:format=>'json')
+    post :stop_reminders, params: query, :format=>'json'
   end
   def bulk(&block)
     query = { :registrants=>[], :partner_id=>1, :partner_API_key=>"1"}
     V3::RegistrationService.stub(:bulk_create).with([], 1, "1", &block)
-    post :bulk, query.merge(:format=>'json')
+    post :bulk, params: query, :format=>'json'
     
   end
   
   def registrations(&block)
     query = { :partner_id => nil, :partner_api_key => nil, :since => nil, :before => nil, :email=>nil }
     V3::RegistrationService.stub(:find_records).with(query, &block)
-    get :index, :format => 'json'
+    get :index, :as => 'json'
   end
   def gregistrations(&block)
     query = { :gpartner_id => nil, :gpartner_api_key => nil, :since => nil, :before => nil, :email=>nil }
     V3::RegistrationService.stub(:find_records).with(query, &block)
-    get :index_gpartner, :format => 'json'
+    get :index_gpartner, :as => 'json'
   end
 
   def new_registration(&block)
     data = {}
     V3::RegistrationService.stub(:create_record).with(data, &block)
-    post :create, :format => 'json', :registration => data
+    post :create, :as => 'json', params: {:registration => data}
   end
 
   def new_finish_with_state_registration(&block)
     data = { 'lang' => 'en', 'partner_id' => Partner.first.id }
     V3::RegistrationService.stub(:create_record).with(data, true, &block)
-    post :create_finish_with_state, :format => 'json', :registration => data
+    post :create_finish_with_state, :as => 'json', params: {:registration => data}
   end
 
 end

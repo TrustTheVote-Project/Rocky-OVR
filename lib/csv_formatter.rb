@@ -22,7 +22,7 @@ class CsvFormatter
   def self.format(value)
     case
       when value.nil?
-        'NULL'
+        ''
       when value.is_a?(Time)
         value.strftime('%Y-%m-%d %H:%M:%S')
       when tmp = [false, true].index(value)

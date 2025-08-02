@@ -13,8 +13,9 @@ module SpecHelperMethods
     c
   end
 
-  def fixture_files_file_upload(path, mime_type = nil, binary = false)
-    Rack::Test::UploadedFile.new("#{fixture_files_path}#{path}", mime_type, binary)    
+  def fixture_files_file_upload(path, mime_type = nil)
+    tempfile = File.new("#{fixture_files_path}#{path}")
+    return Rack::Test::UploadedFile.new(tempfile, mime_type)
   end
   
   def silence_output

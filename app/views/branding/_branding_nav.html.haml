@@ -7,16 +7,16 @@
 - selected ||= :assets
 #customize_nav
   %p
-    = link_to I18n.t('partners.branding.title', default: 'Setup Custom Branding'), partner_branding_path, class: :current
+    = link_to I18n.t('partners.branding.title', default: 'Setup Custom Branding'), partner_branding_path(@partner) , class: :current
     |
-    = link_to I18n.t('partners.branding.preview_and_submit_title', default: 'Preview & Submission'), partner_branding_approval_path, id: "preview_and_submission_link"
+    = link_to I18n.t('partners.branding.preview_and_submit_title', default: 'Preview & Submission'), partner_branding_approval_path(@partner) , id: "preview_and_submission_link"
 
   %p.switcher(data-hide-class = 'nav-items')
-    = link_to "Assets", partner_branding_path, class: selected == :assets ? 'current' : ''
+    = link_to "Assets", partner_branding_path(@partner) , class: selected == :assets ? 'current' : ''
     |
-    = link_to "CSS", css_partner_branding_path, class: selected == :css ? 'current' : ''
+    = link_to "CSS", css_partner_branding_path(@partner) , class: selected == :css ? 'current' : ''
     |
-    = link_to "E-Mail templates", emails_partner_branding_path, class: selected == :emails ? 'current' : ''
+    = link_to "E-Mail templates", emails_partner_branding_path(@partner) , class: selected == :emails ? 'current' : ''
 
 .text
   %p= I18n.t('partners.branding.description.general', default: 'Custom Branding feature description').html_safe

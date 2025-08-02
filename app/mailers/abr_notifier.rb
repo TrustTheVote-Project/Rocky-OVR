@@ -95,7 +95,7 @@ class AbrNotifier < Notifier
         :subject=>subject,
         :from=>abr.email_address_to_send_from,
         :to=> to_address ||abr.email,
-        :date=> Time.now.to_s(:db)
+        :date=> Time.now.to_fs(:db)
       ) do |format|
         format.html { 
           body.to_s + pixel_tracking_code.to_s.html_safe
@@ -110,7 +110,7 @@ class AbrNotifier < Notifier
 
   def message_body(abr, kind)
     #TODO
-    @pdf_url = "http://#{RockyConf.pdf_host_name}#{abr.pdf_download_path}?source=email"
+    @pdf_url = "https://#{RockyConf.pdf_host_name}#{abr.pdf_download_path}?source=email"
     @cancel_reminders_url = abr.stop_reminders_url.to_s.html_safe
     @locale               = abr.locale.to_sym
     @registrar_phone      = abr.home_state.registrar_phone.to_s.html_safe
@@ -126,7 +126,7 @@ class AbrNotifier < Notifier
     @abr_home_state_name = abr.home_state_name.to_s.html_safe
     @abr_home_state_system_name = abr.home_state_system_name.to_s.html_safe
     @abr_home_state_abbrev = abr.home_state_abbrev.to_s.html_safe
-    @rtv_link = "<strong><a href=\"http://register.rockthevote.com/?partner=#{abr.partner_id}&source=email-#{kind}\">register.rockthevote.com</a></strong>".html_safe
+    @rtv_link = "<strong><a href=\"https://register.rockthevote.com/absentee?partner=#{abr.partner_id}&source=email-#{kind}\">register.rockthevote.com/absentee</a></strong>".html_safe
     @home_state_email_instructions = abr.home_state_email_instructions.blank? ? '' : (abr.home_state_email_instructions + "<br/><br/>").to_s.html_safe
 
     partner = abr.partner

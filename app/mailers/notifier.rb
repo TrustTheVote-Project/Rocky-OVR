@@ -28,42 +28,43 @@ class Notifier < ActionMailer::Base
     @name = partner.name
     @name = "Friend" if @name.blank?
     @tou_url = "https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/partner-ovr-tool-faqs/#termsofuse"
+    @privacy_url = "https://www.rockthevote.org/about-rock-the-vote/privacy-policy/"
     @partner_signup_url = "https://docs.google.com/forms/d/e/1FAIpQLSck6XJO2SQeSIenDpuHgNBUop9ENtvsGhMWLFYQDsy-VgO8pg/viewform"
     @partner_tool_faqs = "https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/partner-ovr-tool-faqs/partner-ovr-tool-faqs/"
-    mail(subject: "Rock the Vote Terms of Use",
+    mail(subject: "Welcome to Rock the Vote",
          from: RockyConf.from_address,
          to: partner.email,
-         date: Time.now.to_s(:db))
+         date: Time.now.to_fs(:db))
   end
   
-  def password_reset_instructions(partner)
-    @url = "http://#{RockyConf.default_url_host}#{edit_password_reset_path(:id => partner.perishable_token)}"
+  def password_reset_instructions(user)
+    @url = "#{edit_password_reset_url(host: RockyConf.default_url_host, :id => user.perishable_token)}"
     
     
     mail(:subject=> "Password Reset Instructions",
          :from => RockyConf.from_address,
-         :to => partner.email,
-         :date => Time.now.to_s(:db))
+         :to => user.email,
+         :date => Time.now.to_fs(:db))
   end
   
   def admin_password_reset_instructions(admin)
-    @url = "http://#{RockyConf.default_url_host}#{edit_admin_password_reset_path(:id => admin.perishable_token)}"
+    @url = "#{edit_admin_password_reset_url(host: RockyConf.default_url_host, :id => admin.perishable_token)}"
     
     
     mail(:subject=> "Password Reset Instructions",
          :from => RockyConf.from_address,
          :to => admin.email,
-         :date => Time.now.to_s(:db))
+         :date => Time.now.to_fs(:db))
   end
   
   def admin_password_reset_required(admin)
-    @url = "http://#{RockyConf.default_url_host}#{new_admin_password_reset_path}"
+    @url = "#{new_admin_password_reset_url(host: RockyConf.default_url_host)}"
     
     
     mail(:subject=> "Password Reset Required",
          :from => RockyConf.from_address,
          :to => admin.email,
-         :date => Time.now.to_s(:db))
+         :date => Time.now.to_fs(:db))
   end
   
   def continue_on_device(registrant, signature_capture_url)
@@ -104,7 +105,7 @@ class Notifier < ActionMailer::Base
     mail(:subject => tell_params[:tell_subject],
       :from => "#{tell_params[:tell_from]} <#{tell_params[:tell_email]}>",
       :to => tell_params[:tell_recipients],
-      :date => Time.now.to_s(:db))
+      :date => Time.now.to_fs(:db))
     
   end
 
@@ -152,7 +153,7 @@ class Notifier < ActionMailer::Base
         :subject=>subject,
         :from=>registrant.email_address_to_send_from,
         :to=>to_address || registrant.email_address,
-        :date=> Time.now.to_s(:db)
+        :date=> Time.now.to_fs(:db)
       ) do |format|
         format.html { 
           body.to_s + pixel_tracking_code.to_s.html_safe
@@ -178,7 +179,7 @@ class Notifier < ActionMailer::Base
   end
 
   def message_body(registrant, kind)
-    @pdf_url = "http://#{RockyConf.pdf_host_name}#{registrant.pdf_download_path}?source=email"
+    @pdf_url = "https://#{RockyConf.pdf_host_name}#{registrant.pdf_download_path}?source=email"
     @cancel_reminders_url = registrant.stop_reminders_url.to_s.html_safe
     @locale               = registrant.locale.to_sym
     @registrar_phone      = registrant.home_state.registrar_phone.to_s.html_safe
@@ -191,9 +192,10 @@ class Notifier < ActionMailer::Base
     @registrant_home_state_name = registrant.home_state_name.to_s.html_safe
     @registrant_home_state_system_name = registrant.home_state_system_name.to_s.html_safe
     @registrant_home_state_abbrev = registrant.home_state_abbrev.to_s.html_safe
-    @rtv_link = "<strong><a href=\"http://register.rockthevote.com/?partner=#{registrant.partner_id}&source=email-#{kind}\">register.rockthevote.com</a></strong>".html_safe
+    @rtv_link = "<strong><a href=\"https://register.rockthevote.com/?partner=#{registrant.partner_id}&source=email-#{kind}\">register.rockthevote.com</a></strong>".html_safe
+    @rtv_link_url = "https://register.rockthevote.com/?partner=#{registrant.partner_id}&source=email-#{kind}"
     @home_state_email_instructions = registrant.home_state_email_instructions.blank? ? '' : (registrant.home_state_email_instructions + "<br/><br/>").to_s.html_safe
-
+    
     partner = registrant.partner
     use_custom_template = partner.whitelabeled? || kind.starts_with?("preview_")
     custom_template = partner && use_custom_template && EmailTemplate.get(partner, "#{kind}.#{registrant.locale}")

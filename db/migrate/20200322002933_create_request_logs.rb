@@ -1,4 +1,4 @@
-class CreateRequestLogs < ActiveRecord::Migration
+class CreateRequestLogs < ActiveRecord::Migration[4.2]
   def change
     create_table :request_logs do |t|
       t.string :client_id, index: true

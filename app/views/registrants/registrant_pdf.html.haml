@@ -1,20 +1,21 @@
-- if @for_printer && !@esign && false
+- if @for_printer && !@esign
   %div.page#page_mailing_address
     .address
       = "#{(@registrant.first_name).to_s.html_safe} #{(@registrant.last_name).to_s.html_safe}"
-      %br
-      - if @registrant.has_mailing_address
-        = ("#{@registrant.mailing_address} #{@registrant.mailing_unit}").to_s.html_safe
+      - if false #hiding address so API vendor can included it
         %br
-        =  [@registrant.mailing_city.to_s, "#{@registrant.mailing_state_id.to_s} #{@registrant.mailing_zip_code}"].join(', ').html_safe
-      - else 
-        = ("#{@registrant.home_address} #{@registrant.home_unit}").to_s.html_safe
-        %br
-        =  [@registrant.home_city.to_s, "#{@registrant.home_state_id.to_s} #{@registrant.home_zip_code}"].join(', ').html_safe
-  
-    %div.page#state_instructions
-      %h1= I18n.t('pdf.nvra.state_instructions_header', state: @registrant.home_state_name)
-      = @registrant.state_id_tooltip
+        - if @registrant.has_mailing_address
+          = ("#{@registrant.mailing_address} #{@registrant.mailing_unit}").to_s.html_safe
+          %br
+          =  [@registrant.mailing_city.to_s, "#{@registrant.mailing_state_id.to_s} #{@registrant.mailing_zip_code}"].join(', ').html_safe
+        - else 
+          = ("#{@registrant.home_address} #{@registrant.home_unit}").to_s.html_safe
+          %br
+          =  [@registrant.home_city.to_s, "#{@registrant.home_state_id.to_s} #{@registrant.home_zip_code}"].join(', ').html_safe
+
+    .perforation 
+    .election_official_address
+      = @registrant.state_registrar_address.html_safe
       
 - if @esign
   %div.page#page_1.esign_cover_letter
@@ -37,10 +38,13 @@
           %ol
             %li=  @for_printer ? I18n.t('pdf.nvra.page1.instructions_block.step1_for_printer' ).to_s.html_safe : I18n.t('pdf.nvra.page1.instructions_block.step1' ).to_s.html_safe
             %li
-              = I18n.t('pdf.nvra.page1.instructions_block.step2' ).to_s.html_safe
-              .mailer
-                .instructions= I18n.t('pdf.nvra.page1.instructions_block.step2mailer' ).to_s.html_safe
-                .image= wicked_pdf_image_tag("pdf/mailer.png")
+              - if @for_printer
+                = I18n.t('pdf.nvra.page1.instructions_block.step2_for_printer' ).to_s.html_safe
+              - else 
+                = I18n.t('pdf.nvra.page1.instructions_block.step2' ).to_s.html_safe
+                .mailer
+                  .instructions= I18n.t('pdf.nvra.page1.instructions_block.step2mailer' ).to_s.html_safe
+                  .image= wicked_pdf_image_tag("pdf/mailer.png")
             %li= @for_printer ? I18n.t('pdf.nvra.page1.instructions_block.step3_for_printer' ).to_s.html_safe : I18n.t('pdf.nvra.page1.instructions_block.step3' ).to_s.html_safe
             %li= I18n.t('pdf.nvra.page1.instructions_block.step4' ).to_s.html_safe
             %li= I18n.t('pdf.nvra.page1.instructions_block.step5' ).to_s.html_safe
@@ -57,16 +61,16 @@
           %p= @registrant.registration_deadline.to_s.html_safe
       %tr
         %td.other_block
-          %h4.title= I18n.t('pdf.nvra.page1.other_block', :instructions_url=>@registrant_instructions_link).to_s.html_safe
           - if !@registrant.home_state_pdf_other_instructions.blank?
             .state_instructions
               %p= @registrant.home_state_pdf_other_instructions.to_s.html_safe
+          %h4.title= I18n.t('pdf.nvra.page1.other_block', :instructions_url=>@registrant_instructions_link).to_s.html_safe
           - if @for_printer 
             %p= I18n.t('pdf.nvra.page1.ep_hotline').to_s.html_safe
     %h3.bottom_title= I18n.t('pdf.nvra.page1.bottom_block.title' ).to_s.html_safe
     %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph1' ).to_s.html_safe
     %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph2' ).to_s.html_safe
-    %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph3' ).to_s.html_safe
+    %p{ style: "margin-left: 40px;" }= I18n.t('pdf.nvra.page1.bottom_block.paragraph3').to_s.html_safe
     %p= I18n.t('pdf.nvra.page1.bottom_block.paragraph4' ).to_s.html_safe
   
 .page#page_2
@@ -93,17 +97,17 @@
         .value.checkboxes
           .checkbox-col
             .checkbox{:class=>checked?(:mr, :name_title) ? 'checkbox-checked' : ''}
-              = checkbox(:mr, :name_title)
+              = pdf_checkbox(:mr, :name_title)
               %span= I18n.t("txt.registration.titles.mr", :locale=>:en)
             .checkbox{:class=>checked?(:mrs, :name_title) ? 'checkbox-checked' : ''}
-              = checkbox(:mrs, :name_title)
+              = pdf_checkbox(:mrs, :name_title)
               %span= I18n.t("txt.registration.titles.mrs", :locale=>:en)
           .checkbox-col
             .checkbox{:class=>checked?(:miss, :name_title) ? 'checkbox-checked' : ''}
-              = checkbox(:miss, :name_title)
+              = pdf_checkbox(:miss, :name_title)
               %span= I18n.t("txt.registration.titles.miss", :locale=>:en)
             .checkbox{:class=>checked?(:ms, :name_title) ? 'checkbox-checked' : ''}
-              = checkbox(:ms, :name_title)
+              = pdf_checkbox(:ms, :name_title)
               %span= I18n.t("txt.registration.titles.ms", :locale=>:en)
       
       %td.box2#name_last
@@ -120,20 +124,20 @@
         .value.checkboxes.suffix-checkboxes
           .checkbox-col
             .checkbox{:class=>checked?(:jr, :name_suffix) ? 'checkbox-checked' : ''}
-              = checkbox(:jr, :name_suffix)
+              = pdf_checkbox(:jr, :name_suffix)
               %span= I18n.t("txt.registration.suffixes.jr", :locale=>:en)
             .checkbox{:class=>checked?(:sr, :name_suffix) ? 'checkbox-checked' : ''}
-              = checkbox(:sr, :name_suffix)
+              = pdf_checkbox(:sr, :name_suffix)
               %span= I18n.t("txt.registration.suffixes.sr", :locale=>:en)
           .checkbox-col
             .checkbox{:class=>checked?(:ii, :name_suffix) ? 'checkbox-checked' : ''}
-              = checkbox(:ii, :name_suffix)
+              = pdf_checkbox(:ii, :name_suffix)
               %span= I18n.t("txt.registration.suffixes.ii", :locale=>:en)
             .checkbox{:class=>checked?(:iii, :name_suffix) ? 'checkbox-checked' : ''}
-              = checkbox(:iii, :name_suffix)
+              = pdf_checkbox(:iii, :name_suffix)
               %span= I18n.t("txt.registration.suffixes.iii", :locale=>:en)
             .checkbox{:class=>checked?(:iv, :name_suffix) ? 'checkbox-checked' : ''}
-              = checkbox(:iv, :name_suffix)
+              = pdf_checkbox(:iv, :name_suffix)
               %span= I18n.t("txt.registration.suffixes.iv", :locale=>:en)
   
   %table.form
@@ -177,13 +181,13 @@
             %tr
               %td.label= form_prompt('pdf.nvra.page2.block4.box1_label' ).to_s.html_safe
               %td.item2
-                .value= @registrant.pdf_date_of_birth_month + ' /'
+                .value= @registrant.pdf_date_of_birth == "00/00/0000" ? "" : @registrant.pdf_date_of_birth_month + ' /'
                 .label=form_prompt('pdf.nvra.page2.block4.item2' ).to_s.html_safe
               %td.item3
-                .value= @registrant.pdf_date_of_birth_day + ' /'
+                .value= @registrant.pdf_date_of_birth == "00/00/0000" ? "" : @registrant.pdf_date_of_birth_day + ' /'
                 .label=form_prompt('pdf.nvra.page2.block4.item3' ).to_s.html_safe
               %td.item4
-                .value= @registrant.pdf_date_of_birth_year
+                .value= @registrant.pdf_date_of_birth == "00/00/0000" ? "" : @registrant.pdf_date_of_birth_year
                 .label=form_prompt('pdf.nvra.page2.block4.item4' ).to_s.html_safe
         %td.block5.block_number 5
         %td.block5.box1#phone_number
@@ -254,17 +258,17 @@
           .value.checkboxes
             .checkbox-col
               .checkbox{:class=>checked?(:mr, :prev_name_title) ? 'checkbox-checked' : ''}
-                = checkbox(:mr, :prev_name_title)
+                = pdf_checkbox(:mr, :prev_name_title)
                 %span= I18n.t("txt.registration.titles.mr", :locale=>:en)
               .checkbox{:class=>checked?(:mrs, :prev_name_title) ? 'checkbox-checked' : ''}
-                = checkbox(:mrs, :prev_name_title)
+                = pdf_checkbox(:mrs, :prev_name_title)
                 %span= I18n.t("txt.registration.titles.mrs", :locale=>:en)
             .checkbox-col
               .checkbox{:class=>checked?(:miss, :prev_name_title) ? 'checkbox-checked' : ''}
-                = checkbox(:miss, :prev_name_title)
+                = pdf_checkbox(:miss, :prev_name_title)
                 %span= I18n.t("txt.registration.titles.miss", :locale=>:en)
               .checkbox{:class=>checked?(:ms, :prev_name_title) ? 'checkbox-checked' : ''}
-                = checkbox(:ms, :prev_name_title)
+                = pdf_checkbox(:ms, :prev_name_title)
                 %span= I18n.t("txt.registration.titles.ms", :locale=>:en)
         %td.box2#prev_name_last
           .label= form_prompt('pdf.nvra.page2.blockA.box2_label' ).to_s.html_safe
@@ -280,20 +284,20 @@
           .value.checkboxes.suffix-checkboxes
             .checkbox-col
               .checkbox{:class=>checked?(:jr, :prev_name_suffix) ? 'checkbox-checked' : ''}
-                = checkbox(:jr, :prev_name_suffix)
+                = pdf_checkbox(:jr, :prev_name_suffix)
                 %span= I18n.t("txt.registration.suffixes.jr", :locale=>:en)
               .checkbox{:class=>checked?(:sr, :prev_name_suffix) ? 'checkbox-checked' : ''}
-                = checkbox(:sr, :prev_name_suffix)
+                = pdf_checkbox(:sr, :prev_name_suffix)
                 %span= I18n.t("txt.registration.suffixes.sr", :locale=>:en)
             .checkbox-col
               .checkbox{:class=>checked?(:ii, :prev_name_suffix) ? 'checkbox-checked' : ''}
-                = checkbox(:ii, :prev_name_suffix)
+                = pdf_checkbox(:ii, :prev_name_suffix)
                 %span= I18n.t("txt.registration.suffixes.ii", :locale=>:en)
               .checkbox{:class=>checked?(:iii, :prev_name_suffix) ? 'checkbox-checked' : ''}
-                = checkbox(:iii, :prev_name_suffix)
+                = pdf_checkbox(:iii, :prev_name_suffix)
                 %span= I18n.t("txt.registration.suffixes.iii", :locale=>:en)
               .checkbox{:class=>checked?(:iv, :prev_name_suffix) ? 'checkbox-checked' : ''}
-                = checkbox(:iv, :prev_name_suffix)
+                = pdf_checkbox(:iv, :prev_name_suffix)
                 %span= I18n.t("txt.registration.suffixes.iv", :locale=>:en)          
     %p.block_title.blockB= form_prompt('pdf.nvra.page2.blockB.title' ).to_s.html_safe
     %table.form
@@ -343,9 +347,10 @@
     %h4.bottom_half_footer
       = form_prompt('pdf.nvra.page2.bottom_half_footer' ).to_s.html_safe
 
-.page#page_3
-  #page_3_wrapper
-    #page_3_background= @for_printer ? wicked_pdf_image_tag("pdf/page_3_for_printer.png") : wicked_pdf_image_tag("pdf/page_3.png")
-    %h1= form_prompt('pdf.nvra.page3.fouo' ).to_s.html_safe
-    #address
-      .line.line1= @registrant.state_registrar_address.to_s.html_safe
+- unless @for_printer 
+  .page#page_3
+    #page_3_wrapper
+      #page_3_background= @for_printer ? wicked_pdf_image_tag("pdf/page_3_for_printer.png") : wicked_pdf_image_tag("pdf/page_3.png")
+      %h1= form_prompt('pdf.nvra.page3.fouo' ).to_s.html_safe
+      #address
+        .line.line1= @registrant.state_registrar_address.to_s.html_safe

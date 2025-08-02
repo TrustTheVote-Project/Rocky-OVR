@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddVolunteerOption < ActiveRecord::Migration
+class AddVolunteerOption < ActiveRecord::Migration[4.2]
   def self.up
     add_column :partners, :ask_for_volunteers, :boolean
     add_column :registrants, :volunteer, :boolean

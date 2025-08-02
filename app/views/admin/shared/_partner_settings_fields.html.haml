@@ -21,6 +21,7 @@
     %span{style: "cursor:pointer", onclick: "$(\"[name='partner[states_enabled_for_pdf_assistance][]']\").attr('checked', false)"} Deselect All
   %ul.checkbox
     - GeoState.all.each do |s|
+      = f.hidden_field :states_enabled_for_pdf_assistance, multiple: true, value: []
       %li{style: s.pdf_assistance_enabled ? 'padding: 3px' : 'padding: 3px; background: #ccc; color: #888;'}
         %h3{style: s.pdf_assistance_enabled ? 'margin: 0; ' : 'margin: 0; background: #ccc; color: #888;'}
           = f.check_box :states_enabled_for_pdf_assistance, {multiple: true}, s.abbreviation, false

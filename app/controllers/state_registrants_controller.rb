@@ -12,7 +12,7 @@ class StateRegistrantsController < RegistrationStep
   end
   
   def update
-    @registrant.attributes = params[@registrant.class.table_name.singularize]
+    @registrant.attributes = state_registrant_attributes
     @registrant.status = params[:step] if @registrant.should_advance(params)
     @registrant.check_locale_change
     set_up_locale
@@ -22,13 +22,20 @@ class StateRegistrantsController < RegistrationStep
     if !@registrant.use_state_flow? || @registrant.skip_state_flow?
       go_to_paper and return
     end
+    if !@registrant.eligible?
+      @registrant.skip_state_flow!
+      @registrant.cleanup! if @registrant
+      redirect_to(registrant_ineligible_url(@registrant)) and return
+
+    end
     if @registrant.should_advance(params) && @registrant.valid?
       @registrant.status = next_step 
-      @registrant.save
+      @registrant.save    
       if @registrant.complete? && params[:step]==@registrant.step_list[-2]
         @registrant.async_submit_to_online_reg_url
         redirect_to pending_state_registrant_path(@registrant.to_param, state: @registrant.home_state_abbrev.downcase)
       else
+        #raise edit_state_registrant_path(@registrant.to_param, @registrant.status).to_s
         redirect_to edit_state_registrant_path(@registrant.to_param, @registrant.status)
       end
     else
@@ -40,6 +47,7 @@ class StateRegistrantsController < RegistrationStep
   
   def skip_state_flow
     @registrant.registrant.skip_state_flow!
+    @registrant.registrant.skip_mail_with_esig!
     go_to_paper
   end
   
@@ -105,6 +113,12 @@ class StateRegistrantsController < RegistrationStep
   end
 
   private
+  def state_registrant_attributes 
+    params.require(@registrant.class.table_name.singularize).permit(
+      @registrant.class.permitted_attributes
+    )
+  end
+
   def load_state_registrant
     begin
       @old_registrant = Registrant.find_by_param!(params[:registrant_id])
@@ -123,6 +137,8 @@ class StateRegistrantsController < RegistrationStep
       if @registrant.partner
         @partner    = @registrant.partner
         @partner_id = @partner.id
+        @question_1 = @registrant.question_1
+        @question_2 = @registrant.question_2
       end
     end
     

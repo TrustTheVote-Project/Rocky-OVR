@@ -1,7 +1,12 @@
 class BlocksService
   
+  # Notes:
+  # new fields
+  #   completed (needed?)
+  #   proof_of_residence_image_url (required?)
   def self.form_from_registrant(r)
     form = {
+      completed: r.is_grommet? ? true : r.status === 'complete',
       date_of_birth: r.date_of_birth&.to_s("%Y-%m-%d"),
       eligible_voting_age: true, #r.ineligible_age checks for is==18 *now* not by deadline?
       email_address: r.email_address,
@@ -27,7 +32,10 @@ class BlocksService
         email_opt_in: r.partner_opt_in_email?,
         preferred_language: r.is_grommet? ? r.grommet_preferred_language : r.locale,
         volunteer_with_partner: r.partner_volunteer?,
-        phone_type: r.phone_type
+        phone_type: r.phone_type,
+        has_state_license: (r.has_state_license? || (!r.is_grommet? && r.existing_state_registrant&.has_state_license?)),
+        has_ssn: (r.has_ssn? || (!r.is_grommet? && r.existing_state_registrant&.has_ssn?)),
+        
       }
     }
     begin
@@ -38,7 +46,10 @@ class BlocksService
   end
   
   def self.form_from_grommet_request(req)
-    registrant = V4::RegistrationService.create_pa_registrant(req.request_params[:rocky_request])    
+    params = req.request_params
+    params = params.to_unsafe_h if params.respond_to?(:to_unsafe_h)
+    params = params.with_indifferent_access
+    registrant = V4::RegistrationService.create_pa_registrant(params[:rocky_request])    
     registrant.basic_character_replacement!
     registrant.state_ovr_data ||= {}
     registrant.uid = "grommet-request-#{req.id}"
@@ -54,16 +65,20 @@ class BlocksService
   end
 
   def url
-    RockyConf.blocks_configuration.partners[partner.id]&.url || RockyConf.blocks_configuration.url
+    (partner && RockyConf.blocks_configuration.partners[partner.id]&.url) || RockyConf.blocks_configuration.url
   end
   
+  def url_client_path
+    (partner && RockyConf.blocks_configuration.partners[partner.id]&.url_client_path) || RockyConf.blocks_configuration.url_client_path
+  end
+
   def token
     @token ||= get_token
   end
   
   def get_token
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      @token = BlocksClient.get_token(url: url)["jwt"]
+      @token = BlocksClient.get_token(url: url, url_client_path: url_client_path)["jwt"]
       return @token
     end
   end
@@ -75,7 +90,7 @@ class BlocksService
   def upload_canvassing_shift(shift, shift_type: "digital_voter_registration")
     shift_params = build_canvassing_shift_blocks_hash(shift, shift_type)
     forms = shift.submit_forms? ? build_blocks_forms_from_canvassing_shift(shift) : []
-    
+    sleep(5)
     shift_response = create_shift(shift_params)
     shift_id = shift_response["shift"]["id"]
     form_responses = []
@@ -116,7 +131,7 @@ class BlocksService
     turf_id ||= RockyConf.blocks_configuration.partners&.[](partner&.id)&.turf_id
     unless turf_id.blank?
       RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-        return BlocksClient.get_locations(turf_id, token: self.token, url: url)
+        return BlocksClient.get_locations(turf_id, token: self.token, url: url, url_client_path: url_client_path)
       end
     end
     return {
@@ -125,34 +140,34 @@ class BlocksService
   end
   
   #add_metadata_to_form(form_id, meta_data={}, token:)
-  def add_metadata_to_form(form_id, meta_data={})
-    RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.add_metadata_to_form(form_id, meta_data, token: self.token, url: url)
-    end
-  end
+  # def add_metadata_to_form(form_id, meta_data={})
+  #   RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
+  #     return BlocksClient.add_metadata_to_form(form_id, meta_data, token: self.token, url: url, url_client_path: url_client_path)
+  #   end
+  # end
 
   def canvassers(turf_id)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.canvassers(turf_id, {token: self.token, url: url})
+      return BlocksClient.canvassers(turf_id, {token: self.token, url: url, url_client_path: url_client_path})
     end    
   end
 
   def create_canvasser(canvasser_data)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.create_canvasser(canvasser_data.merge({token: self.token, url: url}))
+      return BlocksClient.create_canvasser(canvasser_data.merge({token: self.token, url: url, url_client_path: url_client_path}))
     end
   end
 
   def create_shift(canvasser_data)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
-      return BlocksClient.create_shift(canvasser_data.merge({token: self.token, url: url}))
+      return BlocksClient.create_shift(canvasser_data.merge({token: self.token, url: url, url_client_path: url_client_path}))
     end
   end
   
   def upload_registrations(shift_id, forms)
     RequestLogSession.make_call_with_logging(registrant: nil, client_id: 'blocks') do
       shift_status = forms.any? ? "ready_for_qc" : "ready_for_delivery"
-      return BlocksClient.upload_registrations(shift_id, forms, shift_status: shift_status,  token: self.token, url: url)
+      return BlocksClient.upload_registrations(shift_id, forms, shift_status: shift_status,  token: self.token, url: url, url_client_path: url_client_path)
     end
   end
   
@@ -182,21 +197,28 @@ class BlocksService
     
     soft_count_cards_total_collected      = shift.completed_registrations
     soft_count_cards_complete_collected   = shift.completed_registrations
-    soft_count_cards_incomplete_collected = shift.abandoned_registrations
-    
+    soft_count_cards_incomplete_collected = 0 #shift.abandoned_registrations
+    soft_count_cards_with_phone_collected = 0
+    begin
+      forms = shift.submit_forms? ? build_blocks_forms_from_canvassing_shift(shift) : []
+      soft_count_cards_with_phone_collected = forms.select {|f| !f[:phone_number].blank? }.count
+    rescue
+    end
+
     shift_params = {
       canvasser_id: canvasser_id,
       location_id: location_id,
       staging_location_id: staging_location_id, 
       shift_start: shift.clock_in_datetime.in_time_zone("America/New_York").iso8601, 
       shift_end: shift.clock_out_datetime.in_time_zone("America/New_York").iso8601, 
-      shift_type: shift_type, 
+      #shift_type: shift_type, 
     }
     if shift.submit_forms?
       shift_params = shift_params.merge({
         soft_count_cards_total_collected: soft_count_cards_total_collected,
         soft_count_cards_complete_collected: soft_count_cards_complete_collected,
-        soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected
+        soft_count_cards_incomplete_collected: soft_count_cards_incomplete_collected,
+        soft_count_cards_with_phone_collected: soft_count_cards_with_phone_collected
       })
     end
     return shift_params

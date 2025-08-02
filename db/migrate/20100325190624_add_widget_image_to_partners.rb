@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddWidgetImageToPartners < ActiveRecord::Migration
+class AddWidgetImageToPartners < ActiveRecord::Migration[4.2]
   def self.up
     add_column "partners", "widget_image", :string
 

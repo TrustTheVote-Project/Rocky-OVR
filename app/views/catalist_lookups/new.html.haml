@@ -1,9 +1,10 @@
-%h2= t('txt.lookup.step_1_header')
+- header_key = params[:utm_feature] == 'prereg_included' ? 'txt.lookup.step_1_header_pre_register' : 'txt.lookup.step_1_header'
+%h1{role: "heading", "aria-level": 1}= t(header_key)
 
+- intro_key = params[:utm_feature] == 'prereg_included' ? 'txt.lookup.step_1_instructions_pre_register' : 'txt.lookup.step_1_instructions'
 .intro-message
-  = t('txt.lookup.step_1_instructions').html_safe
+  = t(intro_key).html_safe
 
 = form_for(@lookup) do |form|
   = render partial: 'form', :object => form
-
-  
+  %p= I18n.t('txt.privacy_policy_acceptance').html_safe

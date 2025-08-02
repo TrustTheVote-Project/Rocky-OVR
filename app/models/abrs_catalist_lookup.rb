@@ -1,6 +1,6 @@
 class AbrsCatalistLookup < ActiveRecord::Base
-  belongs_to :abr
-  belongs_to :catalist_lookup
+  belongs_to :abr, optional: true
+  belongs_to :catalist_lookup, optional: true
   
   def self.create_lookup(abr)
     lookup_params = abr_to_catalist_lookup_params(abr)   
@@ -23,7 +23,8 @@ class AbrsCatalistLookup < ActiveRecord::Base
       zip: abr.zip,
       #county: abr.county,
       phone: abr.phone,
-      email: abr.email      
+      email: abr.email,
+      partner_id: abr.partner_id
     }
   end
   

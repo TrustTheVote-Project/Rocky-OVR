@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddIndexOnStateLocalizationState < ActiveRecord::Migration
+class AddIndexOnStateLocalizationState < ActiveRecord::Migration[4.2]
   def self.up
     add_index :state_localizations, :state_id
   end

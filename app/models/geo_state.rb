@@ -28,6 +28,39 @@ class GeoState < ActiveRecord::Base
   
   delegate :online_reg_url, :redirect_to_online_reg_url, :has_ovr_pre_check?, :ovr_pre_check, :decorate_registrant, :enabled_for_language?, :require_age_confirmation?, :require_id?, :automatic_under_18_ok?, :use_state_flow?, :online_abr_enabled?, :oabr_url, :oabr_url_is_local_jurisdiction?, :to=>:state_customization
 
+  serialize :direct_mail_partner_ids
+  after_initialize do
+    self.direct_mail_partner_ids ||= []
+  end
+
+  def direct_mail_partners
+    Partner.find(self.direct_mail_partner_ids)
+  end
+
+  def add_direct_mail_partner_id
+    @add_direct_mail_partner_id
+  end
+
+  def add_direct_mail_partner_id=(value)
+    return if value.blank?
+    p = Partner.find_by_id(value)
+    if p
+      self.direct_mail_partner_ids ||= []
+      self.direct_mail_partner_ids << value
+      self.direct_mail_partner_ids.uniq!
+      @add_direct_mail_partner_id = nil
+    else
+      @add_direct_mail_partner_id = value
+    end
+  end
+
+  validate :validate_direct_mail_partner_ids
+  def validate_direct_mail_partner_ids
+    if @add_direct_mail_partner_id
+      errors.add(:add_direct_mail_partner_id, "Partner #{@add_direct_mail_partner_id} not found")
+    end
+  end
+
   def self.[](id_or_abbrev)
     init_all_states
     case id_or_abbrev
@@ -40,12 +73,12 @@ class GeoState < ActiveRecord::Base
   
   def self.collection_for_select
     init_all_states
-    @@all_states_by_abbrev.map { |abbrev, state| [state.name, abbrev] }.sort
+    [['','']] + @@all_states_by_abbrev.map { |abbrev, state| [state.name, abbrev] }.sort
   end
 
   def self.collection_for_select_full_name
     init_all_states
-    @@all_states_by_abbrev.map { |abbrev, state| [state.name, state.name] }.sort
+    [['','']] + @@all_states_by_abbrev.map { |abbrev, state| [state.name, state.name] }.sort
   end
 
   def self.init_all_states
@@ -64,13 +97,14 @@ class GeoState < ActiveRecord::Base
 
   def counties
     if !@counties
-      if File.exists?(counties_file_path)
+      if File.exist?(counties_file_path)
         file = []
         File.open(counties_file_path) do |f|
           file = YAML.load(f)
         end
         @counties = {}
         file.each do |c|
+          c = c.to_unsafe_h if c.respond_to?(:to_unsafe_h)
           c = c.with_indifferent_access
           @counties[c[:name].downcase.underscore] = c
         end
@@ -385,7 +419,10 @@ class GeoState < ActiveRecord::Base
   end
 
   def self.for_zip_code(zip)
-    self[ zip5map[zip[0,5]] || zip3map[zip[0,3]] ]
+    #self[ zip5map[zip] || zip3map[zip] ]
+    #self[zip5map[zip]]
+    zip5 = zip[0, 5] # Extract the first 5 digits of the ZIP code
+    self[zip5map[zip5]]
   end
 
   def self.valid_zip_code?(zip)
@@ -437,5 +474,8 @@ class GeoState < ActiveRecord::Base
     read_attribute(:registrar_address)
   end
     
+  def to_param
+    self.abbreviation.upcase
+  end
   
 end

@@ -109,6 +109,12 @@ zh:
               accepted: 请务必确认以上信息是否正确。
             has_state_license:
               inclusion: 请说明您是否持有有效的州执照
+            us_citizen:
+              accepted: 您必须是美国公民！
+            sms_number_for_continue_on_device:
+              format: 请提供有效的号码
+            email_address_for_continue_on_device:
+              format: 请提供有效的电子邮件地址
       messages:
         inclusion: ! '%{attribute} 不在列表当中。'
         exclusion: ! '%{attribute} 已经被占用。'

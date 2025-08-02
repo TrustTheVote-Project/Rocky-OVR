@@ -1,4 +1,4 @@
-class AddPartnerIdAndTrackingToCatalistLookups < ActiveRecord::Migration
+class AddPartnerIdAndTrackingToCatalistLookups < ActiveRecord::Migration[4.2]
   def change
     add_column :catalist_lookups, :partner_id, :integer
     add_column :catalist_lookups, :tracking_source, :string

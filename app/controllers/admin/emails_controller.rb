@@ -28,7 +28,7 @@ class Admin::EmailsController < Admin::BaseController
   end
   
   def create
-    @new_email = EmailAddress.new params[:email_address]
+    @new_email = EmailAddress.new params.require(:email_address).permit(:email_address)
     @new_email.email_address = @new_email.email_address.to_s.strip.downcase
     
     @new_email.blacklisted=true

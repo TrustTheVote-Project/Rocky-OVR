@@ -32,12 +32,18 @@ class Admin::PartnersController < Admin::BaseController
         flash[:warning] = "Partner ID #{params[:partner_id]} not found"
       end
     end
-    @partners = Partner.standard.paginate(:page => params[:page], :per_page => 1000)
+
+    @partners = Partner.standard
+    @partner_name_search = params[:partner_name_search]
+    if @partner_name_search
+      @partners = @partners.where("name like ? or organization like ?", "%#{@partner_name_search}%", "%#{@partner_name_search}%")
+    end
+    @partners =  @partners.paginate(:page => params[:page], :per_page => 100)
     @partner_zip = PartnerZip.new(nil)
   end
 
   def upload_registrant_statuses
-    @partners = Partner.standard.paginate(:page => params[:page], :per_page => 1000)
+    @partners = Partner.standard.paginate(:page => params[:page], :per_page => 100)
     @partner_zip = PartnerZip.new(nil)
     
     state = GeoState.find(params[:geo_state])
@@ -49,12 +55,35 @@ class Admin::PartnersController < Admin::BaseController
     render action: :index
   end
   
-  def impersonate
+  def add_user
     @partner = Partner.find(params[:id])
-    PartnerSession.create!(@partner)
-    redirect_to partner_path
+    @user = User.add_to_partner!(params[:email], @partner)
+    if @user
+      flash[:success] = "Added #{@user.email}"
+    else
+      flash[:warning] = "Error adding #{params[:email]} to this partner"
+    end
+    redirect_to admin_partner_path(@partner)
   end
-  
+
+  def remove_user
+    @partner = Partner.find(params[:id])    
+    @user = User.find_by_id(params[:user_id])
+    if (@partner && @user)
+      @partner_user = PartnerUser.where(partner: @partner, user: @user).first
+      if @partner_user && @partner_user.delete
+        flash[:success] = "Removed #{@user.email} from this partner"
+        redirect_back_or_default admin_partner_path(@partner) 
+        return
+      end
+    end
+    flash[:warning] = "Error removing #{@user&.email} from this partner"
+    redirect_back_or_default admin_partner_path(@partner) 
+  end
+
+  def new
+    @partner = Partner.new
+  end
 
   def show
     @partner = Partner.find(params[:id])
@@ -64,17 +93,32 @@ class Admin::PartnersController < Admin::BaseController
     @partner = Partner.find(params[:id])
   end
 
+  def create
+    @partner = Partner.new(partner_params)
+    @partner.password = 'aBc123!@' + SecureRandom.hex(10) + 'a'
+    if @partner.save
+      update_email_templates(@partner, params[:template])
+      update_email_template_subjects(@partner, params[:template_subject])
+      update_custom_css(@partner, params[:css_files])
+      flash[:message]= "Partner Created"
+      redirect_to edit_admin_partner_path(@partner) 
+    else
+      flash.now[:warning]= "There was en error creating the partner"
+      render :new
+    end
+  end
+
   def update
     @partner = Partner.find(params[:id])
 
-    if @partner.update_attributes(params[:partner])
+    if @partner.update(partner_params)
       update_email_templates(@partner, params[:template])
       update_email_template_subjects(@partner, params[:template_subject])
       update_custom_css(@partner, params[:css_files])
       flash[:message]= "Partner Updated"
-      redirect_to edit_admin_partner_path
+      redirect_to edit_admin_partner_path(@partner) 
     else
-      flash[:warning]= "There was en error updating the partner"
+      flash.now[:warning]= "There was en error updating the partner"
       render :edit
     end
   end
@@ -92,6 +136,10 @@ class Admin::PartnersController < Admin::BaseController
   end
 
   private
+
+  def partner_params
+    params[:partner] ? params.require(:partner).permit! : {}
+  end
 
   def update_email_templates(partner, templates)
     (templates || {}).each do |name, body|

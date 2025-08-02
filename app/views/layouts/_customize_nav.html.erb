@@ -1,9 +1,9 @@
 <div id="customize_nav" class="smaller-nav-font">
   <p>
-    <%= link_to "Upload Your Logo", partner_logo_path, :class => @nav_class[:logo] %> |
-    <%= link_to "Edit Survey Questions",  edit_partner_questions_path, :class => @nav_class[:questions] %> |
-    <%= link_to "Select Button", partner_widget_image_path, :class => @nav_class[:widget] %> |
-    <%= link_to I18n.t('partners.branding.nav', default: 'Advanced'), partner_branding_path, :class => @nav_class[:branding] %> |
-    <%= link_to "Get Your Embed Code", embed_codes_partner_path, :class => @nav_class[:embed] %>
+    <%= link_to "Upload Your Logo", partner_logo_path(@partner) , :class => @nav_class[:logo] %> |
+    <%= link_to "Edit Survey Questions",  edit_partner_questions_path(@partner) , :class => @nav_class[:questions] %> |
+    <%= link_to "Select Button", partner_widget_image_path(@partner) , :class => @nav_class[:widget] %> |
+    <%= link_to I18n.t('partners.branding.nav', default: 'Advanced'), partner_branding_path(@partner) , :class => @nav_class[:branding] %> |
+    <%= link_to "Get Your Embed Code", embed_codes_partner_path(@partner) , :class => @nav_class[:embed] %>
   </p>
 </div>

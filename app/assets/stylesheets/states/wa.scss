@@ -1,0 +1,139 @@
+@import "_base";
+
+span.error {
+  white-space: normal;
+}
+
+/*
+span.error, .flat span.error, .stacked span.error {
+  min-height: 24px;
+  height: auto;
+  line-height: 16px;
+}
+*/
+
+
+#main {
+  form {
+    ul.wa-address-options {
+      font-size: 16px;
+      line-height: 1.4em;
+      li {
+        margin: 1.5em 0;
+        float: none;
+        display: flex;
+        label {
+          margin-left: .5em;
+        }
+      }
+    }
+    ul {
+      li {
+        &.registrant-form__home-address-number__line  {
+          width: 22%;
+          margin-right: 3%;
+        }
+        &.registrant-form__home-address-street-name__line {
+          width: 42%;
+          margin-right: 3%;
+        }
+        &.registrant-form__home-address-street-type__line {
+          width: 14%;
+          margin-right: 3%;
+        }
+        &.registrant-form__home-address-post-directional__line {
+          width: 13%;
+        }
+        &.registrant-form__home-address-unit-number__line {
+          width: 70%;
+          margin-right: 30%;
+        }
+        &.registrant-form__home-address-box-group__line {
+          width: 45%;
+          margin-right: 5%;
+        }
+        &.registrant-form__home-address-box-group-id__line {
+          width: 50%;
+        }
+        @media(max-width: 600px) {
+          &.registrant-form__name-suffix__line {
+            margin-left:0px !important;
+            margin-bottom: 12px;
+          }
+        }
+        
+
+
+
+        
+        
+        
+      }
+    }
+    #mailing_address_international {
+      ul {
+        li {
+          &.registrant-form__home-zip-code__line {
+            margin-right: 5%;
+            width: 25%;
+          } 
+          &.registrant-form__home-country__line {
+            width: 70%;
+            margin-right: 0;
+          } 
+        }
+        @media(max-width: 600px) {
+          li {
+            &.registrant-form__home-zip-code__line {
+              width: 40%;
+            } 
+            &.registrant-form__home-country__line {
+              width: 55%;
+            } 
+          }
+        }
+      }
+    }
+    ul.radio {
+      li {
+        h3 {
+          float: none;
+          text-align: left;
+          width: auto;
+          color: #757575;
+          height: auto;
+          font-size: 16px;
+          line-height: 1.4em;
+          margin: 1em 0;
+        }
+      }
+    }
+    .radio-buttons {
+      label {
+        display: block;
+        height: 40px;
+        input {
+          display: inline-block;
+          width: auto;
+          height: 1em;
+          margin-right: 5px;
+          margin-left: 20px;
+        }
+      }
+    }
+
+  }
+  .review__section__label  {
+    clear:left;
+  }
+}
+.issue_date_mm {
+  width: 20% !important;
+}
+.issue_date_dd {
+  width: 20%!important;
+}
+.issue_date_yyyy {
+  width: 30%!important;
+}
+

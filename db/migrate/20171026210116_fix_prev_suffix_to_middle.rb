@@ -1,4 +1,4 @@
-class FixPrevSuffixToMiddle < ActiveRecord::Migration
+class FixPrevSuffixToMiddle < ActiveRecord::Migration[4.2]
   def up
     add_column :state_registrants_pa_registrants, :previous_middle_name, :string
     remove_column :state_registrants_pa_registrants, :previous_suffix

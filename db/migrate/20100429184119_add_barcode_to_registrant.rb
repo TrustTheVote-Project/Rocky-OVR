@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddBarcodeToRegistrant < ActiveRecord::Migration
+class AddBarcodeToRegistrant < ActiveRecord::Migration[4.2]
   def self.up
     add_column "registrants", "barcode", :string, :limit => 12
   end

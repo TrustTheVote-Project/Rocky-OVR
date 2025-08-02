@@ -10,7 +10,7 @@ require 'active_record/fixtures'
 
 def load_fixtures_in_dir(dir)
   Dir.glob(File.join(Rails.root, dir, '*.{yml}')).each do |fixture_file|
-    ActiveRecord::Fixtures.create_fixtures(dir, File.basename(fixture_file, '.*'))
+    ActiveRecord::FixtureSet.create_fixtures(dir, File.basename(fixture_file, '.*'))
   end
   Dir.glob(File.join(Rails.root, dir, '*.{rb}')).each do |ruby_file|
     load ruby_file

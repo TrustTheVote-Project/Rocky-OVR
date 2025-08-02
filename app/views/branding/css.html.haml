@@ -1,6 +1,6 @@
 = render 'branding_nav', {selected: :css}
 
-= form_for @partner, url: partner_branding_path, method: :put, :html => { :multipart => true } do |f|
+= form_for @partner, url: partner_branding_path(@partner) , method: :put, :html => { :multipart => true } do |f|
   %fieldset.nav-items.assets
     %legend Whitelabeled CSS
     = render partial: "instructions_list", locals: { key: "partners.branding.description.css"}

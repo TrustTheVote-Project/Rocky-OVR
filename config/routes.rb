@@ -1,6 +1,10 @@
-Rocky::Application.routes.draw do
-  
+Rails.application.routes.draw do
+    
   root :to => "registrants#landing"
+  # add sitemap and robots
+  get "/registrants/new/sitemap.xml", to: redirect("https://register.rockthevote.com/sitemap.xml")
+  get "/registrants/new/robots.txt", to: redirect("https://register.rockthevote.com/robots.txt")
+
   match "/vr_to_pa_debug_ui.html", to: "application#vr_to_pa_debug_ui", via: :get
   match "/registrants/timeout", :to => "timeouts#index", :as=>'registrants_timeout', via: :get
   match "/registrants/new/:state_abbrev", to: "registrants#new", via: :get
@@ -11,7 +15,13 @@ Rocky::Application.routes.draw do
   match "/trackballot", to: "ballot_status_checks#new", via: :get
   match "/trackballot/:zip", to: "ballot_status_checks#zip", via: :get, as: :ballot_status_check_zip
   match "/share", to: "registrants#share", via: :get
-  
+
+
+  match "/register", to: "registrants#landing", via: :get
+  match "/register-to-vote", to: "registrants#landing", via: :get
+  match "/am-i-registered-to-vote", to: "catalist_lookups#new", via: :get
+  match "/absentee-ballot", to: "abrs#new", via: :get
+
   match "/state_registrants/:registrant_id/pending", to: "state_registrants#pending", as: "pending_state_registrant", via: :get
   match "/state_registrants/:registrant_id/skip_state_flow", to: "state_registrants#skip_state_flow", as: "skip_state_flow_registrant", via: :get
   match "/state_registrants/:registrant_id/complete", to: "state_registrants#complete", as: "complete_state_registrant", via: :get
@@ -20,6 +30,9 @@ Rocky::Application.routes.draw do
   match "/state_registrants/:registrant_id/:step", to: "state_registrants#update", as: "update_state_registrant", via: :patch
 
   match "/get-bounce-notification", to: "ses#bounce", via: [:get, :post]
+
+  get ":path/sitemap.xml", to: redirect("https://register.rockthevote.com/sitemap.xml")
+  get "(*path)/robots.txt", to: redirect("https://register.rockthevote.com/robots.txt")
   
   resource :canvassing_shifts, path: "shift" do
     member do
@@ -42,6 +55,7 @@ Rocky::Application.routes.draw do
   resources "absentee", :only => [:new, :create, :show, :update], :controller=>"abrs", as: :abrs do
     member do
       get "step_2"
+      get "registered"
       get "step_3"
       get "not_registered"
       get "registration"
@@ -50,8 +64,13 @@ Rocky::Application.routes.draw do
       get "finish"
       get "state_online"
       get "state_online_redirect"
+
+      post "track_view", format: :json
     end
   end
+
+  resources 'pledge', only: [:new, :create, :show], controller: 'alert_requests', as: :alert_requests
+  match "/pledge", to: "alert_requests#new", via: :get
   
   resources "registrants", :only => [:new, :create, :show, :update] do
     resource "step_1", :controller => "step1", :only => [:show, :update]
@@ -71,6 +90,7 @@ Rocky::Application.routes.draw do
     resource "state_online_registration", :only=>:show
     member do 
       get "stop_reminders", :to=>'reminders#stop', :as=>'stop_reminders'
+      post "track_view", format: :json
     end
     collection do
       get 'new/:state_abbrev', action: 'new'
@@ -78,11 +98,16 @@ Rocky::Application.routes.draw do
     
   end
 
-  resource  "partner_session"
-  match  "login",  :to => "partner_sessions#new", :as=>'login', via: :get
-  match "logout", :to => "partner_sessions#destroy", :as=>'logout', via: :get
+  resource  "user_session"
+  match  "login",  :to => "user_sessions#new", :as=>'login', via: :get
+  match "logout", :to => "user_sessions#destroy", :as=>'logout', via: :get
   
-  resource "partner", :path_names => {:new => "register", :edit => "profile"} do
+  resource "user", path_names: {:new => "register", :edit => "profile"} do
+  end
+  # MFA for user accounts
+  resources :mfa_sessions, only: [:new, :create]
+
+  resources "partners", :path_names => {:new => "register"} do
     member do
       get "statistics"
       post "registrations"
@@ -91,10 +116,12 @@ Rocky::Application.routes.draw do
       post "grommet_shift_report"
       post "abr_report"
       post "lookup_report"
-      get "reports"
+      post "alert_request_report"
+      get "reports"      
       get "download_csv"
       get "embed_codes"
     end
+    resources "partner_users", only: [:index, :create, :destroy]
     resource "questions",     :only => [:edit, :update]
     resource "widget_image",  :only => [:show, :update]
     resource "logo",          :only => [:show, :update, :destroy]
@@ -129,6 +156,7 @@ Rocky::Application.routes.draw do
   resources "translations", :only=>[:index, :show] do
     collection do
       get :all_languages
+      get :export
     end
     member do
       post :submit
@@ -295,18 +323,32 @@ Rocky::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :mfa_sessions, only: [:new, :create]
     root :controller => 'partners', :action => 'index'
     resource :grommet_queue, only: [:show],controller: "grommet_queue" do
       get :flush
       get :request_report, format: :csv
       patch :update_delay
     end
+    resources :users, except: [:show] do
+      member do
+        get :impersonate
+        get :deactivate
+        get :reactivate
+        get :resetmfa
+      end
+    end
     resources :emails, except: [:new, :edit, :show ]
     resources :ab_tests, only: [:index, :show ]
     resources :domains, except: [:new, :edit, :show, :index]
-    resources :geo_states, only: [:index] do
+    resources :geo_states, only: [:index, :edit, :update, :show] do
       collection do 
         post :bulk_update
+      end
+      member do
+        get :zip_codes
+        get :check_zip_code
+        get :remove_direct_mail_partner_id
       end
     end
     resources :request_logs, only: [:index, :show]
@@ -323,8 +365,9 @@ Rocky::Application.routes.draw do
     resources :partners do
       member do
         get :regen_api_key
-        get :impersonate
+        post :add_user
         post :publish
+        delete :remove_user
       end
       collection do 
         post :upload_registrant_statuses

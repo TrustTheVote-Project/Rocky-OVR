@@ -114,6 +114,12 @@ hi:
               accepted: उपर दी गयी जानकारी सही है या नही यह ज़रूर बतायें
             has_state_license:
               inclusion: कृपया बतायें अगर आपके पास सही स्टेट लाइसेन्स है या नही
+            us_citizen:
+              accepted: आपको अमेरिकी नागरिक होना चाहिए!
+            sms_number_for_continue_on_device:
+              format: कृपया एक वैध नंबर प्रदान करें
+            email_address_for_continue_on_device:
+              format: कृपया एक वैध ईमेल प्रदान करें
       messages:
         inclusion: ! '%{attribute} लिस्ट में शामिल नही है'
         exclusion: ! '%{attribute} रिज़र्व किया गया है'

@@ -1,18 +1,27 @@
-%h1= t('txt.ballot_status_check.voted_by_mail')
+<div class="voted-absentee-or-by-mail">
+%h1= t(I18n.exists?("states.custom.#{@abbrev}.ballot_status_check.voted_by_mail") ? "states.custom.#{@abbrev}.ballot_status_check.voted_by_mail" : 'txt.ballot_status_check.voted_by_mail')
+
 - if @bsc.abr_track_ballot_url.present?
-  = t('txt.ballot_status_check.check_with_state_url', url: @bsc.abr_track_ballot_url ).html_safe
+  = t(I18n.exists?("states.custom.#{@abbrev}.ballot_status_check.check_with_state_url") ? "states.custom.#{@abbrev}.ballot_status_check.check_with_state_url" : 'txt.ballot_status_check.check_with_state_url', url: @bsc.abr_track_ballot_url).html_safe
 - else
   = t('txt.ballot_status_check.no_state_url').html_safe
-
 %br
+</div>
 
-%h1= t('txt.ballot_status_check.voted_provisionally')
-%p= t('txt.ballot_status_check.voted_provisionally_text')
+<div class="provisional-ballot">
+%h1= t(I18n.exists?("states.custom.#{@abbrev}.ballot_status_check.voted_provisionally") ? "states.custom.#{@abbrev}.ballot_status_check.voted_provisionally" : 'txt.ballot_status_check.voted_provisionally')
 
+%p= t(I18n.exists?("states.custom.#{@abbrev}.ballot_status_check.voted_provisionally_text") ? "states.custom.#{@abbrev}.ballot_status_check.voted_provisionally_text" : 'txt.ballot_status_check.voted_provisionally_text').html_safe
 %br
+</div>
 
+<div style="display: none;" class="find-election-official">
+%h1= t('txt.ballot_status_check.find_election_official_thank_you')
+%p= t('txt.ballot_status_check.find_election_official_contact')
+</div>
 
-%h1= t('txt.ballot_status_check.contact_info')
+.election-office
+  %h1= t('txt.ballot_status_check.contact_info')
 
 .intro-message
   - leo_contact_info = @bsc.use_leo_contact? ? @bsc.state_registrar_office&.full_req_contact_info_hash : nil
@@ -29,15 +38,15 @@
 %p
   - if leo_contact_info[:phone]
     %strong{style: "font-weight: bold"} Phone:
-    = leo_contact_info[:phone]
+    = link_to leo_contact_info[:phone], "tel:#{leo_contact_info[:phone]}"
     %br
   - if leo_contact_info[:email]
     %strong{style: "font-weight: bold"} Email:
-    = leo_contact_info[:email]
+    = link_to leo_contact_info[:email], "mailto:#{leo_contact_info[:email]}"
     %br
   - if leo_contact_info[:website]
     %strong{style: "font-weight: bold"} Website:
-    = leo_contact_info[:website]
+    = link_to leo_contact_info[:website], leo_contact_info[:website], class: "url-treatment", target: "_blank"
     %br
   - if leo_contact_info[:address]
     %strong{style: "font-weight: bold"} Address:

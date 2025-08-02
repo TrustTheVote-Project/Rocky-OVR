@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
-require 'dotenv'
-Dotenv.load(File.join(File.dirname(__FILE__), '..', ".env.#{ENV['RAILS_ENV']}"))
+rails_root = File.expand_path(File.join(File.dirname(__FILE__), '../'))
+Dir.chdir(rails_root)
 
-require File.expand_path(File.join(File.dirname(__FILE__), '..', 'config/environment'))
+require 'dotenv'
+Dotenv.load(File.join(rails_root, ".env.#{ENV['RAILS_ENV']}"))
+
+require File.expand_path(File.join(rails_root, 'config/environment'))
 
 Dir.chdir(Rails.root)
 

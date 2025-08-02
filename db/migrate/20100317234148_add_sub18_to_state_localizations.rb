@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddSub18ToStateLocalizations < ActiveRecord::Migration
+class AddSub18ToStateLocalizations < ActiveRecord::Migration[4.2]
   def self.up
     add_column "state_localizations", "sub_18", :string
   end

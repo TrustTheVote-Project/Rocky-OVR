@@ -111,6 +111,12 @@ th:
               accepted: คุณต้องยืนยันว่าข้อมูลดังกล่าวถูกต้อง
             has_state_license:
               inclusion: กรุณาระบุว่าคุณมีบัตรประจำตัวประชาชนของรัฐที่ยังไม่หมดอายุ
+            us_citizen:
+              accepted: คุณต้องเป็นพลเมืองของสหรัฐอเมริกา!
+            sms_number_for_continue_on_device:
+              format: กรุณาใส่หมายเลขโทรศัพท์ที่ถูกต้อง
+            email_address_for_continue_on_device:
+              format: กรุณาใส่อีเมลที่ถูกต้อง
       messages:
         inclusion: ! '%{attribute} ไม่ได้รวมอยู่ในรายการ'
         exclusion: ! '%{attribute} ที่สงวนไว้'

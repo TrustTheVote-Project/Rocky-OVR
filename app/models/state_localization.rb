@@ -24,7 +24,7 @@
 #***** END LICENSE BLOCK *****
 class StateLocalization < ActiveRecord::Base
   serialize :parties
-  belongs_to :state, :class_name => 'GeoState'
+  belongs_to :state, :class_name => 'GeoState', optional: true
   validates_presence_of :locale
   
   def automatic_under_18_ok?(reg)

@@ -67,7 +67,7 @@ describe Registrant do
     it "should be false if there is no email address" do
       r= FactoryGirl.create(:maximal_registrant)
       r.opt_in_email.should be_truthy
-      r.update_attributes(:email_address=>'', :collect_email_address=>'no')
+      r.update(:email_address=>'', :collect_email_address=>'no')
       r.save!
       r.opt_in_email.should be_falsey
     end
@@ -90,13 +90,13 @@ describe Registrant do
   end
   
   describe "finish_iframe_url" do
-    it "should be the default url with email address and partner ID passed in" do
+    it "should be the default url" do
       r = FactoryGirl.create(:step_5_registrant)
-      r.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en&email=#{r.email_address}&partner_id=#{r.partner.id}"
+      r.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en"
     end
     it "should specify the locale and include tracking and source when present" do
       r = FactoryGirl.create(:step_5_registrant, :locale=>'es', :tracking_source=>'sourceval', :tracking_id=>'trackingval')
-      r.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=es&email=#{r.email_address}&partner_id=#{r.partner.id}&source=sourceval&tracking=trackingval"
+      r.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=es&source=sourceval&tracking=trackingval"
     end
     it "uses a partner's iframe url as base for whitelabeled partners with non-blank values" do
       p1 = FactoryGirl.create(:partner, :whitelabeled=>false, :finish_iframe_url=>"https://www.google.com")
@@ -110,11 +110,11 @@ describe Registrant do
       r3 = FactoryGirl.create(:step_5_registrant, :partner=>p3)
       r4 = FactoryGirl.create(:step_5_registrant, :partner=>p4)
       
-      r1.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en&email=#{r1.email_address}&partner_id=#{r1.partner.id}"
-      r2.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en&email=#{r2.email_address}&partner_id=#{r2.partner.id}"
-      r3.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en&email=#{r3.email_address}&partner_id=#{r3.partner.id}"
+      r1.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en"
+      r2.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en"
+      r3.finish_iframe_url.should == "#{Registrant::FINISH_IFRAME_URL}?locale=en"
       
-      r4.finish_iframe_url.should == "#{r4.partner.finish_iframe_url}?locale=en&email=#{r4.email_address}&partner_id=#{r4.partner.id}"
+      r4.finish_iframe_url.should == "#{r4.partner.finish_iframe_url}?locale=en"
       
     end
   end
@@ -194,8 +194,8 @@ describe Registrant do
   describe "backfill data" do
     it "backfills the age even when redacted" do
       assert_equal 0, Registrant.where("age IS NOT NULL").size
-      5.times { FactoryGirl.create(:step_5_registrant, :date_of_birth => 241.months.ago.to_date.to_s(:db)) }
-      4.times { FactoryGirl.create(:step_5_registrant, :date_of_birth => 239.months.ago.to_date.to_s(:db)) }
+      5.times { FactoryGirl.create(:step_5_registrant, :date_of_birth => 241.months.ago.to_date.to_fs(:db)) }
+      4.times { FactoryGirl.create(:step_5_registrant, :date_of_birth => 239.months.ago.to_date.to_fs(:db)) }
       Registrant.update_all("age = NULL")
       Registrant.update_all("state_id_number = NULL")
       Registrant.backfill_data
@@ -319,10 +319,8 @@ describe Registrant do
           non_latin_locales.each do |loc|
             txt = I18n.t('txt.registration.in_language_name', :locale=>loc, :default => "")
             unless txt.blank?
-              # puts "\tTesting #{loc}: #{txt}"
               r.send("#{field}=",txt)
               r.should_not be_valid
-              # puts r.send(field), r.errors.keys, r.errors[field]
               r.errors[field].should_not be_empty          
             end
           end
@@ -557,11 +555,11 @@ describe Registrant do
     end
     
     it "should be ineligible when too young" do
-      reg = FactoryGirl.build(:step_2_registrant, :date_of_birth => 10.years.ago.to_date.to_s(:db))
+      reg = FactoryGirl.build(:step_2_registrant, :date_of_birth => 10.years.ago.to_date.to_fs(:db))
       assert reg.valid?
       assert reg.ineligible?
       assert reg.ineligible_age?
-      reg = FactoryGirl.build(:step_2_registrant, :date_of_birth => 20.years.ago.to_date.to_s(:db))
+      reg = FactoryGirl.build(:step_2_registrant, :date_of_birth => 20.years.ago.to_date.to_fs(:db))
       assert reg.valid?
       assert reg.eligible?
       assert !reg.ineligible_age?
@@ -938,9 +936,9 @@ describe Registrant do
       assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "$234567")
 
 
-      assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "S345671 24323")
-      assert_attribute_valid_with(:step_3_registrant, :state_id_number => "S345671  4323")
-      assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "1234 4323")
+      assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "S3456734567345673456734567345673456734567 24323")
+      assert_attribute_valid_with(:step_3_registrant, :state_id_number => "S3456734567345673456734567345673456734567  4323")
+      assert_attribute_invalid_with(:step_3_registrant, :state_id_number => "1 4323")
       assert_attribute_valid_with(:step_3_registrant, :state_id_number => "S345671 2323")
 
     end
@@ -1011,7 +1009,7 @@ describe Registrant do
 
   describe "step 5" do
     it "requires attestations" do
-      assert_attribute_invalid_with(:step_5_registrant, :attest_true => "0")
+      assert_attribute_invalid_with(:step_5_registrant, {:attest_true => "0"}, {short_form: false})
     end
   end
 
@@ -1048,7 +1046,7 @@ describe Registrant do
           r.send("survey_question_#{qnum}").should == p.send("survey_question_#{qnum}_en")
           r2.send("survey_question_#{qnum}").should == p.send("survey_question_#{qnum}_es")
         
-          p.update_attributes("survey_question_#{qnum}_en"=>"new en #{qnum}", "survey_question_#{qnum}_es"=>"new es #{qnum}")
+          p.update("survey_question_#{qnum}_en"=>"new en #{qnum}", "survey_question_#{qnum}_es"=>"new es #{qnum}")
           r.reload
           r2.reload
           r.send("original_survey_question_#{qnum}=", '')
@@ -1067,7 +1065,7 @@ describe Registrant do
           r.send("survey_question_#{qnum}").should == orig_en
           r2.send("survey_question_#{qnum}").should == orig_es
       
-          p.update_attributes("survey_question_#{qnum}_en"=>"new en #{qnum}", "survey_question_#{qnum}_es"=>"new es #{qnum}")
+          p.update("survey_question_#{qnum}_en"=>"new en #{qnum}", "survey_question_#{qnum}_es"=>"new es #{qnum}")
           r.reload
           r2.reload
           r.send("survey_question_#{qnum}").should == orig_en
@@ -1082,8 +1080,8 @@ describe Registrant do
         r2 = FactoryGirl.create(:step_3_registrant, :partner=>p, :locale=>"es")
         r.send("survey_answer_#{qnum}").should be_blank
         r2.send("survey_answer_#{qnum}").should be_blank
-        r.update_attributes("survey_answer_#{qnum}"=>"My Answer")
-        r2.update_attributes("survey_answer_#{qnum}"=>"My Answer")
+        r.update("survey_answer_#{qnum}"=>"My Answer")
+        r2.update("survey_answer_#{qnum}"=>"My Answer")
         r.reload
         r2.reload
         r.send("original_survey_question_#{qnum}").should == p.send("survey_question_#{qnum}_en")
@@ -1299,11 +1297,11 @@ describe Registrant do
     it "gets parties by locale when required" do
       reg = FactoryGirl.build(:step_2_registrant, :locale => 'en', :home_zip_code => '94101')
       state = reg.home_state
-      reg.localization.update_attributes(:parties => %w(red green blue), :no_party => "black")
+      reg.localization.update(:parties => %w(red green blue), :no_party => "black")
       assert_equal %w(red green blue black), reg.state_parties
       reg.locale = 'es'
       reg.instance_variable_set(:@localization, nil)  # registrant memoizes localization so we have to clear it
-      reg.localization.update_attributes(:parties => %w(red green blue), :no_party => "black")
+      reg.localization.update(:parties => %w(red green blue), :no_party => "black")
       assert_equal %w(red green blue black), reg.state_parties
     end
 
@@ -1696,7 +1694,7 @@ describe Registrant do
                       nil,
                       nil,
                      "English",
-                     reg.date_of_birth.to_s(:month_day_year),
+                     reg.date_of_birth.to_fs(:month_day_year),
                      reg.email_address,
                      "Yes",
                      nil,
@@ -1758,7 +1756,7 @@ describe Registrant do
                      "open id",
                      nil,
                      "English",
-                     reg.date_of_birth.to_s(:month_day_year),
+                     reg.date_of_birth.to_fs(:month_day_year),
                      "citizen@example.com",
                      "Yes",
                      "Mrs.",
@@ -1823,7 +1821,7 @@ describe Registrant do
                      "open id",
                      nil,
                      "Spanish",
-                     reg.date_of_birth.to_s(:month_day_year),
+                     reg.date_of_birth.to_fs(:month_day_year),
                      "citizen@example.com",
                      "Yes",
                      "Mrs.",
@@ -1901,7 +1899,7 @@ describe Registrant do
                      "open id",
                      "Success: PA ID",
                      "English",
-                     reg.date_of_birth.to_s(:month_day_year),
+                     reg.date_of_birth.to_fs(:month_day_year),
                      "citizen@example.com",
                      "Yes",
                      "Mrs.",
@@ -2311,7 +2309,6 @@ describe Registrant do
   def assert_attribute_invalid_with(model, attributes, other_attributes = {})
     reg = FactoryGirl.build(model, attributes.merge(other_attributes))
     assert !reg.valid?
-    puts reg.errors.to_hash, attributes
     attributes.keys.each do |k|
       expect(reg.errors[k]).to_not be_empty
     end

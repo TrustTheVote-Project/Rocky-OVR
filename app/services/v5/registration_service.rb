@@ -152,6 +152,47 @@ module V5
       return []
     end
     
+    def self.create_mi_registrant(orig_data)
+      orig_data = ActiveSupport::HashWithIndifferentAccess.new(orig_data)
+      data = orig_data.deep_dup
+      email_address = data.delete(:email)
+      partner_id = data.delete(:partner_id)
+      registration_zip_code = data.delete(:registration_zip_code)
+      shift_id = data.delete(:shift_id)
+      incomplete = data.delete(:incomplete)
+      phone_type = data.delete(:phone_type)
+      r = Registrant.new({
+        locale: 'en',
+        email_address: email_address,
+        partner_id: partner_id,
+        home_zip_code: registration_zip_code,
+        shift_id: shift_id,
+        phone_type: phone_type
+      })
+      r.home_state ||= GeoState["MI"] #ensure state gets set
+      # Check for validity
+      if !r.valid?
+        if r.errors[:email_address] && r.errors[:email_address].any?
+          r.collect_email_address = 'no'
+          r.email_address = nil
+        end
+        if r.errors[:phone] && r.errors[:phone].any?
+          r.phone = nil
+          r.phone_type = nil
+        end
+      end
+
+      r.save
+
+      sr = r.state_registrant
+      
+      sr.attributes = data
+      sr.status = incomplete ? sr.step_list.first : sr.step_list.last
+      
+      # process into Registrant fields
+      return sr
+    end
+
     def self.async_register_with_pa(registrant_id)
       registrant = Registrant.find_by_id(registrant_id)
       RequestLogSession.make_call_with_logging(registrant: registrant, client_id: 'PARegistrationRequest::Grommet', censor: PACensor) do
@@ -349,70 +390,7 @@ module V5
         download_url: r.status == Report::Status.complete ? (g_partner ? Rails.application.routes.url_helpers.api_v5_download_gregistrant_report_url(r, host: RockyConf.api_host_name) : Rails.application.routes.url_helpers.download_api_v5_registrant_report_url(r, host: RockyConf.api_host_name)) : nil
       }
 
-      # distribute_reads do
-      #   pa_registrants = {}
-      #   StateRegistrants::PARegistrant.joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_pa_registrants.registrant_id").where('registrants.partner_id=?',partner_id).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
-      #   va_registrants = {}
-      #   StateRegistrants::VARegistrant.joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',partner_id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
-      #   mapped = []
-      #   regs.includes([:home_state, :mailing_state, :partner, :registrant_status]).find_each do |reg|
-      #     if reg.use_state_flow?
-      #       sr  = nil
-      #       case reg.home_state_abbrev
-      #       when "PA"
-      #         sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
-      #       when "VA"
-      #         sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
-      #       end
-      #       reg.instance_variable_set(:@existing_state_registrant, sr)
-      #     end
-      #
-      #     mapped << { :status               => reg.extended_status,
-      #       :will_be_18_by_election => reg.will_be_18_by_election?,
-      #       :create_time          => reg.created_at.to_s,
-      #       :complete_time        => reg.completed_at.to_s,
-      #       :lang                 => reg.locale,
-      #       :first_reg            => reg.first_registration?,
-      #       :home_zip_code        => reg.home_zip_code,
-      #       :us_citizen           => reg.us_citizen?,
-      #       :name_title           => reg.name_title,
-      #       :first_name           => reg.first_name,
-      #       :middle_name          => reg.middle_name,
-      #       :last_name            => reg.last_name,
-      #       :name_suffix          => reg.name_suffix,
-      #       :home_address         => reg.home_address,
-      #       :home_unit            => reg.home_unit,
-      #       :home_city            => reg.home_city,
-      #       :home_state_id        => reg.home_state_id,
-      #       :has_mailing_address  => reg.has_mailing_address,
-      #       :mailing_address      => reg.mailing_address,
-      #       :mailing_unit         => reg.mailing_unit,
-      #       :mailing_city         => reg.mailing_city,
-      #       :mailing_state_id     => reg.mailing_state_id,
-      #       :mailing_zip_code     => reg.mailing_zip_code,
-      #       :race                 => reg.race,
-      #       :party                => reg.party,
-      #       :phone                => reg.phone,
-      #       :phone_type           => reg.phone_type,
-      #       :email_address        => reg.email_address,
-      #       :opt_in_email         => reg.opt_in_email,
-      #       :opt_in_sms           => reg.opt_in_sms,
-      #       :opt_in_volunteer            => reg.volunteer?,
-      #       :partner_opt_in_email => reg.partner_opt_in_email,
-      #       :partner_opt_in_sms   => reg.partner_opt_in_sms,
-      #       :partner_opt_in_volunteer    => reg.partner_volunteer?,
-      #       :survey_question_1    => partner.send("survey_question_1_#{reg.locale}"),
-      #       :survey_answer_1      => reg.survey_answer_1,
-      #       :survey_question_2    => partner.send("survey_question_1_#{reg.locale}"),
-      #       :survey_answer_2      => reg.survey_answer_2,
-      #       :finish_with_state    => reg.finish_with_state?,
-      #       :created_via_api      => reg.building_via_api_call?,
-      #       :tracking_source      => reg.tracking_source,
-      #       :tracking_id         => reg.tracking_id,
-      #       :dob                  => reg.pdf_date_of_birth }
-      #   end
-      #   return mapped
-      # end
+      
       
     end
 
@@ -453,7 +431,7 @@ module V5
         :finish_iframe_url=> reg.finish_iframe_url,
         :locale => reg.locale,
         :partner_id=> reg.partner_id,
-        :reminders_stopped=>reg.update_attributes(:reminders_left=>0)
+        :reminders_stopped=>reg.update(:reminders_left=>0)
       }
     end
 
@@ -700,6 +678,28 @@ module V5
     def self.data_to_attrs(data)
       attrs = data.clone
       attrs.symbolize_keys! if attrs.respond_to?(:symbolize_keys!)
+
+      if attrs[:created_at]
+        begin
+          timestamp = DateTime.parse(attrs[:created_at])
+          if timestamp > DateTime.now
+            attrs.delete(:created_at)
+          end
+        rescue
+          attrs.delete(:created_at)
+        end
+      end
+
+      if attrs[:updated_at]
+        begin
+          timestamp = DateTime.parse(attrs[:updated_at])
+          if timestamp > DateTime.now
+            attrs.delete(:updated_at)
+          end
+        rescue
+          attrs.delete(:updated_at)
+        end
+      end
 
       if l = attrs.delete(:lang)
         attrs[:locale] = l

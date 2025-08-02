@@ -47,7 +47,7 @@ describe WidgetImagesController do
       end
 
       it "changes the widget image setting" do
-        get :update, :partner => {:widget_image_name => "rtv200x165v1"}
+        get :update, params: {:partner => {:widget_image_name => "rtv200x165v1"}}
         assert_redirected_to partner_url
         assert_equal "rtv-200x165-v1.gif", assigns[:partner].widget_image
       end

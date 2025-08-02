@@ -119,7 +119,7 @@ RSpec.configure do |config|
     end
     
   end
-  
+  Capybara.server = :webrick
   Capybara.javascript_driver = ENV['DEBUG'] ? :selenium_chrome : :selenium_chrome_headless
 end
 

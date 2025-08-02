@@ -1,4 +1,4 @@
-class CreateCatalistLookups < ActiveRecord::Migration
+class CreateCatalistLookups < ActiveRecord::Migration[4.2]
   def change
     create_table :catalist_lookups do |t|
       t.string :first

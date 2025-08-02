@@ -1,5 +1,5 @@
 class AbTest < ActiveRecord::Base
-  belongs_to :registrant
+  belongs_to :registrant, optional: true
   
   MOBILE_UI="NewMobileUI".freeze
   MOBILE_UI_OLD="OLD".freeze

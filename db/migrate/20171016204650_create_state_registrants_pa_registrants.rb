@@ -1,4 +1,4 @@
-class CreateStateRegistrantsPaRegistrants < ActiveRecord::Migration
+class CreateStateRegistrantsPaRegistrants < ActiveRecord::Migration[4.2]
   def change
     create_table :state_registrants_pa_registrants do |t|
       t.string :email

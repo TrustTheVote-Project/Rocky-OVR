@@ -25,7 +25,18 @@
 module V4
   class PartnerService
     INVALID_PARTNER_OR_API_KEY = "Invalid partner ID or api key"
-
+    API_PARAM_MAP = [[:org_name, :organization],
+    [:org_URL, :url],
+    [:org_privacy_url, :privacy_url],
+    [:logo_image_URL, :logo_url],
+    [:contact_name, :name],
+    [:contact_email, :email],
+    [:contact_address, :address],
+    [:contact_phone, :phone],
+    [:contact_city, :city],
+    [:contact_ZIP, :zip_code],
+    [:partner_ask_volunteer, :partner_ask_for_volunteers]]
+    
     ALLOWED_ATTRS = [:username, 
         :organization,
         :url,
@@ -184,17 +195,7 @@ module V4
       attrs = data.clone
       attrs.symbolize_keys! if attrs.respond_to?(:symbolize_keys!)
 
-      [[:org_name, :organization],
-      [:org_URL, :url],
-      [:org_privacy_url, :privacy_url],
-      [:logo_image_URL, :logo_url],
-      [:contact_name, :name],
-      [:contact_email, :email],
-      [:contact_address, :address],
-      [:contact_phone, :phone],
-      [:contact_city, :city],
-      [:contact_ZIP, :zip_code],
-      [:partner_ask_volunteer, :partner_ask_for_volunteers]].each do |data_key, attr_key|
+      API_PARAM_MAP.each do |data_key, attr_key|
         val = attrs.delete(data_key)
         if !val.nil?
           attrs[attr_key] = val

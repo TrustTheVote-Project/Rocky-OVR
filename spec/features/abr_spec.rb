@@ -12,7 +12,7 @@ RSpec.feature 'ABR' do
     fill_in 'First Name', with: 'John'
     fill_in 'Last Name', with: 'Smith'
     fill_in 'Street number', with: 120
-    fill_in 'Street name', with: '4th St'
+    fill_in 'Street Name and Type', with: '4th St'
     fill_in 'City', with: 'Juneau'
 
     fill_in 'abr_date_of_birth_month', with: 1
@@ -20,6 +20,6 @@ RSpec.feature 'ABR' do
     fill_in 'abr_date_of_birth_year', with: 2000
 
     find(:button, text: 'Next Step').click
-    expect(page).to have_content('You can request an Absentee Ballot online directly with the state of Alaska')
+    expect(page).to have_content('Request An Absentee Ballot In AK')
   end
 end

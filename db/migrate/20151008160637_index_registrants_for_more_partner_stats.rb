@@ -1,4 +1,4 @@
-class IndexRegistrantsForMorePartnerStats < ActiveRecord::Migration
+class IndexRegistrantsForMorePartnerStats < ActiveRecord::Migration[4.2]
   def change
     add_index :registrants, [:finish_with_state, :partner_id, :status], name: :index_registrants_for_started_count
     add_index :registrants, [:finish_with_state, :partner_id, :status, :home_state_id], name: :index_registrants_by_state

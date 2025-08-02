@@ -25,12 +25,37 @@
 require 'open-uri'
 
 class Partner < ActiveRecord::Base
+
+  has_many :partner_users, dependent: :destroy
+  has_many :users, through: :partner_users
+
+
   acts_as_authentic do |c|
-    c.crypto_provider = Authlogic::CryptoProviders::Sha512
-    c.merge_validates_length_of_password_field_options({:minimum => 10})
+    c.transition_from_crypto_providers = [Authlogic::CryptoProviders::Sha512]
+    c.crypto_provider = Authlogic::CryptoProviders::SCrypt
   end
-  validates_format_of :password, with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, allow_blank: true
   
+  validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
+  validates :email, presence: true
+  
+  # validates :password,
+  #   confirmation: { if: :require_password? },
+  #   format: {
+  #     with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,}/, 
+  #     allow_blank: true
+  #   },
+  #   length: {
+  #     minimum: 10,
+  #     if: :require_password?
+  #   }
+  # validates :password_confirmation,
+  #   length: {
+  #     minimum: 10,
+  #     if: :require_password?
+  #   }
+
+
+
   validate :sms_opt_in_requirements
   
   include TimeStampHelper
@@ -70,16 +95,28 @@ class Partner < ActiveRecord::Base
 
   CSV_GENERATION_PRIORITY = Registrant::REMINDER_EMAIL_PRIORITY
 
-  attr_protected :crypted_password, :password_salt, :persistence_token, :perishable_token, :created_at, :updated_at, :api_key, :csv_ready, :csv_file_name, :from_email_verified_at, :from_email_verification_checked_at, :failed_login_count, :login_count, :last_request_at, :current_login_at, :current_login_ip, :last_login_ip, :grommet_csv_ready, :grommet_csv_file_name
-
   attr_accessor :tmp_asset_directory
 
-  belongs_to :state, :class_name => "GeoState"
-  belongs_to :government_partner_state, :class_name=> "GeoState"
+  belongs_to :state, :class_name => "GeoState", optional: true
+  belongs_to :government_partner_state, :class_name=> "GeoState", optional: true
   has_many :registrants
   has_many :abrs
   has_many :catalist_lookups
   has_many :canvassing_shifts
+  has_many :alert_requests
+
+  def self.permitted_attributes
+    attrs = self.column_names - self.protected_attributes
+    return [attrs, :password, :password_confirmation, :state_abbrev].flatten
+  end
+
+  def self.protected_attributes
+    Partner::PROTECTED_ATTRIBUTES
+  end
+
+  PROTECTED_ATTRIBUTES = [
+    :crypted_password, :password_salt, :persistence_token, :perishable_token, :created_at, :updated_at, :api_key, :csv_ready, :csv_file_name, :from_email_verified_at, :from_email_verification_checked_at, :failed_login_count, :login_count, :last_request_at, :current_login_at, :current_login_ip, :last_login_ip, :grommet_csv_ready, :grommet_csv_file_name
+  ]
 
   
   def self.partner_assets_bucket
@@ -133,8 +170,14 @@ class Partner < ActiveRecord::Base
   
 
   serialize :government_partner_zip_codes
-  serialize :states_enabled_for_pdf_assistance, Array
-  serialize :replace_system_css, Hash
+  serialize :states_enabled_for_pdf_assistance
+  after_initialize do
+    self.states_enabled_for_pdf_assistance ||= []
+  end
+  serialize :replace_system_css
+  after_initialize do
+    self.replace_system_css ||= {}
+  end
 
   before_validation :reformat_phone
   before_validation :set_default_widget_image
@@ -173,10 +216,22 @@ class Partner < ActiveRecord::Base
 
   after_validation :make_paperclip_errors_readable
 
-  serialize :survey_question_1, Hash
-  serialize :survey_question_2, Hash
-  serialize :pixel_tracking_codes, Hash
-  serialize :branding_update_request, OpenStruct
+  serialize :survey_question_1
+  after_initialize do
+    self.survey_question_1 ||= {}
+  end
+  serialize :survey_question_2
+  after_initialize do
+    self.survey_question_2 ||= {}
+  end
+  serialize :pixel_tracking_codes
+  after_initialize do
+    self.pixel_tracking_codes ||= {}
+  end
+  serialize :branding_update_request
+  after_initialize do
+    self.branding_update_request ||= OpenStruct.new()
+  end
   
   # Need to declare attributes for each enabled lang
   RockyConf.enabled_locales.each do |locale|
@@ -208,8 +263,8 @@ class Partner < ActiveRecord::Base
   
   include PartnerAssets
   
-  scope :government, -> { where(:is_government_partner=>true) }
-  scope :standard, -> { where(:is_government_partner=>false) }
+  scope :government, -> { where(is_government_partner: true) }
+  scope :standard, -> { where(is_government_partner: false) }
 
   def self.deactivate_stale_partners!
     partners = Partner.inactive.where("active != ?", false).each do |p|
@@ -565,11 +620,6 @@ class Partner < ActiveRecord::Base
     end
   end
 
-  def deliver_password_reset_instructions!
-    reset_perishable_token!
-    Notifier.password_reset_instructions(self).deliver_now
-  end
-
   def generate_registrants_csv(start_date=nil, end_date=nil)
     r = Report.new({
       report_type: Report::REGISTRANTS_REPORT,
@@ -652,9 +702,20 @@ class Partner < ActiveRecord::Base
     return 
   end
   
+  def generate_alert_request_report(start_date=nil, end_date=nil)
+    r = Report.new({
+      report_type: Report::ALERT_REQUEST_REPORT,
+      start_date: start_date,
+      end_date: end_date,
+      partner: self      
+    })
+    r.queue!
+    return 
+  end
   
   def widget_image_name
-    WIDGET_IMAGES.detect { |widget| widget[0] == self.widget_image }[1]
+    img = WIDGET_IMAGES.detect { |widget| widget[0] == self.widget_image }
+    img && img[1]
   end
 
   def widget_image_name=(name)
@@ -702,13 +763,13 @@ class Partner < ActiveRecord::Base
 
     paf = PartnerAssetsFolder.new(partner)
 
-    paf.update_css("application", app_css) if File.exists?(app_css)
-    paf.update_css("registration", reg_css) if File.exists?(reg_css)
-    paf.update_css("partner", part_css) if File.exists?(part_css)
+    paf.update_css("application", app_css) if File.exist?(app_css)
+    paf.update_css("registration", reg_css) if File.exist?(reg_css)
+    paf.update_css("partner", part_css) if File.exist?(part_css)
 
-    copy_success = partner.application_css_present? == File.exists?(app_css)
-    copy_success = copy_success && partner.registration_css_present? == File.exists?(reg_css)
-    copy_success = copy_success && partner.partner_css_present? == File.exists?(part_css)
+    copy_success = partner.application_css_present? == File.exist?(app_css)
+    copy_success = copy_success && partner.registration_css_present? == File.exist?(reg_css)
+    copy_success = copy_success && partner.partner_css_present? == File.exist?(part_css)
     
     raise "Error copying css to partner directory '#{partner.assets_path}'" unless copy_success
 
@@ -728,7 +789,7 @@ class Partner < ActiveRecord::Base
     ea = kind
     ea = 'state_integrated' if ea == 'thank_you_external'
     ea = 'chase' if ea == 'chaser'
-    return "<img src=\"http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=#{ea}_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
+    return "<img src=\"https://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=#{ea}_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
     
   end
   

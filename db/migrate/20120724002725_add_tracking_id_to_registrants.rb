@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddTrackingIdToRegistrants < ActiveRecord::Migration
+class AddTrackingIdToRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     add_column :registrants, :tracking_id, :string
   end

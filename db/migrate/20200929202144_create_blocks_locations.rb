@@ -1,4 +1,4 @@
-class CreateBlocksLocations < ActiveRecord::Migration
+class CreateBlocksLocations < ActiveRecord::Migration[4.2]
   def change
     create_table :blocks_locations do |t|
       t.string :blocks_id, index: true

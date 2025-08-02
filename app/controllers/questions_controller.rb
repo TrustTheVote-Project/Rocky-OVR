@@ -23,19 +23,28 @@
 #
 #***** END LICENSE BLOCK *****
 class QuestionsController < PartnerBase
-  before_filter :require_partner
+  before_action :require_partner
 
   def edit
-    @partner = current_partner
   end
 
   def update
-    @partner = current_partner
-    if @partner.update_attributes(params[:partner])
+    if @partner.update(partner_params)
       flash[:success] = "You have updated your survey questions."
-      redirect_to partner_url
+      redirect_to partner_path(@partner)
     else
       render "edit"
     end
+  end
+
+  protected
+  def partner_params
+    attrs = [:ask_for_volunteers, :partner_ask_for_volunteers]
+    RockyConf.enabled_locales.each do |loc| 
+      locale = loc.underscore
+      attrs.push("survey_question_1_#{locale}")
+      attrs.push("survey_question_2_#{locale}")
+    end
+    params.require(:partner).permit(attrs)
   end
 end

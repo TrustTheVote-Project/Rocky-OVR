@@ -1,6 +1,6 @@
 class PdfWriter
   include ActiveModel::AttributeMethods
-  include ActiveModel::MassAssignmentSecurity
+  #include ActiveModel::MassAssignmentSecurity
   include ActiveModel::Validations
   
   include Lolrus
@@ -100,9 +100,12 @@ class PdfWriter
   end
 
   def assign_attributes(values, options = {})
-    sanitize_for_mass_assignment(values, options[:as]).each do |k, v|
-      send("#{k}=", v)
+    values.each do |k,v|
+      send("#{k}=", v) if self.respond_to?("#{k}=")
     end
+    # sanitize_for_mass_assignment(values, options[:as]).each do |k, v|
+    #   send("#{k}=", v)
+    # end
   end
 
 
@@ -121,7 +124,7 @@ class PdfWriter
       :locale=>self.locale
     )
     I18n.locale = prev_locale
-
+    
     return html_string    
   end
 
@@ -155,11 +158,11 @@ class PdfWriter
   end
 
   def pdf_exists?
-    File.exists?(pdf_file_path)
+    File.exist?(pdf_file_path)
   end
   
   def html_exists?
-    File.exists?(html_file_path)
+    File.exist?(html_file_path)
   end
 
 
@@ -188,7 +191,7 @@ class PdfWriter
       "#{pdfpre}/#{bucket_code}"
     else
       # we're past this old format
-      # if File.exists?(pdf_file_path("pdf"))
+      # if File.exist?(pdf_file_path("pdf"))
       #  "pdf/#{bucket_code}"
       # else
         "#{url_format ? '' : "public/"}pdfs/#{bucket_code}"

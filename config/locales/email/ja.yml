@@ -10,7 +10,7 @@ ja:
           href=\"%{cancel_reminders_url}\">ここを押して</a>郵送の催促を中止することができます。　\n州の選挙事務所から登録完了のが送られます。手続きには時に数週間かかることもあります。もしあなたの投票登録申し込みの状況を知りたいのであれば州務
           長官%{registrar_phone}に電話するかオンラインの%{registrar_url}で確認することもできます。<br><br>\n\n私たちは他の人たちにも投票者登録をするよう呼びかけるため、あなたのヘルプが必要です。国中で大きな選挙があります。みなさんの意見が選挙で反映されるように、家族や友達にeメールを送って下さい。もしくは下でメッセージを送って下さい。<br><br>\n\nそして、最後に、選挙の日に投票するのを忘れないで下さい。国内には投票資格のある４５００万人の若者がいます。そして私たちが関心がある事柄について政治家達に考えてもらいたいのなら投票をするべきなのです。<br><br>\n\nありがとうございます。<br><br>\nヘザー・スミス<br><br>\n
           Rock the Vote代表<br><br>\n\n追伸　投票、選挙そして関心を寄せている事柄に関するより詳しい情報は、、あなた自身の投票者登録キャンペーンを始めるのためのツールと同様に<strong><a
-          href=\"http://www.rockthevote.com/\">www.rockthevote.com</a></strong>をご覧下さい。<br><br>"
+          href=\"https://www.rockthevote.org/\">www.rockthevote.org</a></strong>をご覧下さい。<br><br>"
         send_to_friends: ! '<em><strong>以下をあなたのeメイルメッセージにコピー＆ペーストして友人達に送って下さい。</strong></em><br><br>
 
 
@@ -29,10 +29,10 @@ ja:
           <br><br>
 
           %{registrant_first_name}<br><br>'
-        footer: ! 'Rock the Voteはあなたのプライバシーを保護し大切な個人情報を守ります。投票登録のプライバシー方針の詳細についてはhttp://www.rockthevote.com/voter-registration/online-application-system/privacy.htmlをご覧下さい。<br><br>
+        footer: ! 'Rock the Voteはあなたのプライバシーを保護し大切な個人情報を守ります。投票登録のプライバシー方針の詳細についてはhttps://www.rockthevote.org/voter-registration/online-application-system/privacy.htmlをご覧下さい。<br><br>
 
 
-          質問やご意見はmailto:register@rockthevote.com">register@rockthevote.comまでeメールして下さい。<br>'
+          質問やご意見はmailto:register@rockthevote.org">register@rockthevote.orgまでeメールして下さい。<br>'
     reminder:
       subject: 通知：投票登録用紙を郵送しましょう。
       body:
@@ -40,7 +40,7 @@ ja:
         reminder: 署名をして、切手を貼り用紙を郵送することを忘れないように。
         main: ! "投票登録のための申し込みをしていただきありがとうございます。ここを押して申込書\"%{pdf_url}をダウンロードすることができます。<br><br>\n\nお知らせです。まだそうされていないのであれば、用紙を印刷し、それに署名し、切手を貼って用紙に記載されているまたは下に書かれている住所宛に郵送をして下さい。<br><br>\n\n%{registrar_address}<br><br>\n\n\n既に用紙を郵送したのであれば、\"%{cancel_reminders_url}ここを押して郵送の催促を中止することができます。　\nあなたの投票者登録申し込みの状況を知りたいのであれば州務長官
           %{registrar_phone}に電話するかオンラインの%{registrar_url}で確認することもできます。<br><br>\n\n\n私たちは他の人たちにも投票者登録をするよう呼びかけるため、あなたのヘルプが必要です。国中で大きな選挙があります。みなさんの意見が選挙で反映されるように、家族や友達にeメールを送って下さい。もしくは下でメッセージを送って下さい。<br><br>\n\nそして、最後に、選挙の日に投票するのを忘れないで下さい。国内には投票資格のある４５００万人の若者がいます。そして私たちが関心がある事柄について政治家達に考えてもらいたいのなら投票をするべきなのです。<br><br>\n\nありがとうございます。<br><br>\nヘザー・スミス<br><br>\n
-          Rock the Vote代表<br><br>\n\n\n追伸　投票、選挙そして関心を寄せている事柄に関するより詳しい情報は、あなた自身の投票者登録キャンペーンを始めるのためのツールと同様にhttp://www.rockthevote.com/をご覧下さい。<br><br>"
+          Rock the Vote代表<br><br>\n\n\n追伸　投票、選挙そして関心を寄せている事柄に関するより詳しい情報は、あなた自身の投票者登録キャンペーンを始めるのためのツールと同様にhttps://www.rockthevote.org/をご覧下さい。<br><br>"
         send_to_friends: ! '以下をあなたのeメイルメッセージにコピー＆ペーストして友人達に送って下さい。<br><br>
 
 
@@ -59,10 +59,10 @@ ja:
           <br>
 
           %{registrant_first_name}<br><br>'
-        footer: ! 'Rock the Voteはあなたのプライバシーを保護し大切な個人情報を守ります。投票登録のプライバシー方針の詳細についてはhttp://www.rockthevote.com/voter-registration/online-application-system/privacy.htmlをご覧下さい。<br><br>
+        footer: ! 'Rock the Voteはあなたのプライバシーを保護し大切な個人情報を守ります。投票登録のプライバシー方針の詳細についてはhttps://www.rockthevote.org/voter-registration/online-application-system/privacy.htmlをご覧下さい。<br><br>
 
 
-          質問やご意見はmailto:register@rockthevote.com">register@rockthevote.comまで送ってください。<br>'
+          質問やご意見はmailto:register@rockthevote.org">register@rockthevote.orgまで送ってください。<br>'
     final_reminder:
       subject: 最終案内：投票登録用紙を送付する。
       body:
@@ -70,7 +70,7 @@ ja:
         reminder: 署名をして、切手を貼り用紙を郵送することを忘れないように。
         main: ! "投票登録のための申し込みをしていただきありがとうございます。ここを押して申込書\"%{pdf_url}をダウンロードすることができます。<br><br>\n\nお知らせです。まだそうされていないのであれば、用紙を印刷し、それに署名し、切手を貼って用紙に記載されているまたは下に書かれている住所宛に郵送をして下さい。<br><br>\n\n%{registrar_address}<br><br>\n\n\n既に用紙を郵送したのであれば、\"%{cancel_reminders_url}ここを押して郵送の催促を中止することができます。　\nあなたの投票者登録申し込みの状況を知りたいのであれば州務長官
           %{registrar_phone}に電話するかオンラインの%{registrar_url}で確認することもできます。<br><br>\n\n\n私たちは他の人たちにも投票者登録をするよう呼びかけるため、あなたのヘルプが必要です。国中で大きな選挙があります。みなさんの意見が選挙で反映されるように、家族や友達にeメールを送って下さい。もしくは下でメッセージを送って下さい。<br><br>\n\nそして、最後に、選挙の日に投票するのを忘れないで下さい。国内には投票資格のある４５００万人の若者がいます。そして私たちが関心がある事柄について政治家達に考えてもらいたいのなら投票をするべきなのです。<br><br>\n\nありがとうございます。<br><br>\nヘザー・スミス<br><br>\n
-          Rock the Vote代表<br><br>\n\n\n追伸　投票、選挙そして関心を寄せている事柄に関するより詳しい情報は、あなた自身の投票者登録キャンペーンを始めるのためのツールと同様にhttp://www.rockthevote.com/をご覧下さい。<br><br>"
+          Rock the Vote代表<br><br>\n\n\n追伸　投票、選挙そして関心を寄せている事柄に関するより詳しい情報は、あなた自身の投票者登録キャンペーンを始めるのためのツールと同様にhttps://www.rockthevote.org/をご覧下さい。<br><br>"
         send_to_friends: ! '以下をあなたのeメイルメッセージにコピー＆ペーストして友人達に送って下さい。<br><br>
 
 
@@ -89,10 +89,10 @@ ja:
           <br>
 
           %{registrant_first_name}<br><br>'
-        footer: ! 'Rock the Voteはあなたのプライバシーを保護し大切な個人情報を守ります。投票登録のプライバシー方針の詳細についてはhttp://www.rockthevote.com/voter-registration/online-application-system/privacy.htmlをご覧下さい。<br><br>
+        footer: ! 'Rock the Voteはあなたのプライバシーを保護し大切な個人情報を守ります。投票登録のプライバシー方針の詳細についてはhttps://www.rockthevote.org/voter-registration/online-application-system/privacy.htmlをご覧下さい。<br><br>
 
 
-          質問やご意見はmailto:register@rockthevote.com">register@rockthevote.comまでeメールして下さい。<br>'
+          質問やご意見はmailto:register@rockthevote.org">register@rockthevote.orgまでeメールして下さい。<br>'
     chaser:
       subject: まだ投票登録ができます。
       body:
@@ -134,7 +134,7 @@ ja:
 
 
 
-          追伸　投票、選挙そして関心を寄せている事柄に関するより詳しい情報は、、あなた自身の投票者登録キャンペーンを始めるのためのツールと同様にhttp://www.rockthevote.com/をご覧下さい。<br><br>'
+          追伸　投票、選挙そして関心を寄せている事柄に関するより詳しい情報は、、あなた自身の投票者登録キャンペーンを始めるのためのツールと同様にhttps://www.rockthevote.org/をご覧下さい。<br><br>'
         send_to_friends: ! '以下をあなたのeメイルメッセージにコピー＆ペーストして友人達に送って下さい。<br><br>
 
 
@@ -153,10 +153,10 @@ ja:
           <br>
 
           %{registrant_first_name}<br><br>'
-        footer: ! 'Rock the Vote はあなたのプライバシーを保護し大切な個人情報を守ります。投票登録のプライバシー方針の詳細についてはhttp://www.rockthevote.com/voter-registration/online-application-system/privacy.htmlをご覧下さい。<br><br>
+        footer: ! 'Rock the Vote はあなたのプライバシーを保護し大切な個人情報を守ります。投票登録のプライバシー方針の詳細についてはhttps://www.rockthevote.org/voter-registration/online-application-system/privacy.htmlをご覧下さい。<br><br>
 
 
-          質問やご意見はmailto:register@rockthevote.com">register@rockthevote.comまでeメールして下さい。<br>'
+          質問やご意見はmailto:register@rockthevote.org">register@rockthevote.orgまでeメールして下さい。<br>'
     tell_friend:
       subject: 私は投票者登録をしました。あなたもするべきです。
       body: ! "私は投票登録をすませましした。あなたもできますよ。簡単です。\n\n %{rtv_url}ここでオンライン用紙に記入するだけです。登録をしていないと投票はできません。初めて投票するために投票登録が必要でも、住所や名前の変更が必要でも、わずか数分しかかかりません。　詳しい情報を得るには

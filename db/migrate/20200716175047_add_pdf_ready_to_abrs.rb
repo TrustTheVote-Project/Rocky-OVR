@@ -1,4 +1,4 @@
-class AddPdfReadyToAbrs < ActiveRecord::Migration
+class AddPdfReadyToAbrs < ActiveRecord::Migration[4.2]
   def change
     add_column :abrs, :pdf_ready, :boolean
     add_column :abrs, :pdf_downloaded, :boolean

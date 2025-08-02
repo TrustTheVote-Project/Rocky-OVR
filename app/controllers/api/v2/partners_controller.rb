@@ -24,7 +24,6 @@
 #***** END LICENSE BLOCK *****
 require "#{Rails.root}/app/services/v2"
 class Api::V2::PartnersController < Api::V2::BaseController
-
   def show(only_public = false)
     query = {
       :partner_id      => params[:partner_id],
@@ -40,13 +39,18 @@ class Api::V2::PartnersController < Api::V2::BaseController
   end
 
   def create
-    partner = V2::PartnerService.create_record(params[:partner])
+    partner = V2::PartnerService.create_record(partner_params)
     jsonp :partner_id => partner.id.to_s
   rescue V2::RegistrationService::ValidationError => e
     jsonp({ :field_name => e.field, :message => e.message }, :status => 400)
   rescue ActiveRecord::UnknownAttributeError => e
     name = e.attribute
     jsonp({ :field_name => name, :message => "Invalid parameter type" }, :status => 400)
+  end
+
+  protected
+  def partner_params
+    params[:partner] && !params[:partner].empty? ? params.require(:partner).permit! : {}
   end
 
 end

@@ -38,7 +38,7 @@ describe Admin::GovernmentPartnersController do
   describe "GET #show" do
     it 'should render the show template' do
       partner = FactoryGirl.create(:partner)
-      get :show, :id => partner.id
+      get :show, params: {:id => partner.id}
       assigns(:partner).should == partner
       response.should render_template :show
     end      
@@ -59,17 +59,17 @@ describe Admin::GovernmentPartnersController do
         Partner.stub(:new).with({"name"=>"new_name", "is_government_partner"=>true})  { @partner }
       end
       it "redirects to the partner page" do
-        post :create, :partner => { :name => 'new_name' }
+        post :create, params: {:partner => { :name => 'new_name' }}
         response.should redirect_to admin_government_partners_path
       end
       it "sets is_government_partner to true" do
-        post :create, :partner => { :name => 'new_name' }
+        post :create, params: {:partner => { :name => 'new_name' }}
         Partner.should have_received(:new).with({"name"=>"new_name", "is_government_partner"=>true})
       end
       it "generates username and password" do
         @partner.stub(:generate_username)
         @partner.stub(:generate_random_password)
-        post :create, :partner => { :name => 'new_name' }
+        post :create, params: {:partner => { :name => 'new_name' }}
       end
     end
     context "invalid data" do
@@ -77,7 +77,7 @@ describe Admin::GovernmentPartnersController do
         @partner = FactoryGirl.create(:partner)
         @partner.stub(:save) { false }
         Partner.stub(:new).with({"name"=>"new_name", "is_government_partner"=>true})  { @partner }
-        post :create, :partner => { :name => 'new_name' }
+        post :create, params: {:partner => { :name => 'new_name' }}
       end
       
       it { should render_template(:new) }
@@ -91,7 +91,7 @@ describe Admin::GovernmentPartnersController do
   describe 'GET #edit' do
     it 'should display edit form' do
       partner = FactoryGirl.create(:partner)
-      get :edit, :id => partner.id
+      get :edit, params: {:id => partner.id}
       assigns(:partner).should == partner
       response.should render_template :edit
     end
@@ -102,13 +102,13 @@ describe Admin::GovernmentPartnersController do
       @partner = FactoryGirl.create(:partner)
     end
     context 'valid data' do
-      before  { put :update, :id => @partner, :partner => { :name => 'new_name' } }
+      before  { put :update, params: {:id => @partner, :partner => { :name => 'new_name' }} }
       it      { should redirect_to admin_government_partner_path(@partner) }
       specify { @partner.reload.name.should == 'new_name' }
     end
 
     context 'template updates' do
-      before  { put :update, :id => @partner, :template => { 'confirmation.en' => 'body' } }
+      before  { put :update, params: {:id => @partner, :template => { 'confirmation.en' => 'body' }} }
       specify { EmailTemplate.get(@partner, 'confirmation.en').should == 'body' }
     end
 
@@ -116,12 +116,12 @@ describe Admin::GovernmentPartnersController do
       before  { @sample_css = fixture_files_file_upload('/sample.css') }
       before  { @paf = PartnerAssetsFolder.new(nil) }
       before  { PartnerAssetsFolder.stub(:new).with(@partner) { @paf } }
-      before  { @paf.stub(:update_css).with('application', @sample_css) }
-      specify { put :update, :id => @partner, :css_files => { 'application' => @sample_css } }
+      before  { @paf.stub(:update_css).with('application', the_uploaded_file(@sample_css)) }
+      specify { put :update, params: {:id => @partner, :css_files => { 'application' => @sample_css }} }
     end
 
     context 'invalid data' do
-      before  { put :update, :id => @partner, :partner => { :name => '' } }
+      before  { put :update, params: {:id => @partner, :partner => { :name => '' }} }
       it      { should render_template :edit }
     end
   end

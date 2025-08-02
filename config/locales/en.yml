@@ -3,7 +3,6 @@ en:
   time:
     formats:
       short: "%B %d, %l:%M %p"
-      
   date:
     formats:
       ymd: "%Y-%m-%d"
@@ -17,9 +16,10 @@ en:
       too_long: too long (maximum is %{count} characters).
       too_short: too short (minimum is %{count} characters).
       wrong_length: wrong length (should be %{count} characters).
-      too_young: You must be 18 on or before November 3, 2020 to vote in this election.
-  or: "OR"
-  required: "Required"
+      too_young: You must be 18 on or before Election day.
+      way_too_young: You are too young for this.
+      contains_emojis: Contains invalid emoji characters. Please remove them.
+  or: OR
   affirm: Affirm
   decline: Decline
   language_name: English
@@ -57,6 +57,12 @@ en:
       name: Chinese (Simplified)
   activerecord:
     attributes:
+      geo_state:
+        add_direct_mail_partner_id: Add Partner By ID
+        abr_online_req_url: URL for online absentee ballot requests
+        abr_status_check_url: URL for checking status of absentee ballot requests
+        abr_track_ballot_url: URL for checking status of absentee ballot submissions
+        leo_lookup_url: URL for state's local-election-office directory/lookup
       canvassing_shift:
         canvasser_first_name: First Name
         canvasser_last_name: Last Name
@@ -64,8 +70,10 @@ en:
         canvasser_email: Email
         shift_location: Location
       partner:
-        from_email: Edit "from" email address to send autoresponders from your organization,
-          rather than Rock the Vote.
+        name: Contact Name
+        organization: Partner Organization Name
+        from_email: Edit "from" email address to send autoresponders from a custom
+          email address, rather than Rock the Vote.
         url: URL
         registration_instructions_url: PDF instructions URL
       state_registrants/mi_registrant:
@@ -74,7 +82,7 @@ en:
         requested_duplicate_dln_today: Have you applied for a duplicate driver’s license
           or state ID today?
         confirm_us_citizen: I am a United States citizen.
-        confirm_will_be_18: I am at least 17.5 years old and will vote only after
+        confirm_will_be_18: I am at least 16 years old and will vote only after
           I am 18.
         is_30_day_resident: I am a Michigan resident and will vote only after I have
           lived in my city or township for at least 30 days.
@@ -108,6 +116,63 @@ en:
         mailing_state: State
         mailing_zip_code: ZIP Code
         mailing_country: Country
+      state_registrants/mn_registrant:
+        confirm_declaration: I have read and understand this statement, that giving
+          false information is a felony punishable by not more than 5 years imprisonment
+          or a fine of not more than $10,000, or both.
+        confirm_eligibility: Do you meet all the following requirements? <ul> <li>I
+          am a U.S. citizen</li> <li>I am at least 18 on or before the next election</li>
+          <li>I am currently NOT incarcerated, on parole, or on probation as part
+          of a felony conviction sentence. (If you’ve had a felony conviction, you
+          can vote once you complete your sentence.)</li> </ul>
+        confirm_eligibility_yes: YES, I meet all requirements
+        confirm_eligibility_no: NO, I do not meet all requirements
+        date_of_birth: Date of Birth
+        email: Email Address
+        home_zip_code: ZIP Code
+        name_title: Title
+        first_name: First Name
+        middle_name: Middle
+        last_name: Last Name
+        name_suffix: Suffix
+        home_address: Address
+        home_unit: 'Unit/Lot #'
+        home_city: City
+        home_state_name: State
+        home_state_abbrev: State
+        has_mailing_address: I cannot receive mail here.
+        has_state_license: I have a driver's license or state ID card.
+        mailing_address: Address
+        mailing_unit: 'Unit/Lot #'
+        mailing_city: City
+        mailing_state_abbrev: State
+        mailing_zip_code: Zip
+        dln: Minnesota Driver's License Number or State I.D. Card Number
+        confirm_no_dln: I do not have a Minnesota Driver's License Number or State
+          I.D. Card
+        confirm_no_dl_or_ssn: I don’t have either an MN State I.D. Card or a social
+          security number
+        ssn4: Last four digits of your social security number
+        phone: Phone
+        phone_type: Type
+        change_of_address: I have moved since you last registered to vote.
+        prev_address: Address
+        prev_unit: 'Unit/Lot #'
+        prev_city: City
+        prev_state_abbrev: State
+        prev_zip_code: Zip
+        opt_in_email: Receive action alerts and other email updates
+        opt_in_sms: Receive txt messages
+        attest_true: I have reviewed the above information, and it is true and accurate
+          to the best of my knowledge.
+        tell_from: From
+        tell_email: Your Email
+        tell_recipients: Recipients
+        tell_subject: Subject
+        tell_message: Personal Message
+        sms_number_for_continue_on_device: 'Text me the link:'
+        email_address_for_continue_on_device: 'Email me the link:'
+        voter_signature_image: Voter Signature Image
       state_registrants/va_registrant:
         confirm_voter_record_update: I consent to update my voter record with the
           state or to register to vote if I am not yet registered with Virginia
@@ -216,6 +281,80 @@ en:
         sms_number_for_continue_on_device: 'Text me the link:'
         email_address_for_continue_on_device: 'Email me the link:'
         voter_signature_image: Voter Signature Image
+      state_registrants/wa_registrant:
+        is_citizen: I am a US citizen
+        confirm_will_be_18: I am at least sixteen years old and will not vote in a
+          special or general election until I turn eighteen.
+        has_previous_name: I have changed my name
+        ssn4: 'Optional: Please enter the last 4 digits of your social security number.'
+        has_ssn: I have a Social Security Number
+        confirm_no_ssn: No SSN was ever issued.
+        driver_license: Washington State Driver License or ID
+        confirm_no_dln: I do not have a Washington State Driver License or ID
+        name_title: Title
+        first_name: First Name
+        middle_name: Middle
+        last_name: Last Name
+        name_suffix: Suffix
+        prev_name_title: Title
+        prev_first_name: First Name
+        prev_middle_name: Middle
+        prev_last_name: Last Name
+        prev_name_suffix: Suffix
+        residence_address: Address
+        residence_unit_number: Unit number
+        residence_unit_type: Unit type
+        residence_city: City
+        residence_state: State
+        residence_state_abbrev: State
+        home_state_abbrev: State
+        residence_zip: ZIP
+        res_county_code: Residential County
+        res_address_change_made_date: The date I changed my residential address
+        has_previous_address: I have a previous Washington State residential address
+        prev_residence_address: Address
+        prev_residence_unit_number: Unit number
+        prev_residence_unit_type: Unit type
+        prev_residence_city: City
+        prev_residence_state: State
+        prev_residence_state_abbrev: State
+        prev_residence_zip: ZIP
+        prev_res_county_code: Previous Residential County
+        military_flag: Are you currently serving in the military?
+        military_flag_true: 'Yes'
+        military_flag_false: 'No'
+        is_homeless: Do you live somewhere with a non-standard address?
+        is_homeless_true: 'Yes'
+        is_homeless_false: 'No'
+        homeless_address: Describe your living address.
+        has_mailing_address: I get my mail at a different address from the one above.
+        mailing_address: Address
+        mailing_unit_number: Unit number
+        mailing_unit_type: Unit type
+        mailing_city: City
+        mailing_state: State
+        mailing_zip_: ZIP
+        mail_county_code: Mailing Address County
+        has_previous_mailing_address: I have a previous mailing address
+        mail_address_change_made_date: The date I changed my mailing address
+        prev_mailing_address: Address
+        prev_mailing_unit_number: Unit number
+        prev_mailing_unit_type: Unit type
+        prev_mailing_city: City
+        prev_mailing_state: State
+        prev_mailing_state_abbrev: State
+        prev_mailing_zip: ZIP
+        prev_mail_county_code: Previous Mailing Address County
+        registered_in_other_state: I am currently registered to vote in another state.
+        other_registration_state_abbrev: Other Registration State
+        interested_in_being_poll_worker: I am interested in being an Officer of Election
+          (poll worker) on Election Day.
+        confirm_affirm_privacy_notice: I have read the terms of the Privacy Act Notice.
+        confirm_voter_fraud_warning: I acknowledge that I have read the above voter
+          fraud warning.
+        confirm_register_to_vote: I swear/affirm, under felony penalty for making
+          willfully false material statements or entries, that the information provided
+          on this form is true. I authorize the cancellation of my current registration.
       abr:
         date_of_birth: Date of Birth
         email: Email Address
@@ -244,12 +383,24 @@ en:
         state_id_number: ID Number
         phone: Phone
         phone_type: Type
-        opt_in_email: Receive emails
+        opt_in_email: Receive action alerts and other email updates
         opt_in_sms: Receive text messages
         attest_true: I have reviewed the above information, and it is true and accurate
           to the best of my knowledge.
-        confirm_email_delivery: I have reviewed the above information and wish to email my request to my local elections office.
+        confirm_email_delivery: I have reviewed the above information and wish to
+          email my request to my local elections office.
         registration_county: My local elections office (i.e. my city or county)
+      alert_request:
+        first: First Name
+        middle: Middle
+        last: Last Name
+        date_of_birth: Date of Birth
+        address: Address
+        address_2: Address Line 2
+        city: City
+        zip: ZIP Code
+        email: Email Address
+        phone: Phone
       catalist_lookup:
         date_of_birth: Date of Birth
         email: Email Address
@@ -262,7 +413,7 @@ en:
         state_abbrev: State
         phone: Phone
         phone_type: Type
-        opt_in_email: Receive emails
+        opt_in_email: Receive action alerts and other email updates
         opt_in_sms: Receive text messages
       ballot_status_check:
         email: Email Address
@@ -316,7 +467,7 @@ en:
         prev_city: City
         prev_state_abbrev: State
         prev_zip_code: Zip
-        opt_in_email: Receive emails
+        opt_in_email: Receive action alerts and other email updates
         opt_in_sms: Receive txt messages
         attest_true: I have reviewed the above information, and it is true and accurate
           to the best of my knowledge.
@@ -328,7 +479,6 @@ en:
         sms_number_for_continue_on_device: 'Text me the link:'
         email_address_for_continue_on_device: 'Email me the link:'
         voter_signature_image: Voter Signature Image
-        
     errors:
       models:
         admin:
@@ -338,7 +488,7 @@ en:
                 letter, 1 uppercase letter, 1 symbol ($@$!%*?&) and 1 number.
         canvassing_shift:
           blank: Required
-        partner:
+        user:
           attributes:
             password:
               invalid: Password must be 10 characters, contain at least 1 lowercase
@@ -379,6 +529,18 @@ en:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
               too_young: You must be at least 17.5 years old to register to vote
+              future: Must be in the past
+        state_registrants/mn_registrant:
+          blank: Required
+          invalid_zip: Invalid ZIP
+          attributes:
+            ssn4:
+              format: Should be 4 digits
+            phone:
+              invalid: 'Should be ###-###-####'
+              required_if_opt_in: Required if receiving TXT
+            confirm_declaration:
+              accepted: You must confirm that you agree to the terms above.
         state_registrants/va_registrant:
           blank: Required
           invalid_zip: Invalid ZIP
@@ -402,6 +564,7 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
+              future: Must be in the past
             ssn:
               format: Should be 9 digits
             dln:
@@ -425,9 +588,9 @@ en:
             confirm_assitant_declaration:
               accepted: You must confirm that you agree to the terms above.
             sms_number_for_continue_on_device:
-              format: 'Please provide a valid number'
+              format: Please provide a valid number
             email_address_for_continue_on_device:
-              format: Please provide a valid email              
+              format: Please provide a valid email
             phone:
               invalid: 'Should be ###-###-####'
               required_if_opt_in: Required if receiving TXT
@@ -436,6 +599,7 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
+              future: Must be in the past
             penndot_number:
               format: Should be 8 digits
               blank: Required. If you do not have a PA driver's license or PennDOT
@@ -452,6 +616,50 @@ en:
                 or sign a paper form to complete your application.
               too_many_retries: After two unsuccessful PennDOT submissions you must
                 provide an electronic signature.
+        state_registrants/wa_registrant:
+          blank: Required
+          invalid_zip: Invalid ZIP
+          attributes:
+            is_citizen:
+              accepted: You must be a US citizen!
+            confirm_will_be_18:
+              accepted: You must be at least sixteen to register and must be at least
+                eighteen in order to vote.
+            confirm_declaration:
+              accepted: You must confirm that you agree to the terms above.
+            confirm_assitant_declaration:
+              accepted: You must confirm that you agree to the terms above.
+            sms_number_for_continue_on_device:
+              format: Please provide a valid number
+            email_address_for_continue_on_device:
+              format: Please provide a valid email
+            phone:
+              invalid: 'Should be ###-###-####'
+              required_if_opt_in: Required if receiving TXT
+            assistant_phone:
+              invalid: 'Should be ###-###-####'
+            date_of_birth:
+              format: Should be MM-DD-YYYY
+              too_old: Must be after 1900
+              too_young: You must be at least sixteen to register and must be at least
+                eighteen in order to vote.
+              future: Must be in the past
+            issue_date:
+              future: Cannot be in the future
+              too_old: Must be after 1972.
+              blank: Issue date is required.
+            driver_license:
+              format: Should be 12 digits
+              blank: Required.
+              wa_invalid: Your WA DLN number is not valid. Please double-check and
+                try again.
+            ssn4:
+              format: Should be 4 digits
+              blank: Required. If you do not know the last four digits of your social
+                security number, please select "I do not know the last four digits
+                of my social security number.
+            prev_residence_zip:
+              wrongstate: Not a valid WA ZIP code.
         abr:
           blank: Required
           format: Invalid
@@ -462,10 +670,30 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
+              future: Date must be in the past
+            phone:
+              invalid: 'Should be ###-###-####'
+              required_if_opt_in: Required if receiving TXT
+        alert_request:
+          blank: Required
+          format: Invalid
+          invalid: "%{attribute} is invalid."
+          attributes:
+            date_of_birth:
+              too_old: Must be after 1900
+              future: Must be in the past
+            phone:
+              required_if_opt_in: Required if receiving TXT
         catalist_lookup:
           blank: Required
           format: Invalid
           invalid: "%{attribute} is invalid."
+          attributes:
+            date_of_birth:
+              too_old: Must be after 1900
+              future: Must be in the past
+            phone:
+              required_if_opt_in: Required if receiving TXT
         ballot_status_check:
           blank: Required
           format: Invalid
@@ -476,11 +704,13 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
+              future: Must be in the past
         registrant:
           ca_disclosures_error: In order to finish your registration with the state
             of California, you must accept the disclosures above.
           blank: Required
           invalid: "%{attribute} is invalid."
+          contains_emojis: Contains invalid characters.
           invalid_zip: Invalid ZIP
           inclusion: Please select one
           attributes:
@@ -495,17 +725,21 @@ en:
             date_of_birth:
               format: Should be MM-DD-YYYY
               too_old: Must be after 1900
+              future: Must be in the past
             phone:
               invalid: 'Should be ###-###-####'
               required_if_opt_in: Required if receiving TXT
             attest_true:
               accepted: You must indicate whether the above information is correct.
+              inclusion: You must indicate whether the above information is correct.
             has_state_license:
               inclusion: Please indicate whether you have a valid state license.
             us_citizen:
               accepted: You must be a US citizen!
+            will_be_18_by_election:
+              accepted: You must be 18 years old on or by election day!
             sms_number_for_continue_on_device:
-              format: 'Please provide a valid number'
+              format: Please provide a valid number
             email_address_for_continue_on_device:
               format: Please provide a valid email
       messages:
@@ -540,7 +774,8 @@ en:
       email_invalid: Email is not valid.
       password_blank: Password can not be blank.
       password_invalid: Login/password combination is not valid.
-      not_active: Your account is not active.
+      not_active: This account is not active. Accounts are deactivated after 90 days of inactivity or if your licensing agreement has lapsed. Please contact <a href="mailto:civictech@rockthevote.org">civictech@rockthevote.org</a>
+        to reactivate your account.
       not_confirmed: Your account is not confirmed.
       not_approved: Your account is not approved.
       no_authentication_details: You did not provide any details for authentication.
@@ -552,7 +787,7 @@ en:
         general: This section allows partners with some knowledge of CSS and HTML
           to fully customized their registration tool. You have the option to overwrite
           the default CSS and modify the autoresponder emails. Simply upload new resources
-          through the portal, review changes, and submit for approval. <a href="http://wiki.rockthevote.com/index.php/Examples"
+          through the portal, review changes, and submit for approval. <a href="https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/#faq-examples"
           target="_BLANK">Here are some great examples</a>.
         assets:
         - Upload your graphics (background images, special icons, etc that will be
@@ -565,8 +800,8 @@ en:
         - 'Create a file called partner.css that overwrites the default styles with
           your own. Reference the fonts and images already uploaded. (ie: body {background-image:
           url(‘mybackground.jpg’); color: #cc0000;} This file will load after the
-          default styles so anything you define should change. Go to <a href="http://wiki.rockthevote.com"
-          target="_blank">wiki.rockthevote.com</a> for some examples.'
+          default styles so anything you define should change. Go to <a href="https://www.rockthevote.org/programs-and-partner-resources/tech-for-civic-engagement/online-voter-registration-platform/partner-ovr-tool-faqs/"
+          target="_blank">FAQs</a> for some examples.'
         email_templates:
         - The registration platform will automatically send emails to new registrants
           to ensure they complete the process.

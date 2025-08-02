@@ -37,7 +37,13 @@ class Registrant < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   include RegistrantMethods
   #include RegistrantAbrMethods # included in RegistrantMethods
+  include SurveyQuestionMethods
   include TimeStampHelper
+
+  include TrackableMethods
+
+  ENABLED_LOCALES = YAML.load_file("#{Rails.root}/config/settings/#{Rails.env}.yml")["enabled_locales"]
+
   
   scope :abandoned, -> {where(abandoned: true)}
   
@@ -100,9 +106,21 @@ class Registrant < ActiveRecord::Base
        "prev_zip_code"
     ]
   
-  OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
+  #original -OVR_REGEX = /\A(\p{Latin}|[^\p{Letter}\p{So}])*\z/
+  #OVR_REGEX = /\A(?:\p{Latin}|[^\p{Letter}\p{So}<>\[\]{}|[:cntrl:]!@#$%^&*()])*\z/
+  OVR_REGEX = /\A(?:\p{Latin}|[^\p{Letter}\p{So}<>\[\]{}|[:cntrl:]!@$%^&*()])*\z/
   #OVR_REGEX = /\A[\p{Latin}\p{N}\p{P}\p{M}\p{Sc}\p{Sk}\p{Sm}\p{Z}]*\z/
   DB_REGEX = /\A[^\u{1F600}-\u{1F6FF}]*\z/
+  SURVEY_REGEX = /\A[^\p{C}\p{So}<>\@\#\$\%\^\&\*\(\)\+\=\p{Emoji}]*\z/
+  #DB_NO_EMOJI_REGEX = /\A[^\p{Emoji}]*\z/
+  EMAIL_REGEX = /
+    \A
+    [A-Z0-9_.&%+\-']+   # mailbox
+    @
+    (?:[A-Z0-9\-]+\.)+  # subdomains
+    (?:[A-Z]{2,25})     # TLD
+    \z
+  /ix.freeze
   
   #CA_NAME_REGEX =   /\A[a-zA-Z0-9'#,\-\/_\.@\s]*\z/ #A-Z a-z 0-9 '#,-/_ .@space
   
@@ -133,7 +151,7 @@ class Registrant < ActiveRecord::Base
       #Also allow city fields to have the same as address fields (, / .) - just remove them
       val = self.send(field).to_s
       val = val.gsub(/[,\.]/i,"").gsub(/\//i, " ")
-      self.send("#{field}=", val)      
+      self.send("#{field}=", val)
     end
   end
   
@@ -150,12 +168,10 @@ class Registrant < ActiveRecord::Base
   # end
   
   SURVEY_FIELDS = %w(survey_answer_1 survey_answer_2)
-  validate_fields(SURVEY_FIELDS, DB_REGEX, :invalid)
-  
-  
-  
+  validate_fields(SURVEY_FIELDS, SURVEY_REGEX, :contains_emojis)
 
-  FINISH_IFRAME_URL = "https://s3.rockthevote.com/rocky/rtv-ovr-share.php"
+
+  FINISH_IFRAME_URL = "https://s3.rockthevote.com/rocky/rtv-ovr-share-vanilla.php"
 
   CSV_HEADER = [
     "Status",
@@ -212,12 +228,27 @@ class Registrant < ActiveRecord::Base
     "VR Application Status Details",
     "VR Application Status Imported DateTime",
     "Submitted Via State API",
-    "Submitted Signature to State API"
+    "Submitted Signature to State API",
   ]
   
   CSV_HEADER_EXTENDED = [
     "Registrant UID",
     CSV_HEADER,
+    
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "other_parameters",
+    
+    "Change of Name",
+    "Prev Name Title",
+    "Prev First Name",
+    "Prev Middle Name",
+    "Prev Last Name",
+    "Prev Name Suffix",
+
     "Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
     "Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
     "Shift ID", #canvassing_shift_registrant.external_id
@@ -225,7 +256,9 @@ class Registrant < ActiveRecord::Base
     "Over 18 Affirmation",
     "Preferred Language",
     "State Flow Status",
-    "State API Transaction ID"
+    "State API Transaction ID",
+    "Requested Assistance",
+    "Viewed Steps"
   ].flatten
   
   GROMMET_CSV_HEADER = [
@@ -293,13 +326,6 @@ class Registrant < ActiveRecord::Base
     
   ]
 
-
-
-  
-  
-  
-  attr_protected :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_reminder_delivered
-
   aasm column: :status do
     state :initial, initial: true
     state :step_1
@@ -348,16 +374,16 @@ class Registrant < ActiveRecord::Base
     
   end
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
   
-  belongs_to :home_state,    :class_name => "GeoState"
-  belongs_to :mailing_state, :class_name => "GeoState"
-  belongs_to :prev_state,    :class_name => "GeoState"
+  belongs_to :home_state,    :class_name => "GeoState", optional: true
+  belongs_to :mailing_state, :class_name => "GeoState", optional: true
+  belongs_to :prev_state,    :class_name => "GeoState", optional: true
 
   has_one :registrant_status
   has_one :pdf_delivery, -> { order("pdf_ready DESC") } # If multiple, prefer the one that's ready
 
-  delegate :requires_race?, :requires_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
+  delegate :requires_race?, :requires_party?, :optional_party?, :require_age_confirmation?, :require_id?, :to => :home_state, :allow_nil => true
 
   #has_one :registrant_shift
   # TODO make this create relation
@@ -430,37 +456,17 @@ class Registrant < ActiveRecord::Base
   validates_with RegistrantValidator
   
 
-  def skip_survey_and_opt_ins?
-    question_1.blank? && question_2.blank? && !any_ask_for_volunteers? && !any_email_opt_ins? && !any_phone_opt_ins?
-  end
   
-  def locale_english_name
-    I18n.t("locales.#{locale}.name", locale: "en")
-  end
+  
+  
 
-  def question_1
-    partner.send("survey_question_1_#{self.locale}")
-  end
-  def question_2
-    partner.send("survey_question_2_#{self.locale}")
-  end
 
   def collect_email_address?
     collect_email_address.to_s.downcase.strip != 'no'
   end
   
 
-  def ask_for_primary_volunteers?
-    partner.primary? ? partner.ask_for_volunteers? : RockyConf.sponsor.allow_ask_for_volunteers && partner.ask_for_volunteers?
-  end
-  
-  def ask_for_partner_volunteers?
-    !partner.primary? && partner.partner_ask_for_volunteers?
-  end
-  
-  def any_ask_for_volunteers?
-    ask_for_primary_volunteers? || ask_for_partner_volunteers?
-  end
+
   
   def not_require_email_address?
     !require_email_address?
@@ -486,6 +492,7 @@ class Registrant < ActiveRecord::Base
   attr_accessor :api_version
   # Builds the record from the API data and sets the correct state
   def self.build_from_api_data(data, api_finish_with_state = false)
+    data = data.permit! if data.respond_to?(:permit!)
     r = Registrant.new(data)
     r.partner_opt_in_sms = false unless r.partner && (r.partner.primary? || r.partner.partner_sms_opt_in)
     r.building_via_api_call   = true
@@ -535,6 +542,8 @@ class Registrant < ActiveRecord::Base
     pa_registrants = {}
     va_registrants = {}
     mi_registrants = {}
+    mn_registrants = {}
+    wa_registrants = {}
     distribute_reads do 
       both_ids = self.where("(abandoned != ?) AND (status != 'complete') AND (updated_at < ?)", true, RockyConf.minutes_before_abandoned.minutes.seconds.ago).pluck(:id, :uid) 
       both_ids.each do |id, uid|
@@ -545,6 +554,8 @@ class Registrant < ActiveRecord::Base
         StateRegistrants::PARegistrant.where(registrant_id: id_list_group).find_each {|sr| pa_registrants[sr.registrant_id] = sr}
         StateRegistrants::VARegistrant.where(registrant_id: id_list_group).find_each {|sr| va_registrants[sr.registrant_id] = sr}
         StateRegistrants::MIRegistrant.where(registrant_id: id_list_group).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+        StateRegistrants::MNRegistrant.where(registrant_id: id_list_group).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
+        StateRegistrants::WARegistrant.where(registrant_id: id_list_group).find_each {|sr| wa_registrants[sr.registrant_id] = sr}
       end
     
       self.where(["id in (?)", id_list]).find_each(:batch_size=>500) do |reg|
@@ -558,8 +569,13 @@ class Registrant < ActiveRecord::Base
             sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
           when "MI"
             sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
+          when "MN"
+            sr = mn_registrants[reg.uid] || StateRegistrants::MNRegistrant.new
+          when "WA"
+            sr = wa_registrants[reg.uid] || StateRegistrants::WARegistrant.new
           end
           reg.instance_variable_set(:@existing_state_registrant, sr)
+          reg.instance_variable_set(:@existing_state_registrant_fetched, true)
         end
         if reg.finish_with_state?
           reg.status = "complete"
@@ -626,7 +642,7 @@ class Registrant < ActiveRecord::Base
       self.prev_zip_code = nil
     end
     # self.race = nil unless requires_race?
-    self.party = nil unless requires_party?
+    self.party = nil unless requires_party? or optional_party?
   end
 
   def reformat_state_id_number
@@ -719,24 +735,30 @@ class Registrant < ActiveRecord::Base
   # Reset name/prev prefix, suffix, race, party, phone_type
   def check_locale_change
     if !self.new_locale.blank? && self.new_locale != self.locale
-      selected_name_title_key = name_title_key
-      selected_name_suf_key = name_suffix_key
-      selected_prev_name_title_key = prev_name_title_key
-      selected_prev_name_suf_key = prev_name_suffix_key
-      selected_race_key = race_key
-      party_idx = state_parties.index(self.party)
-      selected_phone_key = phone_type_key
+      if ENABLED_LOCALES.include?(self.new_locale)
+        selected_name_title_key = name_title_key
+        selected_name_suf_key = name_suffix_key
+        selected_prev_name_title_key = prev_name_title_key
+        selected_prev_name_suf_key = prev_name_suffix_key
+        selected_race_key = race_key
+        party_idx = state_parties.index(self.party)
+        selected_phone_key = phone_type_key
       
-      self.locale = self.new_locale
+        self.locale = self.new_locale
       
-      self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale) if selected_name_title_key
-      self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
-      self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale) if selected_prev_name_title_key
-      self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale) if selected_prev_name_suf_key
-      self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
-      self.party = state_parties[party_idx] if !party_idx.nil?
-      self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale) if selected_phone_key
-      self.save(validate: false)
+        self.name_title=I18n.t("txt.registration.titles.#{selected_name_title_key}", locale: self.locale) if selected_name_title_key
+        self.name_suffix=I18n.t("txt.registration.suffixes.#{selected_name_suf_key}", locale: self.locale) if selected_name_suf_key
+        self.prev_name_title=I18n.t("txt.registration.titles.#{selected_prev_name_title_key}", locale: self.locale) if selected_prev_name_title_key
+        self.prev_name_suffix=I18n.t("txt.registration.suffixes.#{selected_prev_name_suf_key}", locale: self.locale) if selected_prev_name_suf_key
+        self.race = I18n.t("txt.registration.races.#{selected_race_key}", locale: self.locale) if selected_race_key
+        self.party = state_parties[party_idx] if !party_idx.nil?
+        self.phone_type=I18n.t("txt.registration.phone_types.#{selected_phone_key}", locale: self.locale) if selected_phone_key
+        self.save(validate: false)
+      else
+        # Default to 'en' if the locale is invalid
+        self.locale = 'en'
+        self.save(validate: false)
+      end
     end
   end
 
@@ -750,9 +772,22 @@ class Registrant < ActiveRecord::Base
     pdf_date_of_birth.split('/')[2]
   end
   
+  #def pdf_date_of_birth
+  #  (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_fs(:month_day_year) : date_of_birth.to_s
+  #end
+
   def pdf_date_of_birth
-    (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_s(:month_day_year) : date_of_birth.to_s
+    if home_state_abbrev == "NC"
+      "00/00/0000"
+    else
+      (date_of_birth.is_a?(Date) || date_of_birth.is_a?(DateTime)) ? date_of_birth.to_fs(:month_day_year) : date_of_birth.to_s
+    end
   end
+
+  validate :must_be_18_by_election_for_nc
+
+  validate :date_of_birth_required_for_states
+
 
   def pdf_english_race
     if race != I18n.t('txt.registration.races', :locale=>locale).values.last
@@ -819,9 +854,10 @@ class Registrant < ActiveRecord::Base
   end
 
   def under_18_instructions_for_home_state
-    I18n.t('txt.registration.instructions.under_18',
+     I18n.t("states.custom.#{home_state_abbrev.to_s.downcase}.registration.instructions.under_18",
+      default:  I18n.t('txt.registration.instructions.under_18',
             :state_name => home_state.name,
-            :state_rule => localization&.sub_18).html_safe
+            :state_rule => localization&.sub_18)).html_safe
   end
 
 
@@ -875,7 +911,7 @@ class Registrant < ActiveRecord::Base
   
   
   def in_ovr_flow?
-    home_state_allows_ovr? && (!mail_with_esig?)
+    home_state_allows_ovr? && (!can_mail_with_esig?)
   end
   
   def home_state_allows_ovr?
@@ -923,9 +959,13 @@ class Registrant < ActiveRecord::Base
   def submitted_via_state_api?
      (!skip_state_flow? && existing_state_registrant && existing_state_registrant.submitted?) || is_grommet?
   end
+
+  def submitted_via_state_api_with_default_key?
+    submitted_via_state_api? && existing_state_registrant && existing_state_registrant.respond_to?(:missing_partner_api_key?) && existing_state_registrant.missing_partner_api_key?
+  end
   
   def first_registration?
-    if is_grommet? 
+    if is_grommet? && has_grommet_submission?
       pa_adapter = VRToPA.new(self.state_ovr_data["voter_records_request"])
       return pa_adapter.is_new_registration_boolean
     elsif existing_state_registrant
@@ -973,19 +1013,25 @@ class Registrant < ActiveRecord::Base
   end
   
   def is_grommet?
+    has_grommet_submission? || !!(existing_state_registrant && existing_state_registrant.grommet_request_id)
+  rescue
+    false
+  end
+
+  def has_grommet_submission?
     !grommet_submission.blank?
   end
   
   def api_submitted_with_signature
-    if is_grommet? # Right now sigs only come from grommet
-      return !grommet_submission["signature"].blank?    
+    if is_grommet? && has_grommet_submission?
+      return !grommet_submission["signature"].blank?
     else
-      return existing_state_registrant&.voter_signature_image.present?
+      return existing_state_registrant && existing_state_registrant.voter_signature_image.present?
     end
   end
   
   def state_transaction_id
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       return state_ovr_data["pa_transaction_id"]
     else
       return existing_state_registrant&.state_transaction_id
@@ -994,7 +1040,7 @@ class Registrant < ActiveRecord::Base
   
   def api_submission_status
     return nil if !submitted_via_state_api?
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       if state_ovr_data["pa_transaction_id"].blank?
         if state_ovr_data["errors"] && state_ovr_data["errors"].any?
           return ["Error", state_ovr_data["errors"] ? state_ovr_data["errors"][0] : nil].join(": ")
@@ -1042,7 +1088,7 @@ class Registrant < ActiveRecord::Base
         model = state_registrant_type.constantize
         sr = model.from_registrant(self)
       rescue Exception => e
-        #raise e
+        # raise e
         nil
       end
     else
@@ -1051,7 +1097,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def has_custom_zip_code_partial?
-    File.exists?(File.join(Rails.root, 'app/views/', "registrants/zip_codes/_zip#{home_zip_code}.html.erb"))
+    File.exist?(File.join(Rails.root, 'app/views/', "registrants/zip_codes/_zip#{home_zip_code}.html.erb"))
   end
   
   def custom_zip_code_partial
@@ -1063,7 +1109,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def has_home_state_online_registration_instructions?
-    File.exists?(File.join(Rails.root, 'app/views/state_online_registrations/', "_#{home_state_online_registration_instructions_partial}.html.erb"))
+    File.exist?(File.join(Rails.root, 'app/views/state_online_registrations/', "_#{home_state_online_registration_instructions_partial}.html.erb"))
   end
   
   def home_state_online_registration_instructions_partial
@@ -1071,7 +1117,7 @@ class Registrant < ActiveRecord::Base
   end
 
   def has_home_state_online_registration_view?
-    File.exists?(File.join(Rails.root, 'app/views/state_online_registrations/', "#{home_state_online_registration_view}.html.erb"))
+    File.exist?(File.join(Rails.root, 'app/views/state_online_registrations/', "#{home_state_online_registration_view}.html.erb"))
   end
   
   
@@ -1170,8 +1216,8 @@ class Registrant < ActiveRecord::Base
       partner_tracking_id: tracking_id,
       short_form: use_short_form?,
       state_ovr_data: state_ovr_data,
-      created_at: created_at.to_s(:db),
-      updated_at: updated_at.to_s(:db),
+      created_at: created_at.to_fs(:db),
+      updated_at: updated_at.to_fs(:db),
 
       date_of_birth: date_of_birth.blank? ? date_of_birth : date_of_birth.to_s("%m-%d-%Y"),
 
@@ -1302,7 +1348,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def queue_pdf
-    if mail_with_esig? && !skip_mail_with_esig?
+    if mail_with_esig?
       queue_pdf_delivery
     else
       klass = PdfGeneration
@@ -1336,7 +1382,7 @@ class Registrant < ActiveRecord::Base
   
   def pdf_url(pdfpre = nil, file=false)
     prefix = pdf_delivery ? "/#{pdf_delivery.pdf_prefix}" : ''
-   "http://rocky-pdfs#{Rails.env.production? ? '' : "-#{Rails.env}"}.s3-website-us-west-2.amazonaws.com#{prefix}#{pdf_path(pdfpre, file)}"
+   "https://download.#{RockyConf.pdf_host_name}#{prefix}#{pdf_path(pdfpre, file)}"
   end
   def pdf_path(pdfpre = nil, file=false)
     pdf_writer.pdf_path(pdfpre, file)
@@ -1349,8 +1395,6 @@ class Registrant < ActiveRecord::Base
     pdf_writer.pdf_file_dir(pdfpre)
   end
   
-  
-
   def pdf_writer
     if @pdf_writer.nil?
       @pdf_writer = PdfWriter.new
@@ -1389,38 +1433,56 @@ class Registrant < ActiveRecord::Base
   end
   
   def can_request_pdf_assistance?
-    home_state_enabled_for_pdf_assitance?
+    self.locale == "en" && home_state_enabled_for_pdf_assitance?
   end
   
-  def mail_with_esig?
-    RockyConf.mail_with_esig.partners.include?(self.partner_id.to_i) && RockyConf.mail_with_esig.states[self.home_state_abbrev]
-  end
   
   def allow_desktop_signature?
-    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].allow_desktop_signature
+    can_mail_with_esig? && self.home_state.allow_desktop_signature
   end
   
   def state_voter_check_url
-    mail_with_esig? && RockyConf.mail_with_esig.states[self.home_state_abbrev].state_voter_check_url
+    can_mail_with_esig? && self.home_state.state_voter_check_url
   end
   
+  def can_mail_with_esig?
+    self.home_state && self.home_state.enable_direct_mail && 
+      (self.home_state.direct_mail_partner_ids || []).collect(&:to_s).include?(self.partner_id.to_s)    
+  end
+
+  def mail_with_esig?
+    self.can_mail_with_esig? && self.signature_method != VoterSignature::PRINT_METHOD
+  end
+  
+
   def skip_mail_with_esig?
-    self.signature_method == VoterSignature::PRINT_METHOD   
+    h = self.state_ovr_data || {}
+    !!h[:skip_mail_with_esig]
+  rescue
+    false
   end
   
+
+  def skip_mail_with_esig!
+    self.state_ovr_data ||= {}
+    self.state_ovr_data[:skip_mail_with_esig] = true
+    self.finish_with_state = false
+    self.save(validate: false)
+  end
   
   
   def pdf_is_esigned?
-    !skip_mail_with_esig? && !voter_signature_image.blank?
+    !skip_mail_with_esig? && voter_signature.present? && voter_signature_image.present?
   end
   
-  has_one :voter_signature, primary_key: :uid, autosave: true
-  [
+  VOTER_SIGNATURE_ATTRIBUTES = [
     :voter_signature_image,
     :signature_method,
     :sms_number_for_continue_on_device,
     :email_address_for_continue_on_device
-  ].each do |vs_attribute|
+  ]
+  has_one :voter_signature, primary_key: :uid, autosave: true
+  VOTER_SIGNATURE_ATTRIBUTES.each do |vs_attribute|
     define_method "#{vs_attribute}" do
       (voter_signature || create_voter_signature).send(vs_attribute)
     end
@@ -1564,7 +1626,21 @@ class Registrant < ActiveRecord::Base
   
   def deliver_chaser_email
     if send_emails?
-      Notifier.chaser(self).deliver_now
+      # Make sure user has at least viewed step 2
+      rendered_step2 = begin
+        rendered_steps = self.render_view_events.collect {|te| te.tracking_data[:rendered_step] }
+        rendered_steps.include?("step2-show") || rendered_steps.include?("state_registrants-edit")
+      rescue
+        false
+      end
+      
+      if rendered_step2 && ChaserDelivery.can_send_chaser?(self.email_address)
+        ChaserDelivery.create({
+          email: self.email_address,
+          registrant: self
+        })
+        Notifier.chaser(self).deliver_now
+      end
     end
   end
   
@@ -1650,6 +1726,24 @@ class Registrant < ActiveRecord::Base
     arr = [self.uid]
     arr = arr + self.to_csv_array
     arr = arr + [
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_term,
+      utm_content,
+      other_parameters
+    ]
+
+    arr = arr + [
+      yes_no(self.change_of_name?),
+      self.prev_name_title,
+      self.prev_first_name,
+      self.prev_middle_name,
+      self.prev_last_name,
+      self.prev_name_suffix,
+    ]
+
+    arr = arr + [
       self.is_grommet? ? "Tablet" : (building_via_api_call? ? "Rocky API" : "Web"), #"Registration Source", #built-via-api, is_grommet? [Rocky API, Tablet, Web]
       finish_with_state? ? "Redirected to SOS" : (submitted_via_state_api? ? "Submitted Via State API" : "Paper"), #"Registration Medium", #finish-with-state, Submitted Via State API, [Redirected to SOS, State API, Paper]
       self.canvassing_shift_registrant&.shift_external_id, #"Shift ID"
@@ -1658,6 +1752,8 @@ class Registrant < ActiveRecord::Base
       grommet_preferred_language,
       state_flow_status,
       state_transaction_id,
+      yes_no_nothing(requested_pdf_assistance?),
+      render_view_events.collect{|te| te.tracking_data[:rendered_step] }.join(",")
     ].flatten(1)
   end
   
@@ -1666,7 +1762,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def normalized_signature_image
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       grommet_submission["signature"].tap do |s|
         if s
           return "data:#{s["mime_type"]};base64,#{s["image"]}"
@@ -1727,8 +1823,8 @@ class Registrant < ActiveRecord::Base
       created_at && created_at.in_time_zone("America/New_York").to_s,
       yes_no(finish_with_state?),
       yes_no(building_via_api_call?),
-      yes_no(has_state_license? || existing_state_registrant&.has_state_license?),
-      yes_no(has_ssn? || existing_state_registrant&.has_ssn?),
+      yes_no(has_state_license? || (!is_grommet? && existing_state_registrant&.has_state_license?)),
+      yes_no(has_ssn? || (!is_grommet? && existing_state_registrant&.has_ssn?)),
       
       vr_application_submission_modifications,
       vr_application_submission_errors,
@@ -1832,6 +1928,27 @@ class Registrant < ActiveRecord::Base
     ""
   end
   
+  def grommet_request_id=(val)
+    if existing_state_registrant
+      begin
+        existing_state_registrant.grommet_request_id=val
+      rescue        
+      end
+    else
+      self.state_ovr_data["grommet_request_id"] = gr_id
+    end
+  end
+
+  def grommet_request_id
+    if existing_state_registrant
+      begin
+        return existing_state_registrant.grommet_request_id
+      rescue 
+      end
+    end
+    return state_ovr_data && state_ovr_data["grommet_request_id"]
+  end
+
   def grommet_preferred_language
     self.state_ovr_data["voter_records_request"]["voter_registration"]["additional_info"].detect{|a| a["name"]=="preferred_language"}["string_value"]    
   rescue
@@ -1839,7 +1956,7 @@ class Registrant < ActiveRecord::Base
   end
   
   def vr_application_submission_errors
-    if is_grommet?
+    if is_grommet? && has_grommet_submission?
       ([state_ovr_data["errors"]].flatten.compact).collect do |e| 
         e_msg = e.is_a?(Array) ? e.join("\n") : e.to_s
         e_msg =~ /^Backtrace\n/ ? nil : e_msg 
@@ -1869,6 +1986,34 @@ class Registrant < ActiveRecord::Base
   attr_writer :tell_from, :tell_email, :tell_recipients, :tell_subject, :tell_message
   attr_accessor :tell_recipients, :tell_message
 
+  def self.permitted_attributes
+    attrs = self.column_names - self.protected_attributes
+    return [attrs, 
+      :new_locale,
+      :home_zip_code,
+      :shift_id,
+      :prev_state_abbrev,
+      :mailing_state_abbrev,
+      :date_of_birth,
+      :date_of_birth_month,
+      :date_of_birth_day,
+      :date_of_birth_year,
+      :covr_token,
+      :covr_success,
+      :ca_disclosures,
+      :query_parameters,
+      VOTER_SIGNATURE_ATTRIBUTES
+    ].flatten
+  end
+
+  def self.protected_attributes
+    Registrant::PROTECTED_ATTRIBUTES
+  end
+
+  PROTECTED_ATTRIBUTES = [
+    :status, :uid, :created_at, :updated_at, :abandoned, :pdf_downloaded_at, :final_reminder_delivered
+  ]
+  
   def tell_from
     @tell_from ||= "#{first_name} #{last_name}"
   end
@@ -1933,10 +2078,15 @@ class Registrant < ActiveRecord::Base
     end
   end
 
+  def requested_pdf_assistance?
+    if pdf_delivery && !pdf_is_esigned?
+      return true
+    end
+
+    nil
+  end
 
   private ###
-
-
 
   def generate_uid
     self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email_address} -- #{home_zip_code}" )
@@ -1974,12 +2124,15 @@ class Registrant < ActiveRecord::Base
   end
 
   def partner_survey_question_1
-    locale.blank? ? "" : partner.send("survey_question_1_#{locale}")
+    locale_to_use = locale.present? && ENABLED_LOCALES.include?(locale) ? locale : 'en'
+    partner.send("survey_question_1_#{locale_to_use}")
   end
 
   def partner_survey_question_2
-    locale.blank? ? "" : partner.send("survey_question_2_#{locale}")
+    locale_to_use = locale.present? && ENABLED_LOCALES.include?(locale) ? locale : 'en'
+    partner.send("survey_question_2_#{locale_to_use}")
   end
+
 
   def set_questions
     if self.survey_answer_1_changed? && !self.original_survey_question_1_changed?
@@ -2002,12 +2155,37 @@ class Registrant < ActiveRecord::Base
   end
   
   def limit_zip_codes
+    zip_code_regex = /\A\d{0,5}-?\d{0,4}\z/  # Regex allowing numbers and one dash
+    
     [:home_zip_code, :mailing_zip_code, :prev_zip_code].each do |attr_name|
       value = self.send(attr_name)
-      if value && value.length > 10
-        self.send("#{attr_name}=", value.to_s[0...10])
+      
+      if value
+        # Remove non-numeric characters and allow only one dash
+        cleaned_value = value.to_s.gsub(/[^0-9-]/, '').gsub(/-{2,}/, '-')
+        
+        # Truncate to the first 10 characters
+        cleaned_value = cleaned_value[0...10]
+        
+        # Validate against the regex and update the attribute
+        self.send("#{attr_name}=", cleaned_value.match(zip_code_regex) ? cleaned_value : nil)
       end
     end
   end
-  
+
+  # This method checks if the registrant's home state is NC, 
+  # and enforces that the "will_be_18_by_election" field must be true
+  def must_be_18_by_election_for_nc
+    if home_state_abbrev == "NC" && at_least_step_2? && !will_be_18_by_election
+      errors.add(:will_be_18_by_election, I18n.t('activerecord.errors.models.registrant.attributes.will_be_18_by_election.accepted'))
+    end
+  end
+
+  def date_of_birth_required_for_states
+    # Only validate if the registrant is at Step 2 or beyond
+    if status.to_s.match?(/step_[2-5]|complete/) && home_state_abbrev != "NC" && date_of_birth.nil?
+      errors.add(:date_of_birth, I18n.t('activerecord.errors.models.registrant.blank'))
+    end
+  end
+
 end

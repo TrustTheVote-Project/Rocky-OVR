@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddAgeToRegistrant < ActiveRecord::Migration
+class AddAgeToRegistrant < ActiveRecord::Migration[4.2]
   class Registrant < ActiveRecord::Base
     def calculate_age!
       now = created_at.to_date
@@ -37,7 +37,7 @@ class AddAgeToRegistrant < ActiveRecord::Migration
   def self.up
     add_column "registrants", "age", :integer
 
-    Registrant.where("created_at > '#{60.minutes.ago.to_s(:db)}'").each { |r| r.calculate_age! }
+    Registrant.where("created_at > '#{60.minutes.ago.to_fs(:db)}'").each { |r| r.calculate_age! }
   end
 
   def self.down

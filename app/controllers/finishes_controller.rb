@@ -25,7 +25,7 @@
 class FinishesController < RegistrationStep
   CURRENT_STEP = 7
   
-  skip_before_filter :find_partner, :redirect_app_role
+  skip_before_action :find_partner
 
   def show
     find_registrant(:finish)
@@ -41,7 +41,7 @@ class FinishesController < RegistrationStep
       @registrant.save(validate: false)
     end
     if params[:reminders]
-      @registrant.update_attributes(:reminders_left => 0, final_reminder_delivered: true)
+      @registrant.update(:reminders_left => 0, final_reminder_delivered: true)
       @stop_reminders = true
     end
     if params[:share_only] 

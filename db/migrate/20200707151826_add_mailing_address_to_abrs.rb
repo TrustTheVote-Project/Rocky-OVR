@@ -1,4 +1,4 @@
-class AddMailingAddressToAbrs < ActiveRecord::Migration
+class AddMailingAddressToAbrs < ActiveRecord::Migration[4.2]
   def change
     add_column :abrs, :mailing_address, :string
     add_column :abrs, :mailing_city, :string

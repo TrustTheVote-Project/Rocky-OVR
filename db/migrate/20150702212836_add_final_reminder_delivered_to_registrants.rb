@@ -1,4 +1,4 @@
-class AddFinalReminderDeliveredToRegistrants < ActiveRecord::Migration
+class AddFinalReminderDeliveredToRegistrants < ActiveRecord::Migration[4.2]
   def change
     add_column :registrants, :final_reminder_delivered, :boolean, :default=>false
     # default is false, but need to set all prior registrants to delivered

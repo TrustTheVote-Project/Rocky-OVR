@@ -5,12 +5,22 @@ RSpec.describe StateRegistrants::VARegistrant, :type => :model do
   
   describe "#check_voter_confirmation_url" do
     let (:va_registrant) { StateRegistrants::VARegistrant.new }
+    let (:va_registrant_registrant) { FactoryGirl.create(:step_2_registrant) }
     before(:each) do 
       va_registrant.stub(:date_of_birth).and_return 18.years.ago
+      va_registrant.stub(:registrant).and_return va_registrant_registrant
+      va_registrant.stub(:va_api_headers).and_return({})
     end
     it "encodes query strings" do
       va_registrant.first_name = "Joe`s Name"
       expect(va_registrant.check_voter_confirmation_url).to include("Joe%60s+Name")
+    end
+    it "handles non-json response" do
+      allow(RestClient::Request).to receive(:execute).and_return "not json"
+      expect(va_registrant_registrant).to receive(:skip_state_flow!)
+      va_registrant.check_voter_confirmation
+      expect(va_registrant.va_check_error).to be(true)
+      expect(ActionMailer::Base.deliveries.last.body.to_s).to include("Can't parse VA response as JSON: not json")
     end
   end
   

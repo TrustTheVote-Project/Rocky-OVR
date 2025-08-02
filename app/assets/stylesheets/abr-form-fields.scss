@@ -63,9 +63,15 @@
         &.last {
           width: 67.6%;
         }
-      }      
+      }    
+       
     }
       
+    &.instructions {
+      p.instructions {
+        font-size: 16px;
+      }    
+    } 
     
     ul.checkbox {
       h3 {
@@ -98,10 +104,21 @@
   }
   .radio label {
     margin-bottom: 1em;
+    span .instructions {
+      font-weight: normal;
+    }
   }
   .radio h3 {
     height: auto;
     line-height: 1.4em;
+  }
+  .date h3 {
+    height: auto;
+    line-height: 1.4em;
+  }
+  .checkbox h3 {
+    display:flex;
+    align-items: flex-start;
   }
   @media(max-width: $main-width) {
     li {

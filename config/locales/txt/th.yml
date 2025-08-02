@@ -93,7 +93,7 @@ th:
         other: อื่นๆ
       instructions:
         overseas: ! '<b>หมายเหตุ</b>: หากคุณเป็นพลเมืองของประเทศสหรัฐอเมริกาที่อาศัยในต่างประเทศหรือถ้าคุณเป็นทหาร
-          <a href=''https://www.overseasvotefoundation.org/vote/home.htm?source=rockthevote''
+          <a href=''https://www.usvotefoundation.org/vote/request-overseas-absentee-ballot?source=rockthevote''
           target=''_blank''>click here</a> เพื่อลงทะเบียนเลือกตั้ง'
         opt_in_email: เราจะส่งข้อความเตือนคุณเมื่อใกล้ถึงวันเลือกตั้ง พร้อมทั้งส่งข้อมูลคูหาเลือกตั้งในเขตของคุณ
           และข้อมูลข่าวสารด้านเศรษฐกิจ สังคมและวงการเพลง

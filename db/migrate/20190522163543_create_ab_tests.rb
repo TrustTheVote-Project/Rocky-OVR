@@ -1,4 +1,4 @@
-class CreateAbTests < ActiveRecord::Migration
+class CreateAbTests < ActiveRecord::Migration[4.2]
   def change
     unless ActiveRecord::Base.connection.table_exists? 'ab_tests'
       create_table :ab_tests do |t|

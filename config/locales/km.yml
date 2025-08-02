@@ -114,6 +114,13 @@ km:
               accepted: អ្នកត្រូវតែចង្អុលប្រាប់ថាតើព័ត៌មានខាងលើត្រឹមត្រូវ​ឬទេ។
             has_state_license:
               inclusion: អ្នកត្រូវតែចង្អុលប្រាប់ថាតើអ្នកមានអាជ្ញាប័ណ្ណរដ្ឋត្រឹមត្រូវឬទេ
+            us_citizen:
+              accepted: អ្នកត្រូវតែជារដ្ឋបាលអាមេរិក!
+            sms_number_for_continue_on_device:
+              format: សូមផ្តល់លេខដែលត្រឹមត្រូវ
+            email_address_for_continue_on_device:
+              format: សូមផ្តល់អ៊ីមែលដែលត្រឹមត្រូវ
+
       messages:
         inclusion: ! '%{attribute}មិនត្រូវបានរាប់បញ្ចូលក្នុងបញ្ជីទេ។​'
         exclusion: ! '%{attribute}ត្រូវបានរក្សាសិទិ្ធ។​'

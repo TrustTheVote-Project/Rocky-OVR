@@ -1,5 +1,6 @@
 class SesController < ApplicationController
-  skip_before_filter :authenticate_everything
+  skip_before_action :verify_authenticity_token, raise: false
+  skip_before_action :authenticate_everything
   
   def bounce
     json = params
@@ -39,7 +40,7 @@ class SesController < ApplicationController
         end
       end
     end
-    render nothing: true, status: 200
+    render body: nil, status: 200
   end
   
 end

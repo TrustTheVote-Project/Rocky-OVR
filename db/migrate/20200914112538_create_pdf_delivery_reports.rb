@@ -1,4 +1,4 @@
-class CreatePdfDeliveryReports < ActiveRecord::Migration
+class CreatePdfDeliveryReports < ActiveRecord::Migration[4.2]
   def change
     create_table :pdf_delivery_reports do |t|
       t.date :date, index: true

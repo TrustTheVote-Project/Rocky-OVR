@@ -1,4 +1,4 @@
-class CreateCatalistLookupsRegistrants < ActiveRecord::Migration
+class CreateCatalistLookupsRegistrants < ActiveRecord::Migration[4.2]
   def change
     create_table :catalist_lookups_registrants do |t|
       t.string :registrant_uid, index: true

@@ -1,2 +1,11 @@
 .de-abr-form-fields {
+
+    .checkbox h3 {
+        display:flex;
+        align-items: flex-start;
+    }
+
+    ul.checkbox h3 label {
+        width:500px;
+    }
 }

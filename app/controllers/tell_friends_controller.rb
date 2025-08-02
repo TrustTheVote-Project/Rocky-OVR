@@ -27,7 +27,7 @@ class TellFriendsController < RegistrationStep
 
   def create
     find_registrant(:tell_friend)
-    @registrant.attributes = params[:tell_friend] if params[:tell_friend]
+    @registrant.attributes = tell_friend_params
     @registrant.telling_friends = true
     @email_sent = @registrant.valid?
     # registrant sends email as side-effect of there being valid tell-friend params
@@ -36,6 +36,17 @@ class TellFriendsController < RegistrationStep
   end
 
   protected
+
+  def tell_friend_params
+    params.require(:tell_friend).permit(
+      :telling_friends,
+      :tell_from,
+      :tell_email,
+      :tell_recipients,
+      :tell_subject,
+      :tell_message,
+    )
+  end
 
   def advance_to_next_step
     # noop

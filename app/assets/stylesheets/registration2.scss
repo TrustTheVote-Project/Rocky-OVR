@@ -17,6 +17,21 @@ input[type=text], input[type=tel] {
   outline: none;
 }
 
+/* replace old spinner.gif */
+.spinner  {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	border: 8px solid #ccc;
+	border-top-color: #333;
+	animation: spin 1s linear infinite;
+	margin-right: auto;
+	margin-left: auto;
+}
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
 
 body {
   width: 100%;
@@ -345,14 +360,14 @@ body {
       text-align: center !important;
       text-decoration: none !important;
       text-shadow: none;
-      transition: background 0.5s ease-out 0s, color 0.05s ease-in 0s;
+      transition: background 0.3s ease-out 0s, color 0.03s ease-in 0s;
       margin: 0;
       min-width: auto;
       &:hover {
         background: #B32426;
         color: #fff !important;
         cursor: pointer;
-        transition: background 0.9s ease-out, color 0.05s ease-in;
+        transition: background 0.5s ease-out, color 0.03s ease-in;
       }
     }
     
@@ -705,6 +720,7 @@ body {
   }
   
   &.lookup span.rollover_button a,
+  &.abr span.rollover_button a,
   .continue_shift .rollover_button a,
   .download .rollover_button a {
     background-color: #fff;
@@ -722,14 +738,14 @@ body {
     text-align: center !important;
     text-decoration: none !important;
     text-shadow: none;
-    transition: background 0.5s ease-out 0s, color 0.05s ease-in 0s;
+    transition: background 0.3s ease-out 0s, color 0.03s ease-in 0s;
     margin: 0;
     min-width: auto;
     &:hover {
       background: #B32426;
       color: #fff !important;
       cursor: pointer;
-      transition: background 0.9s ease-out, color 0.05s ease-in;
+      transition: background 0.5s ease-out, color 0.03s ease-in;
     }
   }
 
@@ -867,7 +883,7 @@ body {
       }
     }
   }
-  &.lookup, &.ballot-status-check {
+  &.lookup, &.ballot-status-check, &.alert_request, &.abr {
     span.rollover_button {
       display: block;
       text-align: center;
@@ -878,12 +894,13 @@ body {
       }
     }
   }
-  &.abr, &.lookup, &.ballot-status-check {
+  &.abr, &.lookup, &.alert_request, &.ballot-status-check {
     line-height: 1.4em;
     h2 {
       text-align: center;
     }
     p {
+      text-align: left;
       font-size: 14px;
       margin: 0.5em 0;
     }
@@ -894,11 +911,15 @@ body {
         margin: 0.25em 0;
       }
     }
-    .requirements, .state-instructions {
+    .requirements, .state-instructions, .intro-message, .finish_instructions {
       margin: 2em 0;
-      *, p {
+      p, ul, li, span, div {
         font-size: 14px;
         color: #666;
+      }
+      a {
+        color: #B32426;
+        word-wrap: break-word;
       }
       ul {
         font-size: 14px;
@@ -919,8 +940,6 @@ body {
       }
     }
     .reject {
-      color: #333;
-      margin: 3em 0;
       p {
         color: #333;
         font-size: 18px;        
@@ -957,9 +976,19 @@ body {
           &.registrant-form__home-city__line {
             width: 70%
           }
+          &.registrant-form__email__line {
+            width: 58%;
+            margin-right: 7%;
+          }
+          &.registrant-form__phone__line {
+            width: 35%;
+            margin-right: 0;
+          }
         }
       }
     }
+  }
+  &.lookup, &.alert_request, &.abr {    
     #confirm_match {
       padding-top: 1em;
       p {
@@ -968,16 +997,58 @@ body {
     }
     
     .reject {
-      color: #666;
-      margin: 1.5em 0;
-      text-align: center;
-      p {
+      p, li {
         color: #666;
         font-size: 14px;        
       }
+      ol li {
+        margin-left: 40px;
+        margin-bottom: 10px;
+        list-style: number;
+      }
     }
   }
-  
+
+  &.alert_request {
+    form {
+      ul {
+        li {
+          &.registrant-form__opt-in-email__line, 
+          &.registrant-form__opt-in-sms__line 
+          {
+            display: none
+          }
+          &.registrant-form__first-name__line {
+            width: 38%
+          }
+          &.registrant-form__last-name__line {
+            width: 38%;
+            margin-right: 0%;
+          }
+          &.registrant-form__middle-name__line {
+            width: 20%
+          }
+          &.registrant-form__home-address__line {
+            width: 50%
+          }
+          &.registrant-form__home-address-2__line {
+            width: 48%
+          }
+          &.registrant-form__home-city__line {
+            width: 70%
+          }
+          &.registrant-form__email__line {
+            width: 58%;
+            margin-right: 7%;
+          }
+          &.registrant-form__phone__line {
+            width: 35%;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 #main.using_state_registration {
@@ -1018,3 +1089,7 @@ body {
 body.abr-page {
   @import 'abr-page';
 }
+
+
+
+

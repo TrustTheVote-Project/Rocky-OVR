@@ -38,16 +38,22 @@ module AbrStateMethods
       self.pdf_fields[name] = opts
       unless self.respond_to?(opts[:method])
         method_name = opts[:method]
-        self.define_state_value_attribute(method_name, sensitive: opts[:sensitive], checkbox_values: opts[:is_checkbox] ? opts[:options] : nil)
+        self.define_state_value_attribute(method_name, sensitive: opts[:sensitive], checkbox_values: opts[:is_checkbox] ? opts[:options] : nil, options: opts[:options])
       end
     end
-    def define_state_value_attribute(method_name, sensitive: false, checkbox_values: nil)
+    def define_state_value_attribute(method_name, sensitive: false, checkbox_values: nil, options: [])
       if method_name.is_a?(Hash)
         sensitive = method_name[:sensitive] || sensitive
         method_name = method_name[:name]
       end
       if sensitive
         self.sensitive_fields.push(method_name)
+      end
+      (options || []).each do |option_value|
+        option_value_safe = Abr.make_method_name(option_value, prefix_numbers: false)
+        define_singleton_method "#{method_name}_#{option_value_safe}" do
+          return self.send(method_name) === option_value
+        end
       end
       define_singleton_method "#{method_name}" do
         value = instance_variable_get("@#{method_name}")
@@ -59,14 +65,22 @@ module AbrStateMethods
       end
       define_singleton_method "#{method_name}=" do |value|
         # If this is a checkbox, assume 2 options are [false,true]
-        if checkbox_values && checkbox_values.length == 2
+        if checkbox_values && checkbox_values.length == 2 && (
+            checkbox_values[0].downcase == "yes" || checkbox_values[0].downcase == "no" ||
+            checkbox_values[0].downcase == "on" || checkbox_values[0].downcase == "off"
+        )
           if [false, 0, "0", "false", "f", nil].include?(value)
             value = checkbox_values[0]
           else
             value = checkbox_values[1]
           end
         end
+        
         v = self.abr_state_values.find_or_initialize_by(attribute_name: method_name)
+        unless v.new_record?
+          self.association(:abr_state_values).add_to_target(v) 
+        end
+      
         v.string_value = value
         instance_variable_set("@#{method_name}", value)
       end
@@ -78,7 +92,24 @@ module AbrStateMethods
   # rescue
   #   {}
   # end
-  
+  def get_attribute(method_name)
+    value = instance_variable_get("@#{method_name}")
+    if value.nil?
+      value = self.abr_state_values.find_or_initialize_by(attribute_name: method_name).string_value
+      instance_variable_set("@#{method_name}", value)
+    end
+    return value
+  end
+  def set_attribute(method_name, value)
+    v = self.abr_state_values.find_or_initialize_by(attribute_name: method_name)
+    unless v.new_record?
+      self.association(:abr_state_values).add_to_target(v) 
+    end
+
+    v.string_value = value
+    instance_variable_set("@#{method_name}", value)
+  end
+
   def redact_sensitive_data
     self.sensitive_fields.each do |method|
       puts "set #{method}"
@@ -90,7 +121,11 @@ module AbrStateMethods
     v = {}
     pdf_fields.each do |name, opts|
       value = opts[:value] || self.send(opts[:method]) || opts[:default_value]
-      if opts[:options] && opts[:options].length == 2 && !opts[:options].include?(value) 
+      if opts[:options] && opts[:options].length == 2 && !opts[:options].include?(value) && (
+            opts[:options][0].downcase == "yes" || opts[:options][0].downcase == "no" ||
+            opts[:options][0].downcase == "on" || opts[:options][0].downcase == "off"
+        )
+        
         if value == "1"
           value = opts[:options][1]
         else
@@ -107,7 +142,7 @@ module AbrStateMethods
     form_fields.collect do |fname, h| 
       ms = [h[:method]]
       if h[:type] == :date
-        ms << [h[:d], h[:m], h[:y]]
+        ms << [h[:d] || "#{h[:method]}_dd", h[:m] || "#{h[:method]}_mm", h[:y] || "#{h[:method]}_yyyy"]
       end
       ms
     end.flatten
@@ -152,15 +187,15 @@ module AbrStateMethods
   end
   
   def custom_too_short_message(field_name, count)
-    custom_validation_message(field_name, "too_short", I18n.t("errors.messages.too_short", { count: count}))
+    custom_validation_message(field_name, "too_short", I18n.t("errors.messages.too_short", count: count))
   end
 
   def custom_too_long_message(field_name, count)
-    custom_validation_message(field_name, "too_long", I18n.t("errors.messages.too_long", { count: count}))
+    custom_validation_message(field_name, "too_long", I18n.t("errors.messages.too_long",  count: count))
   end
 
   def custom_wrong_length_message(field_name, count)
-    custom_validation_message(field_name, "wrong_length", I18n.t("errors.messages.wrong_length", { count: count}))
+    custom_validation_message(field_name, "wrong_length", I18n.t("errors.messages.wrong_length",  count: count))
   end
 
   def custom_format_message(field_name)
@@ -177,10 +212,32 @@ module AbrStateMethods
 
   
   def date_field_value(field_opts)
-    y = self.send(field_opts[:y])
-    m = self.send(field_opts[:m])
-    d = self.send(field_opts[:d])
+    m_method = field_opts[:m] || "#{field_opts[:method]}_mm"
+    d_method = field_opts[:d] || "#{field_opts[:method]}_dd"
+    y_method = field_opts[:y] || "#{field_opts[:method]}_yyyy"
+    
+    y = self.send(y_method)
+    m = self.send(m_method)
+    d = self.send(d_method)
     return Date.parse("#{y}-#{m}-#{d}")
+  rescue
+    nil
+  end
+
+  def date_field_string_mm_dd_yyyy(field_opts)
+    d = date_field_value(field_opts)
+    if d
+      return d&.strftime("%m/%d/%Y")
+    end
+  rescue
+    nil
+  end
+
+  def date_field_string_mm_dd_yy(field_opts)
+    d = date_field_value(field_opts)
+    if d
+      return d&.strftime("%m/%d/%y")
+    end
   rescue
     nil
   end
@@ -192,19 +249,20 @@ module AbrStateMethods
       value = value.is_a?(String) ? value.strip : value
       if field_opts[:required]
         is_required = field_opts[:required] == true
-        if field_opts[:required] == :if_visible && field_opts[:visible]
+        if field_opts[:required] == :if_visible && (field_opts[:visible] || field_opts[:hidden])
           method = field_opts[:visible]
           h_method = field_opts[:hidden]
-          if (method.blank? || self.send(method) == "1") && (h_method.blank? || self.send(h_method) != "1")
+          puts field_name, method, h_method, value   
+          if (method.blank? || self.send(method) == "1" || self.send(method) == true) && (h_method.blank? || (self.send(h_method) != "1" && self.send(h_method) != true))
             is_required = true
           end
         end
-        if field_opts[:required] == :if_visible && field_opts[:hidden]
-          method = field_opts[:hidden]
-          if self.send(method) != "1"
-            is_required = true
-          end
-        end
+        # if field_opts[:required] == :if_visible && field_opts[:hidden]
+        #   method = field_opts[:hidden]
+        #   if self.send(method) != "1"
+        #     is_required = true
+        #   end
+        # end
         if is_required && value.blank?
           errors.add(field_opts[:method], custom_required_message(field_name))
         end
@@ -248,7 +306,7 @@ module AbrStateMethods
   attr_reader :home_state_attributes_initialized
   def add_state_attributes
     @home_state_attributes_initialized ||= nil
-    if home_state && !@home_state_attributes_initialized
+    if self.home_state && !@home_state_attributes_initialized
       type = "AbrStateMethods::#{home_state_abbrev}"
       begin
         klass = Module.const_get(type)
@@ -261,15 +319,15 @@ module AbrStateMethods
       rescue Exception=>e
         # self.singleton_class.send(:extend, AllClassMethods) # Add default methods
         # puts e.message
-        # pp e.backtrace
-        # raise e
+        # pp e.backtrace        
+        raise e if Rails.env == "development" && e.class != TypeError && e.class != NameError
       end
     end
   end
 
   def state_custom_javascript?
     if (!self.home_state_abbrev.blank?) 
-      return File.exists?(File.join(Rails.root, 'app/assets/javascripts/abr_states/', "#{self.home_state_abbrev.to_s.downcase}.js"))
+      return File.exist?(File.join(Rails.root, 'app/assets/javascripts/abr_states/', "#{self.home_state_abbrev.to_s.downcase}.js"))
     end
   end
   

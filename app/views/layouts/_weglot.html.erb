@@ -1,0 +1,145 @@
+<% show_additional_js = true if show_additional_js.nil? %>
+
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+
+<% if show_additional_js %>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPath = window.location.pathname;
+
+    if (currentPath.includes('/registrants/new')) {
+        // Initialize Weglot with hide_switcher set to true
+        Weglot.initialize({
+            api_key: '<%= ENV["WEGLOT_KEY"] %>',
+            hide_switcher: false,
+            cache: true
+        });
+
+        Weglot.on("languageChanged", function(newLang) {
+            // Convert 'il' to 'ilo'
+            if (newLang === 'il') {
+                newLang = 'ilo';
+            }
+
+            const currentUrl = new URL(window.location.href);
+
+            // Update URL with new locale
+            const currentLocale = currentUrl.searchParams.get('locale');
+            
+            // Only update if necessary
+            if (currentLocale !== newLang) {
+                currentUrl.searchParams.set('locale', newLang);
+
+                // Update the 'utm_medium' parameter by removing any existing '-weglot' suffix
+                let utm_medium = currentUrl.searchParams.get('utm_medium') || '';
+                utm_medium = utm_medium.replace(/(?:-weglot-[a-z]{2}|weglot-[a-z]{2}|-weglot|weglot)$/, '');
+
+                // Append '-weglot-LOCALE' only if utm_medium has a value
+                if (utm_medium) {
+                    if (!utm_medium.endsWith(`-weglot-${newLang}`)) {
+                        utm_medium += `-weglot-${newLang}`;
+                    }
+                } else {
+                    utm_medium = `weglot-${newLang}`;
+                }
+
+                // Set the updated 'utm_medium' value in the URL
+                currentUrl.searchParams.set('utm_medium', utm_medium);
+
+                // Redirect to the updated URL
+                window.location.replace(currentUrl.toString()); // Use replace to avoid adding to history
+            }
+        });
+    } else {
+        // Handle case where URL does not contain '/registrants/new'
+        // Hide Weglot switcher if it was initialized
+        if (typeof Weglot !== 'undefined' && Weglot.hide_switcher !== undefined) {
+            Weglot.hide_switcher = true; // Ensure Weglot is hidden
+        }
+
+        // Select all elements with the id 'other_language_link'
+        //const otherLanguageLinks = document.querySelectorAll('#other_language_link');
+
+        // Check if there are at least two elements and modify the second one
+        //if (otherLanguageLinks.length > 1) {
+        //    otherLanguageLinks[1].style.display = 'block'; // Show the second element
+        //}
+    }
+});
+</script>
+<% else %>
+<script>
+    Weglot.initialize({
+        api_key: '<%= ENV["WEGLOT_KEY"] %>',
+        cache: true
+    });
+
+    Weglot.on("languageChanged", function(newLang) {
+        // Function to create and append a hidden input to a target element
+        function createHiddenInput(target, name, id, value) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = name;
+            input.id = id;
+            input.value = value;
+            target.appendChild(input);  // Append the input to the target element (form or body)
+            return input;
+        }
+
+        // Convert 'il' to 'ilo'
+        if (newLang === 'il') {
+            newLang = 'ilo';
+        }
+
+        // Get the form where the hidden inputs should be added
+        const form = document.querySelector('form');  // Modify selector if needed
+
+        // If the form doesn't exist, use the body as the target
+        const target = form || document.body;
+
+        // Get or create the 'locale' hidden input
+        let localeInput = document.querySelector('input[name="locale"]');
+        if (!localeInput) {
+            localeInput = createHiddenInput(target, 'locale', 'locale', newLang);
+        }
+
+        // Get or create the 'utm_medium' hidden input
+        let utmMediumInput = document.querySelector('input[name="query_parameters[utm_medium]"]');
+        if (!utmMediumInput) {
+            utmMediumInput = createHiddenInput(target, 'query_parameters[utm_medium]', 'query_parameters_utm_medium', 'weglot');
+        }
+
+        // Get the current locale from the locale input field
+        let currentLocale = localeInput.value;
+
+        // Update the 'locale' input value
+        localeInput.value = newLang;
+
+        // Get and update the 'utm_medium' value, removing any existing '-weglot' suffix
+        let utm_medium = utmMediumInput.value || '';  // Default to an empty string if no value is present
+        utm_medium = utm_medium.replace(/(?:-weglot-[a-z]{2}|weglot-[a-z]{2}|-weglot|weglot)$/, '');
+
+        // Append '-weglot-LOCALE' only if utm_medium has a value
+        if (utm_medium) {
+            utm_medium += `-weglot-${newLang}`;
+        } else {
+            utm_medium = `weglot-${newLang}`;
+        }
+
+        // Update the 'utm_medium' input value
+        utmMediumInput.value = utm_medium;
+
+        // Now update the URL with locale and utm_medium
+        const url = new URL(window.location.href);
+
+        // Update or add the 'locale' parameter in the URL
+        url.searchParams.set('locale', newLang);
+
+        // Update or add the 'utm_medium' parameter in the URL
+        url.searchParams.set('utm_medium', utm_medium);
+
+        // Update the browser's address bar without reloading the page
+        window.history.replaceState({}, '', url.toString());
+    });
+</script>
+<% end %>

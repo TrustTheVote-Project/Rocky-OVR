@@ -1,4 +1,4 @@
-class CreateCanvassingShiftGrommetRequests < ActiveRecord::Migration
+class CreateCanvassingShiftGrommetRequests < ActiveRecord::Migration[4.2]
   def change
     create_table :canvassing_shift_grommet_requests do |t|
       t.string :grommet_request_id

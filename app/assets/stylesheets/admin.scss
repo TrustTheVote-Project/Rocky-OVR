@@ -6,7 +6,12 @@ th { font-weight: bold; }
 
 .properties .label { font-weight: bold; text-align: right; }
 
-
+#partners {
+  width: 100%;
+}
+#partners tbody tr:nth-child(even) {
+  background-color: #eeeeee;
+}
 
 .actions {
   margin: 20px 0;
@@ -29,16 +34,16 @@ table.assets .name {
 }
 
 
-
 #container {
   width: 1240px;
 }
 #header {
   background-image: url(https://s3.amazonaws.com/rocky-assets/assets/admin/header_admin_tools.gif);
-  height: 120px;
+  height: 150px;
   p {
     bottom: auto;
     top: 90px;
+    line-height: 2em;
   }
 }
 
@@ -55,5 +60,41 @@ table.emails {
         background-color: #ccccff;
       }
     }
+  }
+}
+
+
+table#users {
+  tr {
+    td {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #aaa;
+      
+    }
+    &.inactive {
+      opacity: 0.75;
+    }
+  }
+
+  span.partner-link {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 2px 5px;
+    margin-right: 5px;
+  }
+}
+
+li.full-width {
+  h3 {
+    label {
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
+  width: 100%;
+  input[type=text] {
+    min-width: 300px;
   }
 }

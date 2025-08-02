@@ -28,8 +28,8 @@ class RegistrationStep < ApplicationController
   include TwilioHelper
 
   layout "registration"
-  before_filter :find_partner
-  before_filter :find_canvassing_shift
+  before_action :find_partner
+  before_action :find_canvassing_shift
 
   rescue_from Registrant::AbandonedRecord do |exception|
     reg = exception.registrant
@@ -47,9 +47,9 @@ class RegistrationStep < ApplicationController
   def update
     @pdf_assistance = params[:pdf_assistance]
     redirected = find_registrant
-    @pdf_assistance ||= "1" if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
+    @pdf_assistance ||= "0" if @registrant.can_request_pdf_assistance? && !@registrant.can_mail_with_esig?
     return if redirected == :redirected
-    @registrant.attributes = params[:registrant]
+    @registrant.attributes = registrant_params
     @registrant.check_locale_change
     set_ab_test
     if detect_state_flow
@@ -63,12 +63,21 @@ class RegistrationStep < ApplicationController
     end
   end
 
+
   def current_step
     self.class::CURRENT_STEP
   end
-  hide_action :current_step
 
   protected
+  def registrant_params
+    #raise Registrant.column_names.to_s]
+    if params[:registrant]
+      params.require(:registrant).permit(Registrant.permitted_attributes)
+    else
+      {}
+    end
+  end
+
 
   def set_up_locale
     params[:locale] = nil if !I18n.available_locales.collect(&:to_s).include?(params[:locale].to_s)
@@ -79,8 +88,7 @@ class RegistrationStep < ApplicationController
 
   def set_up_view_variables
     @use_mobile_ui = determine_mobile_ui(@registrant)
-    @pdf_assistance ||= "1" if @registrant.can_request_pdf_assistance? && !@registrant.mail_with_esig?
-    
+    @pdf_assistance ||= "0" if @registrant.can_request_pdf_assistance? && !@registrant.can_mail_with_esig?
   end
 
   def set_up_share_variables
@@ -102,7 +110,7 @@ class RegistrationStep < ApplicationController
     # Set flash message?
     # Actually send the message
     if params.has_key?(:email_continue_on_device) 
-      if @registrant.email_address_for_continue_on_device =~ Authlogic::Regex::EMAIL
+      if @registrant.email_address_for_continue_on_device =~ Registrant::EMAIL_REGEX
         Notifier.continue_on_device(@registrant, request.original_url).deliver_now
         flash[:success] = I18n.t('txt.signature_capture.email_sent', email: @registrant.email_address_for_continue_on_device)
         @registrant.save(validate: false) # Make sure data persists even if not valid
@@ -180,8 +188,8 @@ class RegistrationStep < ApplicationController
         @partner    = @registrant.partner
         @partner_id = @partner.id
       end
-      if @registrant.finish_with_state? && special_case != :tell_friend && special_case != :finish
-        @registrant.update_attributes(:finish_with_state=>false)
+      if @registrant.finish_with_state? && special_case != :tell_friend && special_case != :finish && special_case != :track
+        @registrant.update(:finish_with_state=>false)
       end
 
     end
@@ -189,7 +197,7 @@ class RegistrationStep < ApplicationController
   end
 
   def find_partner
-    @partner = Partner.find_by_id(params[:partner]) || Partner.find(Partner::DEFAULT_ID)
+    @partner = Partner.find_by_id(params.permit![:partner]) || Partner.find(Partner::DEFAULT_ID)
     @partner_id = @partner.id
     set_params
   end
@@ -236,7 +244,6 @@ class RegistrationStep < ApplicationController
 
 
   def detect_state_flow
-
     if @registrant && @registrant.use_state_flow? && !@registrant.skip_state_flow? && current_step != 1
       # PASS registrant over to state flow, creating a new state-specific registrant
       return true
@@ -274,6 +281,32 @@ class RegistrationStep < ApplicationController
       end
     end
 
+    remaining_query_parameters = params[:query_parameters] || (request && request.query_parameters.clone.transform_keys(&:to_s).except(*([
+      "source",
+      "tracking",
+      "short_form",
+      "collectemailaddress",
+      "email_address",
+      "state_abbrev",
+      "state",
+      "home_zip_code",
+      "locale",
+      "pdf_assistance",
+      "skip_advance",
+      "partner",
+      "registrant_finish_iframe_url",
+    ] ))) || {}
+    
+    @query_parameters ={}
+    @additional_registrant_params = {}
+    
+    remaining_query_parameters.each do |key,value|
+      if Registrant.permitted_attributes.collect(&:to_s).include?(key.to_s)
+        @additional_registrant_params[key] = value
+      else
+        @query_parameters[key] = value
+      end
+    end
 
     if !@state_abbrev.blank?
       @short_form = true
@@ -286,6 +319,12 @@ class RegistrationStep < ApplicationController
     #return nil if registrant.home_state_allows_ovr_ignoring_license?
     #return nil if registrant.locale != 'en'
     #return nil if registrant.partner != Partner.primary_partner #&& registrant.home_state_allows_ovr_ignoring_license?
+    begin
+      return false if registrant.iframe_param_present?
+    rescue => e
+      puts "error occured with iframe check: #{e.message}"
+    end
+
     return false if registrant && registrant.partner && registrant.partner.whitelabeled? && registrant.partner.any_css_present? && !registrant.partner.partner2_mobile_css_present?
     return false if registrant && !registrant.use_short_form?
     is_mobile = false
@@ -304,4 +343,5 @@ class RegistrationStep < ApplicationController
   #     redirect_to "//#{RockyConf.ui_url_host}"
   #   end
   # end
+
 end

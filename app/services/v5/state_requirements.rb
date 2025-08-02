@@ -35,6 +35,9 @@ module V5
       state   = find_state(query)
       locale  = get_locale(state, query[:lang])
 
+      # Instantiate StateCustomization with the state object
+      state_customization = StateCustomization.new(state)
+
       validate_participation(state, locale)
       validate_age(state, query[:date_of_birth], locale)
 
@@ -51,6 +54,8 @@ module V5
         :sos_address =>        state.registrar_address,
         :sos_phone =>          state.registrar_phone,
         :sos_url =>            state.registrar_url,
+        :online_registration_url => state_customization.online_reg_url(nil),
+        :online_registration_enabled => state_customization.redirect_to_online_reg_url(nil),
         :sub_18_msg =>         locale.sub_18 }
     end
 

@@ -1,4 +1,4 @@
-class CreateBlocksFormDispositions < ActiveRecord::Migration
+class CreateBlocksFormDispositions < ActiveRecord::Migration[4.2]
   def change
     create_table :blocks_form_dispositions do |t|
       t.integer :grommet_request_id, index: true

@@ -1,4 +1,4 @@
-class CreateStateRegistrantsVaRegistrants < ActiveRecord::Migration
+class CreateStateRegistrantsVaRegistrants < ActiveRecord::Migration[4.2]
   def change
     create_table :state_registrants_va_registrants do |t|
       t.boolean :confirm_voter_record_update

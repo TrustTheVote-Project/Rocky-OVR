@@ -25,9 +25,17 @@
 class RegistrantsController < RegistrationStep
   CURRENT_STEP = 1
 
+  helper_method :registrant_params
+
   # GET /widget_loader.js
   def widget_loader
     @host = host_url
+  end
+
+  def track_view
+    # Record that a particular page got viewed
+    find_registrant(:track)
+    TrackingEvent.track_registrant_view(@registrant, params[:rendered_step])
   end
 
   # GET /registrants
@@ -35,24 +43,49 @@ class RegistrantsController < RegistrationStep
     find_partner
     options = {}
     options[:partner] = @partner.to_param if params[:partner]
-    options[:locale] = params[:locale] if params[:locale]
-    options[:source] = params[:source] if params[:source]
-    options[:tracking] = params[:tracking] if params[:tracking]
-    options[:short_form] = params[:short_form] if params[:short_form]
-    options[:collectemailaddress] = params[:collectemailaddress] if params[:collectemailaddress]
-    options[:home_zip_code] = params[:home_zip_code] if params[:home_zip_code]
-    options[:state_abbrev] = params[:state_abbrev] if params[:state_abbrev]
-    options[:state] = params[:state] if params[:state]
-    options[:first_name] = params[:first_name] if params[:first_name]
-    options[:last_name] = params[:last_name] if params[:last_name]
-    options[:email_address] = params[:email_address] if params[:email_address]
+    
+    request.query_parameters.keys.each do |key|
+      options[key] = params[key] unless key.to_s === "partner"
+    end
+    # options[:locale] = params[:locale] if params[:locale]
+    # options[:source] = params[:source] if params[:source]
+    # options[:tracking] = params[:tracking] if params[:tracking]
+    # options[:short_form] = params[:short_form] if params[:short_form]
+    # options[:collectemailaddress] = params[:collectemailaddress] if params[:collectemailaddress]
+    # options[:home_zip_code] = params[:home_zip_code] if params[:home_zip_code]
+    # options[:state_abbrev] = params[:state_abbrev] if params[:state_abbrev]
+    # options[:state] = params[:state] if params[:state]
+    # options[:first_name] = params[:first_name] if params[:first_name]
+    # options[:last_name] = params[:last_name] if params[:last_name]
+    # options[:email_address] = params[:email_address] if params[:email_address]
     options.merge!(:protocol => "https") if RockyConf.use_https
     redirect_to new_registrant_url(options)
   end
-  
+
   def share
-    @registrant_finish_iframe_url=params[:registrant_finish_iframe_url]
+    locale = params[:locale] || I18n.locale || I18n.default_locale
+    if params[:partner].present?
+      partner_id = params[:partner].to_i
+      if partner_id.positive?
+        partner = Partner.find_by(id: partner_id)
+        if partner.present? && partner.finish_iframe_url.present?
+          # Include locale parameter in the iframe URL
+          @registrant_finish_iframe_url = CGI.escapeHTML("#{partner.finish_iframe_url}?locale=#{locale}")
+        else
+          @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{locale}")
+        end
+      else
+        @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{locale}")
+      end
+    else
+      @registrant_finish_iframe_url = CGI.escapeHTML("#{Registrant::FINISH_IFRAME_URL}?locale=#{locale}")
+    end
+    # Set @show_back_button to true
+    @show_back_button = true
   end
+
+
+
 
   # GET /registrants/new
   def new
@@ -85,12 +118,12 @@ class RegistrantsController < RegistrationStep
       # In case it's just a home state being passed, allow to create the registrant anyway
       @short_form = true
       params[:registrant] = {
-        email_address: @email_address,
-        first_name: @first_name,
-        last_name: @last_name,
+        email_address: ERB::Util.html_escape(@email_address),
+        first_name: ERB::Util.html_escape(@first_name),
+        last_name: ERB::Util.html_escape(@last_name),
         home_state: @home_state,
-        home_zip_code: @home_zip_code,
-        shift_id: @shift_id,
+        home_zip_code: ERB::Util.html_escape(@home_zip_code),
+        shift_id: ERB::Util.html_escape(@shift_id),
         is_fake: params.keys.include?('preview_custom_assets')
       }
       create
@@ -149,7 +182,7 @@ class RegistrantsController < RegistrationStep
   def advance_to_next_step
     @registrant.advance_to_step_1
   end
-  
+
 
   def next_url
     registrant_step_2_url(@registrant)
@@ -158,5 +191,6 @@ class RegistrantsController < RegistrationStep
   def host_url
     "#{request.protocol}#{request.host_with_port}"
   end
+
 
 end

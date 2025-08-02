@@ -1561,3 +1561,7 @@ fieldset.no_border {
     min-width: 50px;
 }
 
+/* old school form fixes */
+body.old-school ul.flat div {
+	height: auto;
+}

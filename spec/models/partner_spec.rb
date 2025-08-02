@@ -280,7 +280,7 @@ describe Partner do
       partner = Partner.find(Partner::DEFAULT_ID)
       assert !partner.custom_logo?
       File.open(File.join(fixture_files_path, "partner_logo.jpg"), "r") do |logo|
-        partner.update_attributes(:logo => logo)
+        partner.update(:logo => logo)
         assert !partner.custom_logo?
       end
     end
@@ -288,7 +288,7 @@ describe Partner do
     it "is true for partners with logos" do
       partner = FactoryGirl.build(:partner)
       File.open(File.join(fixture_files_path, "partner_logo.jpg"), "r") do |logo|
-        partner.update_attributes(:logo => logo)
+        partner.update(:logo => logo)
         assert partner.custom_logo?
       end
     end
@@ -781,11 +781,11 @@ describe Partner do
         partner = FactoryGirl.create(:partner)
         3.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner)
-          reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
+          reg.update(:home_zip_code => "32001", :party => "Decline to State")
         end
         2.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner)
-          reg.update_attributes!(:home_zip_code => "94101", :party => "Decline to State")
+          reg.udpate!((:home_zip_code => "94101", :party => "Decline to State")
         end
         stats = partner.registration_stats_state
         assert_equal 2, stats.length
@@ -805,23 +805,23 @@ describe Partner do
         # Florida
         3.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner)
-          reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
+          reg.update(:home_zip_code => "32001", :party => "Decline to State")
         end
         3.times do
           reg = FactoryGirl.create(:step_4_registrant, :partner => partner)
-          reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
+          reg.update(:home_zip_code => "32001", :party => "Decline to State")
         end
         
         # California
         2.times do
           reg = FactoryGirl.create(:step_5_registrant, :partner => partner)
-          reg.update_attributes(:home_zip_code => "94101", :party => "Decline to State")
+          reg.update(:home_zip_code => "94101", :party => "Decline to State")
         end
 
         # Florida
         2.times do 
           reg = FactoryGirl.create(:step_5_registrant, :partner=>partner, :finish_with_state=>true, :send_confirmation_reminder_emails=>false)
-          reg.update_attributes!(:home_zip_code => "32001", :party => "Decline to State")
+          reg.udpate!((:home_zip_code => "32001", :party => "Decline to State")
         end
         stats = partner.registration_stats_state
         assert_equal 2, stats.length
@@ -838,15 +838,15 @@ describe Partner do
         other_partner = FactoryGirl.create(:partner)
         3.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner)
-          reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
+          reg.update(:home_zip_code => "32001", :party => "Decline to State")
         end
         3.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => other_partner)
-          reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
+          reg.update(:home_zip_code => "32001", :party => "Decline to State")
         end
         2.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner)
-          reg.update_attributes!(:home_zip_code => "94101", :party => "Decline to State")
+          reg.udpate!((:home_zip_code => "94101", :party => "Decline to State")
         end
         stats = partner.registration_stats_state
         assert_equal 2, stats.length
@@ -1120,23 +1120,23 @@ describe Partner do
         GeoState.stub(:states_with_online_registration).and_return(['MA','PA','CA','FL'])
         8.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner, :created_at => 2.hours.ago, :finish_with_state=>true, :send_confirmation_reminder_emails=>false)
-          reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
+          reg.update(:home_zip_code => "32001", :party => "Decline to State")
         end
         5.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner, :created_at => 2.days.ago, :finish_with_state=>true, :send_confirmation_reminder_emails=>false)
-          reg.update_attributes!(:home_zip_code => "94101", :party => "Decline to State")
+          reg.udpate!((:home_zip_code => "94101", :party => "Decline to State")
         end
         4.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner, :created_at => 2.weeks.ago, :finish_with_state=>true, :send_confirmation_reminder_emails=>false)
-          reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")
+          reg.update(:home_zip_code => "32001", :party => "Decline to State")
         end
         2.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner, :created_at => 2.months.ago, :finish_with_state=>true, :send_confirmation_reminder_emails=>false)
-          reg.update_attributes!(:home_zip_code => "94101", :party => "Decline to State")          
+          reg.udpate!((:home_zip_code => "94101", :party => "Decline to State")          
         end
         1.times do
           reg = FactoryGirl.create(:maximal_registrant, :partner => partner, :created_at => 2.years.ago, :finish_with_state=>true, :send_confirmation_reminder_emails=>false)
-          reg.update_attributes(:home_zip_code => "32001", :party => "Decline to State")          
+          reg.update(:home_zip_code => "32001", :party => "Decline to State")          
         end
         stats = partner.registration_stats_finish_with_state_completion_date
         assert_equal "California", stats[0][:state_name]
@@ -1313,10 +1313,10 @@ describe Partner do
     
     describe 'default_pixel_tracking_code' do
       it "returns the standard code with email types substituted in" do
-        p.default_pixel_tracking_code('abc').should == "<img src=\"http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=abc_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
-        p.default_pixel_tracking_code('confirmation').should == "<img src=\"http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=confirmation_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
-        p.default_pixel_tracking_code('chaser').should == "<img src=\"http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=chase_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
-        p.default_pixel_tracking_code('thank_you_external').should == "<img src=\"http://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=state_integrated_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
+        p.default_pixel_tracking_code('abc').should == "<img src=\"https://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=abc_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
+        p.default_pixel_tracking_code('confirmation').should == "<img src=\"https://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=confirmation_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
+        p.default_pixel_tracking_code('chaser').should == "<img src=\"https://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=chase_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
+        p.default_pixel_tracking_code('thank_you_external').should == "<img src=\"https://www.google-analytics.com/collect?v=1&tid=UA-1913089-11&cid=<%= @registrant.uid %>&t=event&ec=email&ea=state_integrated_open&el=<%= @registrant.partner_id %>&cs=reminder&cm=email&cn=ovr_email_opens&cm1=1&ul=<%= @registrant.locale %>\" />"
       end
     end
     

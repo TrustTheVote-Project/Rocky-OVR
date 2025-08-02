@@ -5,6 +5,8 @@ zh:
     error: 发生错误
     try_again: 要返回再试一次吗？
     rtv_and_partner: Rock the Vote 和 %{partner_name}
+    register_to_vote: 注册投票
+    register_to_vote_in: 在%{state_abbrev}注册
     button:
       submit: 下一步
       edit: 编辑
@@ -34,9 +36,11 @@ zh:
       step_5_header: 审阅并确认
       stay_informed_header: 保持知情
       identification_header: 身份识别信息
+      already_registered: 已经注册？<a href="%{url}">与朋友分享</a>
       survey_title: 给您的问题
       preparing_header: 准备登记表格
       download_header: 打印您的申请表
+      after_you_download: 告诉你的朋友他们也可以登记投票。
       finish_header: 传播消息！
       finish_pdf_delay_header: 请检查您的电子邮件地址
       finish_pdf_delay: 看起来还需要一段时间来生成您的报名表以备下载，但不要担心。当表格准备好以后，我们会给您发送电子邮件。在此同时，你可以让您的朋友知道他们也可以登记投票了。
@@ -55,6 +59,10 @@ zh:
       previous_name: 曾用名
       previous_address: 以前的地址
       opt_in_sms: 请%{organization}给我发短信。
+      opt_in_sms_compliance: 注册后，您同意定期接收来自 %{organization} (%{short_code}) 的短信。
+        信息和数据费率可能适用。发短信 HELP 获取信息，发短信 STOP 停止接收信息。无需购买。请参阅
+        <a href="%{terms_url}" target="_blank" rel="noopener">条款和条件</a>以及
+        <a href="%{privacy_url}"  target="_blank" rel="noopener">隐私政策</a>。
       opt_in_email: 接收%{organization}发送的电子邮件
       remind_when_18: 请在我18岁生日的当天提醒我。
       get_updates: 从Rock the Vote获得最新资讯.
@@ -88,8 +96,8 @@ zh:
         work: 工作
         other: 其他
       instructions:
-        overseas: ! '<b>注意</b>: 如果您是美国公民，住在美国领土外或是有投票选举权的军人，请<a href=''https://www.overseasvotefoundation.org/vote/home.htm?source=rockthevote''
-          target=''_blank''>点击此处</a>进行选民登记。'
+        online: "<b>注意</b>: 一些州提供在线选民注册。 <a href='https://www.rockthevote.org/online/' target='_blank'>了解更多。</a>"
+        overseas: 美国公民在海外居住或是现役军人？<a href='https://www.usvotefoundation.org/vote/request-overseas-absentee-ballot?source=rockthevote' target='_blank'>使用Overseas Vote申请您的选票</a>。
         opt_in_email: 我们会给您发送及时的选举提醒信息，包括您的选举地点，以及有关选举气氛和关注话题的信息。
         under_18: 看来您还未满18岁。没有关系。在%{state_name}， 您可以登记投票 %{state_rule}。 请访问<a href="http://www.rockthevote.com/election-center/"
           target="_blank">投票中心</a>来查询下一次投票的时间。
@@ -99,6 +107,8 @@ zh:
         review: 请审阅以下信息并确认其准确性。
         download: 您还没有完成。请点击打印表格按键来打印您的选民登记表格。在表格上签名并邮寄至表格中提供的地址。
         download_2: 您还没有登记成功，登记需要您打印，签名并邮寄您的表格才算完成！
+        download_3: "<p>现在无法使用打印机？我们已通过电子邮件发送您的表单，以便稍后打印。</p>"
+        state_not_enabled_download: 由于 %{state} 没有网上注册，您需要打印并邮寄或递交您的注册表格到您当地的选举办公室。
         finish: 不要忘记告诉您的朋友和家人进行登记是多么容易的一件事情。这里有一些可以帮助您传播选民登记的讯息的工具。
         finish_2: 将这个选民登记工具安装到您的网站。免费注册链接：
         finish_under_18: 我们会在重要的选举日期临近之时给您发送选民登记提醒。
@@ -107,6 +117,7 @@ zh:
         finish_email_sent: 电子邮件已发送！
         finish_update_status: 不要忘记更新您在FACEBOOK和Twitter的状态！
         state_online_registration: 您或许符合资格使用%{state}网上选民登记系统进行选民登记。
+        state_online_registration_id_not_required: "您有资格在%{state}注册在线投票。"
         state_online_registration_sub_header: 现在就点击以下按钮与您所在州完成登记过程。
         leave_state_online_registration: 您可以使用以下表格，与%{state} 完成您的网上选民登记。如果您的驾驶证或州身份证不再有效或者州政府无法查询或确认您的DMV机动车管理部记录，不用担心&mdash，
           您还可以%{link}。您只需要打印，签名并邮寄。
@@ -151,6 +162,14 @@ zh:
         phone: 大多数州希望获得您的电话号码，以备他们对您的申请有任何问题。但是您不是必须提供电话号码。
         previous_name: 如果您在上一次登记后更改过姓名，请写下您以前的姓名。
         previous_address: 如果您在上一次登记后搬过家，请写下您以前的地址。
+      mobile_ui:
+        step_2:
+          title: 合格
+          instructions: 标有星号 (*) 的输入字段为必填项
+        step_8:
+          title: 鉴别
+        step_9:
+          title: 个人信息
     status_text:
       message: 我刚刚完成了选民登记，你也可以登记！
       under_18_message: 确保进行选民登记。这是一件非常容易的事情！

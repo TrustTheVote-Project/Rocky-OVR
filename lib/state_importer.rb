@@ -136,7 +136,7 @@ class StateImporter
   # conf_keys with values that are not I18n key-parts
   def self.state_settings
     # [method_name, yaml_key]
-    unaliased = %w(name participating requires_race requires_party id_length_min id_length_max online_registration_url online_registration_system_name status_check_url)
+    unaliased = %w(name participating requires_race requires_party optional_party id_length_min id_length_max online_registration_url online_registration_system_name status_check_url)
     unaliased.collect{|m| [m, m]} +
     [['registrar_address','sos_address'],
      ['registrar_abr_address', 'sos_abr_address'],
@@ -156,7 +156,7 @@ class StateImporter
   
   def self.tmp_file_dir
     dir = Rails.root.join('tmp', 'translation_files')
-    # if !File.exists?(dir)
+    # if !File.exist?(dir)
     #   FileUtils.mkdir_p(dir)
     # end
     return dir
@@ -168,7 +168,7 @@ class StateImporter
   
   def self.file_path
     temp_file = tmp_file_path
-    if File.exists?(temp_file)
+    if File.exist?(temp_file)
       temp_file.to_s
     else 
       Rails.root.join('db/bootstrap/import/states.yml').to_s

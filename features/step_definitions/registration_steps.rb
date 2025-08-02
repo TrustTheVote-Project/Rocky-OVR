@@ -43,7 +43,7 @@ Given /^I have completed step (\d+)$/ do |step_num|
 end
 
 Given(/^my zip code is "(.*?)"$/) do |zip|
-  @registrant.update_attributes(:home_zip_code=>zip)
+  @registrant.update(:home_zip_code=>zip)
 end
 
 Given /^I have completed step (\d+) for a short form$/ do |step_num|
@@ -111,7 +111,7 @@ end
 
 Given /^I have been to the state online registration page$/ do
   step 'I have completed step 4 as a resident of "Washington" state'
-  @registrant.update_attributes!(:finish_with_state=>true)
+  @registrant.udpate!((:finish_with_state=>true)
 end
 
 
@@ -136,7 +136,7 @@ end
 When /^my session expires$/ do
   @registrant.reload
   Registrant.record_timestamps = false
-  @registrant.update_attributes!(:updated_at=>(2*RockyConf.minutes_before_abandoned.minutes).seconds.ago)
+  @registrant.udpate!((:updated_at=>(2*RockyConf.minutes_before_abandoned.minutes).seconds.ago)
   Registrant.record_timestamps = true
 end
 

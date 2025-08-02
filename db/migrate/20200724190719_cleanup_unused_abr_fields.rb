@@ -1,4 +1,4 @@
-class CleanupUnusedAbrFields < ActiveRecord::Migration
+class CleanupUnusedAbrFields < ActiveRecord::Migration[4.2]
   def change
     remove_column :abrs, :gender
     remove_column :abrs, :mailing_address

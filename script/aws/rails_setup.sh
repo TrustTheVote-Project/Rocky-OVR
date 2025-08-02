@@ -15,7 +15,9 @@ cd /var/www/rocky
 gem install bundler -v 1.16.3
 # Make sure JAVA envs are loaded
 . /home/ec2-user/.bash_profile    
-bundle install --without development test
+bundle config set without 'development test'
+bundle install
+# --without development test
 
 # Make sure we have the config files downloaded
 aws s3 cp s3://rocky-cloudformation-assets/database.$RAILS_ENV.yml config/database.yml --region us-west-2
@@ -34,7 +36,7 @@ fi
 
 if [ $SERVER_ROLE == 'util' ]; then
     echo "I'm a util server"
-    
+    sudo dnf install -y cronie
     # Crontab is for UTIL only
     cd ~
     aws s3 cp s3://rocky-cloudformation-assets/crontab . --region us-west-2
@@ -107,16 +109,16 @@ if [ $SERVER_ROLE == 'web' ]; then
     touch tmp/restart.txt
     
     # Passenger monitoring Crontab is for WEB only
-    cd ~
-    aws s3 cp s3://rocky-cloudformation-assets/web-crontab . --region us-west-2
-    sed -i 's/RAILS_ENV/'"$RAILS_ENV"'/' ./web-crontab
+    # cd ~
+    # aws s3 cp s3://rocky-cloudformation-assets/web-crontab . --region us-west-2
+    # sed -i 's/RAILS_ENV/'"$RAILS_ENV"'/' ./web-crontab
     
     # Make sure the cron scripts are executable
-    chmod u+x /var/www/rocky/script/cron_cleanup_processes
+    # chmod u+x /var/www/rocky/script/cron_cleanup_processes
     
-    crontab -r
+    # crontab -r
     # Cat the crontab contents into the crontab editor
-    (crontab -l 2>/dev/null; cat ./web-crontab) | crontab -
+    # (crontab -l 2>/dev/null; cat ./web-crontab) | crontab -
     
 fi
 

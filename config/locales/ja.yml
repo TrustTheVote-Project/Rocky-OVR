@@ -111,6 +111,13 @@ ja:
               accepted: 上記の情報が正しいかどう表示する必要があります。
             has_state_license:
               inclusion: あなたが有効な州の免許をもっているかどうか表示してください。
+            us_citizen:
+              accepted: あなたはアメリカ合衆国の市民でなければなりません！
+            sms_number_for_continue_on_device:
+              format: 有効な番号を提供してください
+            email_address_for_continue_on_device:
+              format: 有効なメールアドレスを提供してください
+
       messages:
         inclusion: ! '%{attribute}はこのリストに含まれていません。'
         exclusion: ! '%{attribute}を維持してください。'

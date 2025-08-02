@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddIndexesToRegistrantStats < ActiveRecord::Migration
+class AddIndexesToRegistrantStats < ActiveRecord::Migration[4.2]
   def self.up
     add_index "registrants", "partner_id"
     add_index "registrants", "status"

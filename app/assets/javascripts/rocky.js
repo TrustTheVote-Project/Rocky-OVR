@@ -6,6 +6,14 @@ function isFacebookApp() {
   return ((ua.indexOf("fban") > -1) || (ua.indexOf("fbav") > -1) || (ua.indexOf("instagram") > -1));
 }
 
+function trackView(trackingUrl, controller, action) {
+  if (trackingUrl) {
+    //console.log(trackingUrl, controller, action)
+    $.post(trackingUrl, {
+      rendered_step: controller+"-"+action
+    });
+  }
+}
 
 function hideErrors() {
   $('.error').each(function(){ $(this).css('opacity', 0); });
@@ -16,6 +24,7 @@ function revealErrors() {
 };
 
 function toggleFieldSet(checkbox, set, rule, speed, hideOnCheck) {
+  //console.log(checkbox, set, rule)
   var show = hideOnCheck ? !$(checkbox).is(':checked') : $(checkbox).is(':checked')
 	if (show) {
     $(rule).hide(0);
@@ -23,7 +32,7 @@ function toggleFieldSet(checkbox, set, rule, speed, hideOnCheck) {
   } else {
     $(set).fadeOut(speed);
     $(set).find(".has_error input, .has_error select").each(function() {
-      console.log(this);
+      //console.log(this);
       clearErrors.bind(this)();
     })
     $(rule).show(0);
@@ -69,3 +78,13 @@ function addTooltips(selector, target_corner, tooltip_corner) {
     }
   })
 };
+
+function makeExternalLinksOpenInNewTab() {
+  var hostname = window.location.hostname;
+  $("a[href^='http']").each(function(index, element) {
+    //console.log(hostname, element, element.hostname)
+    if (hostname !== element.hostname) {
+      return $(this).attr('rel', 'noopener noreferrer').attr('target', '_blank');
+    }
+   });
+}

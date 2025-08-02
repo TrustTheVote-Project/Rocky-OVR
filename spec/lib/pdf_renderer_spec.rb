@@ -239,7 +239,7 @@ describe PdfRenderer do
     end
     
     describe "barcode" do
-      let(:registrant) { FactoryGirl.build(:maximal_registrant) }
+      let(:registrant) { FactoryGirl.create(:maximal_registrant) }
       let(:pdfg) { PdfRenderer.new(registrant.pdf_writer) }
       before(:each) do
         registrant.id = 42_000_000

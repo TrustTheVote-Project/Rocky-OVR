@@ -19,64 +19,63 @@ function validateField(errorMessage) {
   if (!field || !$(field).is(':visible')) {
     return;
   }
+
   var isGroup = false;
   var groupInputs = $(this).find("input");
   if (groupInputs.length > 0) {
     isGroup = true;
   }
-  var val = ''
+
+  var val = '';
   var parent = null;
   if (isGroup) {
-    var groupVal = null
-    for(var i=0,ii=groupInputs.length;i<ii;i++) {
+    var groupVal = null;
+    for (var i = 0, ii = groupInputs.length; i < ii; i++) {
       var input = groupInputs[i];
-      if (input.type=='radio') {
-        // here we want to find if any value is present
+      if (input.type == 'radio') {
         if ($(input).is(":checked")) {
           groupVal = '1';
           break;
         }
       } else {
-        var v = $(input).val()
-        // Here we want to find the shortest value and to sure all values are present
+        var v = $(input).val();
         if (groupVal == null || groupVal.length > v.length) {
           groupVal = v;
-        }        
+        }
       }
     }
     val = groupVal;
     parent = $(field);
   } else {
-    val = $(field).val()
-    parent = $(field).parent()
+    val = $(field).val();
+    parent = $(field).parent();
   }
-  var errorField = parent.siblings(".error")
-  var currentError = errorField.html();
-  var messageIdx = currentError.indexOf(errorMessage)
+
+  var errorField = parent.siblings(".error");
+  var currentError = errorField.html().trim();
+  var messageIdx = currentError.indexOf(errorMessage);
+
   if ((!val || val == '') && errorMessage != '') {
-    // Add if not present
-    if (messageIdx == -1) {
-      errorField.html([currentError, errorMessage].join(" "))
-    }       
-    parent.addClass('has_error') 
-  } else {
-    if (errorMessage == '') {//Remove all
-      errorField.html('')
-      //console.log(field, errorMessage, errorField, messageIdx)
-    } else if (messageIdx >= 0) {
-      currentError = currentError.split('')
-      currentError.splice(messageIdx, errorMessage.length)
-      errorField.html(currentError.join(''))
-    } 
-    //console.log(errorField.text())
-    if (errorField.html().replace(/\s/g, '') == '') {
-      //console.log(field, errorMessage)
-      
-      parent.removeClass('has_error') 
+    // Clear the field before adding error to prevent stacking
+    if (messageIdx === -1) {
+      errorField.html(errorMessage); // Replace any existing error
     }
-           
+    parent.addClass('has_error');
+  } else {
+    if (errorMessage == '') {
+      errorField.html(''); // Clear all errors
+    } else if (messageIdx >= 0) {
+      // Remove the error message from the field
+      currentError = currentError.split('');
+      currentError.splice(messageIdx, errorMessage.length);
+      errorField.html(currentError.join(''));
+    }
+    if (errorField.html().trim() === '') {
+      parent.removeClass('has_error');
+    }
   }
 }
+
 
 function validateBooleanField(errorMessage) {
   var field = this;

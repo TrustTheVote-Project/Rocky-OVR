@@ -8,8 +8,23 @@ class Report < ActiveRecord::Base
   REGISTRANTS_REPORT_EXTENDED="registrants_report_extended".freeze
   ABR_REPORT = "abr_report".freeze
   LOOKUP_REPORT = "lookup_report".freeze
+  ALERT_REQUEST_REPORT = "alert_request_report".freeze
+  
+  REPORT_TYPES = [
+    GROMMET_SHIFT_REPORT,
+    CANVASSING_SHIFT_REPORT,
+    GROMMET_REGISTRANTS_REPORT,
+    REGISTRANTS_REPORT,
+    REGISTRANTS_REPORT_EXTENDED,
+    ABR_REPORT,
+    LOOKUP_REPORT,
+    ALERT_REQUEST_REPORT
+  ].freeze
+
   QUEUE_NAME = "reports".freeze
   THRESHOLD = 500
+
+  include AlertRequestReportHelper
   
   
   SHIFT_REPORT_HEADER = [
@@ -42,9 +57,12 @@ class Report < ActiveRecord::Base
     failed: :failed
   })
 
-  belongs_to :partner
+  belongs_to :partner, optional: true
   has_many :report_data
-  serialize :filters, Hash
+  serialize :filters
+  after_initialize do
+    self.filters ||= {}
+  end
 
   before_save :ensure_dates
 
@@ -83,7 +101,9 @@ class Report < ActiveRecord::Base
     when ABR_REPORT
       return "Absentee Requests Report"
     when LOOKUP_REPORT
-      return "Voter Lookups Report"
+      return "Voter Status Lookup Report"
+    when ALERT_REQUEST_REPORT
+      return "Voter Pledge Report"
     end
   end
   
@@ -301,7 +321,7 @@ class Report < ActiveRecord::Base
   def generate_abr_report(start=0, csv_method=:to_csv_array)
     distribute_reads(failover: false) do
       return CSV.generate do |csv|
-        selector.order(:id).offset(start).limit(THRESHOLD).each do |abr|
+        selector.includes(abrs_catalist_lookups: [:catalist_lookup]).order(:id).offset(start).limit(THRESHOLD).each do |abr|
           csv << abr.send(csv_method)
         end
       end
@@ -335,7 +355,7 @@ class Report < ActiveRecord::Base
   def generate_lookup_report(start=0, csv_method=:to_csv_array)
     distribute_reads(failover: false) do
       return CSV.generate do |csv|
-        selector.includes(abrs_catalist_lookup: [:abr], catalist_lookups_registrant: []).order(:id).offset(start).limit(THRESHOLD).each do |lookup|
+        selector.includes(abrs_catalist_lookup: [:abr], catalist_lookups_registrant: [], state: []).order(:id).offset(start).limit(THRESHOLD).each do |lookup|
           csv << lookup.send(csv_method)
         end
       end
@@ -386,10 +406,11 @@ class Report < ActiveRecord::Base
     else
       @registrants_report_selector ||= partner.registrants.where(registrants_report_conditions)
     end
+    @registrants_report_selector.includes(:voter_signature)
   end
   
   def registrants_report_extended_selector
-    @registrants_report_extended_selector ||= registrants_report_selector.includes({:canvassing_shift_registrant => :canvassing_shift})    
+    @registrants_report_extended_selector ||= registrants_report_selector.includes(:pdf_delivery, {:canvassing_shift_registrant => :canvassing_shift})    
   end
   
   
@@ -401,6 +422,10 @@ class Report < ActiveRecord::Base
       StateRegistrants::VARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_va_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| va_registrants[sr.registrant_id] = sr}
       mi_registrants = {}
       StateRegistrants::MIRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mi_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| mi_registrants[sr.registrant_id] = sr}
+      mn_registrants = {}
+      StateRegistrants::MNRegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_mn_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| mn_registrants[sr.registrant_id] = sr}
+      wa_registrants = {}
+      StateRegistrants::WARegistrant.where(conditions).joins("LEFT OUTER JOIN registrants on registrants.uid=state_registrants_wa_registrants.registrant_id").where('registrants.partner_id=?',self.partner_id).find_each {|sr| wa_registrants[sr.registrant_id] = sr}
 
       
       return CSV.generate do |csv|
@@ -409,13 +434,18 @@ class Report < ActiveRecord::Base
             sr  = nil
             case reg.home_state_abbrev
             when "PA"
-              sr = pa_registrants[reg.uid] || StateRegistrants::PARegistrant.new
+              sr = pa_registrants[reg.uid] || nil
             when "VA"
-              sr = va_registrants[reg.uid] || StateRegistrants::VARegistrant.new
+              sr = va_registrants[reg.uid] || nil
             when "MI"
-              sr = mi_registrants[reg.uid] || StateRegistrants::MIRegistrant.new
+              sr = mi_registrants[reg.uid] || nil
+            when "MN"
+              sr = mn_registrants[reg.uid] || nil
+            when "WA"
+              sr= wa_registrants[reg.uid] || nil
             end
             reg.instance_variable_set(:@existing_state_registrant, sr)
+            reg.instance_variable_set(:@existing_state_registrant_fetched, true)
           end
           csv << reg.send(csv_method)
         end
@@ -501,9 +531,9 @@ class Report < ActiveRecord::Base
           row << counts[:email_opt_in]
           row << counts[:sms_opt_in]
           row << counts[:dl_count]
-          row << '%.2f %' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
+          row << '%.2f %%' % (100.0 * (counts[:dl_count].to_f / counts[:registrations].to_f).to_f)
           row << counts[:ssn_count]
-          row << '%.2f %' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
+          row << '%.2f %%' % (100.0 * (counts[:ssn_count].to_f / counts[:registrations].to_f).to_f)
           row << eastern_time(ci.tracking_data["clock_in_datetime"])
           if co
             row << eastern_time(co.tracking_data["clock_out_datetime"])

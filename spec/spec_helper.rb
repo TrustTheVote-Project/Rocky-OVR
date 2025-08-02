@@ -18,6 +18,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 RSpec.configure do |config|
+  
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -91,6 +92,13 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+RSpec::Matchers.define :the_uploaded_file do |test_file|
+  match do |actual| 
+    actual.is_a?(ActionDispatch::Http::UploadedFile) && actual.original_filename == test_file.original_filename
+  end
+end
+
 
 
 def rspec_partner_auth

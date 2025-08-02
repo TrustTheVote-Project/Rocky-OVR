@@ -1,4 +1,4 @@
-class CreateAbrsCatalistLookups < ActiveRecord::Migration
+class CreateAbrsCatalistLookups < ActiveRecord::Migration[4.2]
   def change
     create_table :abrs_catalist_lookups do |t|
       t.integer :abr_id, index: true

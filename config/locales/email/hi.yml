@@ -29,7 +29,7 @@ hi:
           अंत में ध्यान दे, चुनाव के दिन मतदान करना ना भूलें| 45 लाख योग्य युवक मतदाता
           हैं और अगर हम चाहतें हैं की नेता लोग उन बातों पर ध्यान दे जो हमारे लिए ज़रूरी
           है तो हमारा मतदान करना बहुत ही ज़रूरी है<br><br>\n\nधन्यवाद,<br>\n
-          Rock the Vote<br><br>\n\nकृपया देखें. <strong><a href=\"http://www.rockthevote.com/\">www.rockthevote.com</a></strong>
+          Rock the Vote<br><br>\n\nकृपया देखें. <strong><a href=\"https://www.rockthevote.org/\">www.rockthevote.org</a></strong>
           पे जायें ताकि आपको मतदान के लिए, चुनाव के बारे में, और बाकी मुद्धो के बारे
           में जानकारी मिले| साथ ही आपको ऐसे उपायों के बारे में जानकारी मिलेगी जिनको
           आप अपना खुद का वोटर रेजिस्ट्रेशन कॅंपेन के लिए इस्तेमाल कर सकतें हैं|<br><br>"
@@ -64,11 +64,11 @@ hi:
           %{registrant_first_name}<br><br>'
         footer: ! 'Rock the Vote आपकी गोपनीयता और आपकी जानकारी की संवेदनशीलता की सुरक्षित
           रखवाली के लिए प्रतिबद्ध है और अधिक जानकारी के लिए, कृपया हमारा  <strong><a
-          href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">
+          href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">
           वोटर रेजिस्ट्रेशन फॉर्म का प्राइवसी पॉलिसी देखें.</a></strong><br><br>
 
 
-          कृपया अपने सवाल या कोई भी टिप्पणी यहाँ भेजें: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          कृपया अपने सवाल या कोई भी टिप्पणी यहाँ भेजें: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     reminder:
       subject: ! 'अनुस्मारक (रिमाइंडर): अपना मतदाता पंजीकरण (वोटर रेजिस्ट्रेशन) फॉर्म  मेल
         करें'
@@ -95,7 +95,7 @@ hi:
           अंत में ध्यान दे, चुनाव के दिन मतदान करना ना भूलें| 45 लाख योग्य युवक मतदाता
           हैं और अगर हम चाहतें हैं की नेता लोग उन बातों पर ध्यान दे जो हमारे लिए ज़रूरी
           है तो हमारा मतदान करना बहुत ही ज़रूरी है <br><br>\n\nधन्यवाद,<br>Rock the Vote<br><br>\n\nकृपया देखें. <strong><a
-          href=\"http://www.rockthevote.com/\">www.rockthevote.com</a></strong> पे
+          href=\"https://www.rockthevote.org/\">www.rockthevote.org</a></strong> पे
           जायें ताकि आपको मतदान के लिए, चुनाव के बारे में, और बाकी मुद्धो के बारे
           में जानकारी मिले| साथ ही आपको ऐसे उपायों के बारे में जानकारी मिलेगी जिनको
           आप अपना खुद का वोटर रेजिस्ट्रेशन कॅंपेन के लिए इस्तेमाल कर सकतें हैं <br><br>"
@@ -130,11 +130,11 @@ hi:
           %{registrant_first_name}<br><br>'
         footer: ! 'Rock the Vote आपकी गोपनीयता और आपकी जानकारी की संवेदनशीलता की सुरक्षित
           रखवाली के लिए प्रतिबद्ध है  और अधिक जानकारी के लिए, कृपया हमारा  <strong><a
-          href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">
+          href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">
           वोटर रेजिस्ट्रेशन फॉर्म का प्राइवसी पॉलिसी देखें</a></strong><br><br>
 
 
-          कृपया अपने सवाल या कोई भी टिप्पणी यहाँ भेजें: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          कृपया अपने सवाल या कोई भी टिप्पणी यहाँ भेजें: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     thank_you_external:
       subject: ऑनलाइन दिए गये मतदाता पंजीकरण साधन (वोटर रेजिस्ट्रेशन टूल) इस्तेमाल
         करने के लिए धन्यवाद
@@ -178,7 +178,7 @@ hi:
           Rock the Vote<br><br>
 
 
-          कृपया देखें. <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          कृपया देखें. <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           पे जायें ताकि आपको मतदान के लिए, चुनाव के बारे में, और बाकी मुद्धो के बारे
           में जानकारी मिले| साथ ही आपको ऐसे उपायों के बारे में जानकारी मिलेगी जिनको
           आप अपने समुदाय (कम्यूनिटी) में अपना खुद का वोटर रेजिस्ट्रेशन कॅंपेन के लिए
@@ -214,11 +214,11 @@ hi:
           %{registrant_first_name}<br><br>'
         footer: ! 'Rock the Vote आपकी गोपनीयता और आपकी जानकारी की संवेदनशीलता की सुरक्षित
           रखवाली के लिए प्रतिबद्ध है > और अधिक जानकारी के लिए, कृपया हमारा <strong><a
-          href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">
+          href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">
           वोटर रेजिस्ट्रेशन फॉर्म का प्राइवसी पॉलिसी देखें</a></strong<br><br>
 
 
-          कृपया अपने सवाल या कोई भी टिप्पणी यहाँ भेजें: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          कृपया अपने सवाल या कोई भी टिप्पणी यहाँ भेजें: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     tell_friend:
       subject: मैने अभी खुद को पंजीकृत (रिजिस्टर्ड) करवाया है और आप भी ज़रूर करवायें
       body: ! "अरे, %{rtv_url} पर मैने अभी मतदान (वोट) के लिए पंजीकरण (रिजिस्टर) किया

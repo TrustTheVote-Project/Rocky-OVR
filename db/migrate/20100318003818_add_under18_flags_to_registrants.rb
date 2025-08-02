@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddUnder18FlagsToRegistrants < ActiveRecord::Migration
+class AddUnder18FlagsToRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     remove_column "registrants", "ineligible_attest"
     add_column    "registrants", "under_18_ok", :boolean

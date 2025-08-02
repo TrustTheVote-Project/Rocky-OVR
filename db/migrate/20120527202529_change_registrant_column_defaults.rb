@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class ChangeRegistrantColumnDefaults < ActiveRecord::Migration
+class ChangeRegistrantColumnDefaults < ActiveRecord::Migration[4.2]
   def self.up
     change_column_default :registrants, :opt_in_email, false
     change_column_default :registrants, :volunteer, false

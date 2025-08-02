@@ -1,8 +1,7 @@
 class EmailAddress < ActiveRecord::Base
   validates_uniqueness_of :email_address
   validates_presence_of :email_address
-  validates_format_of :email_address, :with => Authlogic::Regex::EMAIL
-  attr_protected :blacklisted
+  validates_format_of :email_address, :with => Registrant::EMAIL_REGEX
   def self.is_blacklisted?(email_address)
     email_address = email_address.to_s.strip.downcase
     return true if email_address == "test@test.com" 

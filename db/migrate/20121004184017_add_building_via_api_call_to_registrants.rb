@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddBuildingViaApiCallToRegistrants < ActiveRecord::Migration
+class AddBuildingViaApiCallToRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     add_column :registrants, :building_via_api_call, :boolean, :default=>false
   end

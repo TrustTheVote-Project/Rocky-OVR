@@ -26,9 +26,10 @@ class Admin::BaseController < ApplicationController
 
   layout 'admin'
 
-  skip_before_filter :authenticate_everything
-  before_filter :authenticate #, :if => lambda { !%w{ development test }.include?(Rails.env) }
-  before_filter :init_nav_class
+  skip_before_action :authenticate_everything
+  before_action :authenticate #, :if => lambda { !%w{ development test }.include?(Rails.env) }
+  before_action :check_mfa
+  before_action :init_nav_class
 
   helper_method :current_admin
 
@@ -51,6 +52,13 @@ class Admin::BaseController < ApplicationController
     unless current_admin
       store_location
       redirect_to admin_login_path
+    end
+  end
+
+  def check_mfa
+    if !(admin_mfa_session = AdminMfaSession.find) && (admin_mfa_session ? admin_mfa_session.record == current_admin : !admin_mfa_session)
+      store_location
+      redirect_to new_admin_mfa_session_path
     end
   end
 
@@ -81,7 +89,7 @@ class Admin::BaseController < ApplicationController
     partner.folder.publish_sub_assets(:preview)
     EmailTemplate.publish_templates(partner)
     partner.replace_system_css_live = partner.replace_system_css_preview
-    partner.update_attributes(whitelabeled: true) unless partner.whitelabeled?
+    partner.update(whitelabeled: true) unless partner.whitelabeled?
   end
   
 

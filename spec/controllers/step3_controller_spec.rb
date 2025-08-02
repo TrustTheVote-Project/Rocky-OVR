@@ -32,7 +32,7 @@ describe Step3Controller do
   describe "#show" do
     it "should show the step 3 input form" do
       reg = FactoryGirl.create(:step_2_registrant)
-      get :show, :registrant_id => reg.to_param
+      get :show, params: {:registrant_id => reg.to_param}
       assert assigns[:registrant].step_2?
       assert_template "show"
     end
@@ -42,7 +42,7 @@ describe Step3Controller do
       reg.stub(:race_tooltip) { true } 
       reg.stub(:party_tooltip) { true } 
       Registrant.stub(:find_by_param!) { reg }
-      get :show, :registrant_id => reg.to_param
+      get :show, params: {:registrant_id => reg.to_param}
       assert assigns[:state_parties]
       assert assigns[:race_tooltip]
       assert assigns[:party_tooltip]
@@ -58,14 +58,14 @@ describe Step3Controller do
     end
 
     it "should update registrant and complete step 3" do
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_3_registrant).reject {|k,v| k == :status }
+      put :update, params: {:registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_3_registrant).reject {|k,v| k == :status }}
       assert !assigns[:registrant].nil?
       assert assigns[:registrant].step_3?
       assert_redirected_to registrant_step_4_url(assigns[:registrant])
     end
 
     it "should reject invalid input and show form again" do
-      put :update, :registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_3_registrant, :state_id_number => nil).reject {|k,v| k == :status }
+      put :update, params: {:registrant_id => @registrant.to_param, :registrant => FactoryGirl.attributes_for(:step_3_registrant, :state_id_number => nil).reject {|k,v| k == :status }}
       assert assigns[:registrant].step_3?
       assert assigns[:registrant].reload.step_2?
       assert_template "show"

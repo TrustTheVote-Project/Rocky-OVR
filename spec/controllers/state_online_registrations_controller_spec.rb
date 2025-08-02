@@ -32,23 +32,23 @@ describe StateOnlineRegistrationsController do
   describe "#show" do
     let(:reg) { FactoryGirl.create(:step_1_registrant, home_zip_code: "02113")}
     it "assigns the current registrant" do
-      get :show, :registrant_id => reg.to_param
+      get :show, params: {:registrant_id => reg.to_param}
       assert assigns[:registrant]
     end
     it "sets the finish_with_state flag for the registrant to true" do
       state_abbr = reg.home_state_abbrev
       GeoState.stub(:states_with_online_registration).and_return([state_abbr])
       reg.finish_with_state.should be_falsey
-      get :show, :registrant_id => reg.to_param
+      get :show, params: {:registrant_id => reg.to_param}
       assigns[:registrant].finish_with_state.should be_truthy
     end
     it "assigns the iFrame url" do
       reg = FactoryGirl.create(:step_1_registrant, :home_zip_code=>"99400")
-      get :show, :registrant_id => reg.to_param
+      get :show, params: {:registrant_id => reg.to_param}
       assert assigns[:online_registration_iframe_url]
     end
     it "renders the show template" do
-      get :show, :registrant_id => reg.to_param
+      get :show, params: {:registrant_id => reg.to_param}
       assert_template "show"
     end
     
@@ -58,7 +58,7 @@ describe StateOnlineRegistrationsController do
       RockyConf.ovr_states.CA.stub(:redirect_to_online_reg_url).and_return(false)
       File.stub(:exists?).with(File.join(Rails.root,"app/views/state_online_registrations/#{reg.home_state_abbrev.downcase}.html.erb")) { true }
       expect {
-        get :show, :registrant_id => reg.to_param
+        get :show, params: {:registrant_id => reg.to_param}
       }.to raise_error(ActionView::MissingTemplate, /Missing template state_online_registrations\/#{reg.home_state_abbrev.downcase}/)
       
       #assert_template "#{reg.home_state_abbrev.downcase}"

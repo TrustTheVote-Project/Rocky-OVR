@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class CreateGeoStates < ActiveRecord::Migration
+class CreateGeoStates < ActiveRecord::Migration[4.2]
   def self.up
     create_table "geo_states" do |t|
       t.string "name", :limit => 21

@@ -58,7 +58,7 @@ class RegistrantValidator < ActiveModel::Validator
       reg.validates_inclusion_of :us_citizen, :in => [true], message: :accepted unless reg.building_via_api_call?
     
       validate_phone_present_if_opt_in_sms(reg)
-      if reg.mail_with_esig? && reg.signature_method != VoterSignature::PRINT_METHOD
+      if reg.mail_with_esig?
         reg.validates_presence_of(:voter_signature_image)
       end
     end
@@ -96,7 +96,7 @@ class RegistrantValidator < ActiveModel::Validator
     
     
     
-    if reg.needs_mailing_address? 
+    if reg.needs_mailing_address?
       reg.validates_presence_of :mailing_address
       reg.validates_presence_of :mailing_city
       reg.validates_presence_of :mailing_state_id
@@ -133,14 +133,15 @@ class RegistrantValidator < ActiveModel::Validator
       validates_zip_code reg,    :prev_zip_code
     end
 
-    if reg.at_least_step_5?
-      reg.validates_acceptance_of :attest_true
+    if reg.at_least_step_5? && !reg.building_via_api_call? && !reg.use_short_form?
+      reg.validates_inclusion_of  :attest_true, :in=>[true]
+      #reg.validates_acceptance_of :attest_true, :accept=>true
     end
 
     if reg.telling_friends
       reg.validates_presence_of :tell_from
       reg.validates_presence_of :tell_email
-      reg.validates_format_of :tell_email, :with => Authlogic::Regex::EMAIL
+      reg.validates_format_of :tell_email, :with => Registrant::EMAIL_REGEX
       reg.validates_presence_of :tell_recipients
       reg.validates_presence_of :tell_subject
       reg.validates_presence_of :tell_message
@@ -217,12 +218,13 @@ class RegistrantValidator < ActiveModel::Validator
   
   def validates_zip_code(reg, attr_name)
     reg.validates_presence_of(attr_name)
-    reg.validates_format_of(attr_name, {:with => /\A\d{5}(-\d{4})?\z/, :allow_blank => true});
+    reg.validates_format_of(attr_name, with: /\A[0-9]{5}(?:-[0-9]{4})?\z/, allow_blank: true)
 
     if reg.errors[attr_name].empty? && !GeoState.valid_zip_code?(reg.send(attr_name))
       reg.errors.add(attr_name, :invalid, :default => nil, :value => reg.send(attr_name))
     end
   end
+
   
   def validate_phone_present_if_opt_in_sms(reg)
     return true if reg.building_via_api_call?

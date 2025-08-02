@@ -1,6 +1,6 @@
 = render 'branding_nav', {selected: :assets}
 
-= form_for @partner, url: partner_branding_path, method: :put, :html => { :multipart => true } do |f|
+= form_for @partner, url: partner_branding_path(@partner) , method: :put, :html => { :multipart => true } do |f|
   %fieldset.nav-items.assets
     %legend Assets
     = render partial: "instructions_list", locals: { key: "partners.branding.description.assets"}

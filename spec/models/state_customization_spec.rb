@@ -89,7 +89,7 @@ describe StateCustomization do
       settings.stub(:redirect_to_online_reg_url).and_return(true)
       sc.redirect_to_online_reg_url(nil).should be_truthy
 
-      settings.stub(:redirect_to_online_reg_url).and_return(false)
+      sc.stub(:redirect_to_online_reg_url).and_return(false)
       sc.redirect_to_online_reg_url(nil).should be_falsey
     end
     

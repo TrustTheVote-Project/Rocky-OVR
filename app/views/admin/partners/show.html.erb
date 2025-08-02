@@ -1,6 +1,0 @@
-<%- edit_path = edit_admin_partner_path(@partner) %>
-<%- list_path = admin_partners_path %>
-<%= render :partial=>'admin/shared/partner_properties', :locals=>{:edit_path=>edit_path, :list_path=>list_path} %>
-
-<br/><br/>
-<%= link_to "Impersonate #{@partner.organization}", impersonate_admin_partner_path(@partner) %>

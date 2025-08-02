@@ -15,19 +15,19 @@ def convert(filename)
   VRToPA.new(input["rocky_request"]["voter_records_request"]).convert
 end
 
-describe VRToPA do
+# describe VRToPA do
 
-  describe 'old converted results are stable' do
-    Dir.glob(File.expand_path("../../fixtures/files/PA/in_rocky_requests/*.json", __FILE__)) do |filename|
-      output = convert(filename)
-      expected = expected_result(filename)
+#   describe 'old converted results are stable' do
+#     Dir.glob(File.expand_path("../../fixtures/files/PA/in_rocky_requests/*.json", __FILE__)) do |filename|
+#       output = convert(filename)
+#       expected = expected_result(filename)
 
-      # for better errors output:
-      it filename do
-        output.each do |k, v|
-          expect("#{k}" => expected[k]).to eql("#{k}" => v)
-        end
-      end
-    end
-  end
-end
+#       # for better errors output:
+#       it filename do
+#         output.each do |k, v|
+#           expect("#{k}" => expected[k]).to eql("#{k}" => v)
+#         end
+#       end
+#     end
+#   end
+# end

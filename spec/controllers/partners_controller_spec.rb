@@ -29,13 +29,13 @@ describe PartnersController do
   describe "registering" do
     it "creates a new partner" do
       assert_difference("Partner.count") do
-        post :create, :partner => FactoryGirl.attributes_for(:mass_assigned_partner)
+        post :create, params: {:partner => FactoryGirl.attributes_for(:mass_assigned_partner)}
       end
       assert !assigns[:partner].nil?
     end
 
     it "creates a new partner with correct opt-in defaults (true for RTV, false for partner settings)" do
-      post :create, :partner => FactoryGirl.attributes_for(:mass_assigned_partner)
+      post :create, params: {:partner => FactoryGirl.attributes_for(:mass_assigned_partner)}
       assigns[:partner].rtv_email_opt_in.should be_truthy
       assigns[:partner].partner_email_opt_in.should be_falsey
       assigns[:partner].rtv_sms_opt_in.should be_truthy
@@ -46,7 +46,7 @@ describe PartnersController do
 
     it "requires login, email and password for new partner" do
       assert_difference("Partner.count"=>0) do
-        post :create, :partner => FactoryGirl.attributes_for(:mass_assigned_partner, :username => nil)
+        post :create, params: {:partner => FactoryGirl.attributes_for(:mass_assigned_partner, :username => nil)}
       end
       assert_template "new"
     end
@@ -99,17 +99,24 @@ describe PartnersController do
       end
 
       it "shows widget html for plain text link" do
-        assert_select 'textarea[name=text_link_html][readonly]', 1
-        @output_buffer = HTML::Node.parse(nil, 0, 0, assigns(:text_link_html))
-        assert_select "a[href=https://example.com/?partner=5]"
+        #puts response.body
+        assert_select 'textarea[name=text_link_html][readonly]', 1 do |elements|
+          elements.each do |element|
+            assert element.children.text.include?("a href=\"https://example.com/?partner=5\"")
+          end
+        end
+        #@output_buffer = HTML::Node.parse(nil, 0, 0, assigns(:text_link_html))
         assert_match />Register to Vote Here</, assigns(:text_link_html)
       end
 
       it "shows widget html for image link" do
-        assert_select 'textarea[name=image_link_html][readonly]', 1
+        assert_select 'textarea[name=image_link_html][readonly]', 1 do |elements|
+          elements.each do |element|
+            assert element.children.text.include?("a href=\"https://example.com/?partner=5&source=embed-rtv100x100v1\"")
+          end
+        end
         assert_match %r{<img src=.*/images/widget/rtv-100x100-v1.gif}, assigns(:image_link_html)
-        @output_buffer = HTML::Node.parse(nil, 0, 0, assigns(:image_link_html))
-        assert_select "a[href=https://example.com/?partner=5&source=embed-rtv100x100v1]"
+        #@output_buffer = HTML::Node.parse(nil, 0, 0, assigns(:image_link_html))
       end
 
       # it "shows widget html for image overlay widget" do
@@ -165,16 +172,16 @@ describe PartnersController do
         get :edit
         assert_response :success
         assert_equal @partner, assigns[:partner]
-        assert_select "form[action=/partner]"
+        assert_select "form[action='/partner']"
       end
 
       it "shows dashboard after updating" do
-        put :update, :partner => {:name => "Friends of the Moose"}
+        put :update, params: {:partner => {:name => "Friends of the Moose"}}
         assert_redirected_to partner_url
       end
 
       it "update requires valid input" do
-        put :update, :partner => {:email => "bogus!!!!!"}
+        put :update, params: {:partner => {:email => "bogus!!!!!"}}
         assert_response :success
         assert_template "edit"
       end
@@ -188,12 +195,12 @@ describe PartnersController do
       end
       it "parses dates" do
         controller.current_partner.stub(:generate_registrants_csv)
-        get :registrations, start_date: "09/20/2014", end_date: "10/01/2015"
+        get :registrations, params: {start_date: "09/20/2014", end_date: "10/01/2015"}
         controller.current_partner.should have_received(:generate_registrants_csv).with(Date.parse("2014-09-20"), Date.parse("2015-10-01"))
       end
       it "works with only one date" do
         controller.current_partner.stub(:generate_registrants_csv)
-        get :registrations, end_date: "10/01/2015"
+        get :registrations, params: {end_date: "10/01/2015"}
         controller.current_partner.should have_received(:generate_registrants_csv).with(nil, Date.parse("2015-10-01"))
         
       end

@@ -50,7 +50,7 @@ es:
           Rock the Vote<br><br>
 
 
-          P.S. Visita <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. Visita <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           para más información sobre el voto, las elecciones y los temas que más te
           interesan.  Encontrarás también todas las herramientas necesarias para crear
           tu propia campaña de registro de votos.<br><br>'
@@ -85,7 +85,7 @@ es:
           de privacidad del registro de votos</a></strong> para más detalles.<br><br>
 
 
-          Porfavor enviar preguntas o comentarios a: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Porfavor enviar preguntas o comentarios a: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     pa_confirmation:
       subject: Gracias por registrarse para votar
       body:
@@ -110,10 +110,10 @@ es:
 
           Rock the Vote'
         footer: ! 'Rock the Vote está comprometido a preservar su privacidad y salvaguardar
-          su información confidencial. Por favor, mira nuestra <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">política
+          su información confidencial. Por favor, mira nuestra <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">política
           de privacidad de registro de votantes </a></strong>para más detalles.<br><br>
 
-          Por favor envíe preguntas o comentarios a: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Por favor envíe preguntas o comentarios a: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     pa_continue_on_device:
       subject: Firme su formulario de registro de votante
       body:
@@ -165,7 +165,7 @@ es:
           Rock the Vote<br><br>
 
 
-          P.S. Visita <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. Visita <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           para más información sobre el voto, las elecciones y los temas que más te
           interesan.  Encontrarás también todas las herramientas necesarias para crear
           tu propia campaña de registro de votos.<br><br>'
@@ -196,11 +196,11 @@ es:
 
           %{registrant_first_name}<br><br>'
         footer: ! 'Rock the vote está compretido a preservar tu privacidad y a salvaguardar
-          toda tu información.  Porfavor leer el <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">manual
+          toda tu información.  Porfavor leer el <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">manual
           de privacidad del registro de votos</a></strong> para más detalles.<br><br>
 
 
-          Porfavor enviar preguntas o comentarios a: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Porfavor enviar preguntas o comentarios a: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     final_reminder:
       subject: ! 'Recordatorio final: envíe por correo su formulario de inscripción
         de votante'
@@ -250,7 +250,7 @@ es:
           Rock the Vote<br><br>
 
 
-          P.S. Visita <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. Visita <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           para más información sobre el voto, las elecciones y los temas que más te
           interesan.  Encontrarás también todas las herramientas necesarias para crear
           tu propia campaña de registro de votos.<br><br>'
@@ -281,11 +281,11 @@ es:
 
           %{registrant_first_name}<br><br>'
         footer: ! 'Rock the vote está compretido a preservar tu privacidad y a salvaguardar
-          toda tu información.  Porfavor leer el <strong><a href="http://www.rockthevote.com/voter-registration/online-application-system/privacy.html">manual
+          toda tu información.  Porfavor leer el <strong><a href="https://www.rockthevote.org/voter-registration/online-application-system/privacy.html">manual
           de privacidad del registro de votos</a></strong> para más detalles.<br><br>
 
 
-          Porfavor enviar preguntas o comentarios a: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Porfavor enviar preguntas o comentarios a: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     chaser:
       subject: ¡Aún puede registrarse para votar!
       body:
@@ -341,7 +341,7 @@ es:
           Rock the Vote<br><br>
 
 
-          P.S. Visita <strong><a href="http://www.rockthevote.com/">www.rockthevote.com</a></strong>
+          P.S. Visita <strong><a href="https://www.rockthevote.org/">www.rockthevote.org</a></strong>
           para más información sobre el voto, las elecciones y los temas que más te
           interesan. Encontrarás también todas las herramientas necesarias para crear
           tu propia campaña de registro de votos.<br><br>'
@@ -376,7 +376,7 @@ es:
           de privacidad del registro de votos</a></strong> para más detalles.<br><br>
 
 
-          Porfavor enviar preguntas o comentarios a: <a href="mailto:register@rockthevote.com">register@rockthevote.com</a><br>'
+          Porfavor enviar preguntas o comentarios a: <a href="mailto:register@rockthevote.org">register@rockthevote.org</a><br>'
     tell_friend:
       subject: Acabo de inscribirme para votar y tú también deberías
       body: ! 'Hola, acabo de inscribirme para votar en %{rtv_url} y tú también puedes

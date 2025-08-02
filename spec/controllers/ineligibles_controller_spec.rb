@@ -34,7 +34,7 @@ describe IneligiblesController do
   describe "when 18 or over" do
     it "shows not-a-citizen message" do
       @registrant = FactoryGirl.create(:step_1_registrant, :us_citizen => false, home_zip_code: "03900", short_form: false) #ME doesn't have online
-      get :show, :registrant_id => @registrant.to_param
+      get :show, params: {:registrant_id => @registrant.to_param}
       assert !assigns[:registrant].nil?
       assert_response :success
       assert_select "p.reason", /citizen/
@@ -42,7 +42,7 @@ describe IneligiblesController do
 
     it "shows state-not-participating message" do
       @registrant = FactoryGirl.create(:step_1_registrant, :home_zip_code => "58111", short_form: false)
-      get :show, :registrant_id => @registrant.to_param
+      get :show, params: {:registrant_id => @registrant.to_param}
       assert !assigns[:registrant].nil?
       assert_response :success
       assert_select "p.reason", /does not register voters/
@@ -52,7 +52,7 @@ describe IneligiblesController do
   describe "when under 18" do
     it "don't show under-18 page if ineligble in other ways" do
       @registrant = FactoryGirl.create(:step_1_registrant, :us_citizen => false, :date_of_birth => 16.years.ago.to_date.strftime("%m/%d/%Y"), short_form: false)
-      get :show, :registrant_id => @registrant.to_param
+      get :show, params: {:registrant_id => @registrant.to_param}
       assert_response :success
       assert_template "show"
     end
@@ -60,7 +60,7 @@ describe IneligiblesController do
     it "shows state localized sub_18 message" do
       @registrant = FactoryGirl.create(:step_1_registrant, :date_of_birth => 16.years.ago.to_date.strftime("%m/%d/%Y"), :opt_in_email=>true)
       assert @registrant.ineligible_age?
-      get :show, :registrant_id => @registrant.to_param
+      get :show, params: {:registrant_id => @registrant.to_param}
       assert !assigns[:registrant].nil?
       assert assigns[:registrant].remind_when_18
       assert assigns[:registrant].opt_in_email

@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddSendConfirmationReminderEmailsToRegistrants < ActiveRecord::Migration
+class AddSendConfirmationReminderEmailsToRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     add_column :registrants, :send_confirmation_reminder_emails, :boolean, :default=>false
   end

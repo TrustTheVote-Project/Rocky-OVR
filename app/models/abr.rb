@@ -14,14 +14,16 @@ class Abr < ActiveRecord::Base
   include AbrPdfCoverFields
   include AbrSignatureMethods
   include AbrReportingMethods
+  include UidGenerator
+  include TrackableMethods
 
   has_one :voter_signature, autosave: true
   AbrSignatureMethods::METHODS.each do |vs_attribute|
     define_method "#{vs_attribute}" do
-      (voter_signature || create_voter_signature).send(vs_attribute)
+      (voter_signature || build_voter_signature).send(vs_attribute)
     end
     define_method "#{vs_attribute}=" do |val|
-      (voter_signature || create_voter_signature).send("#{vs_attribute}=", val)
+      (voter_signature || build_voter_signature).send("#{vs_attribute}=", val)
     end
   end
 
@@ -35,15 +37,19 @@ class Abr < ActiveRecord::Base
   end
   
   
-  after_initialize :add_state_attributes
+  after_initialize do |abr|
+    abr.add_state_attributes unless ENV['GENERATING_REPORTS'] == "true"
+  end
   
   has_many :abrs_catalist_lookups
   has_many :catalist_lookups, through: :abrs_catalist_lookups
   
   has_many :abr_state_values, autosave: true
   
-  belongs_to :home_state,    :class_name => "GeoState"
-  belongs_to :partner
+  has_many :tracking_events, foreign_key: :source_tracking_id, primary_key: :uid
+
+  belongs_to :home_state,    :class_name => "GeoState", optional: true
+  belongs_to :partner, optional: true
   
   before_validation :reformat_phone
   
@@ -58,16 +64,66 @@ class Abr < ActiveRecord::Base
   validate :validate_form_fields, if: :advancing_to_step_4?
   validate :validate_date_of_birth, if: :advancing_to_step_3?
 
-  validates_format_of :phone, :with => /[ [:punct:]]*\d{3}[ [:punct:]]*\d{3}[ [:punct:]]*\d{4}\D*/, :allow_blank => true
+  before_validation :clean_phone_number
+
+  validates_format_of :phone, with: /\A(?!([0-9])\1{9})[1-9]\d{2}[-\s]*\d{3}[-\s]*\d{4}\z/, allow_blank: true
+
+  def clean_phone_number
+    self.phone = phone.gsub(/[^\d]/, '') if phone.present?
+  end
+
   validates_presence_of :email
-  validates_format_of   :email, :with => Authlogic::Regex::EMAIL, :allow_blank => true
+  validates_format_of   :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
   validates_presence_of :phone_type, if: :has_phone?
   validates_presence_of :registration_county, if: :requires_county?
   validate :validates_zip
   validate :validates_signature
-  
+  validate :validate_phone_present_if_opt_in_sms
+
+  def validate_phone_present_if_opt_in_sms
+    if (opt_in_sms? || partner_opt_in_sms?) && phone.blank?
+      errors.add(:phone, :required_if_opt_in)
+    end
+  end
+
+  def self.generate_abr_for_zip(zip)
+    if Rails.env != "development"
+      raise "Can only run in dev"
+    else
+      a = Abr.new(:zip=>zip)
+      a.email = "test+abr@rockthevote.com"
+      a.street_number = "1"
+      a.street_name = "Main St"
+      a.unit = "5R"
+
+      a.first_name =  "SamplePerson"
+      a.middle_name = "AbsenteeBallot"
+      a.last_name = "Requstor"
+      a.name_suffix= "Jr."
+      a.city = "Citytown"
+      a.phone = "123 123 1234"
+      a.phone_type = "Mobile"
+      a.date_of_birth = "1985-05-01"
+      a.pdf_fields.each do |name,f|
+        if f[:virtual_attribute] && !f[:value] # Automatically populates 
+          value = f[:options] ? f[:options][1] : name
+          a.send("#{name}=", value)
+        end
+      end
+      if a.save
+        a.generate_pdf(true)
+        puts a.pdf_path        
+      end
+      return a
+    end
+  end
+
+  def render_view_events
+    tracking_events.where(tracking_event_name: "abr::render_view")
+  end
+
   def requires_county?
-    advancing_to_step_3? && home_state&.counties&.any?
+    advancing_to_step_3? && home_state&.counties&.any? && deliver_to_elections_office_via_email?
   end
 
   def self.validate_fields(list, regex, message)
@@ -83,14 +139,22 @@ class Abr < ActiveRecord::Base
     registration_county
   end
   
-  MAX_DATE_OF_BIRTH = Date.parse("2002-11-03")
+  #MAX_DATE_OF_BIRTH = Date.parse("2007-11-05")
   
+  #def will_be_18
+  #  if date_of_birth && date_of_birth > MAX_DATE_OF_BIRTH 
+  #    errors.add(:date_of_birth, :too_young)
+  #  end
+  #end
+  
+  validate :will_be_18
+
   def will_be_18
-    if date_of_birth && date_of_birth > MAX_DATE_OF_BIRTH 
+    if date_of_birth.present? && date_of_birth > 17.years.ago.to_date
       errors.add(:date_of_birth, :too_young)
     end
   end
-  
+
   def validates_zip
     validates_zip_code(self, :zip)
   end
@@ -144,9 +208,6 @@ class Abr < ActiveRecord::Base
   def advancing_to_step_4?
     advancing_to_step?(4)
   end
-  
-  
-  before_create :generate_uid
   
   def set_max_step(step)
     self.max_step = [(self.max_step || "0").to_i, step.to_i].max
@@ -253,7 +314,19 @@ class Abr < ActiveRecord::Base
   
   def deliver_chaser_email
     if send_emails?
-      AbrNotifier.chaser(self).deliver_now
+      rendered_step2 = begin
+        self.render_view_events.collect {|te| te.tracking_data[:rendered_step] }.include?("abrs-step_2")
+      rescue
+        false
+      end
+      
+      if rendered_step2 && ChaserDelivery.can_send_chaser?(self.email)
+        ChaserDelivery.create({
+          email: self.email,
+          abr: self
+        })
+        AbrNotifier.chaser(self).deliver_now
+      end
     end
   end
   
@@ -324,11 +397,6 @@ class Abr < ActiveRecord::Base
     end
   end
   
-  def generate_uid
-    self.uid = Digest::SHA1.hexdigest( "#{Time.now.usec} -- #{rand(1000000)} -- #{email} -- #{zip}" )
-    return self.uid
-  end
-  
   def can_continue?
     if !should_check_registration?
       return true
@@ -338,7 +406,8 @@ class Abr < ActiveRecord::Base
   end
   
   def should_check_registration?
-    self.votercheck.to_s.strip.downcase == 'yes' && partner_enabled_for_votercheck?
+    # self.votercheck.to_s.strip.downcase == 'yes' && 
+    partner_enabled_for_votercheck?
   end
   
   def partner_enabled_for_votercheck?

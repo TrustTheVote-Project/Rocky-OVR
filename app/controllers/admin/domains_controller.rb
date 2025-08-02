@@ -25,7 +25,7 @@
 class Admin::DomainsController < Admin::EmailsController
 
   def create
-    @new_domain = EmailDomain.new params[:email_domain]
+    @new_domain = EmailDomain.new params.require(:email_domain).permit(:domain)
     @new_domain.domain = @new_domain.domain.to_s.strip.downcase
     @new_domain.blacklisted=true
     if @new_domain.save

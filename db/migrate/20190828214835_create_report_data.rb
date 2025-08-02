@@ -1,4 +1,4 @@
-class CreateReportData < ActiveRecord::Migration
+class CreateReportData < ActiveRecord::Migration[4.2]
   def change
     create_table :report_data do |t|
       t.integer :report_id

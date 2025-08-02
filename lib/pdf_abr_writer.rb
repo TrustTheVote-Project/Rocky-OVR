@@ -1,6 +1,6 @@
 class PdfAbrWriter
   include ActiveModel::AttributeMethods
-  include ActiveModel::MassAssignmentSecurity
+  #include ActiveModel::MassAssignmentSecurity
   include ActiveModel::Validations
 
   include Lolrus
@@ -21,9 +21,12 @@ class PdfAbrWriter
   
   def assign_attributes(values, options = {})
     self.pdf_values = values
-    sanitize_for_mass_assignment(values, options[:as]).each do |k, v|
-      send("#{k}=", v) if self.respond_to?("#{k}=")      
+    values.each do |k,v|
+      send("#{k}=", v) if self.respond_to?("#{k}=")
     end
+    # sanitize_for_mass_assignment(values, options[:as]).each do |k, v|
+    #   send("#{k}=", v) if self.respond_to?("#{k}=")      
+    # end
   end
   def generate_pdf(force_write = false, for_printer = false)
     if force_write || !pdf_exists?
@@ -40,7 +43,6 @@ class PdfAbrWriter
         signer.sign
         form.save_as(pdf_file_path+'-signed', flatten: false)
       end
-
 
       # 1. generate xfdf
       xfdf_contents = "<?xml version=\"1.0\"?><xfdf xmlns=\"http://ns.adobe.com/xfdf/\"><fields>"
@@ -66,10 +68,10 @@ class PdfAbrWriter
       # If it got there, delete the tmp file
       if uploaded
         unless Rails.env.development?
-          File.delete(pdf_signature_image_path) if File.exists?(pdf_signature_image_path)
-          File.delete(pdf_xfdf_path) if File.exists?(pdf_xfdf_path)
-          File.delete(pdf_file_path) if File.exists?(pdf_file_path)
-          File.delete("#{pdf_file_path}-signed") if File.exists?("#{pdf_file_path}-signed")
+          File.delete(pdf_signature_image_path) if File.exist?(pdf_signature_image_path)
+          File.delete(pdf_xfdf_path) if File.exist?(pdf_xfdf_path)
+          File.delete(pdf_file_path) if File.exist?(pdf_file_path)
+          File.delete("#{pdf_file_path}-signed") if File.exist?("#{pdf_file_path}-signed")
         end
       else
         raise "File #{pdf_file_path} not uploaded to #{for_printer ? 'Printer FTP site' : 'S3'}"
@@ -81,7 +83,7 @@ class PdfAbrWriter
   end
 
   def pdf_exists?
-    File.exists?(pdf_file_path)
+    File.exist?(pdf_file_path)
   end
   
   def to_param
@@ -111,7 +113,7 @@ class PdfAbrWriter
       "#{pdfpre}/#{bucket_code}"
     else
       # we're past this old format
-      # if File.exists?(pdf_file_path("pdf"))
+      # if File.exist?(pdf_file_path("pdf"))
       #  "pdf/#{bucket_code}"
       # else
         "#{url_format ? '' : "public/"}pdfs/#{bucket_code}"

@@ -22,7 +22,7 @@
 #                Pivotal Labs, Oregon State University Open Source Lab.
 #
 #***** END LICENSE BLOCK *****
-class AddFinishWithStateToRegistrants < ActiveRecord::Migration
+class AddFinishWithStateToRegistrants < ActiveRecord::Migration[4.2]
   def self.up
     add_column :registrants, :finish_with_state, :boolean, :default=>false
   end
