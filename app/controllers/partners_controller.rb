@@ -178,7 +178,29 @@ SCRIPT
   end
   
   def reports
-    @reports = Report.where(partner_id: @partner.id).order("created_at DESC")
+    # normalize sort direction into a symbol
+    dir = params[:direction].to_s.downcase == 'asc' ? :asc : :desc
+
+    # base scope (ActiveRecord::Relation) for chaining
+    reports_scope = @partner.reports
+
+    @reports = case params[:sort]
+    when 'report_type'
+      # sort by the human title, case-insensitive
+      ordered = reports_scope.to_a.sort_by { |r| r.title.downcase }
+      dir == :asc ? ordered : ordered.reverse
+
+    when 'date_range'
+      # SQL sort on the date range
+      reports_scope.order(Arel.sql("COALESCE(start_date, end_date) #{dir.upcase}"))
+
+    when 'requested_at'
+      reports_scope.order(created_at: dir)
+
+    else
+      # default: newest first
+      reports_scope.order(created_at: :desc)
+    end
   end
 
   def registrations
@@ -253,6 +275,13 @@ SCRIPT
       # end
     end
   end
+
+  # DELETE /partners/:id/cancel_report?report_id=123
+  def cancel_report
+    @partner.cancel_report!(params[:report_id])
+    redirect_to reports_partner_path(@partner), notice: "Report cancelled."
+  end
+
 
   protected
 

@@ -26,6 +26,19 @@ require 'open-uri'
 
 class Partner < ActiveRecord::Base
 
+  require 'yaml'
+
+  # Load geo_states.yml once, map id → full state name
+  STATE_NAMES = YAML
+    .load_file(Rails.root.join('db','bootstrap','geo_states.yml'))
+    .values
+    .each_with_object({}) do |st, h|
+      h[st['id'].to_i] = st['name']
+    end
+    .freeze
+
+  attr_accessor :partner_organization_name
+
   has_many :partner_users, dependent: :destroy
   has_many :users, through: :partner_users
 
@@ -303,26 +316,54 @@ class Partner < ActiveRecord::Base
     !primary? && logo.file?
   end
 
-
   def registration_stats_state
-    sql =<<-"SQL"
-      SELECT count(*) as registrations_count, home_state_id FROM `registrants`
-      WHERE (status = 'complete' OR status = 'step_5') 
-        AND partner_id = #{self.id}
-      GROUP BY home_state_id
-    SQL
-    
-    counts = Registrant.connection.select_all(Registrant.send(:sanitize_sql_for_conditions, [sql]))
-    
-    sum = counts.sum {|row| row["registrations_count"].to_i}
-    named_counts = counts.collect do |row|
-      state = GeoState[row["home_state_id"].to_i]
-      { :state_name => state.nil? ? '' : state.name,
-        :registrations_count => (c = row["registrations_count"].to_i),
-        :registrations_percentage => c.to_f / sum
+    counts = Registrant
+      .where(status: %w[complete step_5], partner_id: id)
+      .group(:home_state_id)
+      .count
+
+    total = counts.values.sum.to_f
+
+    counts.map do |state_id, count|
+      {
+        state_name:               STATE_NAMES[state_id] || "ID #{state_id}",
+        registrations_count:      count,
+        registrations_percentage: (count / total)
       }
     end
-    named_counts.sort_by {|r| [-r[:registrations_count], r[:state_name]]}
+  end
+
+  # Tell Rails that a Partner owns zero-or-more Report records
+  has_many :reports,
+           class_name:  "Report",
+           foreign_key: "partner_id",
+           inverse_of:  :partner,
+           dependent:   :nullify
+
+  # Cancels a pending report if it hasn’t completed yet
+  def cancel_report!(report_id)
+    rep = reports.find(report_id.to_i)
+
+    # only allow cancellation if still building, merging, etc.
+    in_progress = [
+      Report::Status.queued.to_s,
+      Report::Status.building.to_s,
+      Report::Status.merging.to_s,
+      Report::Status.post_processing.to_s
+    ]
+    return rep unless in_progress.include?(rep.status)
+
+    # do the actual cancel & cleanup
+    rep.cancel!
+
+    # remove any queued Delayed::Job for run or concatenate
+    Delayed::Job
+      .where(queue: Report::QUEUE_NAME)
+      .where("handler LIKE ?", "%run(#{rep.id})%")
+      .or(Delayed::Job.where("handler LIKE ?", "%concatenate(#{rep.id})%"))
+      .delete_all
+
+    rep
   end
 
   #TODO: Fix for other languages

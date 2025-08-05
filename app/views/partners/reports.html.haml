@@ -1,36 +1,41 @@
 %h2 All Reports
-%p 
-  The table below lists the reports that you have already created, and also any that are in-progress -- shown in bold font. The "Status" columns tells you how far along the in-progress reports are. You can click the Update Progress button below to refresh the table for up to date progress. When an in-progress report is completed, the status changes, and you get a “Download” link to get the report.
+%p
+  The table below lists the reports that you have already created, and also any that are in-progress -- shown in bold font. The "Status" column tells you how far along the in-progress reports are. You can click the Refresh Progress button below to refresh the table for up-to-date progress. When an in-progress report is completed, the status changes, and you get a “Download” link to get the report.
 
-%p 
-  Update progress by clicking refresh button
-  = link_to '' do
-    %button Refresh Progress
+%p
+  - refresh_path = reports_partner_path(@partner, sort: params[:sort], direction: params[:direction])
+  = button_to "Refresh Progress", refresh_path, method: :get, class: "btn btn-secondary"
 
 %table.report-table
   %thead
     %tr
-      %th Report Type
-      %th Date Range
-      %th Requested At
+      - report_dir = (params[:sort] == 'report_type' && params[:direction] == 'asc') ? 'desc' : 'asc'
+      %th= link_to "Report Type", reports_partner_path(@partner, sort: 'report_type', direction: report_dir)
+      - date_dir = (params[:sort] == 'date_range' && params[:direction] == 'asc') ? 'desc' : 'asc'
+      %th= link_to "Date Range", reports_partner_path(@partner, sort: 'date_range', direction: date_dir)
+      - req_dir = (params[:sort] == 'requested_at' && params[:direction] == 'asc') ? 'desc' : 'asc'
+      %th= link_to "Requested At", reports_partner_path(@partner, sort: 'requested_at', direction: req_dir)
       %th Status
-      %th
-      
+      %th Actions
   %tbody
     - @reports.each do |r|
-      %tr{class: r.status}
+      - in_progress_states = [Report::Status.queued.to_s, Report::Status.building.to_s, Report::Status.merging.to_s, Report::Status.post_processing.to_s]
+      - in_progress = in_progress_states.include?(r.status)
+      %tr{ class: ("in-progress" if in_progress) }
         %td= r.title
-        %td 
-          - if r.start_date || r.end_date 
-            = "#{r.start_date ? r.start_date.strftime("%Y-%m-%d") : ''} to #{r.end_date ? r.end_date.strftime("%Y-%m-%d") : ''}"
-        %td= r.created_at
         %td
-          - if r.status == Report::Status.queued.to_s
-            = r.status.humanize
-          - elsif r.status == Report::Status.complete.to_s
-            = "#{r.status.humanize}"
-          - else
-            = "#{r.status.humanize}: #{(r.record_count && r.current_index && r.record_count > 0) ? ([(r.current_index.to_f * 100.0 / r.record_count).to_i, 100].min).to_s + '%': '' }"
+          - start_str = r.start_date&.strftime('%Y-%m-%d')
+          - end_str   = r.end_date&.strftime('%Y-%m-%d')
+          = [start_str, end_str].compact.join(' to ')
+        %td= r.created_at.strftime('%Y-%m-%d %H:%M')
+        %td= r.status.humanize
         %td
-          - if r.status == Report::Status.complete.to_s
+          - case r.status
+          - when Report::Status.queued.to_s, Report::Status.building.to_s, Report::Status.merging.to_s, Report::Status.post_processing.to_s
+            = link_to "Cancel", cancel_report_partner_path(@partner, report_id: r.id), method: :delete, data: { confirm: "Really cancel this report?" }
+          - when Report::Status.complete.to_s
             = link_to "Download", download_csv_partner_path(@partner, report_id: r.id)
+          - when Report::Status.cancelled.to_s
+            %span.text-muted Cancelled
+          - else
+            -# no actions for failed
