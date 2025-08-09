@@ -3,6 +3,7 @@ ruby "3.3.8"
 source 'http://rubygems.org'
 
 gem "rake"
+gem "puma"
 
 gem "figaro"
 gem "config"
@@ -59,7 +60,7 @@ gem 'asset_sync'
 gem 'aws-sdk'
 gem 'fog-aws'
 
-gem 'stringio', '~> 3.1.7'
+gem 'stringio', '3.1.7'
 
 group :development do
   gem 'rack-mini-profiler'

@@ -7,12 +7,13 @@ SERVER_ROLE="${ENV_ROLE[1]}"
 
 
 cd /var/www/rocky
+chruby 3.3.8
 
 #source /etc/profile.d/rvm.sh
 #rvm install 2.4.1
 #rvm --version
 #rvm use ruby-2.4.1@rocky8 --create
-gem install bundler -v 1.16.3
+# gem install bundler -v 1.16.3
 # Make sure JAVA envs are loaded
 . /home/ec2-user/.bash_profile    
 bundle config set without 'development test'
@@ -105,6 +106,9 @@ fi
 if [ $SERVER_ROLE == 'web' ]; then
     echo "I'm a web server"
     RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
+    mkdir -p /var/www/rocky/shared/sockets/
+    mkdir -p /var/www/rocky/shared/pids/
+    mkdir -p /var/www/rocky/shared/log/
     
     touch tmp/restart.txt
     
