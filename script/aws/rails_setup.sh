@@ -37,7 +37,6 @@ fi
 
 if [ $SERVER_ROLE == 'util' ]; then
     echo "I'm a util server"
-    sudo dnf install -y cronie
     # Crontab is for UTIL only
     cd ~
     aws s3 cp s3://rocky-cloudformation-assets/crontab . --region us-west-2
