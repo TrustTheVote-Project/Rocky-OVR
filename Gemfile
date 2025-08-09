@@ -62,9 +62,10 @@ gem 'fog-aws'
 
 gem 'stringio', '3.1.7'
 
+gem 'listen'
+
 group :development do
-  gem 'rack-mini-profiler'
-  gem 'listen'
+  gem 'rack-mini-profiler'  
 end
 
 group :development, :test do

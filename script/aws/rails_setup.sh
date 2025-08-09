@@ -7,7 +7,6 @@ SERVER_ROLE="${ENV_ROLE[1]}"
 
 
 cd /var/www/rocky
-chruby 3.3.8
 
 #source /etc/profile.d/rvm.sh
 #rvm install 2.4.1
@@ -15,7 +14,8 @@ chruby 3.3.8
 #rvm use ruby-2.4.1@rocky8 --create
 # gem install bundler -v 1.16.3
 # Make sure JAVA envs are loaded
-. /home/ec2-user/.bash_profile    
+. /home/ec2-user/.bash_profile 
+chruby 3.3.8   
 bundle config set without 'development test'
 bundle install
 # --without development test
