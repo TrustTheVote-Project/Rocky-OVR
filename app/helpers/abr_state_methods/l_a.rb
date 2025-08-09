@@ -61,7 +61,7 @@ module AbrStateMethods::LA
 #'abr_election_type1_input', 'abr_election_type2_input']
   EXTRA_FIELDS = ['abr_absence_begin_date_input','abr_absence_begin_date_input_mm','abr_absence_begin_date_input_dd','abr_absence_begin_date_input_yyyy','abr_absence_end_date_input', 'abr_absence_end_date_input_mm','abr_absence_end_date_input_dd','abr_absence_end_date_input_yyyy',
   'abr_mailing_address_line_1_input',  'abr_mailing_city_input', 'abr_mailing_state_abbrev_input', 'abr_mailing_zip_input', 'abr_mailing_unit_input', 'abr_mother_maiden_input',
-'abr_election_type2_input']
+'abr_election_type1_input', 'abr_election_type2_input']
 
   def reason_already
     if self.reason === "already"
@@ -216,7 +216,7 @@ module AbrStateMethods::LA
     {'abr_application_type_selections':{type: :radio, options:["abr_application_type1", "abr_application_type2"], visible: "abr_reason_selections_abr_reason1", required: :if_visible }},
  
     {'abr_election_type_selections':{type: :instructions}},
-    #{'abr_election_type1_input':{type: :checkbox, options: ["Off", "On"]}},
+    {'abr_election_type1_input':{type: :checkbox, options: ["Off", "On"]}},
     {'abr_election_type2_input':{type: :checkbox, options: ["Off", "On"]}},
     {'abr_assistant_check1':{type: :checkbox, options: ["Off", "On"]}},	
     {'abr_assistant_name':{required: :if_visible, visible: "abr_assistant_check1"}},
@@ -249,8 +249,13 @@ module AbrStateMethods::LA
   # errors.add("abr_election_type2_input",  custom_required_message(:abr_election_type2_input))
   #end
   
-  if self.abr_election_type2_input.to_s=="0"
-   errors.add("abr_election_type2_input",  custom_required_message(:abr_election_type2_input))
+  #if self.abr_election_type2_input.to_s=="0"
+  # errors.add("abr_election_type2_input",  custom_required_message(:abr_election_type2_input))
+  #end
+
+  if ![abr_election_type1_input, abr_election_type2_input].include?("1") 
+    errors.add(self.class.make_method_name(:abr_election_type1_input), custom_required_message(:abr_election_type2_input))
+    errors.add(self.class.make_method_name(:abr_election_type2_input), custom_required_message(:abr_election_type2_input))
   end
 
   if self.abr_reason_selections.to_s == "abr_reason2" && !self.test_date(self.absence_begin_date_string.to_s)
@@ -297,12 +302,12 @@ end
   end
 
   def abr_election_type2_string
-    return "11/5/2024" if self.abr_election_type2_input.to_s == "1"
+    return "11/15/2025" if self.abr_election_type2_input.to_s == "1"
   end
   
-  #def abr_election_type1_string
-  #  return "12/10/2022" if self.abr_election_type1_input.to_s == "1"
-  #end
+  def abr_election_type1_string
+    return "10/11/2025" if self.abr_election_type1_input.to_s == "1"
+  end
 
   def  insure_abr_mailing_address_line_1
     return self.abr_check_mailing_address.to_s =="1" ? self.abr_mailing_address_line_1_input : self.address_line_1

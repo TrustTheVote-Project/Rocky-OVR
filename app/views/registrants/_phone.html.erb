@@ -18,4 +18,8 @@
       <span class="error"><%= form.object.errors[:phone_type].join("\n") %></span>
     </div>
   </li>
-  <%- end %>
+<%- end %>
+<!-- Conditional JS for phone label -->
+<%= javascript_tag(form.object.phone_required_script) if
+      form.object.respond_to?(:phone_required_script) &&
+      form.object.phone_required_script.present? %>

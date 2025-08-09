@@ -17,7 +17,7 @@ module AbrStateMethods::OH
     "abr_last_4_ssn": {	sensitive: true },
     "abr_drivers_license": { sensitive: true },
     "abr_election_type_selections": {	options: ["abr_election_type1", "abr_election_type2", "abr_election_type3"] },
-    "abr_primary_type_selections": { 	options: ["abr_primary_type1", "abr_primary_type2", "abr_primary_type3"] },
+    "abr_primary_type_selections": { 	options: ["abr_primary_type1", "abr_primary_type2", "abr_primary_type3",  "abr_primary_type4"] },
     "abr_election_date": {
       method: "abr_election_date_string"
     },
@@ -143,7 +143,13 @@ module AbrStateMethods::OH
       {"abr_election_type_selections": {type: :radio, required: true}},
       {"abr_election_date_input": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type2"}},
       #{"abr_election_date2_input": {type: :date, required: :if_visible, visible: "abr_election_type_selections_abr_election_type3"}},
-      {"abr_primary_type_selections": {type: :radio, required: :if_visible, visible: "abr_election_type_selections_abr_election_type3"}},
+      #{"abr_primary_type_selections": {type: :radio, required: :if_visible, visible: "abr_election_type_selections_abr_election_type3"}},
+      {"abr_primary_type_selections": {
+        type: :radio,
+        required: :if_visible,
+       visible: "abr_election_type_selections_abr_election_type3",
+        options: ["abr_primary_type1", "abr_primary_type2", "abr_primary_type4", "abr_primary_type3"]
+      }},
 
     ]
   end

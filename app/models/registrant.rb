@@ -49,7 +49,7 @@ class Registrant < ActiveRecord::Base
   
   has_many :ab_tests, autosave: true
   
-  serialize :state_ovr_data, Hash
+  serialize :state_ovr_data
 
   STEPS = [:initial, :step_1, :step_2, :step_3, :step_4, :step_5, :complete]
   def step_list

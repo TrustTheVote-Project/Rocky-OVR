@@ -46,7 +46,7 @@ module AbrStateMethods::AK
                 #'abr_id_type_3': {},
                 
                 "abr_election_type1": {options: ["Off", "On"]},
-                #"abr_election_type2": {options: ["Off", "On"]},
+                "abr_election_type2": {options: ["Off", "On"]},
                 "abr_election_type3": {options: ["Off", "On"]},
                 "abr_election_type4": {options: ["Off", "On"]},
                 "abr_election_type5": {options: ["Off", "On"]},
@@ -99,7 +99,7 @@ module AbrStateMethods::AK
       {"abr_election_type_selections1": {type: :instructions}},
       {"abr_election_type_selections2": {type: :instructions}},
       {"abr_election_type1": {type: :checkbox}},
-      #{"abr_election_type2": {type: :checkbox}},
+      {"abr_election_type2": {type: :checkbox}},
       {"abr_election_type3": {type: :checkbox}},
       {"abr_election_type4": {type: :checkbox}},
       {"abr_election_type5": {type: :checkbox}},
@@ -110,12 +110,12 @@ module AbrStateMethods::AK
   
   def custom_form_field_validations
     if self.abr_election_type1 != "1" &&
-      #  self.abr_election_type2 != "1" &&
+       self.abr_election_type2 != "1" &&
        self.abr_election_type3 != "1" &&
        self.abr_election_type4 != "1" &&
        self.abr_election_type5 != "1"
        errors.add(:abr_election_type1, custom_required_message(:abr_election_type1))
-      #  errors.add(:abr_election_type2, custom_required_message(:abr_election_type1))
+       errors.add(:abr_election_type2, custom_required_message(:abr_election_type1))
        errors.add(:abr_election_type3, custom_required_message(:abr_election_type1))
        errors.add(:abr_election_type4, custom_required_message(:abr_election_type1))
        errors.add(:abr_election_type5, custom_required_message(:abr_election_type1))
