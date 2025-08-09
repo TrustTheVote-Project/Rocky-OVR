@@ -1,6 +1,6 @@
 environment "staging2"
 app_dir = File.expand_path("../..", __dir__)
-shared_dir = "/var/www/rocky/shared"
+shared_dir = "/var/www/rocky-shared"
 
 bind "unix://#{shared_dir}/sockets/puma.sock"
 pidfile "#{shared_dir}/pids/puma.pid"

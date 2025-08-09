@@ -106,9 +106,6 @@ fi
 if [ $SERVER_ROLE == 'web' ]; then
     echo "I'm a web server"
     RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
-    mkdir -p /var/www/rocky/shared/sockets/
-    mkdir -p /var/www/rocky/shared/pids/
-    mkdir -p /var/www/rocky/shared/log/
     
     touch tmp/restart.txt
     
