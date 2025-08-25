@@ -182,16 +182,24 @@ class Report < ActiveRecord::Base
         }).run(self.id)
       else
         self.status = Status.merging
-        self.current_index = self.record_count        
+        self.current_index = self.record_count
         Report.delay({
           queue: QUEUE_NAME
         }).concatenate(self.id)
-        self.save!        
+        self.save!
       end
     else
       csvheadstr = CSV.generate do |csv|
-        csv << csv_header
+        header = csv_header
+
+        if [REGISTRANTS_REPORT, REGISTRANTS_REPORT_EXTENDED].include?(self.report_type)
+          us_index = header.index("US citizen?")
+          header[us_index] = "Completed Eligibility Verification?" if us_index
+        end
+
+        csv << header
       end
+
       self.write_report_file(file_name, "#{csvheadstr}#{csvstr}")
       self.current_index = self.record_count
       self.status = Status.complete
