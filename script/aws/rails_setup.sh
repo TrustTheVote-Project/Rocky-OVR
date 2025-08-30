@@ -125,7 +125,7 @@ if [ $SERVER_ROLE == 'web' ]; then
     echo "I'm a web server"
     RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
     
-    touch tmp/restart.txt
+    sudo systemctl restart puma
     
     # Passenger monitoring Crontab is for WEB only
     # cd ~
