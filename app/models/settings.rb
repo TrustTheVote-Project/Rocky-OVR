@@ -90,7 +90,7 @@ class Settings < ActiveRecord::Base
   
   #get the value field, YAML decoded
   def value
-    YAML::load(self[:value])
+    YAML::load(self[:value], permitted_classes: [Symbol, DateTime, Date, Time, Hash, Array, BigDecimal])
   end
   
   #set the value field, YAML encoded

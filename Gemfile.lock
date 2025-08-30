@@ -2010,6 +2010,8 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
+    puma (6.6.1)
+      nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.16)
@@ -2163,6 +2165,8 @@ GEM
     temple (0.10.3)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
+    terser (1.2.6)
+      execjs (>= 0.3.0, < 3)
     thor (1.4.0)
     tilt (2.6.0)
     time (0.4.1)
@@ -2175,8 +2179,6 @@ GEM
       multi_json (>= 1.3.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.1)
-      execjs (>= 0.3.0, < 3)
     unf (0.2.0)
     uri (1.0.3)
     useragent (0.16.11)
@@ -2251,6 +2253,7 @@ DEPENDENCIES
   net-ftp
   nokogiri
   passenger (= 5.3.7)
+  puma
   rack-mini-profiler
   rack-robustness
   rails (= 8.0.2)
@@ -2271,9 +2274,10 @@ DEPENDENCIES
   spring-commands-cucumber
   spring-commands-rspec
   sqlite3
+  stringio (= 3.1.7)
+  terser
   timecop
   twilio-ruby
-  uglifier
   webmock
   webrat
   wicked_pdf (= 2.1.0)
