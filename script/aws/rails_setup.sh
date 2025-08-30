@@ -34,6 +34,25 @@ if [ $RAILS_ENV == 'staging2' ]; then
     NUM_PDF_WORKERS=2
 fi
 
+if [ $SERVER_ROLE == 'report' ]; then
+    echo "I'm a report server"
+    
+    # ensure the file structure exists
+    cd /var/www/rocky
+    mkdir -p tmp/pids
+    # make sure the script is executable
+    chmod u+x script/*worker
+    
+    # enable and start the regular jobs worker (for report generation and API registrations)
+    RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_report_runner stop
+    sleep 5
+    for run in $(seq 1 $NUM_UTIL_WORKERS)
+    do
+        RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_report_runner start
+    done
+    
+fi
+
 
 if [ $SERVER_ROLE == 'util' ]; then
     echo "I'm a util server"
