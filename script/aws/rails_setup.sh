@@ -26,12 +26,14 @@ aws s3 cp s3://rocky-cloudformation-assets/.env.$RAILS_ENV .env.$RAILS_ENV --reg
 cat /home/ec2-user/aws_env_vars.txt >> .env.$RAILS_ENV
 
 NUM_PDF_WORKERS=3
+NUM_REPORT_WORKERS=5
 NUM_UTIL_WORKERS=1
 if [ $RAILS_ENV == 'staging' ]; then
     NUM_PDF_WORKERS=2
+    NUM_REPORT_WORKERS=3
 fi
 if [ $RAILS_ENV == 'staging2' ]; then
-    NUM_PDF_WORKERS=2
+    NUM_REPORT_WORKERS=3
 fi
 
 if [ $SERVER_ROLE == 'report' ]; then
@@ -46,7 +48,7 @@ if [ $SERVER_ROLE == 'report' ]; then
     # enable and start the regular jobs worker (for report generation and API registrations)
     RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_report_runner stop
     sleep 5
-    for run in $(seq 1 $NUM_UTIL_WORKERS)
+    for run in $(seq 1 $NUM_REPORT_WORKERS)
     do
         RAILS_ENV=$RAILS_ENV bundle exec ruby script/rocky_report_runner start
     done
