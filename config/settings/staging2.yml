@@ -5,6 +5,8 @@ default_url_host: "dev.rocky.rockthevote.com"
 api_host_name: https://staging2.rocky.rockthevote.com
 ui_url_host: "dev.rocky.rockthevote.com"
 
+admin:
+  branding_to: "david@rockthevote.org, alex.mekelburg@osetfoundation.org, rocky.branding@rockthevote.org"
 
 hours_before_first_reminder: 0.0333
 hours_between_first_and_second_reminder: 0.0333
@@ -41,16 +43,13 @@ blocks_configuration:
       location_id: 19000000704
       staging_location_id: 19000000704
 
-
-
 mail_with_esig:
-  states:
-    MN:
+  states: 
+    MN: 
       allow_desktop_signature: true
       state_voter_check_url: https://mnvotes.sos.state.mn.us/VoterStatus.aspx
   partners:
-    - 1 
-
+    - 2 
 
 states_with_online_registration:
   - AZ
@@ -65,30 +64,38 @@ states_with_online_registration:
   - AL
   - CO
   - CT
-  - FL
   - GA
+  - FL
   - HI
+  - ID
   - IL
   - IN
   - IA
+  - ID
   - KS
   - KY
   - MA
+  - ME
+  - MD
   - MI
   - MO
+  - NC
   - NE
   - NJ
   - NM
   - NY
+  - OH
   - OK
   - OR
   - PA
+  - RI
   - SC
   - TN
   - UT
   - VT
   - VA
   - WV
+  - WI
 
 
 ovr_states:
@@ -103,32 +110,31 @@ ovr_states:
       web_url_base: https://tst-uat-pub.sos.ca.gov
       disclosures_url: https://covr.cdn.sos.ca.gov/discl/
       web_agency_key: RTV    
-  PA:
+      
+  MI:
     api_settings:
-      api_url: "https://fake-pa-endpoint.herokuapp.com"
-  
-  NV:
+      #api_url: https://mi-testing-endpoint.herokuapp.com 
+      api_url: https://test-mvicapi.sos.state.mi.us      
     languages:
       - en
+      
+  PA:
+    api_settings:
+      api_url: "https://paovrwebapi.beta.vote.pa.gov/SureOVRWebAPI/api/ovr?JSONv2&sysparm_AuthKey=<%= ENV['PA_API_KEY'] %>&sysparm_action=SETAPPLICATION&sysparm_Language=0" #"https://fake-pa-endpoint.herokuapp.com"
+
   WA:
     api_settings:
-      api_url: "https://fake-wa-endpoint.herokuapp.com:443"
+      api_url: "https://qa-avr.votewa.gov/VoteWAExternalAPI/api/DOLRegister"
       api_username: "RTVAVR"
     languages:
       - en
+      
   VA:
-    languages:
-      - en
     api_settings:
-        api_url: "https://fake-va-endpoint.herokuapp.com" #https://externalapi.elections.virginia.gov/sandbox/
+        api_url: "https://fake-va-endpoint.herokuapp.com" # https://externalapi.elections.virginia.gov/sandbox/
         api_username: "RockTheVote_Sandbox"
         api_key: <%= ENV['VA_API_KEY'] %>
-  MI:
-    api_settings:
-      api_url: https://mi-testing-endpoint.herokuapp.com
 
-  
-      
 
 enabled_locales:
   - en
