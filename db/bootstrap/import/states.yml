@@ -776,7 +776,7 @@ record_40:
   sos_url: https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=VoterInfo
   registration_deadline: south_carolina
   id_length_min: '4'
-  online_registration_url: https://info.scvotes.sc.gov/eng/ovr/start.aspx
+  online_registration_url: https://vrems.scvotes.sc.gov/ovr/start
 record_41:
   abbreviation: SD
   name: South Dakota
@@ -939,3 +939,4 @@ record_50:
   sos_phone: "(307) 777-5860"
   sos_url: https://sos.wyo.gov/Elections/Default.aspx
   sub_18: be_by_next_election
+
