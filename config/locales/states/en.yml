@@ -2248,17 +2248,21 @@ en:
             continue_on_paper: I prefer to print, sign and mail or email my application
               myself.
         abr_form_fields:
-          abr_county: Enter your ward
-          abr_county__hint: "If you live in a city, enter your ward. Your ward is
+          abr_ward: Enter your ward
+          abr_ward__hint: "If you live in a city, enter your ward. Your ward is
             available from your local clerk. \nFind your clerk here: <a target=\"_blank\"
             href=\"https://app.sos.nh.gov/statelistclerkandpolling\">https://app.sos.nh.gov/statelistclerkandpolling</a>"
           abr_check_mailing_address: I get my mail at a different address from the
             one above
-          abr_mailing_address_line_1: Mailing Address
+          abr_mailing_street_number: Street Number
+          abr_mailing_street_name: Street Name
           abr_mailing_unit: Unit
           abr_mailing_city: City
-          abr_mailing_state_abbrev: State
+          abr_mailing_ward: Ward
           abr_mailing_zip: ZIP
+          abr_mailing_ward__hint: "If your mailing address is in a city, enter your ward. 
+            Your ward is available from your local clerk. \nFind your clerk here: 
+            <a target=\"_blank\" href=\"https://app.sos.nh.gov/statelistclerkandpolling\" rel=\"noopener noreferrer\">https://app.sos.nh.gov/statelistclerkandpolling</a>"
           abr_form_instructions: In certain cases, you can use this form to register
             to vote and request an absentee ballot.
           abr_form_instructions2: If you are absent from the town/city where you live
@@ -2294,26 +2298,35 @@ en:
             abr_reason6_type2: I anticipate that school, child care or adult care
               will be canceled and will need to care for children or infirm adults.
               I would otherwise vote in person.
-          abr_election_type_selections: Select the election you'd like to request
+          nh_pdf_election_choice_for_pdf: Select the election you'd like to request
             a ballot for.
-          abr_election_type_selections__options:
-            abr_election_type1: State Primary Election
-            abr_election_type2: General Election
+          nh_pdf_election_choice_for_pdf__options:
+            abr_election_type1: September 8, 2026 - State Primary Election
+            abr_election_type2: November 3, 2026 - General Election
             abr_election_type3: State Special Primary Election
             abr_election_type4: State Special General Election
-          abr_party_selections: Select with ballot you would like to receive.
+          abr_party_selections: Select which ballot you would like to receive.
           abr_party_selections__options:
             abr_party1: Democratic Party
             abr_party2: Republican Party
-          abr_election_date_input: Enter the date of the Special Primary Election
-          abr_party_selections2: Select with ballot you would like to receive.
+          abr_party_selections2: Select which ballot you would like to receive.
           abr_party_selections2__options:
             abr_party3: Democratic Party
             abr_party4: Republican Party
+          abr_election_date_input: Enter the date of the Special Primary Election
           abr_election_date2_input: Enter the date of the Special General Election
           abr_assistant_check1: Check this box if someone assisted you in filling
             out this form.
           abr_assistant_name: Enter the name of the assistant
+          abr_id_selections: SELECT THE IDENTIFICATION METHOD YOU WILL USE.
+          abr_id_selections__hint: "See New Hampshire's list of accepted photo 
+            identification for proof of identity: <a href=\"https://www.sos.nh.gov/sites/g/files/ehbemt561/files/documents/2025-03/5-2025-voter-id-explanatory-document.pdf\" target=\"_blank\" rel=\"noreferrer noopener\">https://www.sos.nh.gov/</a>"
+          abr_id_selections__options:
+            abr_id_type1: I will include a copy of my photo identification with this 
+              application
+            abr_id_type2: I will present my photo identification to my city or town clerk 
+              prior to receiving my absentee ballot
+            abr_id_type3: I will get this application notarized
         ballot_status_check:
           check_with_state_url: |-
             <p>First, check your ballot status on your 
