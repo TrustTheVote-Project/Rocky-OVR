@@ -68,7 +68,7 @@ record_2:
   sos_phone: "(602) 542-8683"
   sos_url: https://my.arizona.vote/WhereToVote.aspx?s=individual&Language=en
   sub_18: turn_by_next_general_election_november
-  online_registration_url: https://servicearizona.com/VoterRegistration?id=RTV
+  online_registration_url: https://azmvdnow.gov/vr?id=RTV
   status_check_url: https://my.arizona.vote/PortalList.aspx
   registration_deadline: arizona
   pdf_instructions: arizona

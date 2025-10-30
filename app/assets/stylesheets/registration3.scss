@@ -525,6 +525,9 @@ input[type=text], input[type=tel], input, select, textarea {
 	right: 28px;
 	float: right;*/
 }
+#main.ballot-status-check p strong, #main.ballot-status-check p b {
+	font-weight: 700 !important;
+}
 .stacked span.error, .stacked span.example {
 	margin-left: 0px;
 }

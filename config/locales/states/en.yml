@@ -93,11 +93,9 @@ en:
             <p>First, check your ballot status on your <a href="%{url}"
             target="_blank" rel="noreferrer noopener">state's website</a>.</p><p>If your 
             absentee ballot was rejected, you should immediately reach out to your election 
-            official for more information on your voting options. You can find their contact 
-            information below.</p>
+            official for more information on your voting options. </p>
           voted_provisionally_text: "To find out of your provisional ballot has been accepted 
-            or rejected, you should reach out to your election official. You can find their 
-            contact information below."
+            or rejected, you should reach out to your election official."
       al:
         abr:
           step_2_instructions: |-
@@ -233,6 +231,23 @@ en:
             license.
           has_no_state_license: I do not have a valid AL state identification card
             or driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>Alabama allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using the <a href="%{url}" target="_blank" 
+            rel="noreferrer noopener">state tool</a>.</p>
+            <p>If you’ve been notified of a problem with your absentee ballot, or if it 
+            wasn’t accepted, the deadline to resolve any issues is <strong>5:00PM on the 
+            Friday following Election Day</strong>. For more information on this process, 
+            contact your local election official.</p>
+          voted_provisionally_text: |-
+            <p>Alabama allows voters to track their provisional ballots. You can look up 
+            the status of your ballot by using the <a href="https://myinfo.alabamavotes.gov/voterview" 
+            target="_blank" rel="noreferrer noopener">state tool</a>.</p>
+            <p>If you voted by provisional ballot, the deadline to provide any needed 
+            identification or resolve any issues to ensure your vote is counted is 
+            <strong>5:00PM on the Friday following Election Day</strong>. For more 
+            information on this process, contact your local election official.</p>
       ar:
         abr:
           step_2_instructions: |-
@@ -327,13 +342,22 @@ en:
             abr_primary_type2: Republican
             abr_primary_type3: Nonpartisan
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Arkansas allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>12:00PM on the Monday 
+            following the election</strong>. For more information on this process, contact your local 
+            election official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
-            <a href="https://www.voterview.ar-nova.org/VoterView" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
-            ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
-            information below.</p>
+            <p>Arkansas does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>If you voted by provisional ballot, the deadline 
+            to provide any needed identification or resolve any issues to ensure your vote is 
+            counted is <strong>12:00PM on the Monday following the election</strong>. For more information on this 
+            process, contact your local election official. You can find their contact information 
+            below.</p>
       az:
         state_online_abr:
           instructions_header: 'I have an AZ Driver''s License or Non-Operating ID
@@ -423,13 +447,23 @@ en:
           has_no_state_license: I do not have an AZ state identification card or driver's
             license.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Arizona allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>5:00PM on the fifth calendar 
+            day after the election</strong>. For more information on this process, contact your local 
+            election official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Arizona allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://my.arizona.vote/provisionalsearch.aspx" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
-            provisional ballot, you should immediately reach out to your election official 
-            to resolve any questions and ensure your vote is counted. You can find their 
-            contact information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is <strong>5:00PM on the fifth business day following the 
+            election</strong>. For more information on this process, contact your local 
+            election official.</p>
       ca:
         abr:
           everyone_gets_ballot:
@@ -468,13 +502,27 @@ en:
             state's online voter registration system.
         ca_disclosures: I have reviewed and accepted the notices above.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>California allows voters to track their mail ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your mail ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>no later than 5:00PM two days 
+            prior to the certification of the election</strong>. The date which the election is certified 
+            varies by county, but the last day for county election officials to certify election 
+            results is 30 days after the election. For more information on this process, contact 
+            your local election official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>California allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="http://www.sos.ca.gov/elections/ballot-status" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
-            provisional ballot, you should immediately reach out to your election official 
-            to resolve any questions and ensure your vote is counted. You can find their 
-            contact information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is <strong>no later than 5:00PM two days prior to the 
+            certification of the election</strong>. The date which the election is certified varies by 
+            county, but the last day for county election officials to certify election results is 
+            30 days after the election. For more information on this process, contact your local 
+            election official.</p>
       co:
         abr:
           everyone_gets_ballot:
@@ -503,6 +551,22 @@ en:
             license, or Social Security Number.
           has_no_state_license: I do not have a CO state identification card or CO
             driver's license, or Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>Colorado allows voters to track their mail ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your mail ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>11:59PM MT on the eighth day 
+            after Election Day</strong>. For more information on this process, contact your local election 
+            official.</p>
+          voted_provisionally_text: |-
+            <p>Colorado does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>If you voted by provisional ballot, the deadline 
+            to provide any needed identification or resolve any issues to ensure your vote is 
+            counted is <strong>11:59PM MT on the eighth day after Election Day</strong>. For more information on 
+            this process, contact your local election official. </p>
       ct:
         abr:
           step_2_instructions: |-
@@ -527,8 +591,7 @@ en:
             find their contact information below.</p>
           voted_provisionally_text: |-
             <p>To find out of your provisional ballot has been accepted or rejected, you 
-            should reach out to your election official. You can find their contact 
-            information below.</p>
+            should reach out to your election official. </p>
       dc:
         abr:
           everyone_gets_ballot:
@@ -557,13 +620,22 @@ en:
             status by using your state&#39;s <a target='_blank' href='https://votedc.ballottrax.net/voter'>online
             tool</a>
         ballot_status_check:
+          check_with_state_url: |-
+            <p>DC allows voters to track their mail ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the district tool</a>.
+            </p><p>If you've been notified of a problem with your mail ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>seven days after the election</strong>. 
+            For more information on this process, contact your local election official. You can 
+            find their contact information below.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
-            <a href="https://www.dcboe.org/voters/casting-your-vote/voting-by-special-ballot" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
-            provisional ballot, you should immediately reach out to your election official 
-            to resolve any questions and ensure your vote is counted. You can find their 
-            contact information below.</p>
+            <p>DC allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
+            <a href="https://apps.dcboe.org/sbs" target="_blank" 
+            rel="noreferrer noopener">the district tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is <strong>two days after the election</strong>. For more information on 
+            this process, contact your local election official. </p>
       de:
         state_online_abr:
           confirm: ''
@@ -639,18 +711,17 @@ en:
           abr_email2: Enter your email.
         ballot_status_check:
           check_with_state_url: |-
-            <p>First, check your ballot status on your 
-            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If your absentee ballot was rejected, you should immediately reach out 
-            to your election official for more information on your voting options. You can 
-            find their contact information below.</p>
+            <p>Delaware allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>Delaware does not allow voters to correct their absentee ballots.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
-            <a href="https://ivote.de.gov/VoterView" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a 
-            provisional ballot, you should immediately reach out to your election official 
-            to resolve any questions and ensure your vote is counted. You can find their 
-            contact information below.</p>
+            <p>Delaware allows voters to track their provisional ballots. According to the 
+            Delaware Department of Elections: "At the time you vote, you will be provided 
+            information regarding the free access system maintained by the State Election 
+            Commissioner so that you can determine whether or not your ballot was counted and, 
+            if not, the reason why."</p><p>Delaware does not allow voters to correct their 
+            provisional ballots.</p>
       fl:
         abr:
           splash:
@@ -689,18 +760,21 @@ en:
             driver's license, and Social Security Number.
         ballot_status_check:
           check_with_state_url: |-
-            <p>First, check your ballot status on your 
-            <a href="https://www.dos.myflorida.com/elections/for-voters/check-your-voter-status-and-polling-place/vote-by-mail-ballot-information-and-status-lookup/" target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If your ballot was rejected, you should immediately reach out to your 
-            election official to resolve any issues. You can find their contact information 
-            below.</p>
+            <p>Florida allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>5:00PM on the second day after 
+            an election</strong>. For more information on this process, contact your local election 
+            official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Florida allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://dos.myflorida.com/elections/for-voters/check-your-voter-status-and-polling-place/vote-by-mail-ballot-information-and-status-lookup/" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
-            ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is <strong>5:00PM on the second day after an election</strong>. For more 
+            information on this process, contact your local election official.</p>
       ga:
         state_online_abr:
           confirm: ''
@@ -794,6 +868,23 @@ en:
             license, and a signature on file with the DMV.
           has_no_state_license: I do not have a current GA state identification card
             or driver's license, and a signature on file with the DMV.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>Georgia allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>three days 
+            after the election</strong>. For more information on this process, 
+            contact your local election official.</p>
+          voted_provisionally_text: |-
+            <p>Georgia allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
+            <a href="https://mvp.sos.ga.gov/s/" target="_blank" 
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is <strong>three days after the election</strong>. For 
+            more information on this process, contact your local election official.</p>
       hi:
         abr:
           everyone_gets_ballot:
@@ -824,15 +915,20 @@ en:
             or HI driver's license, and Social Security Number.
         ballot_status_check:
           check_with_state_url: |-
-            <p>First, check your ballot status on your 
-            <a href="https://hawaii.ballottrax.net/voter/" target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If your ballot was rejected, you should immediately reach out to your 
-            election official to resolve any issues. You can find their contact information 
-            below.</p>
+            <p>Hawaii allows voters to track their mail ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your mail ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>the fifth business day after 
+            the election</strong>. For more information on this process, contact your local election 
+            official.</p>
           voted_provisionally_text: |-
-            <p>To find out of your provisional ballot has been accepted or rejected, you 
-            should reach out to your election official. You can find their contact 
-            information below.</p>
+            <p>Hawaii allows voters to track their provisional ballots. If you have questions 
+            about the status of your provisional ballot, contact your local election official for 
+            more information.</p><p>If you voted by provisional ballot, the deadline to provide 
+            any needed identification or resolve any issues to ensure your vote is counted is <strong>the 
+            fifth business day after the election</strong>. For more information on this process, contact 
+            your local election official.</p>
       ia:
         abr:
           step_2_header: All registered voters in Iowa can request an absentee ballot.
@@ -887,6 +983,24 @@ en:
             license, and Social Security Number.
           has_no_state_license: I do not have an IA state identification card or IA
             driver's license, and Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>Iowa allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is the <strong>close of polls on Election 
+            Day</strong>. For more information on this process, contact your local election official. You 
+            can find their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>Iowa does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>If you voted by provisional ballot, the deadline 
+            to provide any needed identification or resolve any issues to ensure your vote is 
+            counted is <strong>12:00PM on the Monday following the election</strong>. However, if the law 
+            authorizing the election specifies that votes be canvassed earlier than the Monday 
+            following the election, the proof must still be received before the canvass. For more 
+            information on this process, contact your local election official.</p>
       id:
         abr_form_fields:
           abr_county: Registration Address County
@@ -1012,13 +1126,21 @@ en:
           has_no_state_license: I do not have an IL state identification card or an
             IL driver's license, and Social Security Number.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Illinois does not allow voters to track their absentee ballots. If you have 
+            questions about the status of your absentee ballot, contact your local election 
+            official for more information.</p><p>If you've been notified of a problem with your 
+            absentee ballot, or if it wasn't accepted, the deadline to resolve any issues is <strong>the 
+            14th day after the election</strong>. For more information on this process, contact your local 
+            election official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Illinois allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://www.elections.il.gov/votingandregistrationsystems/provisionalballotsearch.aspx" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
-            ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is <strong>seven calendar days after the election</strong>. For more 
+            information on this process, contact your local election official.</p>
       in:
         state_online_abr:
           instructions: |-
@@ -1101,18 +1223,22 @@ en:
             or driver's license.
         ballot_status_check:
           check_with_state_url: |-
-            <p>First, check your ballot status on your 
-            <a href="https://indianavoters.in.gov/" target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If your ballot was rejected, you should immediately reach out to your 
-            election official to resolve any issues. You can find their contact information 
-            below.</p>
+            <p>Indiana allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>5:00PM on Election Day</strong>. For a 
+            signature mismatch, the deadline to correct your signature is <strong>12:00PM eight days after 
+            the election</strong>. For more information on this process, contact your local election 
+            official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Indiana allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://indianavoters.in.gov/" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
-            ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is <strong>12:00PM ten days after the election</strong>. For more 
+            information on this process, contact your local election official.</p>
       ks:
         abr:
           request_deadline: |-
@@ -1206,13 +1332,20 @@ en:
           has_state_license: I have a Social Security Number.
           has_no_state_license: I do not have a Social Security Number.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Kentucky allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is the <strong>close of polls on Election 
+            Day</strong>. For more information on this process, contact your local election official. You 
+            can find their contact information below.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Kentucky allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://vrsws.sos.ky.gov/provweb/" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
-            ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>Kentucky does not allow voters to 
+            correct their provisional ballots.</p>
       la:
         state_online_abr:
           header_choice: How do you want to request your ballot?
@@ -1350,13 +1483,20 @@ en:
           has_no_state_license: I do not have a LA state identification card or LA
             driver's license.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Louisiana allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>4:30PM on the day before the 
+            election</strong>. For more information on this process, contact your local 
+            election official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Louisiana allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://voterportal.sos.la.gov/provisionalvoters" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If your provisional ballot 
-            was rejected, you should immediately reach out to your election official for 
-            information on your voting options. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>Louisiana does not allow voters to 
+            correct their provisional ballots.</p>
       md:
         abr_form_fields:
           abr_address_type_selections: Select where you'd like your ballot delivered
@@ -1443,13 +1583,23 @@ en:
           has_no_state_license: I do not have a current MD state identification card
             or driver's license, and a signature on file with the DMV.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Maryland allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>10:00AM on the tenth day after 
+            the election</strong>. For more information on this process, contact your local election 
+            official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Maryland allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://voterservices.elections.maryland.gov/VoterSearch" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
-            ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is <strong>10:00AM on the second Wednesday after the election</strong>. For 
+            more information on this process, contact your local election official. You can find 
+            their contact information below.</p>
       me:
         abr:
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -1471,10 +1621,19 @@ en:
           has_state_license: I have a ME driver's license, ME State ID, and/or Social Security Number.
           has_no_state_license: I don't have a ME driver's license, ME State ID, or Social Security Number.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Maine allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is the <strong>close of polls on Election 
+            Day</strong>. For more information on this process, contact your local election official. You 
+            can find their contact information below.</p>
           voted_provisionally_text: |-
-            <p>To find out of your provisional ballot has been accepted or rejected, you 
-            should reach out to your election official. You can find their contact 
-            information below.</p>
+            <p>Maine does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>Maine does not allow voters to correct their 
+            provisional ballots.</p>
       ma:
         abr:
           step_2_header: Eligibility to Request a Vote by Mail Ballot
@@ -1577,6 +1736,21 @@ en:
             license.
           has_no_state_license: I do not have a MA state identification card or MA
             driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>Massachusetts allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If there is a problem with your absentee ballot, or if it wasn't accepted, you 
+            will be sent a replacement ballot if sufficient time allows. For more information on 
+            this process, contact your local election official. </p>
+          voted_provisionally_text: |-
+            <p>Massachusetts does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>If you voted by provisional ballot, the deadline 
+            to provide any needed identification or resolve any issues to ensure your vote is 
+            counted is <strong>12 days after the election</strong>. For more information on this process, contact 
+            your local election official.</p>
       mi:
         abr_form_fields:
           abr_check_mailing_address: I get my mail at a different address from the
@@ -1743,6 +1917,22 @@ en:
           as you turn 18 years old.</p>"
         registration_complete_dialog_text: ''
         valid_street_types: 'Valid Street types include: %{types}'
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>Michigan allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>5:00PM on the third day 
+            following the election</strong>. For more information on this process, contact your local 
+            election official.</p>
+          voted_provisionally_text: |-
+            <p>Michigan allows voters to track their provisional ballots. If you have questions 
+            about the status of your provisional ballot, contact your local election official for 
+            more information.</p><p>If you voted by provisional ballot, the deadline to provide 
+            any needed identification or resolve any issues to ensure your vote is counted is <strong>six 
+            calendar days after the election</strong>. For more information on this process, contact your 
+            local election official.</p>
       mn:
         step_2_header: Eligibility
         step_3_header: Who Are You?
@@ -1942,10 +2132,18 @@ en:
             abr_primary_type4: Constitution
             abr_primary_type5: Issues only
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Missouri does not allow voters to track their absentee ballots. If you have 
+            questions about the status of your absentee ballot, contact your local election 
+            official for more information.</p><p>If you've been notified of a problem with your 
+            absentee ballot, or if it wasn't accepted, the deadline to resolve any issues is the 
+            <strong>close of polls on Election Day</strong>. For more information on this process, contact your 
+            local election official.</p>
           voted_provisionally_text: |-
-            <p>To find out of your provisional ballot has been accepted or rejected, you 
-            should reach out to your election official. You can find their contact 
-            information below.</p>
+            <p>Missouri does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>Missouri does not allow voters to correct their 
+            provisional ballots.</p>
       ms:
         abr:
           request_deadline: |-
@@ -1969,6 +2167,21 @@ en:
               <li>If you are not sure that your absentee ballot will arrive in time if 
               mailed, you can vote absentee in-person at your County Circuit Clerk’s Office no later than 3 days before Election Day.</li>
               </ul>
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>Mississippi allows voters to track their absentee ballots. You can look up 
+            the status of your ballot by using the <a href="%{url}" target="_blank" 
+            rel="noreferrer noopener">state tool</a>.</p>
+            <p>If you’ve been notified of a problem with your absentee ballot, or if it 
+            wasn’t accepted, the deadline to resolve any issues is <strong>12:00PM on the 
+            tenth calendar day after the election</strong>.</p>
+          voted_provisionally_text: |-
+            <p>Mississippi allows voters to track their provisional ballots. If you have questions 
+            about the status of your provisional ballot, contact your local election official for 
+            more information.</p><p>If you voted by provisional ballot, the deadline to provide 
+            any needed identification or resolve any issues to ensure your vote is counted is <strong>five 
+            business days after the election</strong>. For more information on this process, contact your 
+            local election official.</p>
       mt:
         abr:
           request_deadline: |-
@@ -2006,6 +2219,22 @@ en:
           abr_request_check: Will someone be picking up your ballot for you?
           abr_request_name: 'Enter the name of the person you have designated to pick
             up your ballot:'
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>Montana allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>8:00PM on Election Day</strong>. For 
+            more information on this process, contact your local election official. You can find 
+            their contact information below.</p>
+          voted_provisionally_text: |-
+            <p>Montana allows voters to track their provisional ballots. If you have questions 
+            about the status of your provisional ballot, contact your local election official for 
+            more information.</p><p>If you voted by provisional ballot, the deadline to provide 
+            any needed identification or resolve any issues to ensure your vote is counted is 
+            <strong>5:00PM on the day after the election</strong>. For more information on this process, contact 
+            your local election official.</p>
       nc:
         state_online_abr:
           confirm: |-
@@ -2105,13 +2334,25 @@ en:
           has_no_state_license: I do not have a NC state identification card or NC
             driver's license, and Social Security Number.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>North Carolina allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is the <strong>close of business on the 
+            business day before the canvass conducted by the county board of elections</strong>. In every 
+            county, the canvass occurs 10 days after Election Day. For more information on this 
+            process, contact your local election official. You can find their contact information 
+            below.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>North Carolina allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://vt.ncsbe.gov/RegProvPIN/" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
-            ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is <strong>5:00PM on the ninth day following the election</strong>. For 
+            more information on this process, contact your local election official. You can find 
+            their contact information below.</p>
       nd:
         abr:
           status_check_instructions: You can look up your Absentee Ballot status by
@@ -2164,9 +2405,17 @@ en:
           Military_Overseas_Voter: Select one of the following
           ID_Number_dln__format_message: Invalid ND driver's license format
         ballot_status_check:
+          check_with_state_url: |-
+            <p>North Dakota allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>before the close of the meeting 
+            of the canvassing board occurring 13 days after the election</strong>. For more information on 
+            this process, contact your local election official. </p>
           voted_provisionally_text: |-
-            <p>Since North Dakota does not have voter registration, provisional ballots 
-            are not necessary.</p>
+            <p>Since North Dakota does not have voter registration, provisional ballots are not 
+            necessary.</p>
       ne:
         abr:
           request_deadline: |-
@@ -2222,13 +2471,20 @@ en:
           has_no_state_license: I do not have a NE state identification card or NE
             driver's license.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Nebraska allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is the <strong>close of polls on Election 
+            Day</strong>. For more information on this process, contact your local election official. You 
+            can find their contact information below.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Nebraska allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://www.votercheck.necvr.ne.gov/voterview" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If your provisional ballot 
-            was rejected, you should immediately reach out to your election official for 
-            more information on your voting options. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>Nebraska does not allow voters to 
+            correct their provisional ballots.</p>
       nh:
         abr:
           request_deadline: ''
@@ -2329,11 +2585,17 @@ en:
             abr_id_type3: I will get this application notarized
         ballot_status_check:
           check_with_state_url: |-
-            <p>First, check your ballot status on your 
-            <a href="%{url}" target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If your absentee ballot was rejected, you should immediately reach out 
-            to your election official for information on your voting options. You can find 
-            their contact information below.</p>
+            <p>New Hampshire allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>New Hampshire does not allow voters to correct their absentee ballots.</p>
+          voted_provisionally_text: |-
+            <p>New Hampshire does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>If you voted by provisional ballot, the deadline 
+            to provide any needed identification or resolve any issues to ensure your vote is 
+            counted is <strong>seven days after the election</strong>. For more information on this process, 
+            contact your local election official.</p>
       nj:
         abr:
           request_deadline: |-
@@ -2402,6 +2664,25 @@ en:
             or driver's license, or Social Security Number.
           has_no_state_license: I do not have a current and valid NJ state identification
             card or driver's license, or Social Security Number.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>New Jersey allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>48 hours prior to the final 
+            certification of the election results in all elections other than a general election. 
+            In the case of a general election, issues must be resolved within 11 days after the 
+            election</strong>. For more information on this process, contact your local 
+            election official.</p>
+          voted_provisionally_text: |-
+            <p>New Jersey allows voters to track their provisional ballots. If you have questions 
+            about the status of your provisional ballot, contact your local election official for 
+            more information.</p><p>If you voted by provisional ballot, the deadline to provide 
+            any needed identification or resolve any issues to ensure your vote is counted is the 
+            <strong>close of business on the second day after the election</strong>. For more information on this 
+            process, contact your local election official. You can find their contact information 
+            below.</p>
       nm:
         abr_form_fields:
           abr_county: Registration Address County
@@ -2437,13 +2718,25 @@ en:
           has_no_state_license: I do not have a NM state identification card or NM
             driver's license, or Social Security Number.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>New Mexico allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the county clerk will immediately attempt to contact you and provide 
+            you with notice of the rejection, the opportunity to satisfy the reason for the 
+            rejection, and information on the process for curing the reason for the rejection. For 
+            more information on this process, contact your local election official. You can find 
+            their contact information below.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>New Mexico allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://voterportal.servis.sos.state.nm.us/ProvisionalSearch.aspx" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
-            ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is <strong>5:00PM on the second day following the election</strong>. For 
+            more information on this process, contact your local election official. You can find 
+            their contact information below.</p>
       nv:
         abr:
           everyone_gets_ballot:
@@ -2524,14 +2817,25 @@ en:
           has_no_state_license: I do not have a current and valid NV state identification
             card or driver's license, and Social Security Number.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Nevada allows voters to track their mail ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your mail ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>5:00PM on the sixth day 
+            following the election</strong>. For more information on this process, contact your local 
+            election official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Nevada allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://www.nvsos.gov/sos/elections/voters/provisional-voting" target="_blank" 
-            rel="noreferrer noopener">state's website</a>. Select the Ballot Status Report 
-            (PDF) for the current election and find your unique Ballot ID Number on the 
-            list.</p><p>If your provisional ballot was rejected, you should immediately 
-            reach out to your election official to resolve any issues and ensure your vote 
-            is counted. You can find their contact information below.</p>
+            rel="noreferrer noopener">the state tool</a>. Provisional ballots can be tracked by 
+            following the state tool link, selecting the ballot status report (PDF) for a given 
+            election, and finding your unique ballot ID number on the list.</p><p>If you voted by 
+            provisional ballot, the deadline to provide any needed identification or resolve any 
+            issues to ensure your vote is counted is <strong>5:00PM on the Friday following the election</strong>. 
+            For more information on this process, contact your local election official. You can 
+            find their contact information below.</p>
       ny:
         abr:
           step_2_header: Eligibility
@@ -2650,11 +2954,22 @@ en:
             driver's license, and Social Security Number.
         ballot_status_check:
           check_with_state_url: |-
-            <p>First, check your ballot status on your 
-            <a href="https://voterlookup.elections.ny.gov/" target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If your ballot was rejected, you should immediately reach out to your 
-            election official to resolve any issues. You can find their contact 
-            information below.</p>
+            <p>New York allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>seven business days after your 
+            curable rejection notice is mailed OR 5:00PM on the seventh day following the election 
+            (whichever date is later)</strong>. For more information on this process, contact your local 
+            election official.</p>
+          voted_provisionally_text: |-
+            <p>New York allows voters to track their provisional ballots. If you have questions 
+            about the status of your provisional ballot, contact your local election official for 
+            more information.</p><p>If you voted by provisional ballot, the deadline to provide 
+            any needed identification or resolve any issues to ensure your vote is counted is 
+            <strong>seven business days after your curable rejection notice is mailed OR 5:00PM on the 
+            seventh day following the election (whichever date is later)</strong>. For more information on 
+            this process, contact your local election official. </p>
       oh:
         abr:
           everyone_gets_ballot:
@@ -2726,11 +3041,21 @@ en:
             driver's license, and Social Security Number.
         ballot_status_check:
           check_with_state_url: |-
-            <p>First, check your absentee ballot status on your 
-            <a href="https://www.ohiosos.gov/elections/voters/toolkit/ballot-tracking/" target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If your absentee ballot was rejected, you should immediately reach out 
-            to your election official for information on your voting options. You can find 
-            their contact information below.</p>
+            <p>Ohio allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is the <strong>fourth day following 
+            Election Day</strong>. For more information on this process, contact your local election 
+            official.</p>
+          voted_provisionally_text: |-
+            <p>Ohio does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>If you voted by provisional ballot, the deadline 
+            to provide any needed identification or resolve any issues to ensure your vote is 
+            counted is the <strong>fourth day following Election Day</strong>. For more information on this 
+            process, contact your local election official. You can find their contact information 
+            below.</p>
       ok:
         abr:
           status_check_instructions: <a href="https://okvoterportal.okelections.us/">https://okvoterportal.okelections.us/</a>
@@ -2748,8 +3073,7 @@ en:
             <a href="https://okvoterportal.okelections.gov/" target="_blank" 
             rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
             ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
-            information below.</p>
+            any questions and ensure your vote is counted. </p>
       or:
         abr:
           everyone_gets_ballot:
@@ -2774,13 +3098,22 @@ en:
             your state&#39;s <a target='_blank' href='https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&amp;source=SOS'>online
             tool</a>
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Oregon allows voters to track their mail ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your mail ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is the <strong>21st calendar day after the 
+            election</strong>. For more information on this process, contact your local 
+            election official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Oregon allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
-            ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is the <strong>14th day after the election</strong>. For more information 
+            on this process, contact your local election official. </p>
       pa:
         abr_form_fields:
           bad_date__format_message: Invalid date
@@ -2958,13 +3291,20 @@ en:
             select_file: Select an image to upload
             copy_link: Copy Link
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Pennsylvania allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is the <strong>sixth calendar day 
+            following the election</strong>. For more information on this process, contact your local 
+            election official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Pennsylvania allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://www.pavoterservices.pa.gov/Pages/ProvisionalBallotSearch.aspx" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If your provisional ballot 
-            was rejected, you should immediately reach out to your election official for 
-            information on your voting options. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>Pennsylvania does not allow voters 
+            to correct their provisional ballots.</p>
       ri:
         abr:
           step_2_instructions: |-
@@ -3020,18 +3360,22 @@ en:
             driver's license.
         ballot_status_check:
           check_with_state_url: |-
-            <p>First, check your absentee ballot status on your 
-            <a href="https://ballottrax.sos.ri.gov/voter/" target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If your ballot was rejected, you should immediately reach out to your 
-            election official to resolve any issues. You can find their contact 
-            information below.</p>
+            <p>Rhode Island allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>three days after a primary 
+            election OR seven days after a general election</strong>. For more information on this process, 
+            contact your local election official.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your 
+            <p>Rhode Island allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
             <a href="https://www.ri.gov/election/provisional_ballots/" target="_blank" 
-            rel="noreferrer noopener">state's website</a>.</p><p>If you used a provisional 
-            ballot, you should immediately reach out to your election official to resolve 
-            any questions and ensure your vote is counted. You can find their contact 
-            information below.</p>
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is the <strong>close of business on the day after the election</strong>. 
+            For more information on this process, contact your local election official. You can 
+            find their contact information below.</p>
       sc:
         abr:
           splash:
@@ -3081,13 +3425,19 @@ en:
           has_no_state_license: I do not have a valid SC state identification card
             or driver's license, and Social Security Number.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>South Carolina allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>South Carolina does not allow voters to correct their absentee ballots.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your
-            <a href="https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=ProvisionalBallotInfo" 
-            target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If you used a provisional ballot, you should immediately reach out to 
-            your election official to resolve any questions and ensure your vote is 
-            counted. You can find their contact information below.</p>
+            <p>South Carolina allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
+            <a href="https://vrems.scvotes.sc.gov/Voter/Login?PageMode=ProvisionalBallotInfo" target="_blank" 
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is the <strong>Friday after the election</strong>. For more information on 
+            this process, contact your local election official. </p>
       sd:
         abr:
           finish_instructions_1_hint: |-
@@ -3183,8 +3533,7 @@ en:
             their contact information below.</p>
           voted_provisionally_text: |-
             <p>To find out of your provisional ballot has been accepted or rejected, you 
-            should reach out to your election official. You can find their contact 
-            information below.</p>
+            should reach out to your election official. </p>
       tn:
         abr:
           request_deadline: |-
@@ -3262,6 +3611,19 @@ en:
             license.
           has_no_state_license: I do not have a TN state identification card or TN
             driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>Tennessee allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>Tennessee does not allow voters to correct their absentee ballots.</p>
+          voted_provisionally_text: |-
+            <p>Tennessee does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>If you voted by provisional ballot, the deadline 
+            to provide any needed identification or resolve any issues to ensure your vote is 
+            counted is <strong>two business days after Election Day</strong>. For more information on this process, 
+            contact your local election official.</p>
       tx:
         abr:
           step_2_header: You must have a reason to request an absentee ballot.
@@ -3433,12 +3795,21 @@ en:
           Zip code of witness: ZIP
         ballot_status_check:
           check_with_state_url: |-
-            <p>First, check your ballot status on your 
-            <a href="https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login" 
-            target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If your absentee ballot was rejected, you should immediately reach out 
-            to your election official to resolve any issues and ensure your vote is 
-            counted.</p>
+            <p>Texas allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues <strong>by mail</strong> is the <strong>close of polls on 
+            Election Day</strong> and the deadline to resolve any issues <strong>in-person</strong> at the clerk's office is 
+            <strong>six days after the election</strong>. For more information on this process, contact your local 
+            election official.</p>
+          voted_provisionally_text: |-
+            <p>Texas does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>If you voted by provisional ballot, the deadline 
+            to provide any needed identification or resolve any issues to ensure your vote is 
+            counted is the <strong>sixth day after the election</strong>. For more information on this process, 
+            contact your local election official.</p>
       ut:
         abr:
           everyone_gets_ballot:
@@ -3607,12 +3978,21 @@ en:
           ballot. </p>'
         ballot_status_check:
           check_with_state_url: |-
-            <p>First, check your ballot status on your 
-            <a href="https://vote.elections.virginia.gov/VoterInformation" 
-            target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If your absentee ballot was rejected, you should immediately reach out 
-            to your election official to resolve any issues and ensure your vote is 
-            counted.</p>
+            <p>Virginia allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>12:00PM on the third day after 
+            the election</strong>. For more information on this process, contact your local election 
+            official.</p>
+          voted_provisionally_text: |-
+            <p>Virginia allows voters to track their provisional ballots. If you have questions 
+            about the status of your provisional ballot, contact your local election official for 
+            more information.</p><p>If you voted by provisional ballot, the deadline to provide 
+            any needed identification or resolve any issues to ensure your vote is counted is 
+            <strong>12:00PM on the third day following the election. If the third day is a holiday, you 
+            will have until the next business day</strong>. For more information on this process, contact 
+            your local election official.</p>
       vt:
         state_online_abr:
           requirements: "<p>If you are registered to vote and can provide a valid
@@ -3698,10 +4078,20 @@ en:
           has_no_state_license: I do not have a VT state identification card or VT
             driver's license, or Social Security Number.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Vermont allows voters to track their mail ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your mail ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is the <strong>close of polls on Election 
+            Day</strong> if your cure is returned in-person or by mail OR the <strong>close of business on the day 
+            before the election</strong> if your cure is returned electronically. For more information on 
+            this process, contact your local election official. </p>
           voted_provisionally_text: |-
-            <p>To find out of your provisional ballot has been accepted or rejected, you 
-            should reach out to your election official. You can find their contact 
-            information below.</p>
+            <p>Vermont does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>Vermont does not allow voters to correct their 
+            provisional ballots.</p>
       wa:
         request_absentee_ballot_in: Request a Vote by Mail Ballot In WA
         signature_capture:
@@ -3765,6 +4155,25 @@ en:
             license.
           has_no_state_license: I do not have a WA state identification card or WA
             driver's license.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>Washington allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is the <strong>close of business on the 
+            day before the election is certified</strong>. The county canvassing board certifies election 
+            results 21 days after a general election. For more information on this process, 
+            contact your local election official.</p>
+          voted_provisionally_text: |-
+            <p>Washington does not allow voters to track their provisional ballots. If you have 
+            questions about the status of your provisional ballot, contact your local election 
+            official for more information.</p><p>If you voted by provisional ballot, the deadline 
+            to provide any needed identification or resolve any issues to ensure your vote is 
+            counted is the <strong>close of business on the day before the election is certified</strong>. The 
+            county canvassing board certifies election results 21 days after a general election. 
+            For more information on this process, contact your local election official. You can 
+            find their contact information below.</p>
       wi:
         abr_form_fields:
           Municipality: Which of the following best describes the place where you
@@ -3844,13 +4253,22 @@ en:
           has_no_state_license: I do not have a current and valid WI state identification
             card or driver's license.
         ballot_status_check:
+          check_with_state_url: |-
+            <p>Wisconsin allows voters to track their absentee ballots. You can look up the 
+            status of your ballot by using 
+            <a href="%{url}" target="_blank" rel="noreferrer noopener">the state tool</a>.
+            </p><p>If you've been notified of a problem with your absentee ballot, or if it 
+            wasn't accepted, the deadline to resolve any issues is <strong>8:00PM on Election Day</strong>. For 
+            more information on this process, contact your local election official. You can find 
+            their contact information below.</p>
           voted_provisionally_text: |-
-            <p>First, check your provisional ballot status on your
-            <a href="https://myvote.wi.gov/en-us/Track-My-Ballot" 
-            target="_blank" rel="noreferrer noopener">state's website</a>.
-            </p><p>If you used a provisional ballot, you should immediately reach out to 
-            your election official to resolve any questions and ensure your vote is 
-            counted. You can find their contact information below.</p>
+            <p>Wisconsin allows voters to track their provisional ballots. You can look up the 
+            status of your ballot by using 
+            <a href="https://myvote.wi.gov/en-us/Track-My-Ballot" target="_blank" 
+            rel="noreferrer noopener">the state tool</a>.</p><p>If you voted by provisional 
+            ballot, the deadline to provide any needed identification or resolve any issues to 
+            ensure your vote is counted is <strong>4:00PM on the Friday after the election</strong>. For more 
+            information on this process, contact your local election official.</p>
       wv:
         abr:
           request_deadline: |-
@@ -3952,6 +4370,20 @@ en:
           abr_request_name: Enter the name of the person you are designating to pick
             up your absentee ballot.
           no_election_type__required_message: At least one election type must be selected.
+        ballot_status_check:
+          check_with_state_url: |-
+            <p>Wyoming does not allow voters to track their absentee ballots. If you have 
+            questions about the status of your absentee ballot, contact your local election 
+            official for more information.</p><p>Wyoming does not allow voters to correct their 
+            absentee ballots.</p>
+          voted_provisionally_text: |-
+            <p>Wyoming allows voters to track their provisional ballots. If you have questions 
+            about the status of your absentee ballot, contact your local election official for 
+            more information.</p><p>If you voted by provisional ballot, the deadline to provide 
+            any needed identification or resolve any issues to ensure your vote is counted is the 
+            <strong>close of business on the day following the election</strong>. For more information on this 
+            process, contact your local election official. You can find their contact information 
+            below.</p>
     parties:
       democratic: Democratic
       independent: Independent
