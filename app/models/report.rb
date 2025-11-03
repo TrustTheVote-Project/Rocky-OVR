@@ -54,7 +54,8 @@ class Report < ActiveRecord::Base
     merging: :merging,
     complete: :complete,
     post_processing: :post_processing,
-    failed: :failed
+    failed: :failed,
+    cancelled: :cancelled
   })
 
   belongs_to :partner, optional: true
@@ -108,20 +109,6 @@ class Report < ActiveRecord::Base
     [title, start_date ? start_date.strftime("%Y%m%d") : "through", end_date ? end_date.strftime("%Y%m%d") : created_at.strftime("%Y%m%d")].join("_").parameterize + ".csv"
   end
   
-  def s3_connection
-    @connection ||= Fog::Storage.new({
-      :provider                 => 'AWS',
-      :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
-      :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
-      :region                   => 'us-west-2'
-    })    
-  end
-  
-  def directory
-    @directory ||= s3_connection.directories.get('rocky-report-objects')
-    
-  end
-  
   def s3_key(fn)
     "#{Rails.env}/#{id}/#{fn}"
   end
@@ -158,6 +145,9 @@ class Report < ActiveRecord::Base
   end
   
   def run
+    # don’t build a cancelled report
+    return if status.to_s == Status.cancelled.to_s
+
     self.record_count ||= selector.count
     self.current_index ||= 0
     self.status = Status.building
@@ -192,16 +182,24 @@ class Report < ActiveRecord::Base
         }).run(self.id)
       else
         self.status = Status.merging
-        self.current_index = self.record_count        
+        self.current_index = self.record_count
         Report.delay({
           queue: QUEUE_NAME
         }).concatenate(self.id)
-        self.save!        
+        self.save!
       end
     else
       csvheadstr = CSV.generate do |csv|
-        csv << csv_header
+        header = csv_header
+
+        if [REGISTRANTS_REPORT, REGISTRANTS_REPORT_EXTENDED].include?(self.report_type)
+          us_index = header.index("US citizen?")
+          header[us_index] = "Completed Eligibility Verification?" if us_index
+        end
+
+        csv << header
       end
+
       self.write_report_file(file_name, "#{csvheadstr}#{csvstr}")
       self.current_index = self.record_count
       self.status = Status.complete
@@ -210,6 +208,8 @@ class Report < ActiveRecord::Base
   end
   
   def concatenate
+    return if status.to_s == Status.cancelled.to_s
+
     # Get all the files 
     csvstr = ""
     (0..((self.record_count-1) / THRESHOLD)).each do |i|
@@ -601,6 +601,42 @@ class Report < ActiveRecord::Base
   end
   def grommet_registrants_report_selector
     @grommet_registrants_report_selector ||= partner.registrants.where(grommet_registrants_report_conditions)
+  end
+
+  def cancel!
+    # mark it cancelled
+    update!(status: Status.cancelled.to_s)
+
+    # delete any partial CSV fragments on S3
+    # DISABLE S3 CLEANUP UNTIL WE HAVE DELETE PERMSISSION SETUP
+    # cleanup_s3_artifacts
+  end
+
+  private
+
+  def cleanup_s3_artifacts
+    prefix = "#{Rails.env}/#{id}/"
+    files = directory.files.all(prefix: prefix)
+    Rails.logger.info("[Report##{id}] cleaning up #{files.size} S3 objects under #{prefix}")
+    files.each do |f|
+      Rails.logger.info("[Report##{id}] destroying S3 key #{f.key}")
+      f.destroy
+    end
+  rescue => e
+    Rails.logger.error("Failed to cleanup S3 artifacts for Report #{id}: #{e.class}: #{e.message}")
+  end
+
+  def s3_connection
+    @connection ||= Fog::Storage.new({
+      :provider                 => 'AWS',
+      :aws_access_key_id        => ENV['PDF_AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key    => ENV['PDF_AWS_SECRET_ACCESS_KEY'],
+      :region                   => 'us-west-2'
+    })    
+  end
+  
+  def directory
+    @directory ||= s3_connection.directories.get('rocky-report-objects')    
   end
   
 end

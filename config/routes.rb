@@ -117,9 +117,10 @@ Rails.application.routes.draw do
       post "abr_report"
       post "lookup_report"
       post "alert_request_report"
-      get "reports"      
+      get "reports"
       get "download_csv"
       get "embed_codes"
+      delete "cancel_report"
     end
     resources "partner_users", only: [:index, :create, :destroy]
     resource "questions",     :only => [:edit, :update]

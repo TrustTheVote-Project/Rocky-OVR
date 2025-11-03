@@ -101,7 +101,7 @@ absentee_states:
     abr_status_check_url: "https://portaldir.ct.gov/sots/LookUp.aspx"
     abr_track_ballot_url: "https://portaldir.ct.gov/sots/LookUp.aspx"
     abr_track_ballot_use_leo: false
-    leo_lookup_url: https://portal.ct.gov/-/media/SOTS/ElectionServices/Town-Clerk/Town-Clerks-List.pdf
+    leo_lookup_url: https://portal.ct.gov/sots/election-services/find-your-town-clerk-registrar-and-elected-officials/find-your-town-clerk-registrar-of-voters-and-elected-officials
   DC:
     online_req_url: https://www.vote4dc.com/ApplyInstructions/Absentee
     # pdf_template: dc.pdf
@@ -118,17 +118,17 @@ absentee_states:
   FL:
     online_req_url: https://dos.fl.gov/elections/for-voters/voting/vote-by-mail/
     abr_status_check_url: "https://registration.elections.myflorida.com/CheckVoterStatus"
-    abr_track_ballot_url: "https://registration.elections.myflorida.com/CheckVoterStatus"
+    abr_track_ballot_url: "https://www.dos.myflorida.com/elections/for-voters/check-your-voter-status-and-polling-place/vote-by-mail-ballot-information-and-status-lookup/"
   GA:
     pdf_template: ga.pdf
     online_req_url: https://securemyabsenteeballot.sos.ga.gov/s/
     #pdf_url: https://sos.ga.gov/admin/uploads/2021_Absentee_App.9721_2.pdf
     email_delivery: false
     abr_status_check_url: "https://www.mvp.sos.ga.gov/MVP/mvp.do"
-    abr_track_ballot_url: "https://www.mvp.sos.ga.gov/MVP/mvp.do"
+    abr_track_ballot_url: "https://mvp.sos.ga.gov/s/"
   HI:
     abr_status_check_url: "https://ballotstatus.hawaii.gov/Default"
-    abr_track_ballot_url: "https://ballotstatus.hawaii.gov/Default"
+    abr_track_ballot_url: "https://hawaii.ballottrax.net/voter/"
   IA:
     pdf_template: ia.pdf
     abr_status_check_url: "https://sos.iowa.gov/elections/absenteeballotstatus/absentee/search"
@@ -147,7 +147,7 @@ absentee_states:
     online_req_url: https://indianavoters.in.gov/MVPHome/PrintDocuments
     #pdf_template: in.pdf
     abr_status_check_url: "http://www.indianavoters.com/"
-    abr_track_ballot_url: "https://indianavoters.in.gov/MVPHome/PrintDocuments"
+    abr_track_ballot_url: "https://indianavoters.in.gov/"
   KS:
     pdf_url: https://www.sos.ks.gov/forms//elections/AV1.pdf
     pdf_template: ks.pdf
@@ -160,21 +160,21 @@ absentee_states:
   LA:
     online_req_url: https://voterportal.sos.la.gov
     pdf_template: la.pdf
-    abr_status_check_url: "http://voterportal.sos.la.gov/"
-    abr_track_ballot_url: "http://voterportal.sos.la.gov/"
+    abr_status_check_url: "https://voterportal.sos.la.gov/"
+    abr_track_ballot_url: "https://voterportal.sos.la.gov/"
   MA:
     #pdf_template: ma.pdf
     online_req_url: https://www.sec.state.ma.us/MailInRequestWeb/MailInBallot.aspx
     #email_delivery: true
     abr_status_check_url: "https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx"
-    abr_track_ballot_url: "https://www.sec.state.ma.us/wheredoivotema/track/trackmyballot.aspx"
+    abr_track_ballot_url: "https://www.sec.state.ma.us/WhereDoIVoteMA/TrackMyBallot"
     abr_track_ballot_use_leo: false
     leo_lookup_url: "https://www.sec.state.ma.us/divisions/elections/elections-and-voting.htm"
   MD:
     online_req_url: https://voterservices.elections.maryland.gov/onlinemailinrequest/InstructionsStep1
     pdf_template: md.pdf
     abr_status_check_url: "https://vote.md.gov/search"
-    abr_track_ballot_url: "https://vote.md.gov/search"
+    abr_track_ballot_url: "https://voterservices.elections.maryland.gov/VoterSearch"
   ME:
     online_req_url: https://apps.web.maine.gov/cgi-bin/online/AbsenteeBallot/index.pl
     abr_status_check_url: https://apps.web.maine.gov/cgi-bin/online/AbsenteeBallot/ballot_status.pl
@@ -199,11 +199,12 @@ absentee_states:
     leo_lookup_url: "https://www.sos.mo.gov/elections/govotemissouri/localelectionauthority"
   MS:
     online_req_url: https://www.sos.ms.gov/absentee-voting-information
+    abr_track_ballot_url: "https://myelectionday.sos.state.ms.us/voteroutreach/pages/VoterRegistrationCheck.aspx"
     leo_lookup_url: "https://www.sos.ms.gov/elections-voting/pages/county-election-info.aspx"
   MT:
     pdf_template: mt.pdf
     abr_status_check_url: "https://app.mt.gov/voterinfo/"
-    abr_track_ballot_url: "https://app.mt.gov/voterinfo/"
+    abr_track_ballot_url: "https://www.voteinmt.org/track-your-ballot"
   NC:
     online_req_url: https://votebymail.ncsbe.gov/app/absentee/lookup
     #pdf_template: nc.pdf
@@ -223,18 +224,18 @@ absentee_states:
     pdf_template: nh.pdf
     email_delivery: false
     abr_status_check_url: "https://app.sos.nh.gov/Public/AbsenteeBallot.aspx"
-    abr_track_ballot_url: "https://app.sos.nh.gov/Public/AbsenteeBallot.aspx"
+    abr_track_ballot_url: "https://app.sos.nh.gov/viphome"
     leo_lookup_url: "https://app.sos.nh.gov/Public/ClerkDetails.aspx"
     abr_track_ballot_use_leo: false
   NJ:
     pdf_template: nj.pdf
     abr_status_check_url: "https://voter.svrs.nj.gov/auth/sign-in"
-    abr_track_ballot_url: "https://voter.svrs.nj.gov/auth/sign-in"
+    abr_track_ballot_url: "https://voter.svrs.nj.gov/auth/sign-up/"
   NM:
     online_req_url: https://portal.sos.state.nm.us/OVR/WebPages/AbsenteeApplication.aspx
     pdf_template: nm.pdf
     abr_status_check_url: "https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker"
-    abr_track_ballot_url: "https://voterportal.servis.sos.state.nm.us/WhereToVote.aspx?tab=AbsenteeTracker"
+    abr_track_ballot_url: "https://voterportal.servis.sos.state.nm.us/wheretovote.aspx"
   NV:
     online_req_url: http://
     abr_status_check_url: "https://www.nvsos.gov/votersearch/"
@@ -242,7 +243,7 @@ absentee_states:
   NY:
     online_req_url: https://ballotapplication.elections.ny.gov/home/earlymail
     abr_status_check_url: "https://absenteeballot.elections.ny.gov"
-    abr_track_ballot_url: "https://absenteeballot.elections.ny.gov"
+    abr_track_ballot_url: "https://voterlookup.elections.ny.gov/"
     leo_lookup_url: "https://publicreporting.elections.ny.gov/CountyBoardRoster/CountyBoardRoster"
   OH:
     pdf_template: oh.pdf
@@ -254,7 +255,7 @@ absentee_states:
     abr_track_ballot_url: "https://okvoterportal.okelections.us/"
   OR:
     abr_status_check_url: "https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS"
-    abr_track_ballot_url: "https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do?lang=eng&source=SOS"
+    abr_track_ballot_url: "https://secure.sos.state.or.us/orestar/vr/showVoterSearch.do"
     leo_lookup_url: "https://www.washingtoncountyor.gov/elections"
   PA:
     online_req_url: https://www.pavoterservices.pa.gov/OnlineAbsenteeApplication/#/OnlineAbsenteeBegin
@@ -265,13 +266,13 @@ absentee_states:
   RI:
     pdf_template: ri.pdf
     abr_status_check_url: "https://vote.sos.ri.gov/Home/UpdateVoterRecord?ActiveFlag=3"
-    abr_track_ballot_url: "https://vote.sos.ri.gov/Home/UpdateVoterRecord?ActiveFlag=3"
+    abr_track_ballot_url: "https://ballottrax.sos.ri.gov/voter/"
     leo_lookup_url: "https://elections.ri.gov/canvassers/"
     abr_track_ballot_use_leo: false
   SC:
     online_req_url: https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeRequest
     abr_status_check_url: "https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo"
-    abr_track_ballot_url: "https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeInfo"
+    abr_track_ballot_url: "https://vrems.scvotes.sc.gov/Voter/Login?PageMode=AbsenteeInfo"
   SD:
     pdf_template: sd.pdf
     abr_status_check_url: "https://vip.sdsos.gov/VIPLogin.aspx"
@@ -283,7 +284,7 @@ absentee_states:
     abr_track_ballot_url: "https://tnmap.tn.gov/voterlookup/"
   TX:
     pdf_template: tx.pdf
-    abr_track_ballot_url: "https://teamrv-mvp.sos.texas.gov/BallotTrackerApp/#/login"
+    abr_track_ballot_url: "https://goelect.txelections.civixapps.com/ivis-oab-ui/#/login"
     leo_lookup_url: "https://www.sos.state.tx.us/elections/voter/cclerks.shtml"
   UT:
     abr_status_check_url: "https://votesearch.utah.gov/voter-search/search/search-by-voter/track-mail-ballot"
@@ -304,7 +305,7 @@ absentee_states:
     abr_track_ballot_use_leo: false
   WA:
     abr_status_check_url: "https://voter.votewa.gov/WhereToVote.aspx#/login"
-    abr_track_ballot_url: "https://voter.votewa.gov/WhereToVote.aspx#/login"
+    abr_track_ballot_url: "https://voter.votewa.gov/portal2023/login.aspx"
   WI:
     #online_req_url: https://myvote.wi.gov/en-US/VoteAbsentee
     online_req_url: https://myvote.wi.gov/en-us/Vote-Absentee-By-Mail

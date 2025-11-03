@@ -22,6 +22,7 @@ defaults:
 record_0:
   abbreviation: AL
   name: Alabama
+  online_registration_url: https://www.alabamainteractive.org/sos/voter_registration/instructions.action
   requires_race: true
   race_tooltip: required_with_state_name
   requires_party: false
@@ -67,7 +68,7 @@ record_2:
   sos_phone: "(602) 542-8683"
   sos_url: https://my.arizona.vote/WhereToVote.aspx?s=individual&Language=en
   sub_18: turn_by_next_general_election_november
-  online_registration_url: https://servicearizona.com/VoterRegistration?id=RTV
+  online_registration_url: https://azmvdnow.gov/vr?id=RTV
   status_check_url: https://my.arizona.vote/PortalList.aspx
   registration_deadline: arizona
   pdf_instructions: arizona
@@ -217,6 +218,7 @@ record_9:
 record_10:
   abbreviation: GA
   name: Georgia
+  online_registration_url: https://mvp.sos.ga.gov/s/voter-registration?IsRegisterNow=true
   requires_race: true
   race_tooltip: georgia
   requires_party: false
@@ -447,6 +449,7 @@ record_22:
 record_23:
   abbreviation: MN
   name: Minnesota
+  online_registration_url: https://mnvotes.sos.mn.gov/VoterRegistration/index
   requires_party: false
   online_registration_url: https://mnvotes.sos.state.mn.us/VoterRegistration/VoterRegistrationMain.aspx
   party_tooltip: blank
@@ -527,6 +530,7 @@ record_27:
 record_28:
   abbreviation: NV
   name: Nevada
+  online_registration_url: https://www.nvsos.gov/sosvoterservices/registration/Step0.aspx
   requires_party: true
   party_tooltip: required_for_primary_nonpartisan
   id_number_tooltip: drivers_license_or_ssn_county_clerk_with_state_name
@@ -586,6 +590,7 @@ record_30:
 record_31:
   abbreviation: NM
   name: New Mexico
+  online_registration_url: https://portal1.sos.nm.gov/OVR/WebPages/InstructionsStep1.aspx
   requires_party: true
   party_tooltip: required_for_primary
   id_number_tooltip: ssn_full_2
@@ -626,6 +631,7 @@ record_32:
 record_33:
   abbreviation: NC
   name: North Carolina
+  online_registration_url: https://payments.ncdot.gov/service/nc_voter_registration/workflow/nc_voter_reg_standalone_entry/5?pageTitle=%7B%22en%22%3A%22myNCDMV%22%7D&initialTalkObject=%7B%7D
   requires_race: true
   race_tooltip: not_required_with_state_name
   requires_party: false
@@ -680,6 +686,7 @@ record_35:
 record_36:
   abbreviation: OK
   name: Oklahoma
+  online_registration_url: https://okvoterportal.okelections.gov/Home/RegWizard
   requires_party: true
   party_tooltip: required_for_primary
   id_number_tooltip: oklahoma
@@ -700,6 +707,7 @@ record_36:
 record_37:
   abbreviation: OR
   name: Oregon
+  online_registration_url: https://secure.sos.state.or.us/orestar/vr/register.do
   requires_party: true
   party_tooltip: oregon
   id_number_tooltip: drivers_license_or_non_driver_id
@@ -826,6 +834,7 @@ record_43:
 record_44:
   abbreviation: UT
   name: Utah
+  online_registration_url: https://secure.utah.gov/voterreg/login.html?selection=REGISTER
   requires_party: true
   party_tooltip: not_required_to_vote
   id_number_tooltip: drivers_license_or_non_driver_id
@@ -861,6 +870,7 @@ record_45:
 record_46:
   abbreviation: VA
   name: Virginia
+  online_registration_url: https://vote.elections.virginia.gov/Registration/DmvLookup
   race_tooltip: virginia
   requires_party: false
   party_tooltip: virginia
@@ -888,6 +898,7 @@ record_47:
 record_48:
   abbreviation: WV
   name: West Virginia
+  online_registration_url: https://ovr.sos.wv.gov/Register/Landing
   requires_party: true
   party_tooltip: required_for_primary_unless
   id_number_tooltip: dl_or_last_4_or_provided
