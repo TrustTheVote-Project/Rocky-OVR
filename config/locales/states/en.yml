@@ -2516,9 +2516,9 @@ en:
           abr_mailing_city: City
           abr_mailing_ward: Ward
           abr_mailing_zip: ZIP
-          abr_mailing_ward__hint: "If your mailing address is in a city, enter your ward. 
-            Your ward is available from your local clerk. \nFind your clerk here: 
-            <a target=\"_blank\" href=\"https://app.sos.nh.gov/statelistclerkandpolling\" rel=\"noopener noreferrer\">https://app.sos.nh.gov/statelistclerkandpolling</a>"
+          abr_mailing_ward_instructions: "If your mailing address is in a city, enter your ward.
+            Your ward is available from your local clerk. \nFind your clerk here:
+            <a target=\"_blank\" href=\"https://app.sos.nh.gov/statelistclerkandpolling\" rel=\"noopener noreferrer\">https://app.sos.nh.gov/statelistclerkandpolling</a><br><br><br>"
           abr_form_instructions: In certain cases, you can use this form to register
             to vote and request an absentee ballot.
           abr_form_instructions2: If you are absent from the town/city where you live
@@ -2554,21 +2554,23 @@ en:
             abr_reason6_type2: I anticipate that school, child care or adult care
               will be canceled and will need to care for children or infirm adults.
               I would otherwise vote in person.
-          nh_pdf_election_choice_for_pdf: Select the election you'd like to request
+          abr_election_type_selections: Select the election you'd like to request
             a ballot for.
-          nh_pdf_election_choice_for_pdf__options:
+          abr_election_type_selections__options:
             abr_election_type1: September 8, 2026 - State Primary Election
             abr_election_type2: November 3, 2026 - General Election
             abr_election_type3: State Special Primary Election
             abr_election_type4: State Special General Election
-          abr_party_selections: Select which ballot you would like to receive.
+          abr_party_selections: "I am currently registered with and am requesting an absentee ballot for the:"
           abr_party_selections__options:
-            abr_party1: Democratic Party
-            abr_party2: Republican Party
-          abr_party_selections2: Select which ballot you would like to receive.
+            abr_party1: Democratic party
+            abr_party2: Republican party
+            abr_party_none: "I am not currently registered with a party (select below)"
+          abr_party_selections2: "OR: I am registered as undeclared and now declaring my affiliation with and requesting an absentee ballot for the:"
           abr_party_selections2__options:
-            abr_party3: Democratic Party
-            abr_party4: Republican Party
+            abr_party3: Democratic party
+            abr_party4: Republican party
+            abr_party_none2: "I am already registered with a party (select above)"
           abr_election_date_input: Enter the date of the Special Primary Election
           abr_election_date2_input: Enter the date of the Special General Election
           abr_assistant_check1: Check this box if someone assisted you in filling
@@ -2578,11 +2580,14 @@ en:
           abr_id_selections__hint: "See New Hampshire's list of accepted photo 
             identification for proof of identity: <a href=\"https://www.sos.nh.gov/sites/g/files/ehbemt561/files/documents/2025-03/5-2025-voter-id-explanatory-document.pdf\" target=\"_blank\" rel=\"noreferrer noopener\">https://www.sos.nh.gov/</a>"
           abr_id_selections__options:
-            abr_id_type1: I will include a copy of my photo identification with this 
+            abr_id_type1: I will include a copy of my photo identification with this
               application
-            abr_id_type2: I will present my photo identification to my city or town clerk 
+            abr_id_type2: I will present my photo identification to my city or town clerk
               prior to receiving my absentee ballot
             abr_id_type3: I will get this application notarized
+        custom_errors:
+          party_selection_required: Please select a party affiliation for the primary election
+          party_selection_only_one_group: Please select from only one party group
         ballot_status_check:
           check_with_state_url: |-
             <p>New Hampshire allows voters to track their absentee ballots. You can look up the 
