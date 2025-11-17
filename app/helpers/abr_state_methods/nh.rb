@@ -40,8 +40,11 @@ module AbrStateMethods::NH
 
     # Application + reason radios
     "abr_application_type_selections": { options: %w[abr_application_type1 abr_application_type2] },
-    "abr_reason_selections":           { options: %w[abr_reason1 abr_reason2 abr_reason3 abr_reason4 abr_reason5 abr_reason6] },
-    "abr_reason_6_selections":         { options: %w[abr_reason6_type1 abr_reason6_type2] },
+    "abr_reason_selections_for_pdf": {
+      pdf_name: "abr_reason_selections",  # Actual PDF field name
+      method: "abr_reason_for_pdf"  # Method that returns the correct value
+    },
+    "abr_reason_6_selections": { options: %w[abr_reason6_type1 abr_reason6_type2] },
 
     # Party selection - PDF field mapping
     # NOTE: This is the actual PDF field. We map it from a custom method that consolidates
@@ -64,10 +67,10 @@ module AbrStateMethods::NH
     "abr_election_date":  { method: "abr_election_date_string" },
     "abr_election_date2": { method: "abr_election_date2_string" },
 
-    # ID radios
-    "abr_id_type1": {},
-    "abr_id_type2": {},
-    "abr_id_type3": {},
+    # ID checkboxes - each maps to whether that option is selected
+    "abr_id_type1": { method: "abr_id_type1_checked" },
+    "abr_id_type2": { method: "abr_id_type2_checked" },
+    "abr_id_type3": { method: "abr_id_type3_checked" },
 
     # Assistance
     "abr_assistant_check1": {},
@@ -329,6 +332,38 @@ module AbrStateMethods::NH
     end
     # Return empty if "none" selected or nothing selected
     ""
+  end
+
+  # --------------------------
+  # REASON SELECTION MAPPING
+  # --------------------------
+  # When reason6 (inclement weather) is selected, use the sub-selection instead
+  # This prevents abr_reason6 from being selected on PDF; instead abr_reason6_type1 or abr_reason6_type2 is selected
+
+  def abr_reason_for_pdf
+    # If reason6 is selected, return the sub-selection (type1 or type2)
+    if abr_reason_selections == "abr_reason6"
+      return abr_reason_6_selections.to_s
+    end
+    # Otherwise return the main reason selection
+    return abr_reason_selections.to_s
+  end
+
+  # --------------------------
+  # ID TYPE CHECKBOX METHODS
+  # --------------------------
+  # Map radio selection to individual PDF checkboxes
+
+  def abr_id_type1_checked
+    abr_id_selections == "abr_id_type1" ? "On" : "Off"
+  end
+
+  def abr_id_type2_checked
+    abr_id_selections == "abr_id_type2" ? "On" : "Off"
+  end
+
+  def abr_id_type3_checked
+    abr_id_selections == "abr_id_type3" ? "On" : "Off"
   end
 
   # --------------------------
