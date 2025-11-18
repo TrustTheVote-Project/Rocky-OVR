@@ -30,6 +30,7 @@ class RegistrationStep < ApplicationController
   layout "registration"
   before_action :find_partner
   before_action :find_canvassing_shift
+  before_action :force_html_format
 
   rescue_from Registrant::AbandonedRecord do |exception|
     reg = exception.registrant
@@ -69,6 +70,13 @@ class RegistrationStep < ApplicationController
   end
 
   protected
+
+  def force_html_format
+    unless request.format.html? || request.format.js?
+      head :not_acceptable
+    end
+  end
+
   def registrant_params
     #raise Registrant.column_names.to_s]
     if params[:registrant]
