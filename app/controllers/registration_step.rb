@@ -72,7 +72,9 @@ class RegistrationStep < ApplicationController
   protected
 
   def force_html_format
-    unless request.format.html? || request.format.js?
+    # Only reject explicitly non-HTML formats (like text/plain, application/json, etc.)
+    # Allow */* (which browsers and monitoring tools use) to default to HTML
+    if request.format.symbol.present? && ![:html, :js, :all].include?(request.format.symbol)
       head :not_acceptable
     end
   end
