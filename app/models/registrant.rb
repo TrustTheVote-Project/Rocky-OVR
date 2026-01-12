@@ -362,7 +362,7 @@ class Registrant < ActiveRecord::Base
     end
 
     event :advance_to_step_2 do
-      transitions :to => :step_2, :from => [:step_1, :step_2, :step_3, :step_4, :rejected]
+      transitions :to => :step_2, :from => [:step_1, :step_2, :step_3, :step_4, :step_5, :rejected]
     end
 
     event :advance_to_step_3 do
