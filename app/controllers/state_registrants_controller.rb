@@ -12,6 +12,11 @@ class StateRegistrantsController < RegistrationStep
   
   def update
     @registrant.attributes = state_registrant_attributes
+    if @missing_form_params
+      @registrant.errors.add(:base, I18n.t('required'))
+      @use_mobile_ui = determine_mobile_ui(@registrant)
+      render "state_registrants/#{@registrant.home_state_abbrev.downcase}/#{current_state}#{@use_mobile_ui ? '_mobile' : ''}" and return
+    end
     @registrant.status = params[:step] if @registrant.should_advance(params)
     @registrant.check_locale_change
     set_up_locale
@@ -109,8 +114,13 @@ class StateRegistrantsController < RegistrationStep
   end
 
   private
-  def state_registrant_attributes 
-    params.require(@registrant.class.table_name.singularize).permit(
+  def state_registrant_attributes
+    param_key = @registrant.class.table_name.singularize
+    unless params.key?(param_key)
+      @missing_form_params = true
+      return {}
+    end
+    params.require(param_key).permit(
       @registrant.class.permitted_attributes
     )
   end
