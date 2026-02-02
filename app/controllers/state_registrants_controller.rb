@@ -132,7 +132,9 @@ class StateRegistrantsController < RegistrationStep
       reg = exception.registrant
       redirect_to registrants_timeout_url(partner_locale_options(reg.partner.id, reg.locale, reg.tracking_source))
       return
-    rescue 
+    rescue
+      # Registrant not found - redirect to start page
+      redirect_to root_path
       return
     end
     @registrant = @old_registrant.state_registrant
@@ -147,7 +149,7 @@ class StateRegistrantsController < RegistrationStep
         @question_2 = @registrant.question_2
       end
     end
-    
+
   end
   
   def go_to_paper
