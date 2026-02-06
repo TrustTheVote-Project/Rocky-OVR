@@ -51,8 +51,9 @@ class RegistrantValidator < ActiveModel::Validator
     
     if requires_presence_of_state_id_number(reg)
       reg.validates_presence_of :state_id_number unless reg.complete?
-      validate_state_id_number(reg)
     end
+    # Always validate format when state_id_number is present (prevents emojis/invalid chars)
+    validate_state_id_number(reg)
     # if reg.at_least_step_3? || (reg.at_least_step_2? && reg.use_short_form?)
     #   validate_state_id_number(reg)
     # end

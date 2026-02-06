@@ -19,6 +19,9 @@ class StateRegistrants::Base < ActiveRecord::Base
 
   before_create :set_default_opt_ins
 
+  # Strip 4-byte UTF-8 characters (emojis, etc.) that MySQL utf8mb3 doesn't support
+  before_save :strip_non_bmp_characters
+
   attr_accessor :new_locale
 
   def self.permitted_attributes
@@ -254,5 +257,17 @@ class StateRegistrants::Base < ActiveRecord::Base
 
   def eligible?
     true
+  end
+
+  private
+
+  # Strip 4-byte UTF-8 characters (emojis, etc.) from all string fields
+  # MySQL utf8mb3 (3-byte UTF-8) doesn't support characters above U+FFFF
+  def strip_non_bmp_characters
+    self.changes.each do |attr_name, (old_val, new_val)|
+      if new_val.is_a?(String) && new_val =~ /[\u{10000}-\u{10FFFF}]/
+        self[attr_name] = new_val.gsub(/[\u{10000}-\u{10FFFF}]/, '')
+      end
+    end
   end
 end
