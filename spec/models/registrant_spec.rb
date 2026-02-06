@@ -430,12 +430,40 @@ describe Registrant do
         expect(r).to be_valid
         expect(r.errors[:survey_answer_1]).to be_blank
         expect(r.errors[:survey_answer_2]).to be_blank
-        
+
       end
-      
+
     end
   end
-  
+
+  describe 'strip_non_bmp_characters' do
+    it "strips emojis from all string fields before save" do
+      r = Registrant.new
+      r.state_id_number = "8820393 🥣"
+      r.first_name = "Test 😀 Name"
+      r.send(:strip_non_bmp_characters)
+      expect(r.state_id_number).to eq("8820393 ")
+      expect(r.first_name).to eq("Test  Name")
+    end
+
+    it "preserves non-emoji characters" do
+      r = Registrant.new
+      r.state_id_number = "ABC12345"
+      r.first_name = "Test Name"
+      r.send(:strip_non_bmp_characters)
+      expect(r.state_id_number).to eq("ABC12345")
+      expect(r.first_name).to eq("Test Name")
+    end
+
+    it "runs on save even with validate: false" do
+      r = FactoryGirl.create(:step_1_registrant)
+      r.first_name = "Test 🥣 Name"
+      r.save(validate: false)
+      r.reload
+      expect(r.first_name).to eq("Test  Name")
+    end
+  end
+
   describe 'basic_character_replacement' do
     it "replacees spansih characters with ascii in addresses" do
       r = Registrant.new

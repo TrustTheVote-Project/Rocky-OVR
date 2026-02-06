@@ -15,12 +15,13 @@ module AbrStateMethods::GA
     "abr_home_state_abbrev": {method: "home_state_abbrev"},
     "abr_zip": {method: "zip"},
     "abr_county": {},
-    "abr_check_mailing_address": {options: ["Off", "Yes"]},	
+    "abr_check_mailing_address": {options: ["Off", "Yes"]},
     "abr_mailing_address_line_1": {},
     "abr_mailing_city": {},
     "abr_mailing_state_name": {},
     "abr_mailing_zip": {},
     "abr_id_type": {options: ["abr_id_type1", "abr_id_type2"]},
+    "abr_id_type2": {method: "abr_id_type2_checked"},
     "abr_drivers_license": {sensitive: true},
     "abr_date_of_birth_mm_dd_yyyy": {
       pdf_name: "date_of_birth_mm_dd_yyyy",
@@ -70,17 +71,17 @@ module AbrStateMethods::GA
 
   def abr_election_date
     if self.abr_election_type_selections_options == "abr_election_type1"
-      return "06/17/25"
+      return "03/17/26"
     elsif self.abr_election_type_selections_options == "abr_election_type2"
-      return "07/15/25"
+      return "04/14/26"
     elsif self.abr_election_type_selections_options == "abr_election_type3"
-      return "09/16/25"
+      return "05/19/26"
     elsif  self.abr_election_type_selections_options == "abr_election_type4"
-      return "10/14/25"
+      return "06/16/26"
     elsif  self.abr_election_type_selections_options == "abr_election_type5"
-      return "11/04/25"
+      return "11/03/26"
     elsif  self.abr_election_type_selections_options == "abr_election_type6"
-      return "12/02/25"
+      return "12/01/26"
     end
     return ""
   end
@@ -255,11 +256,11 @@ module AbrStateMethods::GA
       {"abr_mailing_city": {required: :if_visible, visible: "abr_check_mailing_address", classes: "half"}},
       {"abr_mailing_state_name": {type: :select, required: :if_visible, visible: "abr_check_mailing_address", classes: "quarter", options: GeoState.collection_for_select}},
       {"abr_mailing_zip": {required: :if_visible, visible: "abr_check_mailing_address", classes: "quarter"}},
-      {"abr_id_type": {type: :radio, required: :true}},
+      {"abr_id_type": {type: :radio, required: :true, options: ["abr_id_type1", "abr_id_type2"]}},
       {"abr_drivers_license": {required: :if_visible, visible: "abr_id_type_abr_id_type1", regexp: /\A\d{9}\z/}},
       {"abr_id_instructions": {type: :instructions, visible: "abr_id_type_abr_id_type2"}},
       {"abr_election_type_selections_options": {type: :radio, required: true}},
-      {"abr_primary_type_selections1": {type: :radio, required: :if_visible, visible_any: "abr_election_type_selections_options_abr_election_type1 abr_election_type_selections_options_abr_election_type2"}},
+      {"abr_primary_type_selections1": {type: :radio, required: :if_visible, visible_any: "abr_election_type_selections_options_abr_election_type3 abr_election_type_selections_options_abr_election_type4"}},
       {"abr_assistant_check1": {type: :checkbox}},
       {"abr_assistant_instructions": {type: :instructions, visible: "abr_assistant_check1"}},
       {"abr_assistant_name": {visible: "abr_assistant_check1", required: :if_visible}},
@@ -291,5 +292,11 @@ module AbrStateMethods::GA
   #   end
   # end
 
+  # ID type checkbox method
+  # Map radio selection to PDF checkbox
+  # When abr_id_type2 is selected, check the "I do not have a driver's license" checkbox
+  def abr_id_type2_checked
+    abr_id_type == "abr_id_type2" ? "Yes" : "Off"
+  end
 
 end

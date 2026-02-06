@@ -362,7 +362,7 @@ class Registrant < ActiveRecord::Base
     end
 
     event :advance_to_step_2 do
-      transitions :to => :step_2, :from => [:step_1, :step_2, :step_3, :step_4, :rejected]
+      transitions :to => :step_2, :from => [:step_1, :step_2, :step_3, :step_4, :step_5, :rejected]
     end
 
     event :advance_to_step_3 do
@@ -462,6 +462,9 @@ class Registrant < ActiveRecord::Base
   before_create :generate_uid
   before_create :set_dl_defaults
 
+  # Must be before_save (not before_validation) so it runs even with save(validate: false)
+  # which is used by StateRegistrants when updating the original registrant
+  before_save :strip_non_bmp_characters
   before_save :set_questions, :set_finish_with_state, :set_will_be_18, :limit_zip_codes
 
   attr_accessor :telling_friends, :new_locale, :input_locale
@@ -658,8 +661,20 @@ class Registrant < ActiveRecord::Base
     self.party = nil unless requires_party? or optional_party?
   end
 
+  # Strip 4-byte UTF-8 characters (emojis, etc.) from all string fields
+  # MySQL utf8mb3 (3-byte UTF-8) doesn't support characters above U+FFFF
+  def strip_non_bmp_characters
+    self.changes.each do |attr_name, (old_val, new_val)|
+      if new_val.is_a?(String) && new_val =~ /[\u{10000}-\u{10FFFF}]/
+        self[attr_name] = new_val.gsub(/[\u{10000}-\u{10FFFF}]/, '')
+      end
+    end
+  end
+
   def reformat_state_id_number
-    self.state_id_number.upcase! if self.state_id_number.present? && self.state_id_number_changed?
+    if self.state_id_number.present? && self.state_id_number_changed?
+      self.state_id_number = self.state_id_number.strip.upcase
+    end
   end
 
   

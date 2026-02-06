@@ -257,8 +257,7 @@ en:
           request_deadline: |-
             <p>Received by election officials 7 days before the election.</p>
           status_check_instructions: |-
-            <p>Contact your County Clerk (<a href="https://www.sos.arkansas.gov/uploads/elections/County_Clerk_Contact_List_-_Rev._8-19-2020_.pdf" target="_blank" rel="noopener noreferrer">https://www.sos.arkansas.gov/</a>)
-            with any questions about the status of your absentee ballot.</p>
+            <p><a href="https://www.voterview.ar-nova.org/VoterView" target="_blank" rel="noopener noreferrer">https://www.voterview.ar-nova.org/VoterView</a></p>
           finish_instructions_1_hint: |-
             <p>If you've requested an absentee ballot for the Presidential Primary or for 
             all elections in the calendar year (disabled, residents of a care facility, or 
@@ -788,8 +787,8 @@ en:
             <p>Received by election officials 11 days before the election.</p>
           status_check_instructions: <a href="https://www.mvp.sos.ga.gov/MVP/mvp.do" rel="noopener noreferrer">https://www.mvp.sos.ga.gov/MVP/mvp.do</a>
           finish_instructions_1_hint: |-
-            <p>You can submit your absentee ballot request to your it to your
-            <a href="https://elections.sos.ga.gov/Elections/countyregistrars.do" rel="noopener noreferrer">County Board of Registrars Office</a> (https://elections.sos.ga.gov/Elections/countyregistrars.do) by:</p>
+            <p>You can submit your absentee ballot request to your
+            <a href="https://mvp.sos.ga.gov/s/county-election-offices" rel="noopener noreferrer">County Board of Registrars Office</a> (https://mvp.sos.ga.gov/s/county-election-offices) by:</p>
             <ul>
             <li>Emailing it as an attachment.</li>
             <li>Mailing it.</li>
@@ -827,12 +826,12 @@ en:
           abr_election_type_selections_options: Select the election you'd like to
             request a ballot for.<br/>You must fill out a separate form for each election.
           abr_election_type_selections_options__options:
-            abr_election_type1: 6/17/25 Special Primary Public Service Commissioner (PSC) / Special Election
-            abr_election_type2: 7/15/25 Special Primary Runoff Public Service Commissioner (PSC) / Special Election Runoff
-            abr_election_type3: 9/16/25 Special Election
-            abr_election_type4: 10/14/25 Special Election Runoff
-            abr_election_type5: 11/4/25 Municipal General / Special Election – Public Service Commissioner (PSC)
-            abr_election_type6: 12/2/25 Municipal General /Special Election Runoff – Public Service Commissioner (PSC)
+            abr_election_type1: 3/17/26 Special Election
+            abr_election_type2: 4/14/26 Special Election Runoff
+            abr_election_type3: 5/19/26 General Primary Election / Nonpartisan Election
+            abr_election_type4: 6/16/26 General Primary Election / Nonpartisan Runoff
+            abr_election_type5: 11/3/26 General Election / Special Election
+            abr_election_type6: 12/1/26 General Election / Special Election Runoff
           abr_primary_type_selections1: Select the type of ballot you wish to receive.
           abr_primary_type_selections1__options:
             abr_primary_type1: Democratic
@@ -1354,9 +1353,10 @@ en:
         abr:
           step_2_header: You must have a reason to vote absentee in Louisiana.
           step_2_instructions: |-
-            <p>In Louisiana, you must have a reason to vote by mail. You can request an 
-            absentee ballot if you’re unable to vote in-person during early voting or on 
-            Election Day.</p>
+            <p>In Louisiana, you must have a <a href="https://www.sos.la.gov/ElectionsAndVoting/Vote/VoteByMail/Pages/default.aspx" target="_blank" rel="noopener noreferrer">reason to vote by mail</a>. You can request an
+            absentee ballot if you're unable to vote in-person during early voting or on
+            Election Day. If you are a senior citizen, disabled, or live in a nursing home,
+            you will have to use a <a href="https://www.sos.la.gov/ElectionsAndVoting/Vote/VoteByMail/Pages/default.aspx" target="_blank" rel="noopener noreferrer">different form</a>.</p>
           request_deadline: |-
             <p>Received by election officials by 4:30 p.m. on the 4th day before the election.</p>
           status_check_instructions: <a href="https://voterportal.sos.la.gov/" rel="noopener noreferrer">https://voterportal.sos.la.gov/</a>
@@ -1388,16 +1388,13 @@ en:
           abr_last_4_ssn: Enter the last four digits of your social security number
           abr_reason_selections: Select your reason for voting by mail
           abr_reason_selections__options:
-            abr_reason1: I am a senior citizen (65 years of age or older).
             abr_reason2: I will be temporarily absent or expect to be temporarily
               outside my state or parish during the early voting period and on election
               day.
             abr_reason3: I will be working offshore during the early voting period
               and on Election Day.
-            abr_reason4: I am a resident of a nursing home, or a veterans’ home or
-              an extended hospital stay for physical disability.
             abr_reason5: 'I am a student, instructor, or professor (or spouse/dependent)
-              located and living outside my parish. <br> Note: Students voting for
+              located and living outside my parish. <br>Note: Students voting for
               the first time must enclose a copy of student ID or a bill.'
             abr_reason6: I am a member of the clergy (or spouse/dependent) assigned
               outside of my parish.
@@ -1411,34 +1408,37 @@ en:
               know about my hospitalization until after early voting had expired;
               or I was hospitalized during early voting and I expect to be hospitalized
               on Election Day; or I was either hospitalized or restricted to my bed
-              by my physician during early voting and on Election Day. <br> You must
+              by my physician during early voting and on Election Day. <br>You must
               enclose proof of hospitalization.
             abr_reason10: I am incarcerated and am not under imprisonment for conviction
               of a felony. <br>You must enclose a certification by sheriff.
-            abr_reason11: I am a participant in the Address Confidentiality Program.
-            abr_reason12: I am a juror and will be sequestered during early voting
-              and Election Day.
-          abr_application_type_selections: Would you like to receive an absentee by
-            mail ballot automatically for the election date(s) on this application
-            AND all future elections?
-          abr_application_type_selections__options:
-            abr_application_type1: Send me an absentee ballot for the election dates
-              I choose and all future elections.
-            abr_application_type2: Only send me an absentee ballot for the election
-              dates I choose on this application.
           abr_absence_date_instructions: Enter the dates you will be absent.
           abr_absence_begin_date_input: Absence begins
           abr_absence_end_date_input: Absence ends
           abr_election_type_selections: Select the election(s) you would like to request
             an absentee ballot for. You must select at least one.
-          abr_election_type1_input: 10/11/25 - Open Primary/Orleans Municipal Parochial Primary
-          abr_election_type2_input: 11/15/2025 - Open General/Orleans Municipal Parochial General
-          abr_assistant_check1: Check this box if someone else will be delivering
-            your request either by hand or by fax.
-          abr_assistant_name: Enter the name of the person who will be submitting
-            the application.
-          abr_relationship1: Enter the relationship of the person who will be submitting
-            the application.
+          abr_election_type1_input: Select a Primary Election (optional)
+          abr_election_type1_input__options:
+            abr_primary_none: I do not want a Primary Election ballot
+            abr_primary1: 03/14/26 - Louisiana Special Legislative General Election
+            abr_primary2: 05/16/26 - Louisiana Party Primary & Municipal Primary
+            abr_primary3: 11/03/26 - Louisiana Congressional General/Open Primary Election
+          abr_election_type2_input: Select a General Election (optional)
+          abr_election_type2_input__options:
+            abr_general_none: I do not want a General Election ballot
+            abr_general1: 04/18/26 - Louisiana Special General Election
+            abr_general2: 06/27/26 - Louisiana 2nd Party Primary & Municipal General
+            abr_general3: 12/12/26 - Louisiana Open General Election
+          abr_party_selections: 'PRIMARY ELECTION: If you are an unaffiliated voter
+            (not registered with a party) and want to vote in a party''s closed primary
+            election, select the type of ballot you wish to receive.'
+          abr_party_selections__options:
+            abr_party1: Democratic Ballot
+            abr_party2: Republican Ballot
+            abr_party3: No Party (Unaffiliated) Ballot
+          abr_assistant_name: If hand delivered or faxed, enter the name of the person
+            submitting the application.
+          abr_relationship1: Relationship to applicant
           reason: I have been previously approved in the Disability Program, or I
             am disabled or homebound.
           reason__options:
@@ -3651,6 +3651,7 @@ en:
             Assistant or both.
           id_required: You must provide a Texas ID or the last four digits of your
             SSN or confirm that you nave neither.
+          must_select_one_election: You must select at least one election.
           absence_end_date_after_begin_date: The date you return to you residence
             address must be after the date you can begin receiving mail at your out
             of county address.
@@ -3672,27 +3673,29 @@ en:
           abr_no_id: I have not been issued a Social Security Number
           abr_delivery_address: 'Mail my Ballot to:'
           abr_delivery_address__options:
-            abr_residence_address: My Residence Address as listed on my Voter Registration
+            abr_residence_address: My residence address as listed on my Voter Registration
               Certificate
-            abr_mailing_address: Other Address (You may use the Other Address line
-              only if it is your mailing address as listed on your Voter Registration
-              certificate, an address outside the county, a hospital, nursing home
+            abr_mailing_address: My mailing address as listed on my Voter Registration
+              Certificate
+            abr_other_address: Other address (You may use the Other Address line
+              only if it an address outside the county, a hospital, nursing home
               or other facility, the address of a jail/civil commitment facility,
               or the address of a relative.)
+          abr_mail_address_type_selections: 'An address from my Voter Registration Certificate'
+          abr_mail_address_type_selections__options:
+            abr_mail_address_type1: My residence address as listed on my Voter Registration Certificate
+            abr_mail_address_type2: My mailing address as listed on my Voter Registration Certificate
+          abr_address_type_selections: 'My Other Address is: (Check One)'
+          abr_address_type_selections__options:
+            abr_address_type1: Hospital, Nursing Home, Long-term Care Facility, Retirement
+              or Assisted Living Center or a Relative
+            abr_address_type2: Jail/Civil Commitment Facility or Relative
+            abr_address_type3: Address outside the county
           abr_mailing_street_address: Address
           abr_mailing_unit: Apt.
           abr_mailing_city: City
           abr_mailing_state_name: State
           abr_mailing_zip: Zip Code
-          abr_address_type_selections: 'My Other Address is: (Check One)'
-          abr_address_type_selections__options:
-            abr_address_type1: The mailing address listed on my Voter Registration
-              Certificate
-            abr_address_type2: Address Outside the County (voters absent from the
-              county)
-            abr_address_type3: Hospital, Nursing Home, Long-term Care Facility, Retirement
-              or Assisted Living Center or a Relative
-            abr_address_type4: Address of the Jail/Civil Commitment Facility or Relative
           abr_relationship1: Indicate Relationship
           abr_relationship2: Indicate Relationship
           abr_reason_selections: Select your reason for voting by mail
@@ -3706,11 +3709,8 @@ en:
             abr_reason2: Disability
             abr_reason3: Expected to give birth within three weeks before or after
               Election Day
-            abr_reason4: Expected Absence from the County (You may apply for a ballot
-              for one election and its resulting runoff, if your dates of absence
-              from the county include both elections.)
-            abr_reason5: Confined in Jail or Involuntary Civil Commitment (You may
-              only apply for a ballot for one election and any resulting runoff.)
+            abr_reason4: Expected Absence from the County
+            abr_reason5: Confined in Jail or Involuntary Civil Commitment
           abr_absence_begin_date: Date you can begin to receive mail at your out of
             county address
           abr_absence_end_date: 'Return date to residence address:'
@@ -3725,12 +3725,25 @@ en:
             abr_primary_type1: Democratic Primary
             abr_primary_type2: Republican Primary
             abr_primary_type3: Do Not Send me a Primary Ballot
+            abr_primary_type4: Democratic Party
+            abr_primary_type5: Republican Party
+          abr_primary_runoff_dem1: Any resulting Democratic Primary runoff
+          abr_primary_runoff_rep1: Any resulting Republican Primary runoff
+          abr_election_header: 'SELECT AN ELECTION:'
           abr_election_selection: 'Select an election:'
-          abr_election_selection__options:
-            abr_election_selection_type1: November Election
-            abr_election_selection_type2: May Election
-            abr_election_selection_type3: Other Special Election
-            abr_election_selection_type4: Any Resulting Runoff Election
+          abr_election_selection_type1: November Election
+          abr_election_selection_type2: May Election
+          abr_election_selection_type3: Other Special Election
+          abr_election_selection_type4: Any Resulting Runoff Election
+          abr_march_primary_selection: March Primary Election
+          abr_primary_type_selections2: Primary Election
+          abr_primary_type_selections2__hint: If you want to vote in a primary, you
+            must select a party.
+          abr_primary_type_selections2__options:
+            abr_primary_type4: Democratic Party
+            abr_primary_type5: Republican Party
+          abr_primary_runoff_dem2: Any resulting Democratic Primary runoff
+          abr_primary_runoff_rep2: Any resulting Republican Primary runoff
           abr_assistant_instructions: Information about Witnesses and Assistants
           abr_has_assistant: 'Check this box if someone helped you complete this form
             or delivers it by mail, fax or email.<br/><span style="font-weight: normal">That
