@@ -2116,10 +2116,14 @@ en:
           abr_election_type_selections: Select the election to request an absentee
             ballot for.
           abr_election_type_selections__options:
-            abr_election_type1: "8/5/2025"
-            abr_election_type2: "11/4/2025"
+            abr_election_type1: "4/7/26 General Municipal Election"
+            abr_election_type2: "8/4/26 Primary Election"
+            abr_election_type3: "11/3/26 General Election"
           abr_election_date_input: Enter the date of the election
           abr_election_date_input__hint: The election must be within 60 days.
+          abr_primary_party_input: PRIMARY ELECTION
+          abr_primary_party_input__hint: |-
+             Identify the type of ballot you wish to receive. To vote in a party's primary, you must provide that political party.
           abr_primary_type_selections: Select the type of ballot you wish to receive.
           abr_primary_type_selections__hint: |-
             By selecting a party, you will indicate which ballot you will receive. You will not register with this party.
@@ -3119,6 +3123,14 @@ en:
             ballot, the deadline to provide any needed identification or resolve any issues to 
             ensure your vote is counted is the <strong>14th day after the election</strong>. For more information 
             on this process, contact your local election official. </p>
+        registration:
+          has_state_license: I have a current OR state identification card, driver's 
+            license, or Social Security number
+          has_no_state_license: I do not have a current OR state identification card, 
+            driver's license or Social Security number
+        state_online_registration:
+          header: Because you have an OR ID or Social Security number, you are eligible 
+            to complete your registration online with your state.
       pa:
         abr_form_fields:
           bad_date__format_message: Invalid date
@@ -4817,7 +4829,7 @@ en:
         drivers_license_or_non_driver_id: If you have one, you must provide your %{state_name}
           driver's license number or ID number. If you do not have one, please provide
           the last four digits of your Social Security number. If you do not have
-          a Social Securitynumber, please write "NONE" so that a unique identifying
+          a Social Security number, please write "NONE" so that a unique identifying
           number can be assigned to you by the Secretary of State.
         drivers_license_or_other_with_state_name: You must provide your %{state_name}
           driver's license number or the last four digits of your Social Security

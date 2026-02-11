@@ -15,10 +15,16 @@
 <% end %>
 
 <h1>
-  <%- if @registrant.home_state.require_id? %>
-  <%= I18n.t('txt.registration.instructions.state_online_registration', :state=>@registrant.home_state_abbrev).html_safe %>
+  <%-
+    custom_key = "states.custom.#{@registrant.home_state_abbrev.downcase}.state_online_registration.header"
+    has_custom = I18n.exists?(custom_key)
+  %>
+  <%- if has_custom %>
+    <%= I18n.t(custom_key).html_safe %>
+  <%- elsif @registrant.home_state.require_id? %>
+    <%= I18n.t('txt.registration.instructions.state_online_registration', state: @registrant.home_state_abbrev).html_safe %>
   <%- else %>
-  <%= I18n.t('txt.registration.instructions.state_online_registration_id_not_required', :state=>@registrant.home_state_abbrev).html_safe %>
+    <%= I18n.t('txt.registration.instructions.state_online_registration_id_not_required', state: @registrant.home_state_abbrev).html_safe %>
   <%- end %>
 </h1>
 <br />
