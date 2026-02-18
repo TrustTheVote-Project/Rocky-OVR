@@ -185,6 +185,8 @@ class RegistrantValidator < ActiveModel::Validator
     unless reg.email_address.blank?
       if EmailAddress.is_blacklisted?(reg.email_address) && (!reg.building_via_api_call? || reg.api_version == "4")
         reg.errors.add(:email_address, :invalid)
+      else
+        MxEmailValidator.new(attributes: [:email_address]).validate_each(reg, :email_address, reg.email_address)
       end
     end
   end

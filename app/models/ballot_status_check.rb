@@ -19,6 +19,7 @@ class BallotStatusCheck < ActiveRecord::Base
   end
   
   validates_format_of :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
+  validates :email, mx_email: true
     
   belongs_to :partner, optional: true
 

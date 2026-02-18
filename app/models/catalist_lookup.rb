@@ -24,6 +24,7 @@ class CatalistLookup < ActiveRecord::Base
   validates_presence_of :zip
   validates_presence_of :email
   validates_format_of   :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
+  validates :email, mx_email: true
   validates_presence_of :phone_type, if: -> { !phone.blank? }
   
   before_validation :clean_phone_number

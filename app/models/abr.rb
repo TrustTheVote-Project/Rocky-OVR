@@ -74,6 +74,7 @@ class Abr < ActiveRecord::Base
 
   validates_presence_of :email
   validates_format_of   :email, :with => Registrant::EMAIL_REGEX, :allow_blank => true
+  validates :email, mx_email: true
   validates_presence_of :phone_type, if: :has_phone?
   validates_presence_of :registration_county, if: :requires_county?
   validate :validates_zip

@@ -742,6 +742,7 @@ en:
             email_address_for_continue_on_device:
               format: Please provide a valid email
       messages:
+        mx_invalid: "Email address may not be valid. Try another."
         inclusion: "%{attribute} is not included in the list."
         exclusion: "%{attribute} is reserved."
         format: Invalid
