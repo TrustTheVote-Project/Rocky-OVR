@@ -826,8 +826,8 @@ en:
           abr_election_type_selections_options: Select the election you'd like to
             request a ballot for.<br/>You must fill out a separate form for each election.
           abr_election_type_selections_options__options:
-            abr_election_type1: 3/17/26 Special Election
-            abr_election_type2: 4/14/26 Special Election Runoff
+            # abr_election_type1: 3/17/26 Special Election
+            abr_election_type2: 4/7/26 District 14 Special Election Runoff
             abr_election_type3: 5/19/26 General Primary Election / Nonpartisan Election
             abr_election_type4: 6/16/26 General Primary Election / Nonpartisan Runoff
             abr_election_type5: 11/3/26 General Election / Special Election

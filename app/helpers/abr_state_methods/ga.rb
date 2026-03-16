@@ -31,7 +31,7 @@ module AbrStateMethods::GA
     "abr_election_type_selections": {method: "abr_election_date"},
     "abr_election_type_selections_options": {
       options: [
-        "abr_election_type1",
+        # "abr_election_type1",
         "abr_election_type2",
         "abr_election_type3",
         "abr_election_type4",
@@ -70,10 +70,11 @@ module AbrStateMethods::GA
 
 
   def abr_election_date
-    if self.abr_election_type_selections_options == "abr_election_type1"
-      return "03/17/26"
-    elsif self.abr_election_type_selections_options == "abr_election_type2"
-      return "04/14/26"
+    # if self.abr_election_type_selections_options == "abr_election_type1"
+    #   return "03/17/26"
+    # els
+    if self.abr_election_type_selections_options == "abr_election_type2"
+      return "04/07/26"
     elsif self.abr_election_type_selections_options == "abr_election_type3"
       return "05/19/26"
     elsif  self.abr_election_type_selections_options == "abr_election_type4"
@@ -256,7 +257,7 @@ module AbrStateMethods::GA
       {"abr_mailing_city": {required: :if_visible, visible: "abr_check_mailing_address", classes: "half"}},
       {"abr_mailing_state_name": {type: :select, required: :if_visible, visible: "abr_check_mailing_address", classes: "quarter", options: GeoState.collection_for_select}},
       {"abr_mailing_zip": {required: :if_visible, visible: "abr_check_mailing_address", classes: "quarter"}},
-      {"abr_id_type": {type: :radio, required: :true, options: ["abr_id_type1", "abr_id_type2"]}},
+      {"abr_id_type": {type: :radio, required: true, options: ["abr_id_type1", "abr_id_type2"]}},
       {"abr_drivers_license": {required: :if_visible, visible: "abr_id_type_abr_id_type1", regexp: /\A\d{9}\z/}},
       {"abr_id_instructions": {type: :instructions, visible: "abr_id_type_abr_id_type2"}},
       {"abr_election_type_selections_options": {type: :radio, required: true}},
