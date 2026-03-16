@@ -3572,11 +3572,11 @@ en:
             instructions_3: |-
               <h2>Deadlines for Submitting Your Ballot</h2>
               <ul>
-              <li>If you submit your absentee ballot by mail, it must be received by your 
-              local election office no later than 7:00 p.m. on Election Day.</li>
-              <li>You must return your ballot by mail (USPS, FedEx, UPS, etc.). Hand 
-              delivery or returning your ballot to a poll location on Election Day is not 
-              permitted.</li>
+              <li>If you submit your absentee ballot by mail, it must be received by your
+              local election office no later than the close of polls on Election Day.</li>
+              <li>You must return your ballot by mail (USPS, FedEx, UPS, etc.). Hand
+              delivery or returning your ballot to a poll location during early voting or
+              on Election Day is not permitted.</li>
               </ul>
         abr_form_fields:
           has_mailing_address: My mailing address differs from my residence address
