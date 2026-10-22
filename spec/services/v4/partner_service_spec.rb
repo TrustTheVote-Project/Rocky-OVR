@@ -276,7 +276,6 @@ describe V4::PartnerService do
           survey_question_1_es:  "Uno?",
           survey_question_2_es:  "Dos?",
           partner_ask_for_volunteers: true,
-          external_tracking_snippet: "<code>snippet</code>",
           registration_instructions_url: "http://register.rockthevote.com/reg-instructions?l=<LOCALE>&s=<STATE>",
           survey_question_2_zh_tw: "%E9%9B%BB%E5%AD%90%E9%83%B5%E4%BB%B6%E5%9C%B0%E5%9D%80",
           survey_question_1_ko: "KO One",

@@ -56,7 +56,6 @@ module V4
         :survey_question_1_es,
         :survey_question_2_es,
         :partner_ask_for_volunteers,
-        :external_tracking_snippet,
         :registration_instructions_url,
         :whitelabeled,
         :from_email,
