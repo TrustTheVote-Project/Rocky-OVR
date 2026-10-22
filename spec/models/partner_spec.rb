@@ -36,6 +36,16 @@ describe Partner do
       p.api_key.should_not be_blank
     end
   end
+
+  # Staff-only pixel HTML/JS. Must not be mass-assignable via
+  # partners_controller#update (Partner.permitted_attributes).
+  describe ".permitted_attributes" do
+    it "excludes external tracking and conversion snippets" do
+      attrs = Partner.permitted_attributes.map(&:to_s)
+      attrs.should_not include("external_tracking_snippet")
+      attrs.should_not include("external_conversion_snippet")
+    end
+  end
   
   describe ".deactivate_stale_partners!" do
     let(:p1) { FactoryGirl.create(:partner, last_login_at: 100.day.ago, current_login_at: nil, updated_at: 1.year.ago, id: 101) }
